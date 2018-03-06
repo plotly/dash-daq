@@ -1,0 +1,77 @@
+{
+  "name": "dash-control-components",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=8"
+  },
+  "description": "Control and indicator components for Dash",
+  "main": "src/index.js",
+  "module": "lib/bundle.js",
+  "jsnext:main": "lib/bundle.js",
+  "license": "MIT",
+  "scripts": {
+    "copy-lib": "copyfiles -u 1 lib/* dash_control_components",
+    "dash-demo": "python demo.py",
+    "demo": "builder run demo",
+    "doc-gen": "./bin/generateDocs",
+    "doc-stage": "git add docs",
+    "install-local": "yarn copy-lib && python setup.py install",
+    "lint": "eslint --fix --ignore-path .eslintignore .",
+    "prepublish": "yarn test && builder run build-dist && yarn copy-lib",
+    "publish-all": "yarn publish && python setup.py sdist upload",
+    "publish-pypi": "yarn prepublish && python setup.py sdist upload",
+    "start": "builder run build-dev",
+    "test": "builder run check",
+    "test-frontend-cov": "jest --coverage --silent",
+    "test-watch": "builder run test-frontend-watch",
+    "test-debug": "builder run test-frontend-debug",
+    "uninstall-local": "pip uninstall dash-control-components -y",
+    "prettier": "yarn prettier-src && yarn prettier-tests",
+    "prettier-src": "prettier --single-quote --print-width=100 --write src/**/*.js",
+    "prettier-tests": "prettier --single-quote --print-width=100 --write src/components/__tests__/**/*.js",
+    "prettier-restage": "git update-index --again"
+  },
+  "dependencies": {
+    "builder": "3.2.2",
+    "color": "^3.0.0",
+    "copyfiles": "^1.2.0",
+    "dash-components-archetype": "^0.2.11",
+    "prop-types": "^15.5.9",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-numeric-input": "^2.2.3",
+    "styled-components": "^3.1.6",
+    "webpack": "^1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "chalk": "^2.3.1",
+    "dash-components-archetype-dev": "^0.2.11",
+    "enzyme": "^2.8.2",
+    "fs-extra": "^5.0.0",
+    "jest": "^22.3.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.10.2",
+    "react-docgen": "^2.20.1",
+    "react-docgen-markdown-renderer": "^1.0.2",
+    "react-test-renderer": "^15.5.4",
+    "sinon": "^4.3.0"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/styled"
+    ]
+  },
+  "pre-commit": [
+    "test",
+    "prettier",
+    "prettier-restage",
+    "doc-gen",
+    "doc-stage"
+  ],
+  "keywords": [
+    "dash",
+    "control",
+    "components"
+  ]
+}

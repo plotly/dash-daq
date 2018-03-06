@@ -1,0 +1,89 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const fs = require('fs-extra');
+const chalk = require('chalk');
+const reactDocgen = require('react-docgen');
+const ReactDocGenMarkdownRenderer = require('react-docgen-markdown-renderer');
+
+const componentDir = path.join(__dirname, '..', 'src', 'components');
+const documentationDir = path.join(__dirname, '..', 'docs');
+
+const componentDocTemplate = `
+## {{componentName}}
+
+{{#if srcLink }}Component file: [\`{{srcLink}}\`]({{srcLink}}){{/if}}
+
+{{#if description}}{{{description}}}{{/if}}
+
+prop | type | default | description
+---- | :----: | :-------: | -----------
+{{#each props}}
+**{{@key}}** | \`{{> (typePartial this) this}}\` | {{#if this.defaultValue}}\`{{{this.defaultValue}}}\`{{/if}} | {{#if this.description}}{{{this.description}}}{{/if}}
+{{/each}}
+`;
+
+const renderer = new ReactDocGenMarkdownRenderer({ template: componentDocTemplate });
+
+genDocumention()
+  .then(() => console.log(chalk.green('Documentation successfully generated.')))
+  .catch(console.error);
+
+
+// helper
+async function genDocumention () {
+  const componentFilenames = fs.readdirSync(componentDir).filter((filename) => filename.includes('.js'));
+
+  await genComponentDocs(componentFilenames);
+  await genIndexDoc(componentFilenames);
+}
+
+async function genComponentDocs (componentFilenames) {
+
+  const promises = componentFilenames.map((componentFilename) => {
+    const docFilename = getDocFilename(componentFilename);
+    const componentPath = path.join(componentDir, componentFilename);
+    const docPath = path.join(documentationDir, docFilename)
+
+    return documentComponent(componentPath, docPath);
+  });
+
+  return Promise.all(promises);
+}
+
+async function genIndexDoc (componentFilenames) {
+  const indexDocPath = path.join(documentationDir, 'README.md')
+  let content = '';
+
+  content += '## Component API Documentation\n\n';
+
+  componentFilenames.forEach((filename) => {
+    const componentName = getComponentName(filename);
+    const docFilename = getDocFilename(filename);
+
+    content += `\n - [${componentName}](/docs/${docFilename})\n`;
+  })
+
+  return fs.writeFile(indexDocPath, content);
+}
+
+async function documentComponent (componentPath, docPath) {
+  const componentName = getComponentName(componentPath);
+  const fileContent = await fs.readFile(componentPath);
+  
+  const doc = reactDocgen.parse(fileContent);
+  const markdown = renderer.render(componentPath, doc, [])
+    .replace(`${componentName}.react`, componentName)
+    .split('src/components').join('/src/components')
+
+  return fs.writeFile(docPath, markdown);
+}
+
+
+function getDocFilename (componentPath) {
+  return `${path.basename(componentPath).split('.').shift()}.md`;
+}
+
+function getComponentName (componentPath) {
+  return path.basename(componentPath).split('.').shift();
+}
