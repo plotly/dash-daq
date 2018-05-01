@@ -58,10 +58,31 @@ describe('Tank', () => {
     expect(component.find(Tick)).toHaveLength(11);
   });
 
-  it('has custom marks', () => {
-    const marks = { 0: 'Low', 5: 'Medium', 10: 'High' };
-    const component = mount(<Tank label="Test label" marks={marks} step={5} />);
+  it('has custom scale', () => {
+    const scale = { custom: { 0: 'Low', 5: 'Medium', 10: 'High' } };
+    const component = mount(<Tank label="Test label" scale={scale} />);
     expect(component.find(Tick)).toHaveLength(3);
+  });
+
+  it('has custom mark styling', () => {
+    const scale = { custom: { 0: { style: { color: 'blue' }, label: '_' } } };
+    const component = mount(<Tank label="Test label" scale={scale} />);
+
+    const tickText = component
+      .find(Tick)
+      .children('.label')
+      .childAt(0);
+
+    expect(tickText).toHaveLength(1);
+    expect(tickText.prop('style').color).toBe('blue');
+  });
+
+  it('handles logarithmic scale', () => {
+    const component = mount(<Tank label="Test label" logarithmic showCurrentValue value={10000} />);
+
+    const currValue = component.find(CurrentValue);
+    expect(currValue).toHaveLength(1);
+    expect(currValue.text()).toBe('~104');
   });
 
   it('has assigned className', () => {

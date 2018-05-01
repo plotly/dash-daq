@@ -1,6 +1,6 @@
-# dash-control-components
+# dash_daq
 
-Control panel components for Dash.
+DAQ components for Dash.
 
 ## Dash
 

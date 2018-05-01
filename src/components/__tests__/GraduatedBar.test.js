@@ -6,6 +6,7 @@ import GraduatedBar from '../GraduatedBar.react';
 import { Container, Block, Value } from '../../styled/GraduatedBar.styled';
 import Label from '../../styled/shared/Label.styled';
 import DarkThemeProvider from '../DarkThemeProvider.react';
+import { light } from '../../styled/constants';
 
 describe('Graduated Bar', () => {
   it('renders', () => {
@@ -46,6 +47,20 @@ describe('Graduated Bar', () => {
     expect(component.find(Value)).toHaveLength(0);
   });
 
+  it('handles color scale correctly', () => {
+    const colors = { ranges: { red: [0, 5], blue: [5, 10] } };
+    const hasCustomColor = block => block.prop('color') !== light.primary;
+
+    const component = mount(
+      shallow(<GraduatedBar value={5} min={0} max={10} color={colors} />).get(0)
+    );
+
+    const blocks = component.find(Block);
+    blocks.forEach(block => {
+      expect(hasCustomColor(block)).toBeTruthy();
+    });
+  });
+
   it('has assigned className', () => {
     const component = mount(<GraduatedBar className="testClass" />);
     expect(component.hasClass('testClass')).toBeTruthy();
@@ -76,5 +91,17 @@ describe('Graduated Bar', () => {
 
     expect(label).toHaveLength(1);
     expect(label.prop('style').color).toBe('blue');
+  });
+
+  it('handles gradient color scheme', () => {
+    const gradient = { gradient: true, ranges: { green: [0, 5], yellow: [5, 7], red: [7, 10] } };
+    const component = mount(<GraduatedBar value={63} color={gradient} />);
+
+    const block = component.find(Block).first();
+
+    // we don't actually call `.css()` but this is an easy way to visualize the props being passed
+    expect(block.prop('gradient').css()).toEqual(
+      'linear-gradient(to right, rgb(0, 128, 0) 0%, rgb(255, 255, 0) 50%, rgb(255, 0, 0) 70%, rgb(255, 0, 0) 100%)'
+    );
   });
 });

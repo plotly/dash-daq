@@ -9,7 +9,7 @@ between on and off.
 prop | type | default | description
 ---- | :----: | :-------: | -----------
 **className** | `String` |  | Class to apply to the root component element.
-**color** | `String` |  | Color to highlight button
+**color** | `String` |  | Color to highlight active switch background
 **dashEvents** | `Enum('click')` |  | 
 **disabled** | `Boolean` |  | If true, switch cannot be clicked
 **fireEvent** | `Function` |  | A callback for firing events to dash.

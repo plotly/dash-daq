@@ -3,6 +3,8 @@
 
  - [BooleanSwitch](/docs/BooleanSwitch.md)
 
+ - [ColorPicker](/docs/ColorPicker.md)
+
  - [DarkThemeProvider](/docs/DarkThemeProvider.md)
 
  - [Gauge](/docs/Gauge.md)
@@ -13,9 +15,15 @@
 
  - [Knob](/docs/Knob.md)
 
+ - [LEDDisplay](/docs/LEDDisplay.md)
+
  - [NumericInput](/docs/NumericInput.md)
 
  - [PowerButton](/docs/PowerButton.md)
+
+ - [PrecisionInput](/docs/PrecisionInput.md)
+
+ - [Slider](/docs/Slider.md)
 
  - [StopButton](/docs/StopButton.md)
 

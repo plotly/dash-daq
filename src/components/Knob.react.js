@@ -5,9 +5,17 @@ import { withTheme } from 'styled-components';
 import KnobSvg from '../helpers/KnobSvg.react';
 import Container from '../styled/Knob.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
-import { light } from '../styled/constants';
+import { light, TRACK_TOTAL_DEG } from '../styled/constants';
+import { computeProgress, roundToDecimal } from '../helpers/util';
+import { getColorValue } from '../helpers/colorRanges';
+import generateScale from '../helpers/scale';
 
 const RESET_START_ANGLE = -1;
+
+const valueToDeg = ({ min, max, value }) =>
+  computeProgress({ min, max, value, progressionTarget: TRACK_TOTAL_DEG });
+const degToValue = ({ min, max, deg }) =>
+  computeProgress({ min: 0, max: TRACK_TOTAL_DEG, value: deg, progressionTarget: max - min }) + min;
 
 /**
  * A knob component that can be turned
@@ -17,22 +25,27 @@ class Knob extends Component {
   constructor(props) {
     super(props);
 
+    const currentDeg = valueToDeg({
+      min: props.min,
+      max: props.max,
+      value: props.value || props.min
+    });
+
     this.state = {
       min: props.min,
       max: props.max,
-      step: props.step,
       value: props.value || props.min,
+      scale: generateScale(props),
       isDragging: false,
       startAngle: RESET_START_ANGLE,
-      rotation: 0,
-      currentDeg: this.valueToDeg(props.value || props.min)
+      rotation: currentDeg,
+      currentDeg
     };
 
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.setValue = this.setValue.bind(this);
-    this.valueToDeg = this.valueToDeg(this);
   }
 
   noop() {}
@@ -43,6 +56,8 @@ class Knob extends Component {
 
   componentDidMount() {
     window.addEventListener('mouseup', this.onMouseUp, false);
+    // eslint-disable-next-line
+    require('conic-gradient');
   }
 
   componentWillUnmount() {
@@ -96,15 +111,11 @@ class Knob extends Component {
     }
 
     let tmp = Math.floor(angle - startAngle + rotation);
-    tmp = Math.min(tmp, 270);
+    tmp = Math.min(tmp, TRACK_TOTAL_DEG);
     tmp = Math.max(tmp, 0);
 
     this.setState({ currentDeg: tmp });
-    this.setValue(Math.round((max - min) * (tmp / 270.0) * 100) / 100);
-  }
-
-  valueToDeg(value) {
-    return value / (this.props.max * 1.0) * 270;
+    this.setValue(roundToDecimal(degToValue({ min, max, deg: tmp }), 2));
   }
 
   setValue(value) {
@@ -113,14 +124,18 @@ class Knob extends Component {
   }
 
   render() {
+    const { min, max, value } = this.state;
+    const progress = computeProgress({ min, max, value, progressionTarget: 1 });
+
     return (
       <div id={this.props.id} className={this.props.className} style={this.props.style}>
         <LabelContainer
           {...this.props}
           labelCSS={this.props.labelPosition === 'top' ? null : 'transform: translateY(-40px);'}
         >
-          <Container>
+          <Container color={getColorValue(this.props.color)}>
             <KnobSvg
+              progress={progress}
               {...this.props}
               {...this.state}
               refFunc={ele => (this.knobElement = ele)}
@@ -138,7 +153,6 @@ class Knob extends Component {
 Knob.defaultProps = {
   min: 0,
   max: 10,
-  step: 1,
   theme: light,
   labelPosition: 'top'
 };
@@ -155,6 +169,45 @@ Knob.propTypes = {
   value: PropTypes.number,
 
   /**
+   * Color configuration for the knob's track.
+   */
+  color: PropTypes.oneOfType([
+    /**
+     * Color used for knob's track/indicator
+     */
+    PropTypes.string,
+    /**
+     * Color ranges configuration.
+     */
+    PropTypes.shape({
+      /**
+       * Fallback color to use when color.ranges
+       * has gaps.
+       */
+      default: PropTypes.string,
+      /**
+       * Display ranges as a gradient between given colors.
+       * Requires color.ranges to be contiguous along
+       * the entirety of the knob's range of values.
+       */
+      gradient: PropTypes.bool,
+      /**
+       * Define multiple color ranges on the knob's track.
+       * The key determines the color of the range and
+       * the value is the start,end of the range itself.
+       */
+      ranges: PropTypes.shape({
+        color: PropTypes.arrayOf(PropTypes.number)
+      })
+    })
+  ]),
+
+  /**
+   * The size (diameter) of the knob in pixels
+   */
+  size: PropTypes.number,
+
+  /**
    * The minimum value of the knob
    */
   min: PropTypes.number,
@@ -163,11 +216,6 @@ Knob.propTypes = {
    * The maximum value of the knob
    */
   max: PropTypes.number,
-
-  /**
-   * Value by which marks are added
-   */
-  step: PropTypes.number,
 
   /**
    * If true, knob cannot be moved.
@@ -203,24 +251,47 @@ Knob.propTypes = {
   labelPosition: PropTypes.oneOf(['top', 'bottom']),
 
   /**
-   *  Marks on the knob. The key determines the position,
-   * and the value determines what will show. If you want
-   * to set the style of a specific mark point, the value
-   * should be an object which contains `style` and `label`
-   * properties.
+   * Configuration for the component scale.
    */
-  marks: PropTypes.shape({
-    number: PropTypes.oneOfType([
+  scale: PropTypes.shape({
+    /**
+     * Value to start the scale from. Defaults
+     * to min.
+     */
+    start: PropTypes.number,
+
+    /**
+     * Interval by which the scale goes up. Attempts
+     * to dynamically divide min-max range by
+     * default.
+     */
+    interval: PropTypes.number,
+
+    /**
+     * Interval by which labels are added to
+     * scale marks. Defaults to 2 (every other
+     * mark has a label).
+     */
+    labelInterval: PropTypes.number,
+
+    /**
+     * Custom scale marks. The key determines the position
+     * and the value determines what will show. If you want
+     * to set the style of a specific mark point, the value
+     * should be an object which contains style and label
+     * properties
+     */
+    custom: PropTypes.oneOfType([
       /**
-       * label for the mark
+       * Label for the mark
        */
-      PropTypes.string,
+      PropTypes.number,
 
       /**
-       * style object and label for the mark
+       * Style object with label
        */
       PropTypes.shape({
-        style: PropTypes.object,
+        style: PropTypes.string,
         label: PropTypes.string
       })
     ])

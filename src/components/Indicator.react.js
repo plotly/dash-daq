@@ -9,7 +9,7 @@ import LabelContainer from '../styled/shared/LabelContainer.styled';
 import { colors, light } from '../styled/constants';
 
 /**
- * An boolean indicator LED.
+ * A boolean indicator LED.
  */
 const Indicator = props => {
   const bg = color(props.color)

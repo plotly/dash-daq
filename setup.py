@@ -1,14 +1,13 @@
 from setuptools import setup
 
-exec (open('dash_control_components/version.py').read())
+exec (open('dash_daq/version.py').read())
 
 setup(
-    name='dash_control_components',
+    name='dash_daq',
     version=__version__,
     author='briandennis',
-    packages=['dash_control_components'],
+    packages=['dash_daq'],
     include_package_data=True,
-    license='MIT',
-    description='Control and indicator components for Dash',
+    description='DAQ components for Dash',
     install_requires=[]
 )

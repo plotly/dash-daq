@@ -18,5 +18,6 @@ prop | type | default | description
 **labelPosition** | `Enum('top','bottom')` | `'top'` | Where the  label is positioned.
 **n_clicks** | `Number` | `0` | Number of times the button was clicked
 **setProps** | `Function` |  | Dash-assigned callback that gets fired when the button is clicked.
+**size** | `Number` | `92` | The size (width) of the stop button in pixels
 **style** | `Object` |  | Style to apply to the root component element.
 **theme** | `Object` |  | Theme configuration to be set by a ThemeProvider

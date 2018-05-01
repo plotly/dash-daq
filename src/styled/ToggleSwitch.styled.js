@@ -51,13 +51,13 @@ export const Button = styled.button`
   outline: none;
   ${({ size, on, theme }) => css`
     border: none;
-    border: 1px solid ${theme.dark ? 'none' : '#d1d1d1'};
+    border: 1px solid ${theme.dark ? 'none' : theme.detail};
     width: ${size / 2}px;
     height: ${size / 2}px;
     transform: translateX(${on ? size - size / 2 : 0}px);
   `} &:focus, &:active, &:hover {
     border: none;
-    border: ${({ theme }) => (theme.dark ? 'none' : '1px solid #d1d1d1')};
+    border: ${({ theme }) => (theme.dark ? 'none' : `1px solid ${theme.detail}`)};
   }
 
   &:disabled {
@@ -67,6 +67,10 @@ export const Button = styled.button`
 
   ${({ theme }) => (theme.dark ? darkButton : null)};
 `;
+
+Button.defaultProps = {
+  theme: light
+};
 
 const darkButton = css`
   background-color: #141414;
@@ -104,8 +108,8 @@ export const DarkSwitch = styled.button`
   transition: all 100ms ease-in-out;
   outline: none;
   background: #161616;
-  height: 32px;
-  width: 64px;
+  height: ${({ size }) => `${size * 0.72}px`};
+  width: ${({ size }) => `${size * 1.44}px`};
   background-blend-mode: overlay;
   background-color: #111;
   background-image: ;
@@ -140,14 +144,16 @@ export const DarkSwitch = styled.button`
     height: 92%;
     width: 92%;
     margin: 0 auto;
-    ${({ on }) =>
-      on
+    ${({ size, on }) => {
+      const margin = size * 0.08;
+      return on
         ? css`
-            margin-left: 4px;
+            margin-left: ${margin}px;
           `
         : css`
-            margin-right: 4px;
-          `} background-color: #161616;
+            margin-right: ${margin}px;
+          `;
+    }} background-color: #161616;
     background-blend-mode: overlay;
     background-image: ${({ on }) =>
       on

@@ -22,7 +22,7 @@ const Container = styled.div`
   }
 
   & .tick {
-    stroke: ${props => props.theme.secondary};
+    stroke: ${props => props.theme.detail};
     stroke-width: 2;
   }
 
@@ -50,11 +50,15 @@ const lightTheme = css`
   }
 
   & .track.progress {
-    stroke: ${props => props.theme.primary};
+    stroke: ${({ color, theme }) => color || theme.primary};
   }
 `;
 
-const darkTheme = css``;
+const darkTheme = css`
+  & .color-ranges {
+    mix-blend-mode: color;
+  }
+`;
 
 Container.defaultProps = {
   theme: light

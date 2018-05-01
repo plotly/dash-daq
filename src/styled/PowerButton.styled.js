@@ -32,9 +32,11 @@ const lightTheme = css`
   box-sizing: border-box;
   background: #fff;
   border: 1px solid ${props => props.theme.secondary};
-  width: 48px;
-  height: 48px;
-  margin-bottom: 3px;
+  ${({ size }) =>
+    css`
+      width: ${size}px;
+      height: ${size}px;
+    `} margin-bottom: ${({ size }) => `${size * 0.0625}px`};
   padding: 0;
 
   &:focus,
@@ -44,9 +46,11 @@ const lightTheme = css`
 `;
 
 const darkTheme = css`
-  height: 48px;
-  width: 48px;
-  border-radius: 100%;
+  ${({ size }) =>
+    css`
+      width: ${size}px;
+      height: ${size}px;
+    `} border-radius: 100%;
   padding: 0;
   margin-bottom: 8px;
 
@@ -68,7 +72,12 @@ const darkTheme = css`
     width: 92%;
     height: 92%;
 
-    ${({ on }) => (on ? 'box-shadow: 0 0 8px 2px rgb(168, 220, 240);' : '')};
+    ${({ on, color, theme }) =>
+      on
+        ? css`
+            box-shadow: 0 0 8px 2px ${color || theme.primary};
+          `
+        : ''};
   }
 
   &:hover::before {
@@ -81,8 +90,8 @@ const darkTheme = css`
 
   &:focus::after,
   &:active::after {
-    box-shadow: ${({ on }) =>
-      on ? '0 0 8px 2px rgb(168, 220, 240)' : '0 0 3px 0 rgba(0,0,0,0.66)'};
+    box-shadow: ${({ on, color, theme }) =>
+      on ? `0 0 8px 2px ${color || theme.primary}` : '0 0 3px 0 rgba(0,0,0,0.66)'};
   }
 `;
 

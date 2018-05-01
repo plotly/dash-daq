@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
+import Color from 'color';
 
 import { light } from './constants';
 
 export const TankContainer = styled.div`
   position: relative;
   width: ${props => props.width || '112px'};
-  height: 192px;
+  height: ${({ size }) => `${size}px`};
   z-index: 2;
   border-radius: ${({ thermometer }) => (thermometer ? '40px' : '0')};
 
@@ -41,14 +42,18 @@ TankFill.defaultProps = {
 };
 
 const darkTankFill = css`
-  background: #abe2fb;
+  background: ${({ color, theme }) => color || theme.primary};
   background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 30%, rgba(255, 255, 255, 0.7) 100%);
   background-blend-mode: overlay;
-  box-shadow: 0 0 6px 1px rgba(135, 206, 235, 0.7);
+  box-shadow: 0 0 6px 1px
+    ${({ color, theme }) =>
+      Color(color || theme.primary)
+        .alpha(0.7)
+        .string()};
 `;
 
 const lightTankFill = css`
-  background: ${props => props.theme.primary};
+  background: ${({ color, theme }) => color || theme.primary};
 `;
 
 export const TickContainer = styled.div`
@@ -75,6 +80,7 @@ export const Tick = styled.div`
       : ''} display: flex;
   align-items: center;
   justify-content: flex-end;
+  height: 18px;
 
   & .label {
     font-size: 12px;
@@ -86,7 +92,7 @@ export const Tick = styled.div`
   & .tick {
     height: 1px;
     width: ${props => props.width || 4}px;
-    background: ${props => props.theme.secondary};
+    background: ${props => props.theme.detail};
   }
 `;
 

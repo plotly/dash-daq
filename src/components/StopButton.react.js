@@ -12,6 +12,7 @@ const StopButton = props => {
     <div id={props.id} className={props.className} style={props.style}>
       <LabelContainer {...props}>
         <Button
+          size={props.size}
           disabled={props.disabled}
           onClick={() => {
             if (props.setProps) props.setProps({ n_clicks: props.n_clicks + 1 });
@@ -28,6 +29,7 @@ const StopButton = props => {
 StopButton.defaultProps = {
   buttonText: 'Stop',
   n_clicks: 0,
+  size: 92,
   labelPosition: 'top'
 };
 
@@ -36,6 +38,11 @@ StopButton.propTypes = {
    * The ID used to identify this compnent in Dash callbacks
    */
   id: PropTypes.string,
+
+  /**
+   * The size (width) of the stop button in pixels
+   */
+  size: PropTypes.number,
 
   /**
    * Text displayed in the button
