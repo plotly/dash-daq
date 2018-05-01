@@ -8,6 +8,10 @@ import { TankContainer, TankFill, TickContainer, Tick, Container } from '../styl
 import CurrentValue from '../styled/CurrentValue.styled';
 import { light } from '../styled/constants';
 
+import log from '../helpers/logarithm';
+import { sanitizeRangeValue, computeProgress } from '../helpers/util';
+import generateScale from '../helpers/scale';
+
 const WIDTH = 20;
 
 /**
@@ -16,42 +20,44 @@ const WIDTH = 20;
  * range
  */
 const Thermometer = props => {
-  const { min, max, step, id, className, style, marks, showCurrentValue, units, theme } = props;
-  const value = Math.max(Math.min(props.value, max), min);
+  const {
+    min,
+    max,
+    id,
+    className,
+    style,
+    logarithmic,
+    base,
+    showCurrentValue,
+    units,
+    theme,
+    color,
+    size
+  } = props;
+
+  const dirtyValue = logarithmic ? log.compute(props.value, base) : props.value;
+  const value = sanitizeRangeValue({ min, max, value: dirtyValue });
+
+  const formatter = logarithmic ? log.generateLogFormatter({ base }) : null;
+  const scale = generateScale({ ...props, formatter });
 
   const renderTicks = () => {
-    if (!marks) {
-      const values = [];
-      for (let i = min; i <= max; i += step) {
-        values.unshift(i);
-      }
-
-      return values.map((v, i) => {
-        return (
-          <Tick key={i}>
-            <div className="label">{v}</div>
-            <div className="tick" />
-          </Tick>
-        );
-      });
-    }
-
-    return Object.entries(marks).map(([k, v]) => (
-      <Tick key={k} xPosition={(parseInt(k, 10) - min) * 1.0 / (max - min) * 100}>
+    return Object.entries(scale).map(([k, v]) => (
+      <Tick key={k} xPosition={computeProgress({ min, max, value: k })}>
         <div className="tick" />
-        <div className="label" style={v.style}>
-          {v.label || v}
+        <div className="label" style={v && v.style ? v.style : null}>
+          {(v && v.label) || v}
         </div>
       </Tick>
     ));
   };
 
-  const marksContainer = <TickContainer xPositioned={marks}>{renderTicks()}</TickContainer>;
+  const scaleContainer = <TickContainer xPositioned={scale}>{renderTicks()}</TickContainer>;
 
   const currentValue = (
     <CurrentValueContainer>
-      <CurrentValue units={units} css={'top: 0;'}>
-        {value}
+      <CurrentValue valueColor={color} units={units} css={'top: 0;'}>
+        {logarithmic ? log.formatValue(value, base) : value.toFixed(1)}
       </CurrentValue>
     </CurrentValueContainer>
   );
@@ -63,11 +69,15 @@ const Thermometer = props => {
         labelCSS={props.labelPosition === 'top' ? null : 'transform: translateY(-30px);'}
       >
         <ThermometerContainer>
-          <Container thermometer xPositioned={marks}>
-            {marksContainer}
-            <TankContainer thermometer width={`${WIDTH}px`}>
-              <TankFill thermometer height={`${value * 1.0 / (max - min) * 100}%`} />
-              {theme.dark ? null : <Bulb on={value !== min} />}
+          <Container thermometer xPositioned={scale}>
+            {scaleContainer}
+            <TankContainer thermometer size={size} width={`${WIDTH}px`}>
+              <TankFill
+                thermometer
+                color={color}
+                height={`${computeProgress({ min, max, value })}%`}
+              />
+              {theme.dark ? null : <Bulb on={value !== min} color={color} />}
             </TankContainer>
           </Container>
           {showCurrentValue && currentValue}
@@ -80,7 +90,8 @@ const Thermometer = props => {
 Thermometer.defaultProps = {
   min: 0,
   max: 10,
-  step: 1,
+  size: 192,
+  base: 10,
   labelPosition: 'top',
   theme: light
 };
@@ -92,24 +103,43 @@ Thermometer.propTypes = {
   id: PropTypes.string,
 
   /**
-   * The value of thermometer
+   * The value of thermometer. If logarthmic, the value
+   * displayed will be the logarithm of the inputted value.
    */
   value: PropTypes.number,
 
   /**
-   * The minimum value of the thermometer
+   * The size (height) of the thermometer in pixels
+   */
+  size: PropTypes.number,
+
+  /**
+   * The color of the thermometer fill/current value text
+   */
+  color: PropTypes.string,
+
+  /**
+   * The minimum value of the thermometer. If logarithmic,
+   * represents the minimum exponent.
    */
   min: PropTypes.number,
 
   /**
-   * The maximum value of the thermometer
+   * The maximum value of the thermometer. If logarithmic,
+   * represents the maximum exponent.
    */
   max: PropTypes.number,
 
   /**
-   * Value by which marks appear
+   * Base to be used in logarithmic scale.
    */
-  step: PropTypes.number,
+  base: PropTypes.number,
+
+  /**
+   * If set to true, a logarithmic scale will be
+   * used.
+   */
+  logarithmic: PropTypes.bool,
 
   /**
    * If true, the current value of the
@@ -151,24 +181,47 @@ Thermometer.propTypes = {
   labelPosition: PropTypes.oneOf(['top', 'bottom']),
 
   /**
-   *  Ticks on the gauge. The key determines the position
-   * and the value determines what will show. If you want
-   * to set the style of a specific mark point, the value
-   * should be an object which contains style and label
-   * properties.
+   * Configuration for the component scale.
    */
-  marks: PropTypes.shape({
-    number: PropTypes.oneOfType([
+  scale: PropTypes.shape({
+    /**
+     * Value to start the scale from. Defaults
+     * to min.
+     */
+    start: PropTypes.number,
+
+    /**
+     * Interval by which the scale goes up. Attempts
+     * to dynamically divide min-max range by
+     * default.
+     */
+    interval: PropTypes.number,
+
+    /**
+     * Interval by which labels are added to
+     * scale marks. Defaults to 2 (every other
+     * mark has a label).
+     */
+    labelInterval: PropTypes.number,
+
+    /**
+     * Custom scale marks. The key determines the position
+     * and the value determines what will show. If you want
+     * to set the style of a specific mark point, the value
+     * should be an object which contains style and label
+     * properties
+     */
+    custom: PropTypes.oneOfType([
       /**
-       * label for the mark
+       * Label for the mark
        */
-      PropTypes.string,
+      PropTypes.number,
 
       /**
-       * style object and label for the mark
+       * Style object with label
        */
       PropTypes.shape({
-        style: PropTypes.object,
+        style: PropTypes.string,
         label: PropTypes.string
       })
     ])

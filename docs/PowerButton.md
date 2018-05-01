@@ -9,6 +9,7 @@ turned on and off.
 prop | type | default | description
 ---- | :----: | :-------: | -----------
 **className** | `String` |  | Class to apply to the root component element.
+**color** | `String` |  | The indicator color to display when power button is on
 **dashEvents** | `Enum('click')` |  | 
 **disabled** | `Boolean` |  | If true, power button cannot be clicked
 **fireEvent** | `Function` |  | A callback for firing events to dash.
@@ -17,5 +18,6 @@ prop | type | default | description
 **labelPosition** | `Enum('top','bottom')` | `'top'` | Where the button label is positioned.
 **on** | `Boolean` | `false` | Whether or not the power button is on
 **setProps** | `Function` |  | Dash-assigned callback that gets fired when button is clicked.
+**size** | `Number` | `48` | The size (diameter) of the power button in pixels
 **style** | `Object` |  | Style to apply to the root component element.
 **theme** | `Object` | `light` | Theme configuration to be set by a ThemeProvider

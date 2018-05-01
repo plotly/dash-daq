@@ -3,7 +3,7 @@ import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output, State, Event
 
-from dash_control_components import BooleanSwitch, Gauge, GraduatedBar, Indicator, Knob, NumericInput, PowerButton, StopButton, Tank, Thermometer, ToggleSwitch, DarkThemeProvider
+from dash_daq import BooleanSwitch, ColorPicker, Gauge, GraduatedBar, Indicator, Knob, LEDDisplay, NumericInput, PowerButton, PrecisionInput, Slider, StopButton, Tank, Thermometer, ToggleSwitch, DarkThemeProvider
 
 app = dash.Dash('')
 
@@ -17,7 +17,7 @@ root_layout = html.Div([
     dcc.Location(id='url', refresh=True),
 
     html.Div([
-        html.H1('dash-control-components Dash Demo'),
+        html.H1('dash_daq Dash Demo'),
         dcc.Link('Light Theme', href='/', refresh=True),
         dcc.Link('Dark Theme', href='/dark', refresh=True),
 
@@ -58,7 +58,9 @@ controls = html.Div([
         ),
         NumericInput(
             id='demoNumericInput',
-            value=3
+            min=1,
+            max=10000,
+            value=100
         ),
         BooleanSwitch(
             id='demoSwitch'
@@ -75,6 +77,38 @@ controls = html.Div([
         PowerButton(
             id='demoPowerButton',
             on='false'
+        ),
+        Slider(
+            id='demoSlider',
+            min=0,
+            max=100,
+            size=200,
+            value=40,
+            marks={ 0: 0, 50: 50, 100: 100 },
+            updatemode='drag',
+            handleLabel={
+                'label': 'Current',
+                'showCurrentValue': True
+            },
+            targets={
+                75: 'Threshold'
+            },
+            color={
+                'ranges': {
+                    'blue': [0, 50],
+                    'purple': [50, 100],
+                },
+                'gradient': True
+            }
+        ),
+        ColorPicker(
+            id='demoColorPicker',
+            value={ 'hex': '#ade2fa' }
+        ),
+        PrecisionInput(
+            id='demoPrecisionInput',
+            precision=2,
+            value=120
         )
     ],
     style = {
@@ -90,9 +124,15 @@ indicators = html.Div([
         Gauge(
         id='demoGauge',
         label='Gauge',
+        logarithmic=True,
         min=0,
-        max=10,
-        value=2
+        max=4,
+        scale={
+            'start': 0,
+            'interval': 1,
+            'labelInterval': 1
+        },
+        value=100
         ),
         Tank(
             id='demoTank',
@@ -100,8 +140,7 @@ indicators = html.Div([
             min=0,
             max=10,
             value=2,
-            step=5,
-            marks={ 0: 'Low', 5: 'Medium', 10: 'High' }
+            scale={ 'custom': { 0: 'Low', 5: 'Medium', 10: 'High' } }
         ),
         Thermometer(
             id='demoThermometer',
@@ -114,8 +153,12 @@ indicators = html.Div([
             id='demoGraduatedBar',
             label='GraduatedBar',
             min=0,
-            max=10,
-            value=2
+            max=100,
+            value=40
+        ),
+        LEDDisplay(
+            id='demoLEDDisplay',
+            value=1.2
         ),
         html.Div([
             html.Div([
@@ -202,7 +245,9 @@ dark_controls = html.Div([
         ),
         NumericInput(
             id='dark-demoNumericInput',
-            value=3
+            min=1,
+            max=10000,
+            value=100
         ),
         BooleanSwitch(
             id='dark-demoSwitch'
@@ -219,6 +264,38 @@ dark_controls = html.Div([
         PowerButton(
             id='dark-demoPowerButton',
             on='false'
+        ),
+        Slider(
+            id='dark-demoSlider',
+            min=0,
+            max=100,
+            size=200,
+            value=40,
+            marks={ 0: 0, 50: 50, 100: 100 },
+            updatemode='drag',
+            handleLabel={
+                'label': 'Current',
+                'showCurrentValue': True
+            },
+            targets={
+                75: 'Threshold'
+            },
+            color={
+                'ranges': {
+                    'blue': [0, 50],
+                    'purple': [50, 100],
+                },
+                'gradient': True
+            }
+        ),
+        ColorPicker(
+            id='dark-demoColorPicker',
+            value= { 'hex': '#ade2fa' }
+        ),
+         PrecisionInput(
+            id='dark-demoPrecisionInput',
+            precision=2,
+            value=120
         )
     ],
     style = {
@@ -234,9 +311,15 @@ dark_indicators = html.Div([
         Gauge(
         id='dark-demoGauge',
         label='Gauge',
+        logarithmic=True,
         min=0,
-        max=10,
-        value=2
+        max=4,
+        scale={
+            'start': 0,
+            'interval': 1,
+            'labelInterval': 1
+        },
+        value=100
         ),
         Tank(
             id='dark-demoTank',
@@ -244,8 +327,7 @@ dark_indicators = html.Div([
             min=0,
             max=10,
             value=2,
-            step=5,
-            marks={ 0: 'Low', 5: 'Medium', 10: 'High' }
+            scale={ 'custom': { 0: 'Low', 5: 'Medium', 10: 'High' } }
         ),
         Thermometer(
             id='dark-demoThermometer',
@@ -258,8 +340,12 @@ dark_indicators = html.Div([
             id='dark-demoGraduatedBar',
             label='GraduatedBar',
             min=0,
-            max=10,
-            value=2
+            max=100,
+            value=40
+        ),
+        LEDDisplay(
+            id='dark-demoLEDDisplay',
+            value=1.2
         ),
         html.Div([
             html.Div([
@@ -350,18 +436,47 @@ def display_page(pathname):
 
 ################ Set up light callbacks ################
 @app.callback(
+    Output('demoLEDDisplay', 'value'),
+    [Input('demoPrecisionInput', 'value')]
+)
+def update_LEDDisplay (value):
+    digits = str(value)[:2]
+    return ".".join(digits)
+
+@app.callback(
     Output('demoGauge', 'value'),
-    [Input('demoKnob', 'value')]
+    [Input('demoNumericInput', 'value')]
 )
 def update_gauge (value):
     return value
 
 @app.callback(
-    Output('demoGraduatedBar', 'value'),
-    [Input('demoNumericInput', 'value')]
+    Output('demoGauge', 'color'),
+    [Input('demoColorPicker', 'value')]
 )
-def update_graduated_bar (value):
-    return value
+def update_gauge_color (value):
+    return value['hex']
+
+@app.callback(
+    Output('demoTank', 'color'),
+    [Input('demoColorPicker', 'value')]
+)
+def update_tank_color (value):
+    return value['hex']
+
+@app.callback(
+    Output('demoGraduatedBar', 'color'),
+    [Input('demoColorPicker', 'value')]
+)
+def update_graduatedBar_color (value):
+    return value['hex']
+
+@app.callback(
+Output('demoThermometer', 'color'),
+[Input('demoColorPicker', 'value')]
+)
+def update_thermometer_color (value):
+    return value['hex']
 
 @app.callback(
     Output('demoTank', 'value'),
@@ -375,6 +490,13 @@ def update_tank (value):
     [Input('demoKnob', 'value')]
 )
 def update_thermometer (value):
+    return value
+
+@app.callback(
+    Output('demoGraduatedBar', 'value'),
+    [Input('demoSlider', 'value')]
+)
+def update_graduated_bar (value):
     return value
 
 @app.callback(
@@ -410,18 +532,47 @@ def update_thermometer (on):
 
 ################ Set up dark callbacks ################
 @app.callback(
+    Output('dark-demoLEDDisplay', 'value'),
+    [Input('dark-demoPrecisionInput', 'value')]
+)
+def update_LEDDisplay (value):
+    digits = str(value)[:2]
+    return ".".join(digits)
+
+@app.callback(
     Output('dark-demoGauge', 'value'),
-    [Input('dark-demoKnob', 'value')]
+    [Input('dark-demoNumericInput', 'value')]
 )
 def dark_update_gauge (value):
     return value
 
 @app.callback(
-    Output('dark-demoGraduatedBar', 'value'),
-    [Input('dark-demoNumericInput', 'value')]
+    Output('dark-demoGauge', 'color'),
+    [Input('dark-demoColorPicker', 'value')]
 )
-def dark_update_graduated_bar (value):
-    return value
+def dark_update_gauge_color (value):
+    return value['hex']
+
+@app.callback(
+    Output('dark-demoTank', 'color'),
+    [Input('dark-demoColorPicker', 'value')]
+)
+def dark_update_tank_color (value):
+    return value['hex']
+
+@app.callback(
+    Output('dark-demoGraduatedBar', 'color'),
+    [Input('dark-demoColorPicker', 'value')]
+)
+def dark_update_graduatedBar_color (value):
+    return value['hex']
+
+@app.callback(
+    Output('dark-demoThermometer', 'color'),
+    [Input('dark-demoColorPicker', 'value')]
+)
+def dark_update_thermometer_color (value):
+    return value['hex']
 
 @app.callback(
     Output('dark-demoTank', 'value'),
@@ -435,6 +586,13 @@ def dark_update_tank (value):
     [Input('dark-demoKnob', 'value')]
 )
 def dark_update_thermometer (value):
+    return value
+
+@app.callback(
+    Output('dark-demoGraduatedBar', 'value'),
+    [Input('dark-demoSlider', 'value')]
+)
+def dark_update_graduated_bar (value):
     return value
 
 @app.callback(

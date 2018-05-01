@@ -62,23 +62,13 @@ describe.only('Gauge', () => {
 
   it('has default marks', () => {
     const component = mount(shallow(<Gauge label="Test label" />).get(0));
-    expect(component.find('text')).toHaveLength(11);
+    expect(component.find('line')).toHaveLength(12);
   });
 
   it('has custom marks', () => {
-    const customTicks = { 0: 'Low', 5: 'Medium', 10: 'High' };
-    const component = mount(
-      shallow(<Gauge marks={customTicks} step={5} label="Test label" />).get(0)
-    );
+    const scale = { custom: { 0: 'Low', 5: 'Medium', 10: 'High' } };
+    const component = mount(shallow(<Gauge scale={scale} step={5} label="Test label" />).get(0));
     expect(component.find('text')).toHaveLength(3);
-  });
-
-  it('off-step custom marks do not render', () => {
-    const customTicks = { 1: 'Low', 6: 'Medium', 11: 'High' };
-    const component = mount(
-      shallow(<Gauge marks={customTicks} step={5} label="Test label" />).get(0)
-    );
-    expect(component.find('text')).toHaveLength(0);
   });
 
   it('shows current value if set', () => {
@@ -111,9 +101,12 @@ describe.only('Gauge', () => {
     expect(component.find(ValueLabel)).toHaveLength(0);
   });
 
-  it('handles bad value', () => {
-    const component = mount(shallow(<Gauge value={'badValue'} showCurrentValue={true} />).get(0));
-    expect(component).toBeTruthy();
+  it('handles logarithic mode', () => {
+    const component = mount(shallow(<Gauge logarithmic showCurrentValue value={10000} />).get(0));
+
+    const currValue = component.find(CurrentValue);
+    expect(currValue).toHaveLength(1);
+    expect(currValue.text()).toBe('~104');
   });
 
   it('has assigned className', () => {

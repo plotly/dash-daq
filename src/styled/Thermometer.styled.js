@@ -14,7 +14,8 @@ export const Bulb = styled.div`
   width: ${1.5 * WIDTH}px;
   height: ${1.5 * WIDTH}px;
   border-radius: 50%;
-  background-color: ${props => (props.on ? props.theme.primary : props.theme.secondary)};
+  background-color: ${props =>
+    props.on ? props.color || props.theme.primary : props.theme.secondary};
   position: absolute;
   left: 50%;
   transform: translateX(-50%);

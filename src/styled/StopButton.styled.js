@@ -25,7 +25,9 @@ const lightButton = css`
   font-weight: bold;
   font-size: 12px;
   text-transform: uppercase;
-  padding: 12px 28px;
+  padding: 0;
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size * 0.42}px`};
   text-align: center;
   cursor: pointer;
   background-color: #ff5e5e;
@@ -48,6 +50,12 @@ const lightButton = css`
 `;
 
 const darkButton = css`
+  display: inline-flex;
+  justify-content: center;
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size * 0.42}px`};
+  line-height: ${({ size }) => `${size * 0.42}px`};
+
   &::before,
   &::after {
     transition: all 0.1s ease-in;

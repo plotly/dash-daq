@@ -4,8 +4,8 @@ dist/
 lib/
 lib/bundle.js*
 node_modules/
-dash_control_components/metadata.json
-dash_control_components/bundle.js*
+dash_daq/metadata.json
+dash_daq/bundle.js*
 .npm
 vv/
 venv/

@@ -167,23 +167,13 @@ describe('Knob', () => {
 
   it('has default marks', () => {
     const component = mount(shallow(<Knob label="Test label" />).get(0));
-    expect(component.find('text')).toHaveLength(11);
+    expect(component.find('text')).toHaveLength(6);
   });
 
   it('has custom marks', () => {
-    const customTicks = { 0: 'Low', 5: 'Medium', 10: 'High' };
-    const component = mount(
-      shallow(<Knob marks={customTicks} step={5} label="Test label" />).get(0)
-    );
+    const scale = { custom: { 0: 'Low', 5: 'Medium', 10: 'High' } };
+    const component = mount(shallow(<Knob scale={scale} step={5} label="Test label" />).get(0));
     expect(component.find('text')).toHaveLength(3);
-  });
-
-  it('off-step custom marks do not render', () => {
-    const customTicks = { 1: 'Low', 6: 'Medium', 11: 'High' };
-    const component = mount(
-      shallow(<Knob marks={customTicks} step={5} label="Test label" />).get(0)
-    );
-    expect(component.find('text')).toHaveLength(0);
   });
 
   it('has assigned className', () => {

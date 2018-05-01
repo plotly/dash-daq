@@ -36,14 +36,31 @@ class PowerButton extends Component {
   }
 
   render() {
+    const INDICATOR_SIZE = this.props.size / 10 * 1.25;
+
     return (
       <div id={this.props.id} className={this.props.className} style={this.props.style}>
         <LabelContainer {...this.props}>
           <Container>
-            <Button on={this.state.on} disabled={this.props.disabled} onClick={this.onClick}>
-              <PowerButtonSvg on={this.state.on} />
+            <Button
+              on={this.state.on}
+              color={this.props.color}
+              size={this.props.size}
+              disabled={this.props.disabled}
+              onClick={this.onClick}
+            >
+              <PowerButtonSvg
+                on={this.state.on}
+                color={this.props.color}
+                size={this.props.size * 0.3}
+              />
             </Button>
-            <Indicator on={this.state.on} main={true} size={6} />
+            <Indicator
+              on={this.state.on}
+              primary={this.props.color}
+              main={true}
+              size={INDICATOR_SIZE}
+            />
           </Container>
         </LabelContainer>
       </div>
@@ -54,6 +71,7 @@ class PowerButton extends Component {
 PowerButton.defaultProps = {
   on: false,
   theme: light,
+  size: 48,
   labelPosition: 'top'
 };
 
@@ -67,6 +85,16 @@ PowerButton.propTypes = {
    * Whether or not the power button is on
    */
   on: PropTypes.bool,
+
+  /**
+   * The indicator color to display when power button is on
+   */
+  color: PropTypes.string,
+
+  /**
+   * The size (diameter) of the power button in pixels
+   */
+  size: PropTypes.number,
 
   /**
    * If true, power button cannot be clicked

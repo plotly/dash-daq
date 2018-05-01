@@ -61,7 +61,7 @@ BooleanSwitch.propTypes = {
   on: PropTypes.bool,
 
   /**
-   * Color to highlight button
+   * Color to highlight active switch background
    */
   color: PropTypes.string,
 

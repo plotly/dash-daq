@@ -7,7 +7,7 @@ _current_path = _os.path.dirname(_os.path.abspath(__file__))
 
 _components = _dash.development.component_loader.load_components(
     _os.path.join(_current_path, 'metadata.json'),
-    'dash_control_components'
+    'dash_daq'
 )
 
 _this_module = _sys.modules[__name__]
@@ -17,10 +17,10 @@ _js_dist = [
     {
         "relative_package_path": "bundle.js",
         "external_url": (
-            "https://unpkg.com/dash-control-components@{}"
-            "/dash_control_components/bundle.js"
+            "https://unpkg.com/dash_daq@{}"
+            "/dash_daq/bundle.js"
         ).format(__version__),
-        "namespace": "dash_control_components"
+        "namespace": "dash_daq"
     }
 ]
 

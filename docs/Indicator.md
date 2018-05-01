@@ -3,7 +3,7 @@
 
 Component file: [`/src/components/Indicator.react.js`](/src/components/Indicator.react.js)
 
-An boolean indicator LED.
+A boolean indicator LED.
 
 prop | type | default | description
 ---- | :----: | :-------: | -----------

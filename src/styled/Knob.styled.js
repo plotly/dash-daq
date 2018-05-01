@@ -15,6 +15,11 @@ const Container = styled.div`
     user-select: none;
   }
 
+  & .tick {
+    stroke: ${props => props.theme.detail};
+    stroke-width: 2;
+  }
+
   & .knob {
     cursor: pointer;
   }
@@ -22,6 +27,14 @@ const Container = styled.div`
   & .disabled {
     opacity: ${({ theme }) => (theme.dark ? 1 : 0.65)};
     cursor: not-allowed;
+  }
+
+  & .track {
+    stroke-width: 6;
+  }
+
+  & .track.progress {
+    stroke: ${({ color, theme }) => color || theme.primary};
   }
 
   ${({ theme }) => (theme.dark ? darkTheme : lightTheme)};
@@ -32,19 +45,14 @@ const lightTheme = css`
     fill: #5b6268;
   }
 
+  & .track {
+    stroke: #e6e6e6;
+  }
+
   & .knob .base,
   .knob .indent {
     stroke: #e6e6e6;
     stroke-width: 2;
-  }
-
-  & .track {
-    stroke: #e6e6e6;
-    stroke-width: 6;
-  }
-
-  & .track.progress {
-    stroke: #abe2fb;
   }
 `;
 
@@ -53,18 +61,8 @@ const darkTheme = css`
     fill: #fff;
   }
 
-  & .knob .base,
-  .knob .indent {
-    stroke: #e6e6e6;
-    stroke-width: 2;
-  }
-
-  & .track {
-    stroke-width: 6;
-  }
-
-  & .track.progress {
-    stroke: #abe2fb;
+  & .color-ranges {
+    mix-blend-mode: color;
   }
 `;
 

@@ -57,8 +57,8 @@ class ToggleSwitch extends Component {
   }
 
   render() {
-    const { id, className, style, label, labelPosition, booleanSwitch, theme } = this.props;
-    const size = 45;
+    const { id, className, style, label, labelPosition, booleanSwitch, theme, color } = this.props;
+    const size = this.props.size || 45;
 
     let SwitchContainer = ButtonContainer;
     let Switch = Button;
@@ -74,11 +74,11 @@ class ToggleSwitch extends Component {
 
     const switchCore = (
       <Wrapper rotate={this.props.vertical ? -90 : 0} size={size}>
-        {!booleanSwitch && <Indicator on={this.state.value} size={indicatorSize} />}
+        {!booleanSwitch && <Indicator on={this.state.value} size={indicatorSize} primary={color} />}
         <SwitchContainer
           onClick={this.click}
           size={size}
-          color={this.props.color}
+          color={color}
           on={this.state.value}
           booleanSwitch={booleanSwitch}
         >
@@ -89,7 +89,9 @@ class ToggleSwitch extends Component {
             booleanSwitch={booleanSwitch}
           />
         </SwitchContainer>
-        {!booleanSwitch && <Indicator size={indicatorSize} on={this.state.value} main={true} />}
+        {!booleanSwitch && (
+          <Indicator main={true} on={this.state.value} size={indicatorSize} primary={color} />
+        )}
       </Wrapper>
     );
 
@@ -136,7 +138,12 @@ ToggleSwitch.propTypes = {
   value: PropTypes.bool,
 
   /**
-   * Color to highlight button
+   * The size of the switch
+   */
+  size: PropTypes.number,
+
+  /**
+   * Color to highlight button/indicator
    */
   color: PropTypes.string,
 

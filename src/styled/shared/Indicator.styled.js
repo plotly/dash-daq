@@ -21,7 +21,7 @@ const Indicator = styled('div')`
       ${props.theme.dark
         ? (props.on && props.main) || (!props.on && !props.main) ?
         css`
-          box-shadow: 0 0 8px 2px rgb(168, 220, 240), 1px 1px 0px 0px rgba(0,0,0,0.9), -1px -1px 0px 0px rgba(255,255,255,0.1);
+          box-shadow: 0 0 8px 2px ${color}, 1px 1px 0px 0px rgba(0,0,0,0.9), -1px -1px 0px 0px rgba(255,255,255,0.1);
         ` :
         css`
         background-image: linear-gradient(145deg, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 100%);

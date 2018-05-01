@@ -34,7 +34,7 @@ class NumericInput extends Component {
   }
 
   render() {
-    const { theme } = this.props;
+    const { size, theme } = this.props;
 
     const buttonStyle = {
       background: 'none',
@@ -57,7 +57,7 @@ class NumericInput extends Component {
       paddingLeft: padding,
       paddingTop: 8,
       paddingBottom: 8,
-      width: 56,
+      width: size || 56,
       color: theme.dark ? '#fff' : colors.OFF_WHITE,
       fontSize: 14,
       lineHeight: 16,
@@ -94,7 +94,6 @@ class NumericInput extends Component {
 NumericInput.defaultProps = {
   min: 0,
   max: 10,
-  step: 1,
   theme: light,
   labelPosition: 'top'
 };
@@ -111,6 +110,11 @@ NumericInput.propTypes = {
   value: PropTypes.number,
 
   /**
+   * The size (length) of the numeric input in pixels
+   */
+  size: PropTypes.number,
+
+  /**
    * The minimum value of the numeric input
    */
   min: PropTypes.number,
@@ -121,12 +125,7 @@ NumericInput.propTypes = {
   max: PropTypes.number,
 
   /**
-   * Value by which increments or decrements are made
-   */
-  step: PropTypes.number,
-
-  /**
-   * If true, numeric input cannot be moved.
+   * If true, numeric input cannot changed.
    */
   disabled: PropTypes.bool,
 
@@ -158,30 +157,6 @@ NumericInput.propTypes = {
    * Where the numeric input label is positioned.
    */
   labelPosition: PropTypes.oneOf(['top', 'bottom']),
-
-  /**
-   *  Marks on the numeric input. The key determines the position,
-   * and the value determines what will show. If you want
-   * to set the style of a specific mark point, the value
-   * should be an object which contains `style` and `label`
-   * properties.
-   */
-  marks: PropTypes.shape({
-    number: PropTypes.oneOfType([
-      /**
-       * label for the mark
-       */
-      PropTypes.string,
-
-      /**
-       * style object and label for the mark
-       */
-      PropTypes.shape({
-        style: PropTypes.object,
-        label: PropTypes.string
-      })
-    ])
-  }),
 
   /**
    * Class to apply to the root component element.
