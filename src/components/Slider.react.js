@@ -147,7 +147,9 @@ class Slider extends Component {
   calcLabelOffset({ vertical, labelPosition, marks, targets, handleLabel }) {
     if (vertical) return null;
 
-    if (labelPosition === 'bottom' && marks) return 'transform: translateY(20px);';
+    if (labelPosition === 'bottom') {
+      return `transform: translateY(${marks ? 20 : 0}px);`;
+    }
 
     let showingCurrentValue = false;
     Object.values(targets).map(target => {
