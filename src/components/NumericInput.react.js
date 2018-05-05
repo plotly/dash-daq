@@ -83,6 +83,7 @@ class NumericInput extends Component {
             max={this.props.max}
             value={this.state.value}
             onChange={this.setValue}
+            mobile={false}
           />
         </LabelContainer>
       </div>
