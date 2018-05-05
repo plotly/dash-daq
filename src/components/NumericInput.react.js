@@ -60,7 +60,6 @@ class NumericInput extends Component {
       width: size || 56,
       color: theme.dark ? '#fff' : colors.OFF_WHITE,
       fontSize: 14,
-      lineHeight: 16,
       boxSizing: 'border-box'
     };
 
@@ -84,6 +83,7 @@ class NumericInput extends Component {
             max={this.props.max}
             value={this.state.value}
             onChange={this.setValue}
+            mobile={false}
           />
         </LabelContainer>
       </div>

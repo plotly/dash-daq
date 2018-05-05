@@ -26,13 +26,21 @@ DarkThemeProvider.propTypes = {
    * Theme object to override with a custom theme
    */
   theme: PropTypes.shape({
-    /* Highlight color */
+    /**
+     * Highlight color
+     */
     primary: PropTypes.string,
-    /* Supporting  color */
+    /**
+     * Supporting color
+     */
     secondary: PropTypes.string,
-    /* Color used for UI details, like borders */
+    /**
+     * Color used for UI details, like borders
+     */
     detail: PropTypes.string,
-    /* True for Dark mode, false for Light */
+    /**
+     * True for Dark mode, false for Light
+     */
     dark: PropTypes.bool
   })
 };

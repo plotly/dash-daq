@@ -14,7 +14,7 @@ function generateLogFormatter({ base = 10, isSVG = false }) {
     isSVG ? (
       <tspan>
         {base}
-        <tspan baselineShift="super">{value}</tspan>
+        <tspan dy="-6px">{value}</tspan>
       </tspan>
     ) : (
       <span>
@@ -45,7 +45,7 @@ function genLogMarks({ min, max, step = 1, base = 10, marks }, isSVG) {
     marks[key] = isSVG ? (
       <tspan>
         {base}
-        <tspan baselineShift="super">{key}</tspan>
+        <tspan dy="-6px">{key}</tspan>
       </tspan>
     ) : (
       <span>
