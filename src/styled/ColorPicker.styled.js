@@ -45,7 +45,6 @@ const lightKnobs = css`
     box-shadow: none !important;
     background-color: #fff;
     border-radius: 100% !important;
-    transform: translate(-6px, -2px) !important;
     ${({ theme }) =>
       css`
         border: 1px solid ${theme.detail} !important;
@@ -75,7 +74,6 @@ const darkKnobs = css`
     > div {
     border-radius: 100% !important;
     border: none !important;
-    transform: translate(-6px, -2px) !important;
     background: #101010 !important;
     background-image: linear-gradient(
       135deg,
