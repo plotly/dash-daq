@@ -8,8 +8,6 @@ import { getColorValue } from './colorRanges';
 
 const START_ANGLE_OFFSET = -225;
 
-const defs = <defs>{darkGradientDefs}</defs>;
-
 const lightKnob = (newAngle, { CX, CY, KNOB_RAD }) => (
   <g transform={`translate(${CX} ${CY}) rotate(${newAngle})`}>
     <circle className="base" cx="0" cy="0" r={KNOB_RAD} fill="#fff" />
@@ -56,6 +54,8 @@ const darkTrack = (props, dimensions) => {
   const { CX, CY, GAUGE_RAD, CIRCLE_CIR, GAP_ARC_LENGTH, TRACK_ARC_LENGTH } = dimensions;
   const id = getRandomInt();
 
+  const hasColorRanges = props.color && props.color.ranges;
+
   return (
     <g>
       <defs>
@@ -83,12 +83,13 @@ const darkTrack = (props, dimensions) => {
         />
       </defs>
       <use stroke="#15181A" filter="url(#a)" xlinkHref={`#knob-track-${id}`} />
-      {props.color &&
-        props.color.ranges && <use stroke="#15181A" xlinkHref={`#knob-track-${id}`} />}
+      {hasColorRanges && <use stroke="#15181A" xlinkHref={`#knob-track-${id}`} />}
       <use stroke="url(#c)" style={{ mixBlendMode: 'overlay' }} xlinkHref={`#knob-track-${id}`} />
       <use stroke="#15181A" filter="url(#d)" xlinkHref={`#knob-track-${id}`} />
 
-      <use stroke="black" filter="url(#e)" xlinkHref={`#knob-track-progress-${id}`} />
+      {!hasColorRanges && (
+        <use stroke="black" filter="url(#e)" xlinkHref={`#knob-track-progress-${id}`} />
+      )}
       <use
         stroke="url(#g)"
         style={{ mixBlendMode: 'overlay' }}
@@ -119,7 +120,7 @@ const KnobSvg = props => {
       height={dimensions.SVG_WIDTH}
       viewBox={`0 0 ${dimensions.SVG_WIDTH} ${dimensions.SVG_WIDTH}`}
     >
-      {theme.dark && defs}
+      {theme.dark && darkGradientDefs}
       <g className="scale">{drawScale(props, dimensions)}</g>
       <g
         ref={props.refFunc}

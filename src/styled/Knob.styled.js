@@ -60,10 +60,6 @@ const darkTheme = css`
   & .scale {
     fill: #fff;
   }
-
-  & .color-ranges {
-    mix-blend-mode: color;
-  }
 `;
 
 Container.defaultProps = {

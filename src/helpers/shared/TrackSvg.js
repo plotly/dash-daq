@@ -4,22 +4,6 @@ import { longestString, sanitizeRangeValue, getRandomInt, computeProgress } from
 import { isContiguous, getSortedEntries } from '../../helpers/colorRanges';
 import { RADIAN, TRACK_TOTAL_DEG } from '../../styled/constants';
 
-const trackOverlay = ({ progress }, { CX, CY, GAUGE_RAD, TRACK_ARC_LENGTH }) => {
-  return (
-    <circle
-      className="track"
-      opacity="0.8"
-      cx={CX}
-      cy={CY}
-      r={GAUGE_RAD}
-      fill="none"
-      strokeDasharray={`${TRACK_ARC_LENGTH - progress * TRACK_ARC_LENGTH}, ${Number.MAX_VALUE}`} // max spacing as we only want one dash
-      strokeDashoffset={-progress * TRACK_ARC_LENGTH}
-      transform={`rotate(-225 ${CX} ${CY})`}
-    />
-  );
-}
-
 export const gradientTrack = (props, dimensions) => {
   const { color, max } = props;
   const { CX, CY, GAUGE_RAD, CIRCLE_CIR, GAP_ARC_LENGTH } = dimensions;
@@ -77,7 +61,6 @@ export const gradientTrack = (props, dimensions) => {
         strokeDashoffset={GAP_ARC_LENGTH}
         transform={`rotate(-225 ${CX} ${CY})`}
       />
-      { trackOverlay(props, dimensions) }
     </g>
   );
 };
@@ -110,7 +93,6 @@ const colorRangesTrack = (props, dimensions) => {
   return (
     <g>
       { track }
-      { trackOverlay(props, dimensions) }
     </g>
   );
 };
