@@ -35,7 +35,7 @@ const Container = styled.div`
     stroke-width: 3;
   }
 
-  ${({ theme }) => (theme.dark ? darkTheme : lightTheme)};
+  ${({ theme }) => !theme.dark && lightTheme};
 `;
 
 const lightTheme = css`
@@ -51,12 +51,6 @@ const lightTheme = css`
 
   & .track.progress {
     stroke: ${({ color, theme }) => color || theme.primary};
-  }
-`;
-
-const darkTheme = css`
-  & .color-ranges {
-    mix-blend-mode: color;
   }
 `;
 
