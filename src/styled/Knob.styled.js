@@ -29,10 +29,6 @@ const Container = styled.div`
     cursor: not-allowed;
   }
 
-  & .track {
-    stroke-width: 6;
-  }
-
   & .track.progress {
     stroke: ${({ color, theme }) => color || theme.primary};
   }

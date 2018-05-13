@@ -17,10 +17,6 @@ const Container = styled.div`
     user-select: none;
   }
 
-  & .track {
-    stroke-width: 6;
-  }
-
   & .tick {
     stroke: ${props => props.theme.detail};
     stroke-width: 2;
@@ -46,7 +42,6 @@ const lightTheme = css`
 
   & .track {
     stroke: ${props => props.theme.secondary};
-    stroke-width: 6;
   }
 
   & .track.progress {

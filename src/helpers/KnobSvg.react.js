@@ -68,6 +68,7 @@ const darkTrack = (props, dimensions) => {
           fill="none"
           strokeDasharray={CIRCLE_CIR}
           strokeDashoffset={GAP_ARC_LENGTH}
+          strokeWidth="6"
           transform={`rotate(-225 ${CX} ${CY})`}
         />
         <circle
@@ -79,6 +80,7 @@ const darkTrack = (props, dimensions) => {
           fill="none"
           strokeDasharray={CIRCLE_CIR}
           strokeDashoffset={GAP_ARC_LENGTH + (1 - progress) * TRACK_ARC_LENGTH}
+          strokeWidth="6"
           transform={`rotate(-225 ${CX} ${CY})`}
         />
       </defs>
