@@ -181,20 +181,19 @@ Knob.propTypes = {
      */
     PropTypes.shape({
       /**
-       * Fallback color to use when color.ranges
-       * has gaps.
+       * Color used for current value text and other minor accents
        */
       default: PropTypes.string,
       /**
        * Display ranges as a gradient between given colors.
-       * Requires color.ranges to be contiguous along
-       * the entirety of the knob's range of values.
        */
       gradient: PropTypes.bool,
       /**
        * Define multiple color ranges on the knob's track.
        * The key determines the color of the range and
        * the value is the start,end of the range itself.
+       * Ranges must be contiguous along the entirety
+       * of the knob's range of values.
        */
       ranges: PropTypes.shape({
         color: PropTypes.arrayOf(PropTypes.number)

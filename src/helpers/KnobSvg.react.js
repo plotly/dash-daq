@@ -3,7 +3,7 @@ import React from 'react';
 import { light } from '../styled/constants';
 import darkGradientDefs from '../styled/shared/DarkGradient';
 import { getRandomInt } from './util';
-import { drawScale, renderColorRangesTrack, lightTrack } from './shared/TrackSvg';
+import { drawScale, colorRangesTrack, lightTrack } from './shared/TrackSvg';
 import { getColorValue } from './colorRanges';
 
 const START_ANGLE_OFFSET = -225;
@@ -102,7 +102,7 @@ const darkTrack = (props, dimensions) => {
         xlinkHref={`#knob-track-progress-${id}`}
       />
 
-      {props.color && props.color.ranges && renderColorRangesTrack(props, dimensions)}
+      {props.color && props.color.ranges && colorRangesTrack(props, dimensions)}
     </g>
   );
 };

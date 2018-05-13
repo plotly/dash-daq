@@ -1,27 +1,33 @@
 import React from 'react';
 
-import { longestString, sanitizeRangeValue, getRandomInt, computeProgress } from '../../helpers/util';
+import { longestString, getRandomInt, computeProgress } from '../../helpers/util';
 import { isContiguous, getSortedEntries } from '../../helpers/colorRanges';
 import { RADIAN, TRACK_TOTAL_DEG } from '../../styled/constants';
 
-export const gradientTrack = (props, dimensions) => {
+export const colorRangesTrack = (props, dimensions) => {
   const { color, max } = props;
   const { CX, CY, GAUGE_RAD, CIRCLE_CIR, GAP_ARC_LENGTH } = dimensions;
   const TRACK_ARC_DEG = 270;
   const GAP_ARC_DEG = 90;
   const GRADIENT_BLEND = 25;
 
+  if (!isContiguous(props)) return null;
+
   // calculate stops
   const stops = getSortedEntries(color.ranges).map(([colorValue, range], i) => {
     const startDeg = range[0] * 1.0 / max * TRACK_ARC_DEG + GAP_ARC_DEG;
     const endDeg = range[1] * 1.0 / max * TRACK_ARC_DEG + GAP_ARC_DEG;
 
-    // no transition between black band and first color
-    if (i === 0) {
-      return `${colorValue} 0`
+    if (color.gradient) {
+      // no transition between black band and first color
+      if (i === 0) {
+        return `${colorValue} 0`
+      }
+
+      return `${colorValue} ${startDeg + GRADIENT_BLEND}deg, ${colorValue} ${endDeg - GRADIENT_BLEND}deg`;
     }
 
-    return `${colorValue} ${startDeg + GRADIENT_BLEND}deg, ${colorValue} ${endDeg - GRADIENT_BLEND}deg`;
+    return `${colorValue} ${startDeg}deg, ${colorValue} ${endDeg}deg`;
   });
 
   stops.unshift([`black ${GAP_ARC_DEG}deg`]) // add black band for bottom gap
@@ -41,7 +47,7 @@ export const gradientTrack = (props, dimensions) => {
   });
 
   // unique id for each track
-  const id = `colorRangesGradient-${getRandomInt()}`
+  const id = `colorRangesImage-${getRandomInt()}`
   return (
     <g>
       <defs>
@@ -64,46 +70,6 @@ export const gradientTrack = (props, dimensions) => {
     </g>
   );
 };
-
-const colorRangesTrack = (props, dimensions) => {
-  const { color, min, max } = props;
-  const { CX, CY, GAUGE_RAD, TRACK_ARC_LENGTH } = dimensions;
-
-  const track = Object.entries(color.ranges).map(([colorValue, range], i) => {
-    const rangeLength = (range[1] - range[0]) * 1.0 / max * TRACK_ARC_LENGTH;
-    const startOffset = sanitizeRangeValue({ value: range[0], min, max }) * 1.0 / max * TRACK_ARC_LENGTH;
-
-    return (
-      <circle
-        key={i}
-        className="color-ranges"
-        cx={CX}
-        cy={CY}
-        r={GAUGE_RAD}
-        fill="none"
-        stroke={colorValue}
-        strokeWidth="6"
-        strokeDasharray={`${rangeLength}, ${Number.MAX_VALUE}`} // max spacing as we only want one dash
-        strokeDashoffset={-startOffset}
-        transform={`rotate(-225 ${CX} ${CY})`}
-      />
-    );
-  });
-
-  return (
-    <g>
-      { track }
-    </g>
-  );
-};
-
-export const renderColorRangesTrack = (props, dimensions) => {
-  if (props.color.gradient && isContiguous(props)) {
-    return gradientTrack(props, dimensions);
-  }
-
-  return colorRangesTrack(props, dimensions);
-}
 
 export const lightTrack = (props, dimensions) => {
   const { color, progress } = props;
@@ -133,7 +99,7 @@ export const lightTrack = (props, dimensions) => {
         strokeWidth="6"
         transform={`rotate(-225 ${CX} ${CY})`}
       />
-      {color && color.ranges && renderColorRangesTrack(props, dimensions)}
+      {color && color.ranges && colorRangesTrack(props, dimensions)}
     </g>
   );
 };
