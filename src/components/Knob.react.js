@@ -28,7 +28,7 @@ class Knob extends Component {
     const currentDeg = valueToDeg({
       min: props.min,
       max: props.max,
-      value: props.value || props.min
+      value: props.value != null ? props.value : props.min
     });
 
     this.state = {
