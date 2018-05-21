@@ -57,6 +57,8 @@ class PrecisionInput extends Component {
   }
 
   toggleInput() {
+    if (this.props.disabled) return;
+
     const isInput = !this.state.isInput;
     this.setState({ isInput });
 
@@ -152,19 +154,29 @@ class PrecisionInput extends Component {
 
 const toScientificNotation = value => {
   const scientificNum = Number(value).toExponential();
-  return scientificNum.replace('e+', 'E');
+  return scientificNum.replace('+', '');
+};
+
+const mergeLeadingNegative = digits => {
+  if (digits[0] === '-') {
+    digits.shift();
+    const leading = digits.shift();
+    digits.unshift(`-${leading}`);
+  }
+
+  return digits;
 };
 
 const PrecisionOutput = ({ value, onClick, size }) => {
-  const [characteristic, mantissa] = toScientificNotation(value).split('E');
+  const [characteristic, mantissa] = toScientificNotation(value).split('e');
+  const characteristicDigits = mergeLeadingNegative(characteristic.split(''));
+  const mantissaDigits = mergeLeadingNegative(mantissa.split(''));
 
   return (
     <Container size={size} onClick={onClick}>
-      {characteristic.split('').map((digit, i) => <Digit key={`d${i}`}>{digit}</Digit>)}
+      {characteristicDigits.map((digit, i) => <Digit key={`d${i}`}>{digit}</Digit>)}
       <ExponentialDigit>E</ExponentialDigit>
-      {mantissa
-        .split('')
-        .map((digit, i) => <ExponentialDigit key={`e${i}`}>{digit}</ExponentialDigit>)}
+      {mantissaDigits.map((digit, i) => <ExponentialDigit key={`e${i}`}>{digit}</ExponentialDigit>)}
     </Container>
   );
 };
