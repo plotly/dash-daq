@@ -4385,6 +4385,10 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
+nipplejs@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/nipplejs/-/nipplejs-0.7.1.tgz#43de3f154a9d5c662acd91d13b347369b1bc88bc"
+
 nise@^1.2.0:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/nise/-/nise-1.2.5.tgz#a143371b65014b6807d3a6e6b4556063f3a53363"
