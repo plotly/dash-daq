@@ -76,3 +76,8 @@ $ yarn run install-local
 ```sh
 $ yarn run uninstall-local
 ```
+
+
+## Publishing a Dash-DAQ tarball
+
+See: https://community.plot.ly/t/publishing-a-dash-daq-tarball/10688
