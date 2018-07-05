@@ -14,7 +14,7 @@ class Joystick extends Component {
   }
 
   componentDidMount() {
-    const { size } = this.props;
+    const { size, setProps } = this.props;
     this.manager = joystick.create({
       mode: 'static',
       color: 'grey',
@@ -25,16 +25,20 @@ class Joystick extends Component {
     this.manager.on('move', (e, data) => {
       const { angle: { degree }, force } = data;
       this.lastAngle = degree;
-      this.props.setProps({
-        angle: degree,
-        force
-      });
+      if (setProps) {
+        setProps({
+          angle: degree,
+          force
+        });
+      }
     });
     this.manager.on('end', () => {
-      this.props.setProps({
-        angle: this.lastAngle,
-        force: 0
-      });
+      if (setProps) {
+        setProps({
+          angle: this.lastAngle,
+          force: 0
+        });
+      }
     });
   }
 

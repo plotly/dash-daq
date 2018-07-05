@@ -3,7 +3,7 @@ import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output, State, Event
 
-from dash_daq import BooleanSwitch, ColorPicker, Gauge, GraduatedBar, Indicator, Knob, LEDDisplay, NumericInput, PowerButton, PrecisionInput, Slider, StopButton, Tank, Thermometer, ToggleSwitch, DarkThemeProvider
+from dash_daq import Joystick, BooleanSwitch, ColorPicker, Gauge, GraduatedBar, Indicator, Knob, LEDDisplay, NumericInput, PowerButton, PrecisionInput, Slider, StopButton, Tank, Thermometer, ToggleSwitch, DarkThemeProvider
 
 app = dash.Dash('')
 
@@ -49,6 +49,9 @@ root_layout = html.Div([
 
 ################ Set up light layout ################
 controls = html.Div([
+     Joystick(
+        id='demojoystick'
+     ),
      Knob(
         id='demoKnob',
         label='Knob',
