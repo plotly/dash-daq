@@ -13,6 +13,8 @@
 
  - [Indicator](/docs/Indicator.md)
 
+ - [Joystick](/docs/Joystick.md)
+
  - [Knob](/docs/Knob.md)
 
  - [LEDDisplay](/docs/LEDDisplay.md)

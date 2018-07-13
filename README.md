@@ -78,6 +78,12 @@ $ yarn run uninstall-local
 ```
 
 
-## Publishing a Dash-DAQ tarball
+## Producing a new release tarball
 
-See: https://community.plot.ly/t/publishing-a-dash-daq-tarball/10688
+```sh
+vim dash_daq/version.py # and increase it to X.X.X
+rm -rf node_modules dist build lib
+yarn install
+yarn build-tarball
+ls dist/dash_daq-X.X.X.tar.gz # this is your tarball
+```
