@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import joystick from 'nipplejs';
 import { light } from '../styled/constants';
+import LabelContainer from '../styled/shared/LabelContainer.styled';
 
 /**
  * A joystick.
@@ -51,14 +52,16 @@ class Joystick extends Component {
 
     return (
       <div id={id} className={className} style={style}>
-        <div
-          ref={ref => (this.zoneRef = ref)}
-          style={{
-            position: 'relative',
-            width: size + 'px',
-            height: size + 'px'
-          }}
-        />
+        <LabelContainer {...this.props}>
+          <div
+            ref={ref => (this.zoneRef = ref)}
+            style={{
+              position: 'relative',
+              width: size + 'px',
+              height: size + 'px'
+            }}
+          />
+        </LabelContainer>
       </div>
     );
   }

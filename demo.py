@@ -50,7 +50,8 @@ root_layout = html.Div([
 ################ Set up light layout ################
 controls = html.Div([
      Joystick(
-        id='demojoystick'
+        id='demojoystick',
+        label='Joystick',
      ),
      Knob(
         id='demoKnob',
@@ -239,6 +240,10 @@ style= {
 
 ################ Set up dark layout ################
 dark_controls = html.Div([
+     Joystick(
+        id='dark-demojoystick',
+        label='Joystick',
+     ),
      Knob(
         id='dark-demoKnob',
         label='Knob',
