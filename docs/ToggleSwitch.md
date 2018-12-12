@@ -1,7 +1,7 @@
 
 ## ToggleSwitch
 
-Component file: [`/src/components/ToggleSwitch.react.js`](/src/components/ToggleSwitch.react.js)
+Component file: [`/src/components/ToggleSwitch.js`](/src/components/ToggleSwitch.react.js)
 
 A switch component that toggles between
 two values.

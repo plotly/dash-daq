@@ -1,7 +1,7 @@
 
 ## BooleanSwitch
 
-Component file: [`/src/components/BooleanSwitch.react.js`](/src/components/BooleanSwitch.react.js)
+Component file: [`/src/components/BooleanSwitch.js`](/src/components/BooleanSwitch.react.js)
 
 A switch component that toggles
 between on and off.

@@ -1,7 +1,7 @@
 
 ## PowerButton
 
-Component file: [`/src/components/PowerButton.react.js`](/src/components/PowerButton.react.js)
+Component file: [`/src/components/PowerButton.js`](/src/components/PowerButton.react.js)
 
 A power button component can be
 turned on and off.

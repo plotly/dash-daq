@@ -1,7 +1,7 @@
 
 ## Indicator
 
-Component file: [`/src/components/Indicator.react.js`](/src/components/Indicator.react.js)
+Component file: [`/src/components/Indicator.js`](/src/components/Indicator.react.js)
 
 A boolean indicator LED.
 

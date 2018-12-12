@@ -1,7 +1,7 @@
 
 ## Knob
 
-Component file: [`/src/components/Knob.react.js`](/src/components/Knob.react.js)
+Component file: [`/src/components/Knob.js`](/src/components/Knob.react.js)
 
 A knob component that can be turned
 to a value between some range.

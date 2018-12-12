@@ -1,7 +1,7 @@
 
 ## StopButton
 
-Component file: [`/src/components/StopButton.react.js`](/src/components/StopButton.react.js)
+Component file: [`/src/components/StopButton.js`](/src/components/StopButton.react.js)
 
 A Stop button component
 

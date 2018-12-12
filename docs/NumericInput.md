@@ -1,7 +1,7 @@
 
 ## NumericInput
 
-Component file: [`/src/components/NumericInput.react.js`](/src/components/NumericInput.react.js)
+Component file: [`/src/components/NumericInput.js`](/src/components/NumericInput.react.js)
 
 A numeric input component that can be
 set to a value between some range.

@@ -1,7 +1,7 @@
 
 ## Gauge
 
-Component file: [`/src/components/Gauge.react.js`](/src/components/Gauge.react.js)
+Component file: [`/src/components/Gauge.js`](/src/components/Gauge.react.js)
 
 A Gauge component that points to
 a value between some range.

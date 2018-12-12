@@ -1,7 +1,7 @@
 
 ## PrecisionInput
 
-Component file: [`/src/components/PrecisionInput.react.js`](/src/components/PrecisionInput.react.js)
+Component file: [`/src/components/PrecisionInput.js`](/src/components/PrecisionInput.react.js)
 
 A numeric input component that converts
 an input value to the desired precision.

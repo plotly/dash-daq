@@ -1,7 +1,7 @@
 
 ## Tank
 
-Component file: [`/src/components/Tank.react.js`](/src/components/Tank.react.js)
+Component file: [`/src/components/Tank.js`](/src/components/Tank.react.js)
 
 A Tank component that fills to
 a value between some range.

@@ -5,7 +5,7 @@ exec (open('dash_daq/version.py').read())
 setup(
     name='dash_daq',
     version=__version__,
-    author='briandennis',
+    author='The Plotly Team',
     packages=['dash_daq'],
     include_package_data=True,
     description='DAQ components for Dash',

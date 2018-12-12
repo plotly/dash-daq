@@ -1,7 +1,7 @@
 
 ## LEDDisplay
 
-Component file: [`/src/components/LEDDisplay.react.js`](/src/components/LEDDisplay.react.js)
+Component file: [`/src/components/LEDDisplay.js`](/src/components/LEDDisplay.react.js)
 
 A 7-bar LED display component.
 
