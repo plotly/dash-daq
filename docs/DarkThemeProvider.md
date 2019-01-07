@@ -1,7 +1,7 @@
 
 ## DarkThemeProvider
 
-Component file: [`/src/components/DarkThemeProvider.js`](/src/components/DarkThemeProvider.react.js)
+Component file: [`/src/components/DarkThemeProvider.react.js`](/src/components/DarkThemeProvider.react.js)
 
 DarkThemeProvider is a component that is placed at the root of
 the component tree to make all components match the dark theme

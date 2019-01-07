@@ -1,7 +1,7 @@
 
 ## Slider
 
-Component file: [`/src/components/Slider.js`](/src/components/Slider.react.js)
+Component file: [`/src/components/Slider.react.js`](/src/components/Slider.react.js)
 
 A slider component with support for
 a target value.

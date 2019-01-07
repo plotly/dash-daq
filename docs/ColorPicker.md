@@ -1,7 +1,7 @@
 
 ## ColorPicker
 
-Component file: [`/src/components/ColorPicker.js`](/src/components/ColorPicker.react.js)
+Component file: [`/src/components/ColorPicker.react.js`](/src/components/ColorPicker.react.js)
 
 A color picker.
 

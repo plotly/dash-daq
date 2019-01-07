@@ -73,8 +73,7 @@ async function documentComponent (componentPath, docPath) {
   
   const doc = reactDocgen.parse(fileContent);
   const markdown = renderer.render(componentPath, doc, [])
-    .replace(`${componentName}.react`, componentName)
-    .split('src/components').join('/src/components')
+        .split('src/components').join('/src/components')
 
   return fs.writeFile(docPath, markdown);
 }

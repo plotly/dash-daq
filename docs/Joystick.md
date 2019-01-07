@@ -1,7 +1,7 @@
 
 ## Joystick
 
-Component file: [`/src/components/Joystick.js`](/src/components/Joystick.react.js)
+Component file: [`/src/components/Joystick.react.js`](/src/components/Joystick.react.js)
 
 A joystick.
 

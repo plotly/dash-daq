@@ -1,7 +1,7 @@
 
 ## GraduatedBar
 
-Component file: [`/src/components/GraduatedBar.js`](/src/components/GraduatedBar.react.js)
+Component file: [`/src/components/GraduatedBar.react.js`](/src/components/GraduatedBar.react.js)
 
 A graduated bar component that displays
 a value within some range as a

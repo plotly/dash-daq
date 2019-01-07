@@ -1,7 +1,7 @@
 
 ## Thermometer
 
-Component file: [`/src/components/Thermometer.js`](/src/components/Thermometer.react.js)
+Component file: [`/src/components/Thermometer.react.js`](/src/components/Thermometer.react.js)
 
 A thermometer component that
 fills to a value between some
