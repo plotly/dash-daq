@@ -99,7 +99,7 @@ const darkBlock = css`
       background-blend-mode: overlay;
     `;
   }} box-shadow: ${({ color, theme }) =>
-      `2px 2px 6px 1px rgba(0, 0, 0, 0.45), inset 1px 1px 2px 0 rgba(255, 255, 255, 0.3),
+  `2px 2px 6px 1px rgba(0, 0, 0, 0.45), inset 1px 1px 2px 0 rgba(255, 255, 255, 0.3),
       1px 1px 1px 0px rgba(0, 0, 0, 0.6), 0 0 3px 0px ${color || theme.primary}`};
 `;
 

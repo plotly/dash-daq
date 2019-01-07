@@ -36,7 +36,7 @@ class PowerButton extends Component {
   }
 
   render() {
-    const INDICATOR_SIZE = this.props.size / 10 * 1.25;
+    const INDICATOR_SIZE = (this.props.size / 10) * 1.25;
 
     return (
       <div id={this.props.id} className={this.props.className} style={this.props.style}>

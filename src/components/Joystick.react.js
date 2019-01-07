@@ -24,7 +24,10 @@ class Joystick extends Component {
       zone: this.zoneRef
     });
     this.manager.on('move', (e, data) => {
-      const { angle: { degree }, force } = data;
+      const {
+        angle: { degree },
+        force
+      } = data;
       this.lastAngle = degree;
       if (setProps) {
         setProps({

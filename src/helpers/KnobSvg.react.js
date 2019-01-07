@@ -159,7 +159,7 @@ function calcDimensions({ size }) {
   d.KNOB_RAD = d.GAUGE_RAD - 12;
 
   d.CIRCLE_CIR = 2 * Math.PI * d.GAUGE_RAD;
-  d.GAP_ARC_LENGTH = 90 / 360 * (2 * Math.PI * d.GAUGE_RAD);
+  d.GAP_ARC_LENGTH = (90 / 360) * (2 * Math.PI * d.GAUGE_RAD);
   d.TRACK_ARC_LENGTH = d.CIRCLE_CIR - d.GAP_ARC_LENGTH;
 
   d.SCALE_TICK_OUTER_RAD = d.SCALE_RAD - 27;

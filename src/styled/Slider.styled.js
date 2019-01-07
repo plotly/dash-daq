@@ -117,7 +117,11 @@ const targetHandle = css`
 
   ${({ theme, color }) =>
     theme.dark
-      ? css`& .dark-handle-custom-fill { fill: ${color || theme.detail}}`
+      ? css`
+          & .dark-handle-custom-fill {
+            fill: ${color || theme.detail};
+          }
+        `
       : css`
           & path {
             stroke: ${color || theme.detail};
@@ -155,26 +159,30 @@ const targetHandle = css`
 const sliderHandle = css`
   ${({ theme, color }) =>
     theme.dark
-      ? css`& .dark-handle-custom-fill { fill: ${color || theme.primary}}`
+      ? css`
+          & .dark-handle-custom-fill {
+            fill: ${color || theme.primary};
+          }
+        `
       : css`
           & path {
             stroke: ${color || theme.primary};
           }
         `} ${({ vertical }) => {
-      let deltaX = -50;
-      let deltaY = -40;
-      let rotation = 0;
+    let deltaX = -50;
+    let deltaY = -40;
+    let rotation = 0;
 
-      if (vertical) {
-        deltaX = -2;
-        deltaY = -50;
-        rotation = 270;
-      }
+    if (vertical) {
+      deltaX = -2;
+      deltaY = -50;
+      rotation = 270;
+    }
 
-      return css`
-        transform: translate(${deltaX}%, ${deltaY}%) rotate(${rotation}deg);
-      `;
-    }};
+    return css`
+      transform: translate(${deltaX}%, ${deltaY}%) rotate(${rotation}deg);
+    `;
+  }};
 `;
 
 export const targetStyles = {
@@ -213,7 +221,7 @@ export const Label = styled.div`
   }
 
   ${({ theme }) => (theme.dark ? darkLabel : lightLabel)} ${({ isTarget }) =>
-      isTarget ? targetLabel : sliderLabel};
+    isTarget ? targetLabel : sliderLabel};
 `;
 
 const darkLabel = css`
@@ -258,20 +266,20 @@ const sliderLabel = css`
       : css`
           top: 0;
         `} ${({ vertical, label, value }) => {
-      let offset = label && (value || value === 0) ? -44 : -22;
+    let offset = label && (value || value === 0) ? -44 : -22;
 
-      if (vertical) {
-        offset = -3;
-      }
+    if (vertical) {
+      offset = -3;
+    }
 
-      return vertical
-        ? css`
-            transform: translate(${offset}px, -50%);
-          `
-        : css`
-            transform: translate(-50%, ${offset}px);
-          `;
-    }};
+    return vertical
+      ? css`
+          transform: translate(${offset}px, -50%);
+        `
+      : css`
+          transform: translate(-50%, ${offset}px);
+        `;
+  }};
 `;
 
 export default {

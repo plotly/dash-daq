@@ -75,7 +75,7 @@ export const Tick = styled.div`
     xPosition || xPosition === 0
       ? css`
           position: absolute;
-          bottom: ${`calc(${xPosition}% - ${xPosition / 100.0 * 18}px)`};
+          bottom: ${`calc(${xPosition}% - ${(xPosition / 100.0) * 18}px)`};
         `
       : ''} display: flex;
   align-items: center;

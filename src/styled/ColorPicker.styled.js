@@ -56,9 +56,9 @@ const lightContainer = css`
   border-radius: 3px !important;
 
   ${lightKnobs} ${({ theme }) =>
-      css`
-        border: 1px solid ${theme.detail};
-      `};
+    css`
+      border: 1px solid ${theme.detail};
+    `};
 `;
 
 const darkKnobs = css`

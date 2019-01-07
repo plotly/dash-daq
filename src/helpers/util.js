@@ -33,7 +33,7 @@ export const computeProgress = ({ min, max, value, progressionTarget = 100 }) =>
   const adjustedValue = Math.abs(value - min) * 1.0;
   const range = Math.abs(max - min);
 
-  return adjustedValue / range * progressionTarget;
+  return (adjustedValue / range) * progressionTarget;
 };
 
 export const roundToDecimal = (value, decimals) =>
