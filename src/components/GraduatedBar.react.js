@@ -56,7 +56,7 @@ const GraduatedBar = props => {
     );
   }
 
-  let percent = normalizedValue / (max - min) * 100;
+  let percent = (normalizedValue / (max - min)) * 100;
   if (!isFinite(percent)) percent = 0;
 
   return (

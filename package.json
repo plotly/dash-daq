@@ -1,11 +1,13 @@
 {
   "name": "dash-daq",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "engines": {
     "node": ">=8"
   },
   "description": "DAQ components for Dash",
   "main": "src/index.js",
+  "author": "The Plotly Team",
+  "license": "MIT",
   "module": "lib/bundle.js",
   "jsnext:main": "lib/bundle.js",
   "scripts": {
@@ -49,7 +51,8 @@
     "react-numeric-input": "^2.2.3",
     "styled-components": "^3.1.6",
     "tinygradient": "^0.4.0",
-    "webpack": "^1"
+    "webpack": "^1",
+    "yarn": "^1.12.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -69,7 +72,8 @@
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/styled",
       "<rootDir>/src/helpers"
-    ]
+    ],
+    "testURL": "http://localhost"
   },
   "pre-commit": [
     "test",

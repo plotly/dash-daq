@@ -174,9 +174,13 @@ const PrecisionOutput = ({ value, onClick, size }) => {
 
   return (
     <Container size={size} onClick={onClick}>
-      {characteristicDigits.map((digit, i) => <Digit key={`d${i}`}>{digit}</Digit>)}
+      {characteristicDigits.map((digit, i) => (
+        <Digit key={`d${i}`}>{digit}</Digit>
+      ))}
       <ExponentialDigit>E</ExponentialDigit>
-      {mantissaDigits.map((digit, i) => <ExponentialDigit key={`e${i}`}>{digit}</ExponentialDigit>)}
+      {mantissaDigits.map((digit, i) => (
+        <ExponentialDigit key={`e${i}`}>{digit}</ExponentialDigit>
+      ))}
     </Container>
   );
 };

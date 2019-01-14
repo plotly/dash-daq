@@ -87,3 +87,16 @@ yarn install
 yarn build-tarball
 ls dist/dash_daq-X.X.X.tar.gz # this is your tarball
 ```
+
+## Demo applications 
+ * Dash Daq HP Multimeter - [http://dash-gallery.plotly.host/dash-daq-hp-multimeter](http://dash-gallery.plotly.host/dash-daq-hp-multimeter)
+ * Dash Daq IV Tracer - [http://dash-gallery.plotly.host/dash-daq-iv-tracer](http://dash-gallery.plotly.host/dash-daq-iv-tracer)
+ * Dash Daq LED Control - [http://dash-gallery.plotly.host/dash-daq-led-control](http://dash-gallery.plotly.host/dash-daq-led-control)
+ * Dash Daq Omega PID - [http://dash-gallery.plotly.host/dash-daq-omega-pid](http://dash-gallery.plotly.host/dash-daq-omega-pid)
+ * Dash Daq Pressure Gauge KJL - [http://dash-gallery.plotly.host/dash-daq-pressure-gauge-kjl](http://dash-gallery.plotly.host/dash-daq-pressure-gauge-kjl)
+ * Dash Daq Pressure Gauge Pfeiffer - [http://dash-gallery.plotly.host/dash-daq-pressure-gauge-pfeiffer](http://dash-gallery.plotly.host/dash-daq-pressure-gauge-pfeiffer)
+ * Dash Daq Robotic Arm Edge - [http://dash-gallery.plotly.host/dash-daq-robotic-arm-edge](http://dash-gallery.plotly.host/dash-daq-robotic-arm-edge)
+ * Dash Daq Sparki - [http://dash-gallery.plotly.host/dash-daq-sparki](http://dash-gallery.plotly.host/dash-daq-sparki)
+ * Dash Daq Stepper Motor - [http://dash-gallery.plotly.host/dash-daq-stepper-motor](http://dash-gallery.plotly.host/dash-daq-stepper-motor)
+ * Dash Tektronix 350 - [http://dash-gallery.plotly.host/dash-tektronix-350](http://dash-gallery.plotly.host/dash-tektronix-350)
+ * Dash Ocean Optics - [http://dash-gallery.plotly.host/dash-ocean-optics](http://dash-gallery.plotly.host/dash-ocean-optics)

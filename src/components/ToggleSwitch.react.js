@@ -68,7 +68,7 @@ class ToggleSwitch extends Component {
       Switch = DarkSwitch;
     }
 
-    const indicatorSize = size / 10 * 1.25;
+    const indicatorSize = (size / 10) * 1.25;
 
     const doubleLabel = Array.isArray(label);
 

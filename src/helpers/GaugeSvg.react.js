@@ -78,8 +78,9 @@ const darkTrack = (props, dimensions) => {
         />
       </defs>
       <use stroke="black" filter="url(#a)" xlinkHref={`#gauge-track-${id}`} />
-      {props.color &&
-        props.color.ranges && <use stroke="#15181A" xlinkHref={`#gauge-track-${id}`} />}
+      {props.color && props.color.ranges && (
+        <use stroke="#15181A" xlinkHref={`#gauge-track-${id}`} />
+      )}
       <use stroke="url(#c)" style={{ mixBlendMode: 'overlay' }} xlinkHref={`#gauge-track-${id}`} />
       <use stroke="black" filter="url(#d)" xlinkHref={`#gauge-track-${id}`} />
 
@@ -154,7 +155,7 @@ function calcDimensions({ size }) {
   d.SCALE_RAD = d.GAUGE_RAD - OFFSET;
 
   d.CIRCLE_CIR = 2 * Math.PI * d.GAUGE_RAD;
-  d.GAP_ARC_LENGTH = 90 / 360 * (2 * Math.PI * d.GAUGE_RAD);
+  d.GAP_ARC_LENGTH = (90 / 360) * (2 * Math.PI * d.GAUGE_RAD);
   d.TRACK_ARC_LENGTH = d.CIRCLE_CIR - d.GAP_ARC_LENGTH;
 
   d.SCALE_TICK_OUTER_RAD = d.SCALE_RAD;

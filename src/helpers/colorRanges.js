@@ -25,7 +25,7 @@ export const getSortedEntries = scale => {
 export const getGradientObject = ({ color, min, max }) => {
   let currentPos = 0;
   const stops = getSortedEntries(color.ranges).map(([colorValue, range]) => {
-    const rangeLength = (range[1] - range[0]) * 1.0 / (max - min);
+    const rangeLength = ((range[1] - range[0]) * 1.0) / (max - min);
     const start = currentPos;
     const end = currentPos + rangeLength;
 
@@ -40,7 +40,7 @@ export const getGradientObject = ({ color, min, max }) => {
 export const getLinearGradientCSS = ({ color, min, max, vertical = false }) => {
   let currentPercentage = 0;
   const stops = getSortedEntries(color.ranges).map(([colorValue, range], i) => {
-    const rangeLength = (range[1] - range[0]) * 1.0 / (max - min) * 100;
+    const rangeLength = (((range[1] - range[0]) * 1.0) / (max - min)) * 100;
     const start = currentPercentage;
     const end = currentPercentage + rangeLength;
 
