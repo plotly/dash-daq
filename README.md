@@ -6,9 +6,16 @@ DAQ components for Dash.
 
 Go to this link to learn about [Dash](https://plot.ly/products/dash/).
 
-## Getting started
+## Installation
+
+`pip install dash_daq` (or `pip3 install dash_daq`)
+
+## Getting started for contributors
 
 ```sh
+# Clone this repository
+git clone https://github.com/plotly/dash-daq.git
+
 # Install dependencies
 $ yarn
 
@@ -78,7 +85,7 @@ $ yarn run uninstall-local
 ```
 
 
-## Producing a new release tarball
+## Producing a new release as a tarball
 
 ```sh
 vim dash_daq/version.py # and increase it to X.X.X
