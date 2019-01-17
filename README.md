@@ -8,7 +8,9 @@ Go to this link to learn about [Dash](https://plot.ly/products/dash/).
 
 ## Installation
 
-`pip install dash_daq` (or `pip3 install dash_daq`)
+`pip install dash_daq` 
+
+(Or for Python 3 users, `pip3 install dash_daq`)
 
 ## Getting started for contributors
 
