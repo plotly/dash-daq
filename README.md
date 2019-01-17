@@ -26,7 +26,7 @@ $ yarn start
 ```
 
 ## Documentation
-Component API documentation can be found at [/docs](/docs)
+Component API documentation can be found at https://dash.plot.ly/dash-daq
 
 ## Development
 
