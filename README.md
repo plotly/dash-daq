@@ -100,7 +100,7 @@ ls dist/dash_daq-X.X.X.tar.gz # this is your tarball
 ## Demo applications 
  * Dash Daq HP Multimeter - [http://dash-gallery.plotly.host/dash-daq-hp-multimeter](http://dash-gallery.plotly.host/dash-daq-hp-multimeter)
  * Dash Daq IV Tracer - [http://dash-gallery.plotly.host/dash-daq-iv-tracer](http://dash-gallery.plotly.host/dash-daq-iv-tracer)
- * Dash Daq LED Control - [http://dash-gallery.plotly.host/dash-daq-led-control](http://dash-gallery.plotly.host/dash-daq-led-control)
+ * Dash Daq LED Control - [http://dash-gallery.plotly.host/dash-daq-led](http://dash-gallery.plotly.host/dash-daq-led)
  * Dash Daq Omega PID - [http://dash-gallery.plotly.host/dash-daq-omega-pid](http://dash-gallery.plotly.host/dash-daq-omega-pid)
  * Dash Daq Pressure Gauge KJL - [http://dash-gallery.plotly.host/dash-daq-pressure-gauge-kjl](http://dash-gallery.plotly.host/dash-daq-pressure-gauge-kjl)
  * Dash Daq Pressure Gauge Pfeiffer - [https://dash-gallery.plotly.host/dash-daq-pressure-gauge-pv](https://dash-gallery.plotly.host/dash-daq-pressure-gauge-pv)
