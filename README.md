@@ -107,5 +107,5 @@ ls dist/dash_daq-X.X.X.tar.gz # this is your tarball
  * Dash Daq Robotic Arm Edge - [http://dash-gallery.plotly.host/dash-daq-robotic-arm-edge](http://dash-gallery.plotly.host/dash-daq-robotic-arm-edge)
  * Dash Daq Sparki - [http://dash-gallery.plotly.host/dash-daq-sparki](http://dash-gallery.plotly.host/dash-daq-sparki)
  * Dash Daq Stepper Motor - [http://dash-gallery.plotly.host/dash-daq-stepper-motor](http://dash-gallery.plotly.host/dash-daq-stepper-motor)
- * Dash Tektronix 350 - [dash-daq-tektronix350](dash-daq-tektronix350)
+ * Dash Tektronix 350 - [http://dash-gallery.plotly.host/dash-daq-tektronix350](http://dash-gallery.plotly.host/dash-daq-tektronix350)
  * Dash Ocean Optics - [http://dash-gallery.plotly.host/dash-ocean-optics](http://dash-gallery.plotly.host/dash-ocean-optics)
