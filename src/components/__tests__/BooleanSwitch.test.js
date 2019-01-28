@@ -35,6 +35,16 @@ describe('Boolean Switch', () => {
     expect(setProps.getCall(0).args[0].on).toBeTruthy();
   });
 
+  it('does not change props when disabled and clicked', () => {
+    const setProps = sinon.spy();
+    const component = mount(<BooleanSwitch setProps={setProps} on={false} disabled={true} />);
+    expect(component.state('on')).toBeFalsy();
+
+    component.find('button').simulate('click');
+
+    expect(component.state('on')).toBeFalsy();
+  });
+
   it('does not fire click event when disabled and clicked', () => {
     const eventReciever = sinon.spy();
     const component = mount(<BooleanSwitch disabled={true} />);
