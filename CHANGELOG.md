@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed 
 * Removed unused headers in CHANGELOG. 
-* Removed all mentioned of `fireEvent` and anything else that used Dash events (which are now deprecated). 
+* Removed all mentioned of `fireEvent` and anything else that used Dash events (which have been removed). The `n_clicks` and `value` props should be used instead to determine when something has been updated.
 
 ## [0.0.2] - 2018-06-04
 
