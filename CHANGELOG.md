@@ -5,19 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
-
-### Added
-
-### Changed
-
-### Deprecated
-
-### Removed
+## [0.1.0] - 2019-01-28
 
 ### Fixed
+* Fixed incompatibility issue with Dash `0.36.0`. 
 
-### Security
+### Removed 
+* Removed unused headers in CHANGELOG. 
+* Removed all mentioned of `fireEvent` and anything else that used Dash events (which are now deprecated). 
 
 ## [0.0.2] - 2018-06-04
 
