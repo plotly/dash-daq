@@ -10,9 +10,7 @@ prop | type | default | description
 **buttonText** | `String` | `'Stop'` | Text displayed in the button
 **children** | `ReactNode` |  | The children of the button.
 **className** | `String` |  | Class to apply to the root component element.
-**dashEvents** | `Enum('click')` |  | 
 **disabled** | `Boolean` |  | If true, button cannot be pressesd.
-**fireEvent** | `Function` |  | A callback for firing events to dash.
 **id** | `String` |  | The ID used to identify this compnent in Dash callbacks
 **label** | `Union<String \| Shape>` |  | Description to be displayed alongside the button. To control styling, pass an object with label and style properties.
 **labelPosition** | `Enum('top','bottom')` | `'top'` | Where the  label is positioned.

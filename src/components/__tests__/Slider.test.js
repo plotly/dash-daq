@@ -109,37 +109,29 @@ describe('Slider', () => {
 
   it('calls setprops correclty on mouseup mode', () => {
     const setProps = sinon.spy();
-    const fireEvent = sinon.spy();
-    const component = mount(shallow(<Slider setProps={setProps} fireEvent={fireEvent} />).get(0));
+    const component = mount(shallow(<Slider setProps={setProps} />).get(0));
 
     component.instance().onChange(11);
     expect(setProps.notCalled).toBeTruthy();
-    expect(fireEvent.notCalled).toBeTruthy();
 
     component.instance().onAfterChange(11);
     expect(setProps.calledOnce).toBeTruthy();
-    expect(fireEvent.calledOnce).toBeTruthy();
     expect(setProps.getCall(0).args[0].value).toBe(11);
   });
 
   it('calls setprops correclty on drag mode', () => {
     const setProps = sinon.spy();
-    const fireEvent = sinon.spy();
-    const component = mount(
-      shallow(<Slider updatemode={'drag'} setProps={setProps} fireEvent={fireEvent} />).get(0)
-    );
+    const component = mount(shallow(<Slider updatemode={'drag'} setProps={setProps} />).get(0));
 
     component.instance().onChange(11);
     expect(setProps.calledOnce).toBeTruthy();
-    expect(fireEvent.calledOnce).toBeTruthy();
     expect(setProps.getCall(0).args[0].value).toBe(11);
 
     component.instance().onAfterChange(12);
     expect(setProps.calledOnce).toBeTruthy();
-    expect(fireEvent.calledOnce).toBeTruthy();
   });
 
-  it('does not explode when setprops and fire event are not passed', () => {
+  it('does not explode when setprops is not passed', () => {
     const component = mount(shallow(<Slider value={11} />).get(0));
 
     component.instance().onChange(11);

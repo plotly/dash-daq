@@ -49,17 +49,7 @@ describe('Power Button', () => {
     expect(setProps.getCall(0).args[0].on).toBeTruthy();
   });
 
-  it('fires click event on click', () => {
-    const eventReciever = sinon.spy();
-    const component = mount(<PowerButton fireEvent={eventReciever} />);
-
-    component.find('button').simulate('click');
-
-    expect(eventReciever.calledOnce).toBeTruthy();
-    expect(eventReciever.getCall(0).args[0].event).toBe('click');
-  });
-
-  it('handles absent setProps and fireEvent callbacks', () => {
+  it('handles absent setProps callbacks', () => {
     const component = mount(<PowerButton />);
 
     component.find('button').simulate('click');

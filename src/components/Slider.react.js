@@ -85,7 +85,7 @@ class Slider extends Component {
   }
 
   onChange(value) {
-    const { updatemode, setProps, fireEvent } = this.props;
+    const { updatemode, setProps } = this.props;
 
     if (!this.props.value || updatemode !== 'drag') {
       this.setState({ value });
@@ -93,16 +93,14 @@ class Slider extends Component {
 
     if (updatemode === 'drag') {
       if (setProps) setProps({ value });
-      if (fireEvent) fireEvent('change');
     }
   }
 
   onAfterChange(value) {
-    const { updatemode, setProps, fireEvent } = this.props;
+    const { updatemode, setProps } = this.props;
 
     if (updatemode === 'mouseup') {
       if (setProps) setProps({ value });
-      if (fireEvent) fireEvent('change');
     }
   }
 
@@ -180,7 +178,7 @@ class Slider extends Component {
               handle={this.renderSliderHandle}
               marks={{ ...this.props.marks, ...this.renderTargets() }}
               {...this.state.trackStyle}
-              {...omit(['fireEvent', 'setProps', 'updatemode', 'value', 'marks'], this.props)}
+              {...omit(['setProps', 'updatemode', 'value', 'marks'], this.props)}
             />
           </SliderContainer>
         </LabelContainer>
@@ -385,16 +383,9 @@ Slider.propTypes = {
   updatemode: PropTypes.oneOf(['mouseup', 'drag']),
 
   /**
-   * Dash-assigned callback that gets fired when the checkbox item gets selected.
-   */
-  fireEvent: PropTypes.func,
-
-  /**
    * Dash-assigned callback that gets fired when the value changes.
    */
-  setProps: PropTypes.func,
-
-  dashEvents: PropTypes.oneOf(['change'])
+  setProps: PropTypes.func
 };
 
 export default withTheme(Slider);

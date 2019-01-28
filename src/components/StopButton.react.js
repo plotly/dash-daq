@@ -16,7 +16,6 @@ const StopButton = props => {
           disabled={props.disabled}
           onClick={() => {
             if (props.setProps) props.setProps({ n_clicks: props.n_clicks + 1 });
-            if (props.fireEvent) props.fireEvent({ event: 'click' });
           }}
         >
           {props.children || props.buttonText}
@@ -108,13 +107,7 @@ StopButton.propTypes = {
    * Dash-assigned callback that gets fired when the
    * button is clicked.
    */
-  setProps: PropTypes.func,
-
-  /**
-   * A callback for firing events to dash.
-   */
-  fireEvent: PropTypes.func,
-  dashEvents: PropTypes.oneOf(['click'])
+  setProps: PropTypes.func
 };
 
 export default StopButton;
