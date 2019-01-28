@@ -10,10 +10,8 @@ prop | type | default | description
 ---- | :----: | :-------: | -----------
 **className** | `String` |  | Additional CSS class for the root DOM node.
 **color** | `Union<String \| Shape>` | `colors.DARKER_PRIMARY` | Color configuration for the slider's track.
-**dashEvents** | `Enum('change')` |  | 
 **disabled** | `Boolean` |  | If true, the handles can't be moved.
 **dots** | `Boolean` |  | When the step value is greater than 1, you can set the dots to true if you want to render the slider with dots.  Note: dots are disabled automatically when using color.ranges
-**fireEvent** | `Function` |  | Dash-assigned callback that gets fired when the checkbox item gets selected.
 **handleLabel** | `Union<String \| Shape>` |  | Configuration of the slider handle's label. Passing falsy value will disable the label.
 **id** | `String` |  | The ID used to identify this component in Dash callbacks
 **included** | `Boolean` |  | If the value is true, it means a continuous value is included. Otherwise, it is an independent value.

@@ -32,7 +32,6 @@ class PowerButton extends Component {
 
     this.setState({ on: newOnValue });
     if (this.props.setProps) this.props.setProps({ on: newOnValue });
-    if (this.props.fireEvent) this.props.fireEvent({ event: 'click' });
   }
 
   render() {
@@ -143,13 +142,7 @@ PowerButton.propTypes = {
    * Dash-assigned callback that gets fired when
    * button is clicked.
    */
-  setProps: PropTypes.func,
-
-  /**
-   * A callback for firing events to dash.
-   */
-  fireEvent: PropTypes.func,
-  dashEvents: PropTypes.oneOf(['click'])
+  setProps: PropTypes.func
 };
 
 export default withTheme(PowerButton);

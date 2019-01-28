@@ -10,9 +10,7 @@ prop | type | default | description
 ---- | :----: | :-------: | -----------
 **className** | `String` |  | Class to apply to the root component element.
 **color** | `String` |  | The indicator color to display when power button is on
-**dashEvents** | `Enum('click')` |  | 
 **disabled** | `Boolean` |  | If true, power button cannot be clicked
-**fireEvent** | `Function` |  | A callback for firing events to dash.
 **id** | `String` |  | The ID used to identify this compnent in Dash callbacks
 **label** | `Union<String \| Shape>` |  | Description to be displayed alongside the button. To control styling, pass an object with label and style properties.
 **labelPosition** | `Enum('top','bottom')` | `'top'` | Where the button label is positioned.

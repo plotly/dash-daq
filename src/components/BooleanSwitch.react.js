@@ -119,14 +119,7 @@ BooleanSwitch.propTypes = {
    * Dash-assigned callback that gets fired when
    * switch is toggled.
    */
-  setProps: PropTypes.func,
-
-  /**
-   * A callback for firing events to dash.
-   */
-  fireEvent: PropTypes.func,
-
-  dashEvents: PropTypes.oneOf(['click'])
+  setProps: PropTypes.func
 };
 
 export default withTheme(BooleanSwitch);

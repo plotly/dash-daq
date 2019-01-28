@@ -28,16 +28,6 @@ describe('Stop Button', () => {
     expect(component.render().text()).toBe('custom_text');
   });
 
-  it('fires click event on click', () => {
-    const fireEvent = sinon.spy();
-    const component = mount(<StopButton fireEvent={fireEvent} />);
-
-    component.find('button').simulate('click');
-
-    expect(fireEvent.calledOnce).toBeTruthy();
-    expect(fireEvent.getCall(0).args[0].event).toBe('click');
-  });
-
   it('calls setProps with n_clicks', () => {
     const setProps = sinon.spy();
     const component = mount(<StopButton setProps={setProps} />);
@@ -48,7 +38,7 @@ describe('Stop Button', () => {
     expect(setProps.getCall(0).args[0].n_clicks).toBe(1);
   });
 
-  it('handles unbound setProps and fireEvent props', () => {
+  it('handles unbound setProps prop', () => {
     const component = mount(<StopButton />);
 
     component.find('button').simulate('click');

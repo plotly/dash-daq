@@ -25,16 +25,6 @@ describe('Toggle Switch', () => {
     expect(component.find(Wrapper).prop('rotate')).toBe(-90);
   });
 
-  it('fires click event on click', () => {
-    const eventReciever = sinon.spy();
-    const component = mount(<ToggleSwitch fireEvent={eventReciever} />);
-
-    component.find('button').simulate('click');
-
-    expect(eventReciever.calledOnce).toBeTruthy();
-    expect(eventReciever.getCall(0).args[0].event).toBe('click');
-  });
-
   it('calls setProps on click', () => {
     const setProps = sinon.spy();
     const component = mount(<ToggleSwitch setProps={setProps} value={false} />);
@@ -45,16 +35,7 @@ describe('Toggle Switch', () => {
     expect(setProps.getCall(0).args[0].value).toBeTruthy();
   });
 
-  it('does not fire click event when disabled and clicked', () => {
-    const eventReciever = sinon.spy();
-    const component = mount(<ToggleSwitch disabled={true} fireEvent={eventReciever} />);
-
-    component.find('button').simulate('click');
-
-    expect(eventReciever.calledOnce).toBeFalsy();
-  });
-
-  it('handles absent setProps and fireEvent callbacks', () => {
+  it('handles absent setProps callbacks', () => {
     const component = mount(<ToggleSwitch />);
 
     component.find('button').simulate('click');
