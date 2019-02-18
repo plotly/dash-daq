@@ -1,6 +1,6 @@
 {
   "name": "dash-daq",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "engines": {
     "node": ">=8"
   },
@@ -18,12 +18,13 @@
     "doc-stage": "git add docs",
     "install-local": "yarn copy-lib && python setup.py install",
     "lint": "eslint --fix --ignore-path .eslintignore .",
-    "prepublish": "yarn test && builder run build-dist && yarn copy-lib",
+    "prepublish": "yarn test && builder run build-dist-dev && yarn copy-lib",
     "publish-all": "yarn publish && python setup.py sdist upload",
     "publish-pypi": "yarn prepublish && python setup.py sdist upload",
     "start": "builder run build-dev",
     "build-dist-dev": "builder run clean-lib && builder run extract-metadata && webpack --config=node_modules/dash-components-archetype/config/webpack/webpack.config.dev.js",
-    "build-tarball": "yarn build-dist-dev && yarn copy-lib && python setup.py sdist",
+    "build-dist": "builder run clean-lib && builder run extract-metadata && webpack --config=node_modules/dash-components-archetype/config/webpack/webpack.config.dist.js",
+    "build-tarball": "yarn build-dist && yarn copy-lib && python setup.py sdist",
     "test": "builder run check",
     "test-frontend-cov": "jest --coverage --silent",
     "test-watch": "builder run test-frontend-watch",
@@ -75,6 +76,9 @@
     ],
     "testURL": "http://localhost"
   },
+  "files": [
+      "dash_daq/*"
+  ],
   "pre-commit": [
     "test",
     "prettier",
