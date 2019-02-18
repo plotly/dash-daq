@@ -17,7 +17,7 @@ _js_dist = [
     {
         "relative_package_path": "bundle.js",
         "external_url": (
-            "https://unpkg.com/dash_daq@{}"
+            "https://unpkg.com/dash-daq@{}"
             "/dash_daq/bundle.js"
         ).format(__version__),
         "namespace": "dash_daq"
