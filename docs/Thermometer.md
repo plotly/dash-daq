@@ -1,5 +1,5 @@
 
-## Thermometer
+## Thermometer.react
 
 Component file: [`/src/components/Thermometer.react.js`](/src/components/Thermometer.react.js)
 

@@ -1,5 +1,5 @@
 
-## ToggleSwitch
+## ToggleSwitch.react
 
 Component file: [`/src/components/ToggleSwitch.react.js`](/src/components/ToggleSwitch.react.js)
 
@@ -13,7 +13,7 @@ prop | type | default | description
 **disabled** | `Boolean` |  | If true, switch cannot be clicked
 **id** | `String` |  | The ID used to identify this compnent in Dash callbacks
 **label** | `Union<String \| Shape \| Array[]<Union<String \| Shape>>>` |  | Description to be displayed alongside the control. To control styling, pass an object with label and style properties.
-**labelPosition** | `Enum('top','bottom')` | `'top'` | Where the component label is positioned.
+**labelPosition** | `Enum('top','bottom','left','right')` | `'top'` | Where the component label is positioned.
 **setProps** | `Function` |  | Dash-assigned callback that gets fired when switch is toggled.
 **size** | `Number` |  | The size of the switch
 **style** | `Object` |  | Style to apply to the root object.

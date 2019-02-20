@@ -1,5 +1,5 @@
 
-## LEDDisplay
+## LEDDisplay.react
 
 Component file: [`/src/components/LEDDisplay.react.js`](/src/components/LEDDisplay.react.js)
 

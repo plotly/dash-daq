@@ -103,7 +103,7 @@ BooleanSwitch.propTypes = {
   /**
    * Where the component label is positioned.
    */
-  labelPosition: PropTypes.oneOf(['top', 'bottom']),
+  labelPosition: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
 
   /**
    * Class to apply to the root component element.

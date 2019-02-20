@@ -1,5 +1,5 @@
 
-## Indicator
+## Indicator.react
 
 Component file: [`/src/components/Indicator.react.js`](/src/components/Indicator.react.js)
 

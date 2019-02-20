@@ -1,5 +1,5 @@
 
-## Slider
+## Slider.react
 
 Component file: [`/src/components/Slider.react.js`](/src/components/Slider.react.js)
 

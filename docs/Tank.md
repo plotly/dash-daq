@@ -1,5 +1,5 @@
 
-## Tank
+## Tank.react
 
 Component file: [`/src/components/Tank.react.js`](/src/components/Tank.react.js)
 

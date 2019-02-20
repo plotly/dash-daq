@@ -9,6 +9,8 @@ const Container = styled.div`
   justify-content: space-around;
   flex-direction: ${props => {
     switch (props.labelPosition) {
+      case 'right': return 'row'
+      case 'left': return 'row-reverse'
       case 'top': return 'column-reverse'
       case 'bottom': return 'column'
     }
