@@ -2,15 +2,13 @@
 
 DAQ components for Dash.
 
-## Dash
-
-Go to this link to learn about [Dash](https://plot.ly/products/dash/).
+Docs: https://dash.plot.ly/dash-daq
 
 ## Installation
 
 `pip install dash_daq` 
 
-(Or for Python 3 users, `pip3 install dash_daq`)
+(Or for Python 3, `pip3 install dash_daq`)
 
 ## Getting started for contributors
 
