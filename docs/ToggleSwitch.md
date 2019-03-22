@@ -1,5 +1,5 @@
 
-## ToggleSwitch
+## ToggleSwitch.react
 
 Component file: [`/src/components/ToggleSwitch.react.js`](/src/components/ToggleSwitch.react.js)
 

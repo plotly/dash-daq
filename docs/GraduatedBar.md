@@ -1,5 +1,5 @@
 
-## GraduatedBar
+## GraduatedBar.react
 
 Component file: [`/src/components/GraduatedBar.react.js`](/src/components/GraduatedBar.react.js)
 

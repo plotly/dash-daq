@@ -1,5 +1,5 @@
 
-## Joystick
+## Joystick.react
 
 Component file: [`/src/components/Joystick.react.js`](/src/components/Joystick.react.js)
 

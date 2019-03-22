@@ -215,7 +215,7 @@ class Demo extends Component {
             marks={{ 25: 'mark', 50: '50' }}
             handleLabel={{ showCurrentValue: true, label: 'VALUE' }}
           />
-          <LEDDisplay value="0.12345" color={this.state.color.hex} size={63} />
+          <LEDDisplay value="-0.12345" color={this.state.color.hex} size={63} />
         </div>
         <h2>Indicators</h2>
         <div

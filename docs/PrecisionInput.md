@@ -1,5 +1,5 @@
 
-## PrecisionInput
+## PrecisionInput.react
 
 Component file: [`/src/components/PrecisionInput.react.js`](/src/components/PrecisionInput.react.js)
 

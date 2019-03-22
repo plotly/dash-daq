@@ -1,5 +1,5 @@
 
-## Knob
+## Knob.react
 
 Component file: [`/src/components/Knob.react.js`](/src/components/Knob.react.js)
 

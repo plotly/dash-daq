@@ -7,7 +7,7 @@ import { LEDContainer } from '../styled/LEDDisplay.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 import { colors, light } from '../styled/constants';
 
-const VALID_INPUT = /^((\.|:)?[0-9])*$/;
+const VALID_INPUT = /^(\-)?((\.|:|)?[0-9])*$/;
 const isValidInput = VALID_INPUT.test.bind(VALID_INPUT);
 
 /**
@@ -79,7 +79,8 @@ LEDDisplay.propTypes = {
 
   /**
    * Value to be displayed. A number or a string
-   * containing only digits (0-9), periods, and colons.
+   * containing only digits (0-9), periods, colons,
+   * and possibly starting with a minus sign.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 

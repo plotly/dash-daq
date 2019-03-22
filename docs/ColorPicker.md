@@ -1,5 +1,5 @@
 
-## ColorPicker
+## ColorPicker.react
 
 Component file: [`/src/components/ColorPicker.react.js`](/src/components/ColorPicker.react.js)
 

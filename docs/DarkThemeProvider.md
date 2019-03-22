@@ -1,5 +1,5 @@
 
-## DarkThemeProvider
+## DarkThemeProvider.react
 
 Component file: [`/src/components/DarkThemeProvider.react.js`](/src/components/DarkThemeProvider.react.js)
 

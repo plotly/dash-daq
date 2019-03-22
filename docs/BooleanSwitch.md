@@ -1,5 +1,5 @@
 
-## BooleanSwitch
+## BooleanSwitch.react
 
 Component file: [`/src/components/BooleanSwitch.react.js`](/src/components/BooleanSwitch.react.js)
 

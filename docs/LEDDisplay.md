@@ -1,5 +1,5 @@
 
-## LEDDisplay
+## LEDDisplay.react
 
 Component file: [`/src/components/LEDDisplay.react.js`](/src/components/LEDDisplay.react.js)
 
@@ -16,4 +16,4 @@ prop | type | default | description
 **size** | `Number` | `42` | Size of the display
 **style** | `Object` |  | Style to apply to the root component element
 **theme** | `Object` | `light` | Theme configuration to be set by a ThemeProvider
-**value** | `Union<Number \| String>` |  | Value to be displayed. A number or a string containing only digits (0-9), periods, and colons.
+**value** | `Union<Number \| String>` |  | Value to be displayed. A number or a string containing only digits (0-9), periods, colons, and possibly starting with a minus sign.
