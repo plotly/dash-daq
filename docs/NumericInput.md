@@ -1,5 +1,5 @@
 
-## NumericInput
+## NumericInput.react
 
 Component file: [`/src/components/NumericInput.react.js`](/src/components/NumericInput.react.js)
 

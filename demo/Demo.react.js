@@ -175,7 +175,7 @@ class Demo extends Component {
             value={false}
             color={this.state.color.hex}
             label="Boolean Switch"
-            labelPosition="top"
+            labelPosition="left"
           />
           <BooleanSwitch
             id="boolean-switch-2"

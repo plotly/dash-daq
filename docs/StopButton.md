@@ -1,5 +1,5 @@
 
-## StopButton
+## StopButton.react
 
 Component file: [`/src/components/StopButton.react.js`](/src/components/StopButton.react.js)
 

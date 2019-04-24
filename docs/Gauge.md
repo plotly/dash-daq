@@ -1,5 +1,5 @@
 
-## Gauge
+## Gauge.react
 
 Component file: [`/src/components/Gauge.react.js`](/src/components/Gauge.react.js)
 

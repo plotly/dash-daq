@@ -1,5 +1,5 @@
 
-## PowerButton
+## PowerButton.react
 
 Component file: [`/src/components/PowerButton.react.js`](/src/components/PowerButton.react.js)
 

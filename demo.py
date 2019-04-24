@@ -67,7 +67,9 @@ controls = html.Div([
             value=100
         ),
         BooleanSwitch(
-            id='demoSwitch'
+            id='demoSwitch',
+            label='Switcher:',
+            labelPosition='left'
         ),
         ToggleSwitch(
             id="demoToggleSwitch",
