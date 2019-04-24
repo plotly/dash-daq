@@ -1,7 +1,7 @@
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
-from dash.dependencies import Input, Output, State, Event
+from dash.dependencies import Input, Output, State
 
 from dash_daq import Joystick, BooleanSwitch, ColorPicker, Gauge, GraduatedBar, Indicator, Knob, LEDDisplay, NumericInput, PowerButton, PrecisionInput, Slider, StopButton, Tank, Thermometer, ToggleSwitch, DarkThemeProvider
 
@@ -523,11 +523,10 @@ def update_boolean_indicator (value):
 
 @app.callback(
     Output('demoIndicator', 'value'),
-    [],
-    [State('demoIndicator', 'value')],
-    [Event('demoStopButton', 'click')]
+    [Input('demoStopButton', 'n_clicks')],
+    [State('demoIndicator', 'value')]
 )
-def update_indicator (indicatorState):
+def update_indicator (_, indicatorState):
     return not indicatorState
 
 @app.callback(
@@ -619,11 +618,10 @@ def dark_update_boolean_indicator (value):
 
 @app.callback(
     Output('dark-demoIndicator', 'value'),
-    [],
-    [State('dark-demoIndicator', 'value')],
-    [Event('dark-demoStopButton', 'click')]
+    [Input('dark-demoStopButton', 'n_clicks')],
+    [State('dark-demoIndicator', 'value')]
 )
-def dark_update_indicator (indicatorState):
+def dark_update_indicator (_, indicatorState):
     return not indicatorState
 
 @app.callback(
