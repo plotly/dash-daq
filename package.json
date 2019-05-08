@@ -5,8 +5,16 @@
     "node": ">=8"
   },
   "description": "DAQ components for Dash",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/plotly/dash-daq.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plotly/dash-daq/issues"
+  },
+  "homepage": "https://github.com/plotly/dash-daq",
   "main": "src/index.js",
-  "author": "The Plotly Team",
+  "author": "The Plotly Team <dashdaq@plot.ly>",
   "license": "MIT",
   "module": "lib/bundle.js",
   "jsnext:main": "lib/bundle.js",
@@ -36,7 +44,7 @@
     "prettier-restage": "git update-index --again"
   },
   "dependencies": {
-    "builder": "3.2.2",
+    "builder": "^3.2.2",
     "color": "^3.0.0",
     "conic-gradient": "^1.0.0",
     "copyfiles": "^1.2.0",
@@ -52,7 +60,7 @@
     "react-numeric-input": "^2.2.3",
     "styled-components": "^3.1.6",
     "tinygradient": "^0.4.0",
-    "webpack": "^1",
+    "webpack": "^1.15.0",
     "yarn": "^1.12.3"
   },
   "devDependencies": {
@@ -64,7 +72,7 @@
     "jest": "^22.3.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.10.2",
-    "react-docgen": "^2.20.1",
+    "react-docgen": "^2.21.0",
     "react-docgen-markdown-renderer": "^1.0.2",
     "react-test-renderer": "^15.5.4",
     "sinon": "^4.3.0"
@@ -77,7 +85,7 @@
     "testURL": "http://localhost"
   },
   "files": [
-      "dash_daq/*"
+    "dash_daq/*"
   ],
   "pre-commit": [
     "test",
