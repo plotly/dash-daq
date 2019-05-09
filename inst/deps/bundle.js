@@ -1,4 +1,4 @@
-this["dash_daq"] =
+this['dash_daq'] =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -35,7 +35,7 @@ this["dash_daq"] =
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/lib/";
+/******/ 	__webpack_require__.p = '/lib/';
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -50,7 +50,7 @@ this["dash_daq"] =
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
 	
@@ -218,13 +218,13 @@ this["dash_daq"] =
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(/*! react */ 2);
 	
@@ -250,11 +250,11 @@ this["dash_daq"] =
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called'); } return call && (typeof call === 'object' || typeof call === 'function') ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	/**
 	 * A switch component that toggles
@@ -392,7 +392,7 @@ this["dash_daq"] =
   \************************/
 /***/ (function(module, exports) {
 
-	(function() { module.exports = this["React"]; }());
+	(function() { module.exports = this['React']; }());
 
 /***/ }),
 /* 3 */
@@ -568,7 +568,7 @@ this["dash_daq"] =
 	    oneOf: createEnumTypeChecker,
 	    oneOfType: createUnionTypeChecker,
 	    shape: createShapeTypeChecker,
-	    exact: createStrictShapeTypeChecker,
+	    exact: createStrictShapeTypeChecker
 	  };
 	
 	  /**
@@ -622,7 +622,7 @@ this["dash_daq"] =
 	          );
 	          err.name = 'Invariant Violation';
 	          throw err;
-	        } else if (("development") !== 'production' && typeof console !== 'undefined') {
+	        } else if (('development') !== 'production' && typeof console !== 'undefined') {
 	          // Old behavior for people using React.PropTypes
 	          var cacheKey = componentName + ':' + propName;
 	          if (
@@ -1237,15 +1237,15 @@ this["dash_daq"] =
 	var hoistStatics = _interopDefault(__webpack_require__(/*! hoist-non-react-statics */ 15));
 	var reactIs = __webpack_require__(/*! react-is */ 16);
 	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+	var _typeof = typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol' ? function (obj) {
 	  return typeof obj;
 	} : function (obj) {
-	  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+	  return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj;
 	};
 	
 	var classCallCheck = function (instance, Constructor) {
 	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
+	    throw new TypeError('Cannot call a class as a function');
 	  }
 	};
 	
@@ -1255,7 +1255,7 @@ this["dash_daq"] =
 	      var descriptor = props[i];
 	      descriptor.enumerable = descriptor.enumerable || false;
 	      descriptor.configurable = true;
-	      if ("value" in descriptor) descriptor.writable = true;
+	      if ('value' in descriptor) descriptor.writable = true;
 	      Object.defineProperty(target, descriptor.key, descriptor);
 	    }
 	  }
@@ -1282,8 +1282,8 @@ this["dash_daq"] =
 	};
 	
 	var inherits = function (subClass, superClass) {
-	  if (typeof superClass !== "function" && superClass !== null) {
-	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	  if (typeof superClass !== 'function' && superClass !== null) {
+	    throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);
 	  }
 	
 	  subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -1311,10 +1311,10 @@ this["dash_daq"] =
 	
 	var possibleConstructorReturn = function (self, call) {
 	  if (!self) {
-	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called');
 	  }
 	
-	  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	  return call && (typeof call === 'object' || typeof call === 'function') ? call : self;
 	};
 	
 	// 
@@ -1329,17 +1329,17 @@ this["dash_daq"] =
 	 * Parse errors.md and turn it into a simple hash of code: message
 	 */
 	var ERRORS =  true ? {
-	  "1": "Cannot create styled-component for component: %s.\n\n",
-	  "2": "Can't collect styles once you've consumed a `ServerStyleSheet`'s styles! `ServerStyleSheet` is a one off instance for each server-side render cycle.\n\n* Are you trying to reuse it across renders?\n* Are you accidentally calling collectStyles twice?\n\n",
-	  "3": "Streaming SSR is only supported in a Node.js environment; Please do not try to call this method in the browser.\n\n",
-	  "4": "The `StyleSheetManager` expects a valid target or sheet prop!\n\n* Does this error occur on the client and is your target falsy?\n* Does this error occur on the server and is the sheet falsy?\n\n",
-	  "5": "The clone method cannot be used on the client!\n\n* Are you running in a client-like environment on the server?\n* Are you trying to run SSR on the client?\n\n",
-	  "6": "Trying to insert a new style tag, but the given Node is unmounted!\n\n* Are you using a custom target that isn't mounted?\n* Does your document not have a valid head element?\n* Have you accidentally removed a style tag manually?\n\n",
-	  "7": "ThemeProvider: Please return an object from your \"theme\" prop function, e.g.\n\n```js\ntheme={() => ({})}\n```\n\n",
-	  "8": "ThemeProvider: Please make your \"theme\" prop an object.\n\n",
-	  "9": "Missing document `<head>`\n\n",
-	  "10": "Cannot find a StyleSheet instance. Usually this happens if there are multiple copies of styled-components loaded at once. Check out this issue for how to troubleshoot and fix the common cases where this situation can happen: https://github.com/styled-components/styled-components/issues/1941#issuecomment-417862021\n\n",
-	  "11": "A plain React class (%s) has been interpolated into styles, probably as a component selector (https://www.styled-components.com/docs/advanced#referring-to-other-components). Only styled-component classes can be targeted in this fashion."
+	  '1': 'Cannot create styled-component for component: %s.\n\n',
+	  '2': 'Can\'t collect styles once you\'ve consumed a `ServerStyleSheet`\'s styles! `ServerStyleSheet` is a one off instance for each server-side render cycle.\n\n* Are you trying to reuse it across renders?\n* Are you accidentally calling collectStyles twice?\n\n',
+	  '3': 'Streaming SSR is only supported in a Node.js environment; Please do not try to call this method in the browser.\n\n',
+	  '4': 'The `StyleSheetManager` expects a valid target or sheet prop!\n\n* Does this error occur on the client and is your target falsy?\n* Does this error occur on the server and is the sheet falsy?\n\n',
+	  '5': 'The clone method cannot be used on the client!\n\n* Are you running in a client-like environment on the server?\n* Are you trying to run SSR on the client?\n\n',
+	  '6': 'Trying to insert a new style tag, but the given Node is unmounted!\n\n* Are you using a custom target that isn\'t mounted?\n* Does your document not have a valid head element?\n* Have you accidentally removed a style tag manually?\n\n',
+	  '7': 'ThemeProvider: Please return an object from your "theme" prop function, e.g.\n\n```js\ntheme={() => ({})}\n```\n\n',
+	  '8': 'ThemeProvider: Please make your "theme" prop an object.\n\n',
+	  '9': 'Missing document `<head>`\n\n',
+	  '10': 'Cannot find a StyleSheet instance. Usually this happens if there are multiple copies of styled-components loaded at once. Check out this issue for how to troubleshoot and fix the common cases where this situation can happen: https://github.com/styled-components/styled-components/issues/1941#issuecomment-417862021\n\n',
+	  '11': 'A plain React class (%s) has been interpolated into styles, probably as a component selector (https://www.styled-components.com/docs/advanced#referring-to-other-components). Only styled-component classes can be targeted in this fashion.'
 	} : {};
 	
 	/**
@@ -1587,13 +1587,13 @@ this["dash_daq"] =
 	// 
 	
 	
-	var SC_ATTR = typeof process !== 'undefined' && ({"NODE_ENV":"development"}).SC_ATTR || 'data-styled-components';
+	var SC_ATTR = typeof process !== 'undefined' && ({'NODE_ENV':'development'}).SC_ATTR || 'data-styled-components';
 	var SC_STREAM_ATTR = 'data-styled-streamed';
 	var CONTEXT_KEY = '__styled-components-stylesheet__';
 	
 	var IS_BROWSER = typeof window !== 'undefined' && 'HTMLElement' in window;
 	
-	var DISABLE_SPEEDY = ("development") !== 'production';
+	var DISABLE_SPEEDY = ('development') !== 'production';
 	
 	// 
 	var SC_COMPONENT_ID = /^[^\S\n]*?\/\* sc-component-id:\s*(\S+)\s+\*\//gm;
@@ -2871,7 +2871,7 @@ this["dash_daq"] =
 	    if (isFunction(theme)) {
 	      var mergedTheme = theme(this.outerTheme);
 	
-	      if (("development") !== 'production' && (mergedTheme === null || Array.isArray(mergedTheme) || (typeof mergedTheme === 'undefined' ? 'undefined' : _typeof(mergedTheme)) !== 'object')) {
+	      if (('development') !== 'production' && (mergedTheme === null || Array.isArray(mergedTheme) || (typeof mergedTheme === 'undefined' ? 'undefined' : _typeof(mergedTheme)) !== 'object')) {
 	        throw new StyledComponentsError(7);
 	      }
 	
@@ -2998,7 +2998,7 @@ this["dash_daq"] =
 	      var executionContext = this.buildExecutionContext(theme, props);
 	      var className = componentStyle.generateAndInjectStyles(executionContext, styleSheet);
 	
-	      if (("development") !== 'production' && warnTooManyClasses !== undefined) {
+	      if (('development') !== 'production' && warnTooManyClasses !== undefined) {
 	        warnTooManyClasses(className);
 	      }
 	
@@ -3269,7 +3269,7 @@ this["dash_daq"] =
 	  return true;
 	};
 	
-	var isHMREnabled = typeof module !== 'undefined' && module.hot && ("development") !== 'production';
+	var isHMREnabled = typeof module !== 'undefined' && module.hot && ('development') !== 'production';
 	
 	/*
 	 ComponentStyle is all the CSS-specific stuff, not
@@ -3461,7 +3461,7 @@ this["dash_daq"] =
 	
 	      var styledContext = this.context[CHANNEL_NEXT];
 	      var themeProp = determineTheme(this.props, undefined, defaultProps);
-	      if (styledContext === undefined && themeProp === undefined && ("development") !== 'production') {
+	      if (styledContext === undefined && themeProp === undefined && ('development') !== 'production') {
 	        // eslint-disable-next-line no-console
 	        console.warn('[withTheme] You are not using a ThemeProvider nor passing a theme prop or a theme in defaultProps');
 	      } else if (styledContext === undefined && themeProp !== undefined) {
