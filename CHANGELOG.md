@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.1.5] - 2019-05-09
+* Fixed missing locationSlider entry in Slider.propTypes.
+* Updated package.json with additional metadata for R package building.
+* Added JavaScript bundle and source map to dash_daq subfolder.
+* Initial commit of dashDaq R package.
+
 ## [0.1.4] - 2019-02-18
 
 ### Fixed 
