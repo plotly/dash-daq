@@ -90,9 +90,7 @@
   "pre-commit": [
     "test",
     "prettier",
-    "prettier-restage",
-    "doc-gen",
-    "doc-stage"
+    "prettier-restage"
   ],
   "keywords": [
     "dash",
