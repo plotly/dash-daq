@@ -15,7 +15,7 @@ prop | type | default | description
 **handleLabel** | `Union<String \| Shape>` |  | Configuration of the slider handle's label. Passing falsy value will disable the label.
 **id** | `String` |  | The ID used to identify this component in Dash callbacks
 **included** | `Boolean` |  | If the value is true, it means a continuous value is included. Otherwise, it is an independent value.
-**labelPosition** | `Unknown` | `'bottom'` | 
+**labelPosition** | `Enum('top','bottom')` | `'bottom'` | Where the component label is positioned.
 **marks** | `Shape` |  | Marks on the slider. The key determines the position, and the value determines what will show. If you want to set the style of a specific mark point, the value should be an object which contains style and label properties.
 **marks.number** | `Union<String \| Shape>` |  | 
 **max** | `Number` |  | Maximum allowed value of the slider.
