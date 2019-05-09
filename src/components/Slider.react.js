@@ -276,7 +276,7 @@ Slider.propTypes = {
    * Where the component label is positioned.
    */
   labelPosition: PropTypes.oneOf(['top', 'bottom']),
-  
+
   /**
    * If true, the handles can't be moved.
    */
