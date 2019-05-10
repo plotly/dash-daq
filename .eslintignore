@@ -6,6 +6,7 @@ lib/bundle.js*
 node_modules/
 dash_daq/metadata.json
 dash_daq/bundle.js*
+inst/deps/bundle.js*
 .npm
 vv/
 venv/
