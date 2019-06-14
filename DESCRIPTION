@@ -4,7 +4,7 @@ Version: 0.1.4
 Authors @R: as.person(c(The Plotly Team <dashdaq@plot.ly>))
 Description: DAQ components for Dash
 Depends: R (>= 3.0.2)
-Imports: dashR
+Imports: dash
 Suggests: testthat, roxygen2
 License: MIT + file LICENSE
 URL: https://github.com/plotly/dash-daq
