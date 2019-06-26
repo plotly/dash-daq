@@ -1,0 +1,4 @@
+pkg_help_description: >
+    Dash DAQ comprises a robust set of controls that make it simpler to integrate data acquisition and controls into your Dash applications.
+pkg_help_title: >
+    Interactive Data Acquisition and Control Components for Dash 
