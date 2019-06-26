@@ -162,7 +162,7 @@ indicators = html.Div([
         ),
         LEDDisplay(
             id='demoLEDDisplay',
-            value=1.2
+            value='-1.2'
         ),
         html.Div([
             html.Div([
@@ -449,7 +449,7 @@ def display_page(pathname):
 )
 def update_LEDDisplay (value):
     digits = str(value)[:2]
-    return ".".join(digits)
+    return "-" + ".".join(digits)
 
 @app.callback(
     Output('demoGauge', 'value'),
@@ -544,7 +544,7 @@ def update_thermometer (on):
 )
 def update_LEDDisplay (value):
     digits = str(value)[:2]
-    return ".".join(digits)
+    return "-" + ".".join(digits)
 
 @app.callback(
     Output('dark-demoGauge', 'value'),
