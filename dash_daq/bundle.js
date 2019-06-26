@@ -32104,7 +32104,7 @@ this["dash_daq"] =
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var VALID_INPUT = /^((\.|:)?[0-9])*$/;
+	var VALID_INPUT = /^(\-)?((\.|:|)?[0-9])*$/;
 	var isValidInput = VALID_INPUT.test.bind(VALID_INPUT);
 	
 	/**
@@ -32185,7 +32185,8 @@ this["dash_daq"] =
 	
 	  /**
 	   * Value to be displayed. A number or a string
-	   * containing only digits (0-9), periods, and colons.
+	   * containing only digits (0-9), periods, and colons,
+	   * and possibly starting with a minus sign.
 	   */
 	  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	
@@ -32290,7 +32291,8 @@ this["dash_daq"] =
 	  6: ['A', 'F', 'G', 'C', 'D', 'E'],
 	  7: ['A', 'B', 'C'],
 	  8: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
-	  9: ['A', 'B', 'C', 'D', 'F', 'G']
+	  9: ['A', 'B', 'C', 'D', 'F', 'G'],
+	  '-': ['G']
 	};
 	
 	// See the following link for segment mappings:
