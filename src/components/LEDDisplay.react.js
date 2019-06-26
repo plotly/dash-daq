@@ -7,7 +7,7 @@ import { LEDContainer } from '../styled/LEDDisplay.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 import { colors, light } from '../styled/constants';
 
-const VALID_INPUT = /^(\-)?((\.|:|)?[0-9])*$/;
+const VALID_INPUT = /^(\-)?((\.|:)?[0-9])*$/;
 const isValidInput = VALID_INPUT.test.bind(VALID_INPUT);
 
 /**
