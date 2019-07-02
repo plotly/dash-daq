@@ -29,6 +29,7 @@ function extractDigits({ value, color, backgroundColor, theme, size }) {
     .toString()
     .split('')
     .reverse();
+
   const formattedDigits = [];
 
   addLeadingZeroIfNeeded(digitStack);
@@ -58,9 +59,16 @@ function extractDigits({ value, color, backgroundColor, theme, size }) {
 }
 
 function addLeadingZeroIfNeeded(digits) {
+  let isNegative = false;
+
+  if (digits[digits.length - 1] === '-') {
+    isNegative = true;
+    digits.pop();
+  }
   const leadingDigit = digits[digits.length - 1];
 
   if (['.', ':'].includes(leadingDigit)) digits.push('0');
+  if (isNegative) digits.push('-');
 }
 
 LEDDisplay.defaultProps = {
