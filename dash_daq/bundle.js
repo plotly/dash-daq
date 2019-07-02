@@ -32104,7 +32104,7 @@ this["dash_daq"] =
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var VALID_INPUT = /^(\-)?((\.|:|)?[0-9])*$/;
+	var VALID_INPUT = /^(\-)?((\.|:)?[0-9])*$/;
 	var isValidInput = VALID_INPUT.test.bind(VALID_INPUT);
 	
 	/**
@@ -32164,9 +32164,16 @@ this["dash_daq"] =
 	}
 	
 	function addLeadingZeroIfNeeded(digits) {
+	  var isNegative = false;
+	
+	  if (digits[digits.length - 1] === '-') {
+	    isNegative = true;
+	    digits.pop();
+	  }
 	  var leadingDigit = digits[digits.length - 1];
 	
 	  if (['.', ':'].includes(leadingDigit)) digits.push('0');
+	  if (isNegative) digits.push('-');
 	}
 	
 	LEDDisplay.defaultProps = {
