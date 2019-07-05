@@ -14,7 +14,12 @@ daqDarkThemeProvider(children=NULL, theme=NULL)
 }
 
 \arguments{
-\item{children}{The children of this component}
+\item{children}{List of a list of or a singular dash component, string or numbers | a list of or a singular dash component, string or number. The children of this component}
 
-\item{theme}{Theme object to override with a custom theme}
+\item{theme}{Lists containing elements 'primary', 'secondary', 'detail', 'dark'.
+those elements have the following types:
+  - primary (character; optional): highlight color
+  - secondary (character; optional): supporting color
+  - detail (character; optional): color used for ui details, like borders
+  - dark (logical; optional): true for dark mode, false for light. Theme object to override with a custom theme}
 }

@@ -15,6 +15,7 @@
   "homepage": "https://github.com/plotly/dash-daq",
   "main": "src/index.js",
   "author": "The Plotly Team <dashdaq@plot.ly>",
+  "maintainer": "Ryan Patrick Kyle <ryan@plot.ly>",
   "license": "MIT",
   "module": "lib/bundle.js",
   "jsnext:main": "lib/bundle.js",

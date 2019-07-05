@@ -10,32 +10,37 @@ A numeric input component that converts an input value to the desired precision.
 }
 
 \usage{
-daqPrecisionInput(id=NULL, value=NULL, size=NULL, min=NULL, max=NULL, precision=NULL, disabled=NULL, theme=NULL, label=NULL, labelPosition=NULL, className=NULL, style=NULL)
+daqPrecisionInput(id=NULL, value=NULL, size=NULL, min=NULL, max=NULL, precision=NULL,
+disabled=NULL, theme=NULL, label=NULL, labelPosition=NULL, className=NULL,
+style=NULL)
 }
 
 \arguments{
-\item{id}{The ID used to identify this compnent in Dash callbacks}
+\item{id}{Character. The ID used to identify this compnent in Dash callbacks}
 
-\item{value}{The value of numeric input}
+\item{value}{Numeric. The value of numeric input}
 
-\item{size}{The size (length) of the numeric input in pixels}
+\item{size}{Numeric. The size (length) of the numeric input in pixels}
 
-\item{min}{The minimum value of the numeric input}
+\item{min}{Numeric. The minimum value of the numeric input}
 
-\item{max}{The maximum value of the numeric input}
+\item{max}{Numeric. The maximum value of the numeric input}
 
-\item{precision}{Number of significant figures}
+\item{precision}{Numeric. Number of significant figures}
 
-\item{disabled}{If true, numeric input cannot be changed.}
+\item{disabled}{Logical. If true, numeric input cannot be changed.}
 
-\item{theme}{Theme configuration to be set by a ThemeProvider}
+\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
 
-\item{label}{Description to be displayed alongside the scientific notation. To control styling,
+\item{label}{Character | lists containing elements 'style', 'label'.
+those elements have the following types:
+  - style (named list; optional)
+  - label (character; optional). Description to be displayed alongside the scientific notation. To control styling,
 pass an object with label and style properties.}
 
-\item{labelPosition}{Where the numeric input label is positioned.}
+\item{labelPosition}{A value equal to: 'top', 'bottom'. Where the numeric input label is positioned.}
 
-\item{className}{Class to apply to the root component element.}
+\item{className}{Character. Class to apply to the root component element.}
 
-\item{style}{Style to apply to the root component element.}
+\item{style}{Named list. Style to apply to the root component element.}
 }
