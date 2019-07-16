@@ -7,7 +7,7 @@ import { LEDContainer } from '../styled/LEDDisplay.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 import { colors, light } from '../styled/constants';
 
-const VALID_INPUT = /^((\.|:)?[0-9])*$/;
+const VALID_INPUT = /^(\-)?((\.|:)?[0-9])*$/;
 const isValidInput = VALID_INPUT.test.bind(VALID_INPUT);
 
 /**
@@ -29,6 +29,7 @@ function extractDigits({ value, color, backgroundColor, theme, size }) {
     .toString()
     .split('')
     .reverse();
+
   const formattedDigits = [];
 
   addLeadingZeroIfNeeded(digitStack);
@@ -58,9 +59,16 @@ function extractDigits({ value, color, backgroundColor, theme, size }) {
 }
 
 function addLeadingZeroIfNeeded(digits) {
+  let isNegative = false;
+
+  if (digits[digits.length - 1] === '-') {
+    isNegative = true;
+    digits.pop();
+  }
   const leadingDigit = digits[digits.length - 1];
 
   if (['.', ':'].includes(leadingDigit)) digits.push('0');
+  if (isNegative) digits.push('-');
 }
 
 LEDDisplay.defaultProps = {
@@ -79,7 +87,8 @@ LEDDisplay.propTypes = {
 
   /**
    * Value to be displayed. A number or a string
-   * containing only digits (0-9), periods, and colons.
+   * containing only digits (0-9), periods, and colons,
+   * and possibly starting with a minus sign.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 

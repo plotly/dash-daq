@@ -64,6 +64,36 @@ describe('LEDDisplay', () => {
     expect(digits.get(2).props.value).toBe('3');
   });
 
+  it('renders negative values correctly', () => {
+    const component = mount(<LEDDisplay value={'-1.23'} />);
+
+    const digits = component.find(Digit);
+    expect(digits).toHaveLength(4);
+    expect(digits.get(0).props.value).toBe('-');
+    expect(digits.get(1).props.value).toBe('1');
+    expect(digits.get(1).props.hasDecimal).toBeTruthy();
+    expect(digits.get(2).props.value).toBe('2');
+    expect(digits.get(3).props.value).toBe('3');
+  });
+
+  it('renders negative values without leading zeros correctly', () => {
+    const component = mount(<LEDDisplay value={'-.12'} />);
+
+    const digits = component.find(Digit);
+    expect(digits).toHaveLength(4);
+    expect(digits.get(0).props.value).toBe('-');
+    expect(digits.get(1).props.value).toBe('0');
+    expect(digits.get(1).props.hasDecimal).toBeTruthy();
+    expect(digits.get(2).props.value).toBe('1');
+    expect(digits.get(3).props.value).toBe('2');
+  });
+
+  it('raise invalid input if minus sign is not in first position', () => {
+    const component = mount(<LEDDisplay value={'1.2-3'} />);
+
+    expect(component.text()).toEqual(expect.stringContaining('Invalid Input'));
+  });
+
   it('handles bad input', () => {
     const component = mount(<LEDDisplay value={'invalid'} />);
     expect(component.text()).toEqual(expect.stringContaining('Invalid Input'));
