@@ -103,7 +103,7 @@ describe('Tank', () => {
 
   it('has assigned id', () => {
     const component = mount(<Tank id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

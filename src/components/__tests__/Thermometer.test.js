@@ -39,7 +39,7 @@ describe.only('Thermometer', () => {
   it('does not show current value if not set', () => {
     const component = mount(shallow(<Thermometer value={5} />).get(0));
 
-    expect(component.find(CurrentValue)).toHaveLength(0);
+    expect(component.find(CurrentValue).hostNodes()).toHaveLength(0);
   });
 
   it('shows current units if set', () => {
@@ -55,7 +55,7 @@ describe.only('Thermometer', () => {
   it('does not show the current units if not set', () => {
     const component = mount(shallow(<Thermometer value={5} showCurrentValue={true} />).get(0));
 
-    expect(component.find(ValueLabel)).toHaveLength(0);
+    expect(component.find(ValueLabel).hostNodes()).toHaveLength(0);
   });
 
   it('has default marks', () => {
@@ -113,7 +113,7 @@ describe.only('Thermometer', () => {
 
   it('has assigned id', () => {
     const component = mount(<Thermometer id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

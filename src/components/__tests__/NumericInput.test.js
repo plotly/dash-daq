@@ -83,7 +83,7 @@ describe.only('Numeric Input', () => {
 
   it('has assigned id', () => {
     const component = mount(<NumericInput id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

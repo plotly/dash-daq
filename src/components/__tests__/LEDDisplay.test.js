@@ -128,7 +128,7 @@ describe('LEDDisplay', () => {
 
   it('has assigned id', () => {
     const component = mount(<LEDDisplay id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

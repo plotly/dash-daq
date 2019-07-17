@@ -171,13 +171,13 @@ describe('Knob', () => {
 
   it('has default marks', () => {
     const component = mount(shallow(<Knob label="Test label" />).get(0));
-    expect(component.find('text')).toHaveLength(6);
+    expect(component.find('text').hostNodes()).toHaveLength(6);
   });
 
   it('has custom marks', () => {
     const scale = { custom: { 0: 'Low', 5: 'Medium', 10: 'High' } };
     const component = mount(shallow(<Knob scale={scale} step={5} label="Test label" />).get(0));
-    expect(component.find('text')).toHaveLength(3);
+    expect(component.find('text').hostNodes()).toHaveLength(3);
   });
 
   it('has assigned className', () => {
@@ -194,7 +194,7 @@ describe('Knob', () => {
 
   it('has assigned id', () => {
     const component = mount(<Knob id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {
