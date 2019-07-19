@@ -74,6 +74,8 @@ describe('Tank', () => {
 
     const tickText = component
       .find(Tick)
+      .children()
+      .hostNodes()
       .children('.label')
       .childAt(0);
 

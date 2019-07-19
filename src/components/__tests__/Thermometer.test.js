@@ -85,8 +85,11 @@ describe.only('Thermometer', () => {
     const scale = { custom: { 0: { style: { color: 'blue' }, label: '_' } } };
     const component = mount(<Thermometer label="Test label" scale={scale} />);
 
-    const tickText = component.find(Tick).children('.label');
-
+    const tickText = component
+      .find(Tick)
+      .children()
+      .hostNodes()
+      .children('.label');
     expect(tickText).toHaveLength(1);
     expect(tickText.prop('style').color).toBe('blue');
   });
