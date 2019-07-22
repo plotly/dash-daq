@@ -32137,6 +32137,7 @@ this["dash_daq"] =
 	      size = _ref.size;
 	
 	  var digitStack = value.toString().split('').reverse();
+	
 	  var formattedDigits = [];
 	
 	  addLeadingZeroIfNeeded(digitStack);
@@ -34304,7 +34305,7 @@ this["dash_daq"] =
 	        {
 	          id: this.props.id,
 	          className: this.props.className,
-	          style: Object.assign(defaultRootStyles, this.props.style)
+	          style: Object.assign({}, defaultRootStyles, this.props.style)
 	        },
 	        React.createElement(
 	          LabelContainer,
