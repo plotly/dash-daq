@@ -36,11 +36,14 @@ describe.only('Precision Input', () => {
   });
 
   it('displays updates with correct value', () => {
-    const component = mount(shallow(<PrecisionInput precision={3} value={1} />).get(0));
+    let component = mount(shallow(<PrecisionInput precision={3} value={1} />).get(0));
 
-    component.instance().toggleInput();
-    component.instance().setValue(12300);
-    component.instance().toggleInput();
+    const componentInstance = component.instance();
+    componentInstance.toggleInput();
+    componentInstance.setValue(12300);
+    componentInstance.toggleInput();
+
+    component = component.update();
 
     let digits = component.find(Digit);
     expect(digits).toHaveLength(6);
