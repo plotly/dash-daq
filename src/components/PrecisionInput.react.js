@@ -142,7 +142,7 @@ class PrecisionInput extends Component {
       <div
         id={this.props.id}
         className={this.props.className}
-        style={Object.assign(defaultRootStyles, this.props.style)}
+        style={Object.assign({}, defaultRootStyles, this.props.style)}
       >
         <LabelContainer {...this.props}>
           {this.state.isInput ? precisionInput : precisionOutput}
