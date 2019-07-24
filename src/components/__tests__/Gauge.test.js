@@ -1,5 +1,9 @@
 /* eslint-disable */
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 import { mount, shallow } from 'enzyme';
 
 import Gauge from '../Gauge.react';
@@ -62,13 +66,13 @@ describe.only('Gauge', () => {
 
   it('has default marks', () => {
     const component = mount(shallow(<Gauge label="Test label" />).get(0));
-    expect(component.find('line')).toHaveLength(12);
+    expect(component.find('line').hostNodes()).toHaveLength(12);
   });
 
   it('has custom marks', () => {
     const scale = { custom: { 0: 'Low', 5: 'Medium', 10: 'High' } };
     const component = mount(shallow(<Gauge scale={scale} step={5} label="Test label" />).get(0));
-    expect(component.find('text')).toHaveLength(3);
+    expect(component.find('text').hostNodes()).toHaveLength(3);
   });
 
   it('shows current value if set', () => {
@@ -82,7 +86,7 @@ describe.only('Gauge', () => {
   it('does not show current value if not set', () => {
     const component = mount(shallow(<Gauge value={5} />).get(0));
 
-    expect(component.find(CurrentValue)).toHaveLength(0);
+    expect(component.find(CurrentValue).hostNodes()).toHaveLength(0);
   });
 
   it('shows current units if set', () => {
@@ -98,7 +102,7 @@ describe.only('Gauge', () => {
   it('does not show the current units if not set', () => {
     const component = mount(shallow(<Gauge value={5} showCurrentValue={true} />).get(0));
 
-    expect(component.find(ValueLabel)).toHaveLength(0);
+    expect(component.find(ValueLabel).hostNodes()).toHaveLength(0);
   });
 
   it('handles logarithic mode', () => {
@@ -123,7 +127,7 @@ describe.only('Gauge', () => {
 
   it('has assigned id', () => {
     const component = mount(<Gauge id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

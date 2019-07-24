@@ -1,5 +1,9 @@
 /* eslint-disable */
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 import { mount, shallow } from 'enzyme';
 
 import GraduatedBar from '../GraduatedBar.react';
@@ -44,7 +48,7 @@ describe('Graduated Bar', () => {
   it('does not show current value if not set', () => {
     const component = mount(shallow(<GraduatedBar value={5} />).get(0));
 
-    expect(component.find(Value)).toHaveLength(0);
+    expect(component.find(Value).hostNodes()).toHaveLength(0);
   });
 
   it('handles color scale correctly', () => {
@@ -75,7 +79,7 @@ describe('Graduated Bar', () => {
 
   it('has assigned id', () => {
     const component = mount(<GraduatedBar id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

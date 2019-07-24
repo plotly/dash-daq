@@ -1,5 +1,9 @@
 /* eslint-disable */
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
@@ -46,7 +50,7 @@ describe('Stop Button', () => {
 
   it('has assigned id', () => {
     const component = mount(<StopButton id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('has assigned className', () => {

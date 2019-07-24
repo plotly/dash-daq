@@ -1,5 +1,9 @@
 /* eslint-disable */
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 import { mount, shallow } from 'enzyme';
 
 import Thermometer from '../Thermometer.react';
@@ -35,7 +39,7 @@ describe.only('Thermometer', () => {
   it('does not show current value if not set', () => {
     const component = mount(shallow(<Thermometer value={5} />).get(0));
 
-    expect(component.find(CurrentValue)).toHaveLength(0);
+    expect(component.find(CurrentValue).hostNodes()).toHaveLength(0);
   });
 
   it('shows current units if set', () => {
@@ -51,7 +55,7 @@ describe.only('Thermometer', () => {
   it('does not show the current units if not set', () => {
     const component = mount(shallow(<Thermometer value={5} showCurrentValue={true} />).get(0));
 
-    expect(component.find(ValueLabel)).toHaveLength(0);
+    expect(component.find(ValueLabel).hostNodes()).toHaveLength(0);
   });
 
   it('has default marks', () => {
@@ -81,8 +85,11 @@ describe.only('Thermometer', () => {
     const scale = { custom: { 0: { style: { color: 'blue' }, label: '_' } } };
     const component = mount(<Thermometer label="Test label" scale={scale} />);
 
-    const tickText = component.find(Tick).children('.label');
-
+    const tickText = component
+      .find(Tick)
+      .children()
+      .hostNodes()
+      .children('.label');
     expect(tickText).toHaveLength(1);
     expect(tickText.prop('style').color).toBe('blue');
   });
@@ -109,7 +116,7 @@ describe.only('Thermometer', () => {
 
   it('has assigned id', () => {
     const component = mount(<Thermometer id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

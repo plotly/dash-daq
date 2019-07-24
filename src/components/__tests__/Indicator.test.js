@@ -1,5 +1,9 @@
 /* eslint-disable */
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 import { mount } from 'enzyme';
 
 import Indicator from '../Indicator.react';
@@ -61,7 +65,7 @@ describe.only('Thermometer', () => {
 
   it('has assigned id', () => {
     const component = mount(<Indicator id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

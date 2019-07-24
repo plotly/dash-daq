@@ -1,5 +1,8 @@
 /* eslint-disable */
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
@@ -26,21 +29,24 @@ describe.only('Precision Input', () => {
   it('displays correct value', () => {
     const component = mount(shallow(<PrecisionInput precision={2} value={120} />).get(0));
     let digits = component.find(Digit);
-    expect(digits).toHaveLength(5);
+    expect(digits.length).toBe(5);
     expect(digits.at(0).text()).toBe('1');
     expect(digits.at(2).text()).toBe('2');
     expect(digits.at(4).text()).toBe('2');
   });
 
   it('displays updates with correct value', () => {
-    const component = mount(shallow(<PrecisionInput precision={3} value={1} />).get(0));
+    let component = mount(shallow(<PrecisionInput precision={3} value={1} />).get(0));
 
-    component.instance().toggleInput();
-    component.instance().setValue(12300);
-    component.instance().toggleInput();
+    const componentInstance = component.instance();
+    componentInstance.toggleInput();
+    componentInstance.setValue(12300);
+    componentInstance.toggleInput();
+
+    component = component.update();
 
     let digits = component.find(Digit);
-    expect(digits).toHaveLength(6);
+    expect(digits.length).toBe(6);
     expect(digits.at(0).text()).toBe('1');
     expect(digits.at(2).text()).toBe('2');
     expect(digits.at(3).text()).toBe('3');
@@ -134,7 +140,7 @@ describe.only('Precision Input', () => {
 
   it('has assigned id', () => {
     const component = mount(<PrecisionInput id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {
@@ -152,7 +158,7 @@ describe.only('Precision Input', () => {
     );
     const label = component.find(Label);
 
-    expect(label).toHaveLength(1);
+    expect(label.length).toBe(1);
     expect(label.prop('style').color).toBe('blue');
   });
 });

@@ -1,5 +1,9 @@
 /* eslint-disable */
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 
@@ -69,7 +73,7 @@ describe('Power Button', () => {
 
   it('has assigned id', () => {
     const component = mount(<PowerButton id="testId" />);
-    expect(component.find('#testId')).toHaveLength(1);
+    expect(component.find('#testId').hostNodes()).toHaveLength(1);
   });
 
   it('positions label correctly', () => {

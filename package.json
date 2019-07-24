@@ -1,6 +1,6 @@
 {
   "name": "dash-daq",
-  "version": "0.1.6",
+  "version": "0.1.7-rc1",
   "engines": {
     "node": ">=8"
   },
@@ -55,9 +55,9 @@
     "prop-types": "^15.5.9",
     "ramda": "^0.25.0",
     "rc-slider": "^8.6.1",
-    "react": "^15.5.4",
+    "react": "^16.8.6",
     "react-color": "^2.14.1",
-    "react-dom": "^15.5.4",
+    "react-dom": "^16.8.6",
     "react-numeric-input": "^2.2.3",
     "styled-components": "^3.1.6",
     "tinygradient": "^0.4.0",
@@ -68,14 +68,15 @@
     "babel-core": "^6.26.0",
     "chalk": "^2.3.1",
     "dash-components-archetype-dev": "^0.2.11",
-    "enzyme": "^2.8.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "fs-extra": "^5.0.0",
     "jest": "^22.3.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.10.2",
     "react-docgen": "^2.21.0",
     "react-docgen-markdown-renderer": "^1.0.2",
-    "react-test-renderer": "^15.5.4",
+    "react-test-renderer": "^16.8.6",
     "sinon": "^4.3.0"
   },
   "jest": {
