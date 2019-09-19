@@ -5,8 +5,8 @@ import { light } from './constants';
 
 export const TankContainer = styled.div`
   position: relative;
-  width: ${props => props.width || '112px'};
-  height: ${({ size }) => `${size}px`};
+  width: ${({ width }) => `${width}px`};
+  height: ${({ height }) => `${height}px`};
   z-index: 2;
   border-radius: ${({ thermometer }) => (thermometer ? '40px' : '0')};
 
