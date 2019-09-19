@@ -2,5 +2,6 @@ include dash_daq/bundle.js
 include dash_daq/bundle.js.map
 include dash_daq/metadata.json
 include dash_daq/rc-slider@6.1.2.css
+include dash_daq/package-info.json
 include README.md
 include LICENSE.md
