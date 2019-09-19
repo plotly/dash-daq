@@ -25,8 +25,7 @@ const Tank = props => {
     color,
     logarithmic,
     base,
-    height,
-    width
+    size
   } = props;
 
   const dirtyValue = logarithmic ? log.compute(props.value, base) : props.value;
@@ -57,13 +56,13 @@ const Tank = props => {
   return (
     <div className={className} id={id} style={style}>
       <LabelContainer {...props}>
-	<Container>
-	  {scaleContainer}
-	  <TankContainer height={height} width={width}>
-	    <TankFill color={color} height={`${percentageFill}%`} />
-	    {showCurrentValue && currentValue}
-	  </TankContainer>
-	</Container>
+        <Container>
+          {scaleContainer}
+          <TankContainer size={size}>
+            <TankFill color={color} height={`${percentageFill}%`} />
+            {showCurrentValue && currentValue}
+          </TankContainer>
+        </Container>
       </LabelContainer>
     </div>
   );
@@ -72,8 +71,7 @@ const Tank = props => {
 Tank.defaultProps = {
   min: 0,
   max: 10,
-  height: 192,
-  width: 150,
+  size: 192,
   base: 10,
   labelPosition: 'top'
 };
@@ -91,14 +89,9 @@ Tank.propTypes = {
   value: PropTypes.number,
 
   /**
-   * The height of the tank in pixels
+   * The size (height) of the tank in pixels
    */
-  height: PropTypes.number,
-
-  /**
-   * The width of the tank in pixels
-   */
-  width: PropTypes.number,
+  size: PropTypes.number,
 
   /**
    * The color of tank fill
