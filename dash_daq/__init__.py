@@ -1,7 +1,13 @@
 import os as _os
 import dash as _dash
 import sys as _sys
-from .version import __version__
+import json
+
+_basepath = _os.path.dirname(__file__)
+_filepath = _os.path.abspath(_os.path.join(_basepath, 'package-info.json'))
+
+with open(_filepath) as f:
+    __version__ = json.loads(f.read())['version']
 
 _current_path = _os.path.dirname(_os.path.abspath(__file__))
 
