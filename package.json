@@ -1,6 +1,6 @@
 {
   "name": "dash-daq",
-  "version": "0.1.7",
+  "version": "0.1.8-rc1",
   "engines": {
     "node": ">=8"
   },
