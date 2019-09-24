@@ -12,8 +12,6 @@ import log from '../helpers/logarithm';
 import { sanitizeRangeValue, computeProgress } from '../helpers/util';
 import generateScale from '../helpers/scale';
 
-const WIDTH = 20;
-
 /**
  * A thermometer component that
  * fills to a value between some
@@ -32,7 +30,8 @@ const Thermometer = props => {
     units,
     theme,
     color,
-    size
+    height,
+    width
   } = props;
 
   const dirtyValue = logarithmic ? log.compute(props.value, base) : props.value;
@@ -71,7 +70,7 @@ const Thermometer = props => {
         <ThermometerContainer>
           <Container thermometer xPositioned={scale}>
             {scaleContainer}
-            <TankContainer thermometer size={size} width={`${WIDTH}px`}>
+            <TankContainer thermometer height={height} width={width}>
               <TankFill
                 thermometer
                 color={color}
@@ -90,7 +89,8 @@ const Thermometer = props => {
 Thermometer.defaultProps = {
   min: 0,
   max: 10,
-  size: 192,
+  height: 192,
+  width: 20,
   base: 10,
   labelPosition: 'top',
   theme: light
@@ -109,9 +109,14 @@ Thermometer.propTypes = {
   value: PropTypes.number,
 
   /**
-   * The size (height) of the thermometer in pixels
+   * The height of the thermometer in pixels
    */
-  size: PropTypes.number,
+  height: PropTypes.number,
+
+  /**
+   * The width of the thermometer in pixels
+   */
+  width: PropTypes.number,
 
   /**
    * The color of the thermometer fill/current value text

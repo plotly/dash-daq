@@ -6,6 +6,18 @@ The format is based on [Keep a
 Changelog](http://keepachangelog.com/en/1.0.0/) and this project
 adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2019-09-24
+
+### Fixed
+* Fixed "Cannot read property 'subscribe' of undefined" JavaScript
+  error.
+
+## [0.2.0] - 2019-09-24
+
+### Added
+* Added `height` and `width` parameters to `daq.Tank` and
+  `daq.Thermometer`.
+
 ## [0.1.7] - 2019-07-24
 
 ### Changed
