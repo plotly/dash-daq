@@ -57,13 +57,13 @@ const Tank = props => {
   return (
     <div className={className} id={id} style={style}>
       <LabelContainer {...props}>
-	<Container>
-	  {scaleContainer}
-	  <TankContainer height={height} width={width}>
-	    <TankFill color={color} height={`${percentageFill}%`} />
-	    {showCurrentValue && currentValue}
-	  </TankContainer>
-	</Container>
+        <Container>
+          {scaleContainer}
+          <TankContainer height={height} width={width}>
+            <TankFill color={color} height={`${percentageFill}%`} />
+            {showCurrentValue && currentValue}
+          </TankContainer>
+        </Container>
       </LabelContainer>
     </div>
   );

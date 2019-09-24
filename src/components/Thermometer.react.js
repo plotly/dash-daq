@@ -67,20 +67,20 @@ const Thermometer = props => {
         {...props}
         labelCSS={props.labelPosition === 'top' ? null : 'transform: translateY(-30px);'}
       >
-	<ThermometerContainer>
-	  <Container thermometer xPositioned={scale}>
-	    {scaleContainer}
-	    <TankContainer thermometer height={height} width={width}>
-	      <TankFill
-		thermometer
-		color={color}
-		height={`${computeProgress({ min, max, value })}%`}
-	      />
-	      {theme.dark ? null : <Bulb on={value !== min} color={color} />}
-	    </TankContainer>
-	  </Container>
-	  {showCurrentValue && currentValue}
-	</ThermometerContainer>
+        <ThermometerContainer>
+          <Container thermometer xPositioned={scale}>
+            {scaleContainer}
+            <TankContainer thermometer height={height} width={width}>
+              <TankFill
+                thermometer
+                color={color}
+                height={`${computeProgress({ min, max, value })}%`}
+              />
+              {theme.dark ? null : <Bulb on={value !== min} color={color} />}
+            </TankContainer>
+          </Container>
+          {showCurrentValue && currentValue}
+        </ThermometerContainer>
       </LabelContainer>
     </div>
   );
