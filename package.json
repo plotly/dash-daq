@@ -33,7 +33,7 @@
     "start": "builder run build-dev",
     "build-dist-dev": "builder run clean-lib && builder run extract-metadata && webpack --config=node_modules/dash-components-archetype/config/webpack/webpack.config.dev.js",
     "build-dist": "builder run clean-lib && builder run extract-metadata && webpack --config=node_modules/dash-components-archetype/config/webpack/webpack.config.dist.js",
-    "build-tarball": "python get_version_info.py && yarn build-dist && yarn copy-lib && python setup.py sdist",
+    "build-tarball": "python get_version_info.py && yarn build-dist-dev && yarn copy-lib && python setup.py sdist",
     "test": "builder run check",
     "test-frontend-cov": "jest --coverage --silent",
     "test-watch": "builder run test-frontend-watch",
