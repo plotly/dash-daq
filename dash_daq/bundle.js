@@ -60310,7 +60310,7 @@ this["dash_daq"] =
 	  min: 0,
 	  max: 10,
 	  height: 192,
-	  width: 150,
+	  width: 112,
 	  base: 10,
 	  labelPosition: 'top'
 	};
