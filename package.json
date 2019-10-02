@@ -59,13 +59,14 @@
     "react-color": "^2.14.1",
     "react-dom": "^16.8.6",
     "react-numeric-input": "^2.2.3",
-    "styled-components": "^3.1.6",
+    "styled-components": "^4.x",
     "tinygradient": "^0.4.0",
-    "webpack": "^1.15.0",
+    "webpack": "^4.24.0",
     "yarn": "^1.12.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
     "chalk": "^2.3.1",
     "dash-components-archetype-dev": "^0.2.11",
     "enzyme": "^3.10.0",
@@ -77,7 +78,8 @@
     "react-docgen": "^2.21.0",
     "react-docgen-markdown-renderer": "^1.0.2",
     "react-test-renderer": "^16.8.6",
-    "sinon": "^4.3.0"
+    "sinon": "^4.3.0",
+    "webpack-cli": "^3.3.9"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
