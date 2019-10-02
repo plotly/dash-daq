@@ -74,11 +74,9 @@ describe('Tank', () => {
 
     const tickText = component
       .find(Tick)
-      .children()
-      .hostNodes()
+      .render()
       .children('.label')
-      .childAt(0);
-
+      .children();
     expect(tickText).toHaveLength(1);
     expect(tickText.prop('style').color).toBe('blue');
   });

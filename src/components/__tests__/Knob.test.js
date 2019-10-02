@@ -73,10 +73,9 @@ describe('Knob', () => {
   });
 
   it('updates value when props change', () => {
-    const component = mount(shallow(<Knob value={2} />).get(0));
-
+    const component = mount(<Knob value={2} />);
     component.setProps({ value: 3 });
-    expect(component.state('value')).toBe(3);
+    expect(component.prop('value')).toBe(3);
   });
 
   it('does not update value on prop change with undefined value', () => {

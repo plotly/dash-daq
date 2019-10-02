@@ -54,10 +54,10 @@ describe.only('Precision Input', () => {
   });
 
   it('updates value when props change', () => {
-    const component = mount(shallow(<PrecisionInput value={2} />).get(0));
+    const component = mount(<PrecisionInput value={2} />);
 
     component.setProps({ value: 3 });
-    expect(component.state('value')).toBe(3);
+    expect(component.prop('value')).toBe(3);
   });
 
   it('does not update value on prop change without value set', () => {

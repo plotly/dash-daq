@@ -46,11 +46,11 @@ describe('Toggle Switch', () => {
   });
 
   it('updates value when props change', () => {
-    const component = mount(shallow(<ToggleSwitch value={false} />).get(0));
-    expect(component.state('value')).toBeFalsy();
+    const component = mount(<ToggleSwitch value={false} />);
+    expect(component.prop('value')).toBeFalsy();
 
     component.setProps({ value: true });
-    expect(component.state('value')).toBeTruthy();
+    expect(component.prop('value')).toBeTruthy();
   });
 
   it('does not update value when props change if value not set', () => {
@@ -62,20 +62,20 @@ describe('Toggle Switch', () => {
 
   it('has assigned className', () => {
     const component = shallow(<ToggleSwitch className="testClass" />);
-    expect(component.hasClass('testClass')).toBeTruthy();
+    expect(component.render().hasClass('testClass')).toBeTruthy();
   });
 
   it('has assigned styles', () => {
     const style = { width: '600px' };
     const component = shallow(<ToggleSwitch style={style} />);
 
-    expect(component.prop('style')).toBe(style);
+    expect(component.render().prop('style')['width']).toBe(style['width']);
   });
 
   it('has assigned id', () => {
     const component = shallow(<ToggleSwitch id={'testId'} />);
 
-    expect(component.prop('id')).toBe('testId');
+    expect(component.render().prop('id')).toBe('testId');
   });
 
   it('positions label correctly', () => {

@@ -29,11 +29,11 @@ describe('Power Button', () => {
   });
 
   it('updates on when props change', () => {
-    const component = mount(shallow(<PowerButton on={false} />).get(0));
-    expect(component.state('on')).toBeFalsy();
+    const component = mount(<PowerButton on={false} />);
+    expect(component.prop('on')).toBeFalsy();
 
     component.setProps({ on: true });
-    expect(component.state('on')).toBeTruthy();
+    expect(component.prop('on')).toBeTruthy();
   });
 
   it('does not update on value when props change without on set', () => {
