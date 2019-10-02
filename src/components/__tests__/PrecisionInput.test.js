@@ -29,10 +29,12 @@ describe.only('Precision Input', () => {
   it('displays correct value', () => {
     const component = mount(shallow(<PrecisionInput precision={2} value={120} />).get(0));
     let digits = component.find(Digit);
-    expect(digits.length).toBe(5);
+    let exponentials = component.find(ExponentialDigit);
+    expect(digits.length).toBe(3);
+    expect(exponentials.length).toBe(2);
     expect(digits.at(0).text()).toBe('1');
     expect(digits.at(2).text()).toBe('2');
-    expect(digits.at(4).text()).toBe('2');
+    expect(exponentials.at(1).text()).toBe('2');
   });
 
   it('displays updates with correct value', () => {
@@ -46,11 +48,13 @@ describe.only('Precision Input', () => {
     component = component.update();
 
     let digits = component.find(Digit);
-    expect(digits.length).toBe(6);
+    let exponentials = component.find(ExponentialDigit);
+    expect(digits.length).toBe(4);
+    expect(exponentials.length).toBe(2);
     expect(digits.at(0).text()).toBe('1');
     expect(digits.at(2).text()).toBe('2');
     expect(digits.at(3).text()).toBe('3');
-    expect(digits.at(5).text()).toBe('4');
+    expect(exponentials.at(1).text()).toBe('4');
   });
 
   it('updates value when props change', () => {
