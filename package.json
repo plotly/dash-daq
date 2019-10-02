@@ -13,31 +13,25 @@
     "url": "https://github.com/plotly/dash-daq/issues"
   },
   "homepage": "https://github.com/plotly/dash-daq",
-  "main": "src/index.js",
+  "main": "dash_daq/dash_daq.min.js",
   "author": "The Plotly Team <dashdaq@plot.ly>",
   "maintainer": "Ryan Patrick Kyle <ryan@plot.ly>",
   "license": "MIT",
-  "module": "lib/bundle.js",
-  "jsnext:main": "lib/bundle.js",
   "scripts": {
     "copy-lib": "copyfiles -u 1 lib/* dash_daq",
     "dash-demo": "python demo.py",
-    "demo": "builder run demo",
-    "doc-gen": "./bin/generateDocs",
-    "doc-stage": "git add docs",
-    "install-local": "yarn copy-lib && python setup.py install",
+    "install-local": "pip install -e .",
     "lint": "eslint --fix --ignore-path .eslintignore .",
-    "prepublish": "yarn test && builder run build-dist-dev && yarn copy-lib",
-    "publish-all": "yarn publish && python setup.py sdist upload",
-    "publish-pypi": "yarn prepublish && python setup.py sdist upload",
-    "start": "builder run build-dev",
-    "build-dist-dev": "builder run clean-lib && builder run extract-metadata && webpack --config=node_modules/dash-components-archetype/config/webpack/webpack.config.dev.js",
-    "build-dist": "builder run clean-lib && builder run extract-metadata && webpack --config=node_modules/dash-components-archetype/config/webpack/webpack.config.dist.js",
-    "build-tarball": "python get_version_info.py && yarn build-dist-dev && yarn copy-lib && python setup.py sdist",
-    "test": "builder run check",
-    "test-frontend-cov": "jest --coverage --silent",
-    "test-watch": "builder run test-frontend-watch",
-    "test-debug": "builder run test-frontend-debug",
+    "start": "npm run build:dev",
+    "build:js": "webpack --mode production",
+    "build:js-dev": "webpack --mode development",
+    "build:py": "python get_version_info.py && yarn copy-lib && dash-generate-components ./src/components dash_daq -p package-info.json --r-prefix 'daq'",
+    "build": "npm run test && npm run lint && npm run build:js && npm run build:py",
+    "build:dev": "npm run build:js-dev && npm run build:py",
+    "build-tarball": "npm run build && python setup.py sdist",
+    "test": "jest",
+    "test:frontend-cov": "jest --coverage --silent",
+    "test:watch": "jest --watch",
     "uninstall-local": "pip uninstall dash_daq -y",
     "prettier": "yarn prettier-src && yarn prettier-tests",
     "prettier-src": "prettier --single-quote --print-width=100 --write src/**/*.js",
@@ -45,7 +39,6 @@
     "prettier-restage": "git update-index --again"
   },
   "dependencies": {
-    "builder": "^3.2.2",
     "color": "^3.0.0",
     "conic-gradient": "^1.0.0",
     "copyfiles": "^1.2.0",
@@ -89,7 +82,8 @@
     "testURL": "http://localhost"
   },
   "files": [
-    "dash_daq/*"
+    "dash_daq/*{.js,.map}",
+    "dash_daq/rc-slider@6.1.2.css"
   ],
   "pre-commit": [
     "test",
