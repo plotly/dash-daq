@@ -2,11 +2,12 @@ build/
 coverage/
 dist/
 lib/
-lib/bundle.js*
+lib/*.js*
 node_modules/
 dash_daq/metadata.json
-dash_daq/bundle.js*
-inst/deps/bundle.js*
+dash_daq/*.js*
+inst/deps/*.js*
+webpack.config.js
 .npm
 vv/
 venv/
