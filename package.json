@@ -44,6 +44,7 @@
     "copyfiles": "^1.2.0",
     "dash-components-archetype": "^0.2.11",
     "deep-equal": "^1.0.1",
+    "jest-canvas-mock": "^2.1.1",
     "nipplejs": "^0.7.1",
     "prop-types": "^15.5.9",
     "ramda": "^0.25.0",
@@ -79,7 +80,10 @@
       "<rootDir>/src/styled",
       "<rootDir>/src/helpers"
     ],
-    "testURL": "http://localhost"
+    "testURL": "http://localhost",
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
   },
   "files": [
     "dash_daq/*{.js,.map}",
