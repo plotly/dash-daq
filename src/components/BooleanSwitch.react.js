@@ -20,7 +20,7 @@ class BooleanSwitch extends Component {
     this.setPropsOverride = this.setPropsOverride.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.on !== this.state.on) this.setState({ on: newProps.on });
   }
 

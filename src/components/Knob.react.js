@@ -50,7 +50,7 @@ class Knob extends Component {
 
   noop() {}
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (typeof newProps.value !== 'undefined') this.setState({ value: newProps.value });
   }
 

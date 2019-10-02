@@ -70,7 +70,7 @@ class Slider extends Component {
     this.calcLabelOffset = this.calcLabelOffset.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     const updates = {};
 
     if (typeof newProps.value !== 'undefined' && newProps.value !== this.state.value) {

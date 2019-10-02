@@ -37,7 +37,7 @@ class PrecisionInput extends Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.value != null && newProps.value !== this.state.value)
       this.setState({ value: this.formatPrecision(newProps.value) });
   }

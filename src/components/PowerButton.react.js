@@ -23,7 +23,7 @@ class PowerButton extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.on !== this.state.on) this.setState({ on: newProps.on });
   }
 
