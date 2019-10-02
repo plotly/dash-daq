@@ -189,7 +189,8 @@ PrecisionInput.defaultProps = {
   min: 0,
   max: Number.MAX_SAFE_INTEGER,
   theme: light,
-  labelPosition: 'top'
+  labelPosition: 'top',
+  precision: 2
 };
 
 PrecisionInput.propTypes = {
