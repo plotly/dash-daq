@@ -10,9 +10,9 @@ A thermometer component that fills to a value between some range
 }
 
 \usage{
-daqThermometer(id=NULL, value=NULL, size=NULL, color=NULL, min=NULL, max=NULL, base=NULL,
-logarithmic=NULL, showCurrentValue=NULL, units=NULL, theme=NULL, label=NULL,
-labelPosition=NULL, scale=NULL, className=NULL, style=NULL)
+daqThermometer(id=NULL, value=NULL, height=NULL, width=NULL, color=NULL, min=NULL, max=NULL,
+base=NULL, logarithmic=NULL, showCurrentValue=NULL, units=NULL, theme=NULL,
+label=NULL, labelPosition=NULL, scale=NULL, className=NULL, style=NULL)
 }
 
 \arguments{
@@ -21,7 +21,9 @@ labelPosition=NULL, scale=NULL, className=NULL, style=NULL)
 \item{value}{Numeric. The value of thermometer. If logarthmic, the value
 displayed will be the logarithm of the inputted value.}
 
-\item{size}{Numeric. The size (height) of the thermometer in pixels}
+\item{height}{Numeric. The height of the thermometer in pixels}
+
+\item{width}{Numeric. The width of the thermometer in pixels}
 
 \item{color}{Character. The color of the thermometer fill/current value text}
 
