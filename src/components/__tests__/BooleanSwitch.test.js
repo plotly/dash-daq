@@ -42,11 +42,11 @@ describe('Boolean Switch', () => {
   it('does not change props when disabled and clicked', () => {
     const setProps = sinon.spy();
     const component = mount(<BooleanSwitch setProps={setProps} on={false} disabled={true} />);
-    expect(component.state('on')).toBeFalsy();
+    expect(component.prop('on')).toBeFalsy();
 
     component.find('button').simulate('click');
 
-    expect(component.state('on')).toBeFalsy();
+    expect(component.prop('on')).toBeFalsy();
   });
 
   it('does not fire click event when disabled and clicked', () => {
@@ -65,11 +65,11 @@ describe('Boolean Switch', () => {
   });
 
   it('updates on when props change', () => {
-    const component = mount(shallow(<BooleanSwitch on={false} />).get(0));
-    expect(component.state('on')).toBeFalsy();
+    const component = mount(<BooleanSwitch on={false} />);
+    expect(component.prop('on')).toBeFalsy();
 
     component.setProps({ on: true });
-    expect(component.state('on')).toBeTruthy();
+    expect(component.prop('on')).toBeTruthy();
   });
 
   it('does not update on when props change without on set', () => {
@@ -81,20 +81,20 @@ describe('Boolean Switch', () => {
 
   it('has assigned className', () => {
     const component = shallow(<BooleanSwitch className="testClass" />);
-    expect(component.hasClass('testClass')).toBeTruthy();
+    expect(component.render().hasClass('testClass')).toBeTruthy();
   });
 
   it('has assigned styles', () => {
     const style = { width: '600px' };
     const component = shallow(<BooleanSwitch style={style} />);
 
-    expect(component.prop('style')).toBe(style);
+    expect(component.render().prop('style')['width']).toBe(style['width']);
   });
 
   it('has assigned id', () => {
     const component = shallow(<BooleanSwitch id={'testId'} />);
 
-    expect(component.prop('id')).toBe('testId');
+    expect(component.render().prop('id')).toBe('testId');
   });
 
   it('positions label correctly', () => {

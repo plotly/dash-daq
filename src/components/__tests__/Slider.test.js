@@ -166,8 +166,8 @@ describe('Slider', () => {
     const newColor = { default: '000000', ranges: { blue: [0, 6], red: [6, 10] } };
 
     component.setProps({ value: newValue, color: newColor });
-    expect(component.state('value')).not.toBe(beforeState.value);
-    expect(component.state('trackStyle')).not.toEqual(beforeState.trackStyle);
+    expect(component.render().prop('value')).not.toBe(beforeState.value);
+    expect(component.render().prop('trackStyle')).not.toEqual(beforeState.trackStyle);
   });
 
   it('renders custom targets', () => {
@@ -193,20 +193,20 @@ describe('Slider', () => {
 
   it('has assigned className', () => {
     const component = shallow(<Slider className="testClass" />);
-    expect(component.hasClass('testClass')).toBeTruthy();
+    expect(component.render().hasClass('testClass')).toBeTruthy();
   });
 
   it('has assigned styles', () => {
     const style = { width: '600px' };
     const component = shallow(<Slider style={style} />);
 
-    expect(component.prop('style')).toBe(style);
+    expect(component.render().prop('style')['width']).toBe(style['width']);
   });
 
   it('has assigned id', () => {
     const component = shallow(<Slider id={'testId'} />);
 
-    expect(component.prop('id')).toBe('testId');
+    expect(component.render().prop('id')).toBe('testId');
   });
 
   it('positions label correctly', () => {

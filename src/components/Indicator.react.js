@@ -29,7 +29,7 @@ const Indicator = props => {
           main={true}
           on={props.value}
           primary={props.color}
-          secondary={!props.theme.dark && bg}
+          secondary={!props.theme.dark ? bg : null}
         />
       </LabelContainer>
     </div>

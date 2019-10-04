@@ -21,10 +21,10 @@ _this_module = _sys.modules[__name__]
 
 _js_dist = [
     {
-        "relative_package_path": "bundle.js",
+        "relative_package_path": "dash_daq.min.js",
         "external_url": (
             "https://unpkg.com/dash-daq@{}"
-            "/dash_daq/bundle.js"
+            "/dash_daq/dash_daq.min.js"
         ).format(__version__),
         "namespace": "dash_daq"
     }

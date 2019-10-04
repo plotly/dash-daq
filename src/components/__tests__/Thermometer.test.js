@@ -87,8 +87,7 @@ describe.only('Thermometer', () => {
 
     const tickText = component
       .find(Tick)
-      .children()
-      .hostNodes()
+      .render()
       .children('.label');
     expect(tickText).toHaveLength(1);
     expect(tickText.prop('style').color).toBe('blue');

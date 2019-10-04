@@ -1,6 +1,6 @@
 {
   "name": "dash-daq",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "engines": {
     "node": ">=8"
   },
@@ -13,31 +13,25 @@
     "url": "https://github.com/plotly/dash-daq/issues"
   },
   "homepage": "https://github.com/plotly/dash-daq",
-  "main": "src/index.js",
+  "main": "dash_daq/dash_daq.min.js",
   "author": "The Plotly Team <dashdaq@plot.ly>",
   "maintainer": "Ryan Patrick Kyle <ryan@plot.ly>",
   "license": "MIT",
-  "module": "lib/bundle.js",
-  "jsnext:main": "lib/bundle.js",
   "scripts": {
     "copy-lib": "copyfiles -u 1 lib/* dash_daq",
     "dash-demo": "python demo.py",
-    "demo": "builder run demo",
-    "doc-gen": "./bin/generateDocs",
-    "doc-stage": "git add docs",
-    "install-local": "yarn copy-lib && python setup.py install",
+    "install-local": "pip install -e .",
     "lint": "eslint --fix --ignore-path .eslintignore .",
-    "prepublish": "yarn test && builder run build-dist-dev && yarn copy-lib",
-    "publish-all": "yarn publish && python setup.py sdist upload",
-    "publish-pypi": "yarn prepublish && python setup.py sdist upload",
-    "start": "builder run build-dev",
-    "build-dist-dev": "builder run clean-lib && builder run extract-metadata && webpack --config=node_modules/dash-components-archetype/config/webpack/webpack.config.dev.js",
-    "build-dist": "builder run clean-lib && builder run extract-metadata && webpack --config=node_modules/dash-components-archetype/config/webpack/webpack.config.dist.js",
-    "build-tarball": "python get_version_info.py && yarn build-dist-dev && yarn copy-lib && python setup.py sdist",
-    "test": "builder run check",
-    "test-frontend-cov": "jest --coverage --silent",
-    "test-watch": "builder run test-frontend-watch",
-    "test-debug": "builder run test-frontend-debug",
+    "start": "npm run build:dev",
+    "build:js": "webpack --mode production",
+    "build:js-dev": "webpack --mode development",
+    "build:py": "python get_version_info.py && yarn copy-lib && dash-generate-components ./src/components dash_daq -p package-info.json --r-prefix 'daq'",
+    "build": "npm run test && npm run lint && npm run build:js && npm run build:py",
+    "build:dev": "npm run build:js-dev && npm run build:py",
+    "build-tarball": "npm run build && python setup.py sdist",
+    "test": "jest",
+    "test:frontend-cov": "jest --coverage --silent",
+    "test:watch": "jest --watch",
     "uninstall-local": "pip uninstall dash_daq -y",
     "prettier": "yarn prettier-src && yarn prettier-tests",
     "prettier-src": "prettier --single-quote --print-width=100 --write src/**/*.js",
@@ -45,7 +39,6 @@
     "prettier-restage": "git update-index --again"
   },
   "dependencies": {
-    "builder": "^3.2.2",
     "color": "^3.0.0",
     "conic-gradient": "^1.0.0",
     "copyfiles": "^1.2.0",
@@ -59,35 +52,45 @@
     "react-color": "^2.14.1",
     "react-dom": "^16.8.6",
     "react-numeric-input": "^2.2.3",
-    "styled-components": "^3.1.6",
+    "styled-components": "^4.4.0",
     "tinygradient": "^0.4.0",
-    "webpack": "^1.15.0",
+    "webpack": "^4.41.0",
     "yarn": "^1.12.3"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.2.1",
     "chalk": "^2.3.1",
     "dash-components-archetype-dev": "^0.2.11",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "fs-extra": "^5.0.0",
-    "jest": "^22.3.0",
+    "jest": "^24.9.0",
+    "jest-canvas-mock": "^2.1.1",
     "pre-commit": "^1.2.2",
     "prettier": "^1.10.2",
     "react-docgen": "^2.21.0",
     "react-docgen-markdown-renderer": "^1.0.2",
     "react-test-renderer": "^16.8.6",
-    "sinon": "^4.3.0"
+    "sinon": "^4.3.0",
+    "webpack-cli": "^3.3.9"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/styled",
       "<rootDir>/src/helpers"
     ],
-    "testURL": "http://localhost"
+    "testURL": "http://localhost",
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
   },
   "files": [
-    "dash_daq/*"
+    "dash_daq/*{.js,.map}",
+    "dash_daq/rc-slider@6.1.2.css"
   ],
   "pre-commit": [
     "test",

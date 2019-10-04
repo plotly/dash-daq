@@ -64,7 +64,7 @@ describe('Color Picker', () => {
 
     component.setProps({ value: { hex: '#000000' } });
 
-    expect(component.state('value')).not.toBe(oldColor);
+    expect(component.render().prop('value')).not.toBe(oldColor);
   });
 
   it('does not update on when props change without on set', () => {
@@ -76,20 +76,20 @@ describe('Color Picker', () => {
 
   it('has assigned className', () => {
     const component = shallow(<ColorPicker className="testClass" />);
-    expect(component.hasClass('testClass')).toBeTruthy();
+    expect(component.render().hasClass('testClass')).toBeTruthy();
   });
 
   it('has assigned styles', () => {
     const style = { width: '600px' };
     const component = shallow(<ColorPicker style={style} />);
 
-    expect(component.prop('style')).toBe(style);
+    expect(component.render().prop('style')['width']).toBe(style['width']);
   });
 
   it('has assigned id', () => {
     const component = shallow(<ColorPicker id={'testId'} />);
 
-    expect(component.prop('id')).toBe('testId');
+    expect(component.render().prop('id')).toBe('testId');
   });
 
   it('positions label correctly', () => {

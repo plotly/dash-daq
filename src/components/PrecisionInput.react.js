@@ -37,7 +37,7 @@ class PrecisionInput extends Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.value != null && newProps.value !== this.state.value)
       this.setState({ value: this.formatPrecision(newProps.value) });
   }
@@ -189,7 +189,8 @@ PrecisionInput.defaultProps = {
   min: 0,
   max: Number.MAX_SAFE_INTEGER,
   theme: light,
-  labelPosition: 'top'
+  labelPosition: 'top',
+  precision: 2
 };
 
 PrecisionInput.propTypes = {

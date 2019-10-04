@@ -18,7 +18,8 @@ label=NULL, labelPosition=NULL, className=NULL, style=NULL)
 \item{id}{Character. The ID used to identify the display in Dash callbacks}
 
 \item{value}{Numeric | character. Value to be displayed. A number or a string
-containing only digits (0-9), periods, and colons.}
+containing only digits (0-9), periods, and colons,
+and possibly starting with a minus sign.}
 
 \item{color}{Character. Color of the display}
 

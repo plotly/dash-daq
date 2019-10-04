@@ -32104,7 +32104,7 @@ this["dash_daq"] =
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var VALID_INPUT = /^((\.|:)?[0-9])*$/;
+	var VALID_INPUT = /^(\-)?((\.|:)?[0-9])*$/;
 	var isValidInput = VALID_INPUT.test.bind(VALID_INPUT);
 	
 	/**
@@ -32137,6 +32137,7 @@ this["dash_daq"] =
 	      size = _ref.size;
 	
 	  var digitStack = value.toString().split('').reverse();
+	
 	  var formattedDigits = [];
 	
 	  addLeadingZeroIfNeeded(digitStack);
@@ -32164,9 +32165,16 @@ this["dash_daq"] =
 	}
 	
 	function addLeadingZeroIfNeeded(digits) {
+	  var isNegative = false;
+	
+	  if (digits[digits.length - 1] === '-') {
+	    isNegative = true;
+	    digits.pop();
+	  }
 	  var leadingDigit = digits[digits.length - 1];
 	
 	  if (['.', ':'].includes(leadingDigit)) digits.push('0');
+	  if (isNegative) digits.push('-');
 	}
 	
 	LEDDisplay.defaultProps = {
@@ -32185,7 +32193,8 @@ this["dash_daq"] =
 	
 	  /**
 	   * Value to be displayed. A number or a string
-	   * containing only digits (0-9), periods, and colons.
+	   * containing only digits (0-9), periods, and colons,
+	   * and possibly starting with a minus sign.
 	   */
 	  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	
@@ -32290,7 +32299,8 @@ this["dash_daq"] =
 	  6: ['A', 'F', 'G', 'C', 'D', 'E'],
 	  7: ['A', 'B', 'C'],
 	  8: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
-	  9: ['A', 'B', 'C', 'D', 'F', 'G']
+	  9: ['A', 'B', 'C', 'D', 'F', 'G'],
+	  '-': ['G']
 	};
 	
 	// See the following link for segment mappings:
@@ -34295,7 +34305,7 @@ this["dash_daq"] =
 	        {
 	          id: this.props.id,
 	          className: this.props.className,
-	          style: Object.assign(defaultRootStyles, this.props.style)
+	          style: Object.assign({}, defaultRootStyles, this.props.style)
 	        },
 	        React.createElement(
 	          LabelContainer,
@@ -60230,7 +60240,8 @@ this["dash_daq"] =
 	      color = props.color,
 	      logarithmic = props.logarithmic,
 	      base = props.base,
-	      size = props.size;
+	      height = props.height,
+	      width = props.width;
 	
 	
 	  var dirtyValue = logarithmic ? log.compute(props.value, base) : props.value;
@@ -60286,7 +60297,7 @@ this["dash_daq"] =
 	        scaleContainer,
 	        React.createElement(
 	          TankContainer,
-	          { size: size },
+	          { height: height, width: width },
 	          React.createElement(TankFill, { color: color, height: percentageFill + '%' }),
 	          showCurrentValue && currentValue
 	        )
@@ -60298,7 +60309,8 @@ this["dash_daq"] =
 	Tank.defaultProps = {
 	  min: 0,
 	  max: 10,
-	  size: 192,
+	  height: 192,
+	  width: 112,
 	  base: 10,
 	  labelPosition: 'top'
 	};
@@ -60316,9 +60328,14 @@ this["dash_daq"] =
 	  value: PropTypes.number,
 	
 	  /**
-	   * The size (height) of the tank in pixels
+	   * The height of the tank in pixels
 	   */
-	  size: PropTypes.number,
+	  height: PropTypes.number,
+	
+	  /**
+	   * The width of the tank in pixels
+	   */
+	  width: PropTypes.number,
 	
 	  /**
 	   * The color of tank fill
@@ -60485,16 +60502,17 @@ this["dash_daq"] =
 	
 	function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 	
-	var TankContainer = exports.TankContainer = styled.div(_templateObject, function (props) {
-	  return props.width || '112px';
-	}, function (_ref) {
-	  var size = _ref.size;
-	  return size + 'px';
+	var TankContainer = exports.TankContainer = styled.div(_templateObject, function (_ref) {
+	  var width = _ref.width;
+	  return width + 'px';
 	}, function (_ref2) {
-	  var thermometer = _ref2.thermometer;
-	  return thermometer ? '40px' : '0';
+	  var height = _ref2.height;
+	  return height + 'px';
 	}, function (_ref3) {
-	  var theme = _ref3.theme;
+	  var thermometer = _ref3.thermometer;
+	  return thermometer ? '40px' : '0';
+	}, function (_ref4) {
+	  var theme = _ref4.theme;
 	  return theme.dark ? darkTankContainer : lightTankContainer;
 	});
 	TankContainer.defaultProps = {
@@ -60507,43 +60525,43 @@ this["dash_daq"] =
 	  return props.theme.secondary;
 	});
 	
-	var TankFill = exports.TankFill = styled.div(_templateObject4, function (_ref4) {
-	  var height = _ref4.height;
+	var TankFill = exports.TankFill = styled.div(_templateObject4, function (_ref5) {
+	  var height = _ref5.height;
 	  return height || 0;
-	}, function (_ref5) {
-	  var thermometer = _ref5.thermometer;
-	  return thermometer ? '40px' : '0';
 	}, function (_ref6) {
-	  var theme = _ref6.theme;
+	  var thermometer = _ref6.thermometer;
+	  return thermometer ? '40px' : '0';
+	}, function (_ref7) {
+	  var theme = _ref7.theme;
 	  return theme.dark ? darkTankFill : lightTankFill;
 	});
 	TankFill.defaultProps = {
 	  theme: light
 	};
 	
-	var darkTankFill = css(_templateObject5, function (_ref7) {
-	  var color = _ref7.color,
-	      theme = _ref7.theme;
-	  return color || theme.primary;
-	}, function (_ref8) {
+	var darkTankFill = css(_templateObject5, function (_ref8) {
 	  var color = _ref8.color,
 	      theme = _ref8.theme;
+	  return color || theme.primary;
+	}, function (_ref9) {
+	  var color = _ref9.color,
+	      theme = _ref9.theme;
 	  return Color(color || theme.primary).alpha(0.7).string();
 	});
 	
-	var lightTankFill = css(_templateObject3, function (_ref9) {
-	  var color = _ref9.color,
-	      theme = _ref9.theme;
+	var lightTankFill = css(_templateObject3, function (_ref10) {
+	  var color = _ref10.color,
+	      theme = _ref10.theme;
 	  return color || theme.primary;
 	});
 	
-	var TickContainer = exports.TickContainer = styled.div(_templateObject6, function (_ref10) {
-	  var xPositioned = _ref10.xPositioned;
+	var TickContainer = exports.TickContainer = styled.div(_templateObject6, function (_ref11) {
+	  var xPositioned = _ref11.xPositioned;
 	  return xPositioned && css(_templateObject7);
 	});
 	
-	var Tick = exports.Tick = styled.div(_templateObject8, function (_ref11) {
-	  var xPosition = _ref11.xPosition;
+	var Tick = exports.Tick = styled.div(_templateObject8, function (_ref12) {
+	  var xPosition = _ref12.xPosition;
 	  return xPosition || xPosition === 0 ? css(_templateObject9, 'calc(' + xPosition + '% - ' + xPosition / 100.0 * 18 + 'px)') : '';
 	}, function (props) {
 	  return props.width || 4;
@@ -60555,10 +60573,10 @@ this["dash_daq"] =
 	  theme: light
 	};
 	
-	var Container = exports.Container = styled.div(_templateObject10, function (_ref12) {
-	  var thermometer = _ref12.thermometer;
-	  return thermometer ? css(_templateObject11, function (_ref13) {
-	    var xPositioned = _ref13.xPositioned;
+	var Container = exports.Container = styled.div(_templateObject10, function (_ref13) {
+	  var thermometer = _ref13.thermometer;
+	  return thermometer ? css(_templateObject11, function (_ref14) {
+	    var xPositioned = _ref14.xPositioned;
 	    return xPositioned ? '-4px' : '-24px';
 	  }) : '';
 	});
@@ -60633,8 +60651,6 @@ this["dash_daq"] =
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var WIDTH = 20;
-	
 	/**
 	 * A thermometer component that
 	 * fills to a value between some
@@ -60652,7 +60668,8 @@ this["dash_daq"] =
 	      units = props.units,
 	      theme = props.theme,
 	      color = props.color,
-	      size = props.size;
+	      height = props.height,
+	      width = props.width;
 	
 	
 	  var dirtyValue = logarithmic ? log.compute(props.value, base) : props.value;
@@ -60713,7 +60730,7 @@ this["dash_daq"] =
 	          scaleContainer,
 	          React.createElement(
 	            TankContainer,
-	            { thermometer: true, size: size, width: WIDTH + 'px' },
+	            { thermometer: true, height: height, width: width },
 	            React.createElement(TankFill, {
 	              thermometer: true,
 	              color: color,
@@ -60731,7 +60748,8 @@ this["dash_daq"] =
 	Thermometer.defaultProps = {
 	  min: 0,
 	  max: 10,
-	  size: 192,
+	  height: 192,
+	  width: 20,
 	  base: 10,
 	  labelPosition: 'top',
 	  theme: light
@@ -60750,9 +60768,14 @@ this["dash_daq"] =
 	  value: PropTypes.number,
 	
 	  /**
-	   * The size (height) of the thermometer in pixels
+	   * The height of the thermometer in pixels
 	   */
-	  size: PropTypes.number,
+	  height: PropTypes.number,
+	
+	  /**
+	   * The width of the thermometer in pixels
+	   */
+	  width: PropTypes.number,
 	
 	  /**
 	   * The color of the thermometer fill/current value text

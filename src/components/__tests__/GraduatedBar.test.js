@@ -28,7 +28,7 @@ describe('Graduated Bar', () => {
   });
 
   it('renders with non finite percentage', () => {
-    const component = mount(<GraduatedBar min={'invalidValue'} />);
+    const component = mount(<GraduatedBar min={NaN} />);
     expect(component).toBeTruthy();
   });
 

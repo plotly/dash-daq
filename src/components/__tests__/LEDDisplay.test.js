@@ -116,14 +116,13 @@ describe('LEDDisplay', () => {
 
   it('has assigned className', () => {
     const component = shallow(<LEDDisplay className="testClass" />);
-    expect(component.hasClass('testClass')).toBeTruthy();
+    expect(component.render().hasClass('testClass')).toBeTruthy();
   });
 
   it('has assigned styles', () => {
     const style = { width: '600px' };
     const component = shallow(<LEDDisplay style={style} />);
-
-    expect(component.prop('style')).toBe(style);
+    expect(component.render().prop('style')['width']).toBe(style['width']);
   });
 
   it('has assigned id', () => {

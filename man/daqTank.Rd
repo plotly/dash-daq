@@ -10,8 +10,8 @@ A Tank component that fills to a value between some range.
 }
 
 \usage{
-daqTank(id=NULL, value=NULL, size=NULL, color=NULL, min=NULL, max=NULL, base=NULL,
-logarithmic=NULL, showCurrentValue=NULL, units=NULL, label=NULL,
+daqTank(id=NULL, value=NULL, height=NULL, width=NULL, color=NULL, min=NULL, max=NULL,
+base=NULL, logarithmic=NULL, showCurrentValue=NULL, units=NULL, label=NULL,
 labelPosition=NULL, scale=NULL, className=NULL, style=NULL)
 }
 
@@ -21,7 +21,9 @@ labelPosition=NULL, scale=NULL, className=NULL, style=NULL)
 \item{value}{Numeric. The value of tank. If logarithmic, the displayed value
 will be the logarithm of the inputted value.}
 
-\item{size}{Numeric. The size (height) of the tank in pixels}
+\item{height}{Numeric. The height of the tank in pixels}
+
+\item{width}{Numeric. The width of the tank in pixels}
 
 \item{color}{Character. The color of tank fill}
 
