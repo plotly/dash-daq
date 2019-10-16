@@ -33,7 +33,7 @@ export const TankFill = styled.div`
   width: 100%;
   height: ${({ height }) => height || 0};
 
-  border-radius: ${({ thermometer }) => (thermometer ? '40px' : '0')};
+  border-radius: ${({ thermometer }) => (thermometer ? '5px' : '0')};
 
   ${({ theme }) => (theme.dark ? darkTankFill : lightTankFill)};
 `;
