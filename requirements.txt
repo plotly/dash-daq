@@ -1,4 +1,4 @@
 --index-url https://pypi.python.org/simple/
 
 -e .
-dash>=1.5.1
+dash>=1.6.0
