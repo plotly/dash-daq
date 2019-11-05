@@ -8,7 +8,7 @@ Enzyme.configure({ adapter: new Adapter() });
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
-import Slider from '../Slider.react';
+import Slider from '../../fragments/Slider.react';
 import {
   SliderContainer,
   Handle,

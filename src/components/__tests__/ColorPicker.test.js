@@ -7,7 +7,7 @@ Enzyme.configure({ adapter: new Adapter() });
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
-import ColorPicker from '../ColorPicker.react';
+import ColorPicker from '../../fragments/ColorPicker.react';
 import Indicator from '../../styled/shared/Indicator.styled';
 import { Wrapper, ButtonContainer, Button } from '../../styled/ToggleSwitch.styled';
 import Label from '../../styled/shared/Label.styled';
