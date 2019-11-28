@@ -1,0 +1,48 @@
+version: 2
+
+jobs:
+    build_and_test_node:
+        docker:
+            - image: circleci/python:3.7-stretch-node
+
+        steps:
+            - checkout
+            - run:
+                name: Update Node.js and npm
+                command: |
+                  curl -sSL "https://nodejs.org/dist/v11.10.1/node-v11.10.1-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.1-linux-x64/bin/node
+                  curl https://www.npmjs.com/install.sh | sudo bash
+            - run:
+                name: Check current version of node
+                command: node -v
+            - restore_cache:
+                key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
+
+            - run:
+                name: Install package.json
+                command: npm ci
+
+            - save_cache:
+                key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+
+            - run:
+                name: Install Dash for package build and build package
+                command: |
+                    python -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install dash>=1.6.1
+                    npm run build
+
+            - run:
+                name: Run unit tests
+                command: |
+                    npm run test
+
+workflows:
+    version: 2
+    build:
+        jobs:
+            - build_and_test_node
