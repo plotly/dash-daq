@@ -26,7 +26,7 @@
     "build:js": "webpack --mode production",
     "build:js-dev": "webpack --mode development",
     "build:py": "python get_version_info.py && yarn copy-lib && dash-generate-components ./src/components dash_daq -p package-info.json",
-    "build:py_and_r": "dash-generate-components ./src/components dash_daq -p package-info.json && dash-generate-components ./src/components dash_daq -p package-info.json --r-prefix='daq'",
+    "build:r": "dash-generate-components ./src/components dash_daq -p package-info.json --r-prefix='daq'",
     "build:all": "npm run build:js && npm run build:js-dev && npm run build:py_and_r",
     "build": "npm run test && npm run lint && npm run build:js && npm run build:py_and_r",
     "postbuild": "es-check es5 dash_daq/*.js",
