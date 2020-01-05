@@ -1,8 +1,7 @@
 Package: dashDaq
-Title: DAQ components for Dash
-Version: 0.2.2
-Authors @R: as.person(c(The Plotly Team <dashdaq@plot.ly>))
-Description: DAQ components for Dash
+Title: Interactive Data Acquisition and Control Components for Dash 
+Version: 0.3.1
+Description: A robust set of controls that make it simpler to integrate data acquisition and controls into your Dash applications.
 Depends: R (>= 3.0.2)
 Imports: 
 Suggests: 
@@ -11,5 +10,6 @@ URL: https://github.com/plotly/dash-daq
 BugReports: https://github.com/plotly/dash-daq/issues
 Encoding: UTF-8
 LazyData: true
+KeepSource: true
 Author: The Plotly Team [aut]
 Maintainer: Ryan Patrick Kyle <ryan@plot.ly>
