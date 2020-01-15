@@ -24,6 +24,10 @@ export const Container = styled.div`
     background: unset !important;
   }
 
+  & .chrome-picker {
+    border: none !important;
+  }
+
   & .chrome-picker svg:hover path {
     fill: ${({ theme, color }) => color || theme.primary};
   }
