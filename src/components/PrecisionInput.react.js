@@ -8,6 +8,8 @@ import LabelContainer from '../styled/shared/LabelContainer.styled';
 
 import { light, colors } from '../styled/constants';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 const defaultRootStyles = {
   display: 'flex',
   flexDirection: 'column',
@@ -112,10 +114,13 @@ class PrecisionInput extends Component {
       boxSizing: 'border-box'
     };
 
+    const elementName = getClassName('precisioninput', theme.dark);
+
     const precisionInput = (
       <Input
         autoFocus
-        disabled={this.props.disabled}
+        className={elementName + '__input'}
+        disabled={disabled}
         style={{
           input: inputStyle,
           'input:not(.form-control)': inputStyle,
@@ -136,16 +141,23 @@ class PrecisionInput extends Component {
     );
 
     const precisionOutput = (
-      <PrecisionOutput value={this.state.value} size={this.props.size} onClick={this.toggleInput} />
+      <PrecisionOutput
+        elementName={elementName + '__output'}
+        value={this.state.value}
+        size={size}
+        onClick={this.toggleInput}
+        color={theme.dark ? '#fff' : colors.OFF_WHITE}
+      />
     );
+    const filteredProps = getFilteredProps(this.props);
 
     return (
       <div
-        id={this.props.id}
-        className={this.props.className}
-        style={Object.assign({}, defaultRootStyles, this.props.style)}
+        id={id}
+        className={elementName + ' ' + (className || '')}
+        style={Object.assign({}, defaultRootStyles, style)}
       >
-        <LabelContainer {...this.props}>
+        <LabelContainer className={elementName + '__label'} {...filteredProps}>
           {this.state.isInput ? precisionInput : precisionOutput}
         </LabelContainer>
       </div>
@@ -168,19 +180,23 @@ const mergeLeadingNegative = digits => {
   return digits;
 };
 
-const PrecisionOutput = ({ value, onClick, size }) => {
+const PrecisionOutput = ({ value, onClick, size, elementName }) => {
   const [characteristic, mantissa] = toScientificNotation(value).split('e');
   const characteristicDigits = mergeLeadingNegative(characteristic.split(''));
   const mantissaDigits = mergeLeadingNegative(mantissa.split(''));
 
   return (
-    <Container size={size} onClick={onClick}>
+    <Container size={size} onClick={onClick} className={elementName}>
       {characteristicDigits.map((digit, i) => (
-        <Digit key={`d${i}`}>{digit}</Digit>
+        <Digit className={elementName + '__digit'} key={`d${i}`}>
+          {digit}
+        </Digit>
       ))}
-      <ExponentialDigit>E</ExponentialDigit>
+      <ExponentialDigit className={elementName + '__exp'}>E</ExponentialDigit>
       {mantissaDigits.map((digit, i) => (
-        <ExponentialDigit key={`e${i}`}>{digit}</ExponentialDigit>
+        <ExponentialDigit className={elementName + '__expdigit'} key={`e${i}`}>
+          {digit}
+        </ExponentialDigit>
       ))}
     </Container>
   );
