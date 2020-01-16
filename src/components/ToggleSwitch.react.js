@@ -56,7 +56,19 @@ class ToggleSwitch extends Component {
   }
 
   render() {
-    const { id, className, style, label, labelPosition, booleanSwitch, theme, color } = this.props;
+    const {
+      id,
+      className,
+      style,
+      label,
+      labelPosition,
+      booleanSwitch,
+      theme,
+      color,
+      vertical,
+      disabled
+    } = this.props;
+
     const size = this.props.size || 45;
 
     let SwitchContainer = ButtonContainer;
