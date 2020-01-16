@@ -34,7 +34,7 @@ class NumericInput extends Component {
   }
 
   render() {
-    const { size, theme } = this.props;
+    const { size, theme, style, className, id, disabled, min, max, value } = this.props;
 
     const buttonStyle = {
       background: 'none',
@@ -79,8 +79,8 @@ class NumericInput extends Component {
                 cursor: 'not-allowed'
               }
             }}
-            min={this.props.min}
-            max={this.props.max}
+            min={min}
+            max={max}
             value={this.state.value}
             onChange={this.setValue}
             mobile={false}
