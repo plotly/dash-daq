@@ -105,7 +105,8 @@ class PrecisionInput extends Component {
       paddingBottom: 4,
       width: size || 56 + precision * 20,
       height: 36,
-      color: theme.dark ? '#fff' : colors.OFF_WHITE,
+      backgroundColor: theme.dark ? '#22272a' : '#fff',
+      color: theme.dark ? '#fff' : '#000',
       fontSize: 14,
       lineHeight: 14,
       boxSizing: 'border-box'
