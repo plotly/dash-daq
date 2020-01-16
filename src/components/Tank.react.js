@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { withTheme } from 'styled-components';
+
 import { TankContainer, TankFill, TickContainer, Tick, Container } from '../styled/Tank.styled';
 import CurrentValue from '../styled/CurrentValue.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
@@ -221,4 +223,4 @@ Tank.propTypes = {
   style: PropTypes.object
 };
 
-export default Tank;
+export default withTheme(Tank);
