@@ -61,6 +61,7 @@ class NumericInput extends Component {
       paddingBottom: 8,
       width: size || 56,
       color: theme.dark ? '#fff' : colors.OFF_WHITE,
+      backgroundColor: theme.dark ? '#22272a' : '#fff',
       fontSize: 14,
       boxSizing: 'border-box'
     };
