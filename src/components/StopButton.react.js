@@ -5,21 +5,29 @@ import { withTheme } from 'styled-components';
 import { Button } from '../styled/StopButton.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 /**
  * A Stop button component
  */
 const StopButton = props => {
+  const { id, className, style, size, disabled, children, n_clicks, buttonText, theme } = props;
+
+  const elementName = getClassName('stopbutton', theme);
+  const filteredProps = getFilteredProps(props);
+
   return (
-    <div id={props.id} className={props.className} style={props.style}>
-      <LabelContainer {...props}>
+    <div id={id} className={elementName + ' ' + (className || '')} style={style}>
+      <LabelContainer {...filteredProps}>
         <Button
-          size={props.size}
-          disabled={props.disabled}
+          className={elementName + '__button'}
+          size={size}
+          disabled={disabled}
           onClick={() => {
-            if (props.setProps) props.setProps({ n_clicks: props.n_clicks + 1 });
+            if (props.setProps) props.setProps({ n_clicks: n_clicks + 1 });
           }}
         >
-          {props.children || props.buttonText}
+          {children || buttonText}
         </Button>
       </LabelContainer>
     </div>
