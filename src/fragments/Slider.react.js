@@ -16,6 +16,8 @@ import {
 
 import { defaultProps, propTypes } from '../components/Slider.react';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 const renderHandle = (props, { isTarget, showLabel } = {}) => {
   const label = (
     <Label isTarget={isTarget} {...props}>
@@ -72,13 +74,14 @@ class Slider extends Component {
 
   UNSAFE_componentWillReceiveProps(newProps) {
     const updates = {};
+    const filteredProps = getFilteredProps(this.props);
 
     if (typeof newProps.value !== 'undefined' && newProps.value !== this.state.value) {
       updates.value = newProps.value;
     }
 
     if (!deepEqual(newProps.color, this.props.color)) {
-      updates.trackStyle = getTrackStyle({ ...this.props, ...newProps });
+      updates.trackStyle = getTrackStyle({ ...filteredProps, ...newProps });
     }
 
     this.setState(updates);
@@ -106,7 +109,9 @@ class Slider extends Component {
 
   renderSliderHandle(props) {
     const { handleLabel } = this.props;
-    let handleProps = { ...this.props, ...props };
+    const filteredProps = getFilteredProps(this.props);
+
+    let handleProps = { ...filteredProps, ...props };
 
     if (!handleLabel) {
       return renderHandle(handleProps);
@@ -125,9 +130,11 @@ class Slider extends Component {
   }
 
   renderTargets() {
+    const filteredProps = getFilteredProps(this.props);
+
     return Object.entries(this.props.targets).reduce((acc, [k, v]) => {
       const props = {
-        ...this.props,
+        ...filteredProps,
         label: v.label || v,
         value: v.showCurrentValue && k,
         color: v.color,
@@ -163,22 +170,27 @@ class Slider extends Component {
 
   render() {
     const { value } = this.state;
+    const { className, id, theme, label, size, vertical, style, marks } = this.props;
 
+    const elementName = getClassName('slider', theme.dark);
+    const filteredProps = getFilteredProps(this.props);
     return (
-      <div id={this.props.id} style={this.props.style} className={this.props.className}>
+      <div id={id} style={style} className={elementName + ' ' + (className || '')}>
         <LabelContainer
-          labelCSS={this.props.label ? this.calcLabelOffset(this.props) : null}
-          {...this.props}
+          className={elementName + '__label'}
+          labelCSS={label ? this.calcLabelOffset(this.props) : null}
+          {...filteredProps}
         >
-          <SliderContainer size={this.props.size} vertical={this.props.vertical}>
+          <SliderContainer size={size} vertical={vertical}>
             <ReactSlider
+              className={elementName + '__slider'}
               onChange={this.onChange}
               onAfterChange={this.onAfterChange}
               value={value}
               handle={this.renderSliderHandle}
-              marks={{ ...this.props.marks, ...this.renderTargets() }}
+              marks={{ ...marks, ...this.renderTargets() }}
               {...this.state.trackStyle}
-              {...omit(['setProps', 'updatemode', 'value', 'marks'], this.props)}
+              {...omit(['setProps', 'updatemode', 'value', 'marks'], filteredProps)}
             />
           </SliderContainer>
         </LabelContainer>
