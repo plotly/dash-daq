@@ -33,7 +33,7 @@ describe('Graduated Bar', () => {
   });
 
   it('renders correct amount of blocks', () => {
-    const component = shallow(<GraduatedBar min={0} max={100} value={49} step={1} />);
+    const component = mount(<GraduatedBar min={0} max={100} value={49} step={1} />);
     expect(component.find(Block)).toHaveLength(49);
   });
 
