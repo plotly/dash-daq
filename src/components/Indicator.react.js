@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import color from 'color';
+import convertColor from 'color';
 import { withTheme } from 'styled-components';
 
 import IndicatorLight from '../styled/shared/Indicator.styled';
@@ -12,7 +12,9 @@ import { colors, light } from '../styled/constants';
  * A boolean indicator LED.
  */
 const Indicator = props => {
-  const bg = color(props.color)
+  const { id, className, color, size, width, height, value, style, theme } = props;
+
+  const bg = convertColor(color)
     .desaturate(0.2)
     .lighten(0.2)
     .rgb()
