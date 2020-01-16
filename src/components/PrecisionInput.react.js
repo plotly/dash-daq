@@ -81,7 +81,7 @@ class PrecisionInput extends Component {
   }
 
   render() {
-    const { size, theme } = this.props;
+    const { id, className, style, size, theme, disabled, precision, min, max } = this.props;
 
     const buttonStyle = {
       background: 'none',
@@ -103,7 +103,7 @@ class PrecisionInput extends Component {
       paddingLeft: padding,
       paddingTop: 4,
       paddingBottom: 4,
-      width: size || 56 + this.props.precision * 20,
+      width: size || 56 + precision * 20,
       height: 36,
       color: theme.dark ? '#fff' : colors.OFF_WHITE,
       fontSize: 14,
@@ -126,8 +126,8 @@ class PrecisionInput extends Component {
             cursor: 'not-allowed'
           }
         }}
-        min={this.props.min}
-        max={this.props.max}
+        min={min}
+        max={max}
         value={this.state.tempValue}
         onChange={this.setTempValue}
         onBlur={this.blur}
