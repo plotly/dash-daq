@@ -8,6 +8,8 @@ import Indicator from '../styled/shared/Indicator.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 import { light } from '../styled/constants';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 /**
  * A power button component can be
  * turned on and off.
@@ -39,11 +41,14 @@ class PowerButton extends Component {
 
     const INDICATOR_SIZE = (size / 10) * 1.25;
 
+    const elementName = getClassName('powerbutton', theme);
+    const filteredProps = getFilteredProps(this.props);
     return (
-      <div id={this.props.id} className={this.props.className} style={this.props.style}>
-        <LabelContainer {...this.props}>
-          <Container>
+      <div id={id} className={elementName + ' ' + (className || '')} style={style}>
+        <LabelContainer className={elementName + '__label'} {...filteredProps}>
+          <Container className={elementName + '__container'}>
             <Button
+              className={elementName + '__button'}
               on={this.state.on}
               color={color}
               size={size}
@@ -53,6 +58,7 @@ class PowerButton extends Component {
               <PowerButtonSvg on={this.state.on} color={color} size={size * 0.3} />
             </Button>
             <Indicator
+              className={elementName + '__indicator'}
               on={this.state.on}
               primary={color}
               main={true}
