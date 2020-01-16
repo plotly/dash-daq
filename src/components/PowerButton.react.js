@@ -35,7 +35,9 @@ class PowerButton extends Component {
   }
 
   render() {
-    const INDICATOR_SIZE = (this.props.size / 10) * 1.25;
+    const { id, size, className, color, disabled, style, theme } = this.props;
+
+    const INDICATOR_SIZE = (size / 10) * 1.25;
 
     return (
       <div id={this.props.id} className={this.props.className} style={this.props.style}>
@@ -43,20 +45,16 @@ class PowerButton extends Component {
           <Container>
             <Button
               on={this.state.on}
-              color={this.props.color}
-              size={this.props.size}
-              disabled={this.props.disabled}
+              color={color}
+              size={size}
+              disabled={disabled}
               onClick={this.onClick}
             >
-              <PowerButtonSvg
-                on={this.state.on}
-                color={this.props.color}
-                size={this.props.size * 0.3}
-              />
+              <PowerButtonSvg on={this.state.on} color={color} size={size * 0.3} />
             </Button>
             <Indicator
               on={this.state.on}
-              primary={this.props.color}
+              primary={color}
               main={true}
               size={INDICATOR_SIZE}
             />
