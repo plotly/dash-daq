@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { withTheme } from 'styled-components';
 import { light } from '../styled/constants';
 import { getColorValue, isContiguous, getGradientObject } from '../helpers/colorRanges';
 import { Container, Block, Value } from '../styled/GraduatedBar.styled';
@@ -32,7 +33,8 @@ const GraduatedBar = props => {
     size,
     style,
     showCurrentValue,
-    vertical
+    vertical,
+    theme
   } = props;
   const value = props.value || min;
 
@@ -76,6 +78,7 @@ GraduatedBar.defaultProps = {
   max: 10,
   size: 250,
   step: 0.5,
+  theme: light,
   labelPosition: 'top',
   color: light.primary
 };
@@ -158,6 +161,11 @@ GraduatedBar.propTypes = {
   showCurrentValue: PropTypes.bool,
 
   /**
+   * Theme configuration to be set by a ThemeProvider
+   */
+  theme: PropTypes.object,
+
+  /**
    * Description to be displayed alongside the control. To control styling, pass an object with label and style properties.
    */
   label: PropTypes.oneOfType([
@@ -191,4 +199,4 @@ GraduatedBar.propTypes = {
   style: PropTypes.object
 };
 
-export default GraduatedBar;
+export default withTheme(GraduatedBar);
