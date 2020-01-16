@@ -30,13 +30,14 @@ class BooleanSwitch extends Component {
   }
 
   render() {
+    const { color, theme } = this.props;
     return (
       <ToggleSwitch
         {...this.props}
         value={this.state.on}
         setProps={this.setPropsOverride}
         booleanSwitch={true}
-        color={this.props.color || this.props.theme.primary}
+        color={color || theme.primary}
       />
     );
   }
