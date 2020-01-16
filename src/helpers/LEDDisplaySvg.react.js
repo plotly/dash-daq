@@ -78,7 +78,7 @@ const LightColon = ({ fillColor, strokeColor }) => (
   </g>
 );
 
-const LightDigit = ({ value, hasColon, hasDecimal, color, backgroundColor, size }) => {
+const LightDigit = ({ value, hasColon, hasDecimal, color, backgroundColor, size, className }) => {
   const inactiveSegmentFill = Color(backgroundColor)
     .darken(0.2)
     .fade(0.85);
@@ -104,25 +104,27 @@ const LightDigit = ({ value, hasColon, hasDecimal, color, backgroundColor, size 
   const height = size * (9 / 7);
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height}>
-      <g fill="none" style={{ transform: `scale(${Number(size) / 42})` }}>
-        {inactiveSegments}
-        {activeSegments}
-        {hasColon && <LightColon fillColor={color} strokeColor={backgroundColor} />}
-        {hasDecimal && <LightDecimal fillColor={color} strokeColor={backgroundColor} />}
-      </g>
-    </svg>
+    <div className={className}>
+      <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height}>
+        <g fill="none" style={{ transform: `scale(${Number(size) / 42})` }}>
+          {inactiveSegments}
+          {activeSegments}
+          {hasColon && <LightColon fillColor={color} strokeColor={backgroundColor} />}
+          {hasDecimal && <LightDecimal fillColor={color} strokeColor={backgroundColor} />}
+        </g>
+      </svg>
+    </div>
   );
 };
 
-const DarkDigit = ({ value, hasColon, hasDecimal, color, size }) => {
+const DarkDigit = ({ value, hasColon, hasDecimal, color, size, className }) => {
   const segments = DIGITS[value].map(letter => DARK_SEGMENTS[letter]);
 
   const width = hasColon ? size : size * (6 / 7);
   const height = size * (9 / 7);
 
   return (
-    <DarkDigitContainer color={color}>
+    <DarkDigitContainer className={className} color={color}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
