@@ -7,6 +7,8 @@ import LabelContainer from '../styled/shared/LabelContainer.styled';
 
 import { light, colors } from '../styled/constants';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 /**
  * A numeric input component that can be
  * set to a value between some range.
@@ -63,11 +65,14 @@ class NumericInput extends Component {
       boxSizing: 'border-box'
     };
 
+    const elementName = getClassName('numericinput', theme);
+    const filteredProps = getFilteredProps(this.props);
     return (
-      <div id={this.props.id} className={this.props.className} style={this.props.style}>
-        <LabelContainer {...this.props}>
+      <div id={id} className={elementName + ' ' + (className || '')} style={style}>
+        <LabelContainer className={elementName + '__label'} {...filteredProps}>
           <Input
-            disabled={this.props.disabled}
+            className={elementName + '__input'}
+            disabled={disabled}
             style={{
               input: inputStyle,
               'input:not(.form-control)': inputStyle,
