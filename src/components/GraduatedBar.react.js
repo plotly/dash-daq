@@ -7,6 +7,8 @@ import { getColorValue, isContiguous, getGradientObject } from '../helpers/color
 import { Container, Block, Value } from '../styled/GraduatedBar.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 const valueColor = (value, color) => {
   const entry = Object.entries(color.ranges).filter(
     ([, range]) => value >= range[0] && value <= range[1]
@@ -46,15 +48,24 @@ const GraduatedBar = props => {
     gradient = getGradientObject({ color, min, max });
   }
 
+  const elementName = getClassName('graduatedbar', theme);
+  const filteredProps = getFilteredProps(props);
+
   for (let i = min; i < normalizedValue; i += step) {
-    let blockProps = { ...props, color: getColorValue(color) };
+    let blockProps = { ...filteredProps, color: getColorValue(color) };
 
     if (color.ranges && valueColor(i, color)) {
-      blockProps = { ...props, color: valueColor(i, color) };
+      blockProps = { ...filteredProps, color: valueColor(i, color) };
     }
 
     progressBlocks.push(
-      <Block key={i} progress={i / (max - min)} gradient={gradient} {...blockProps} />
+      <Block
+        className={elementName + '__progressBlock'}
+        key={i}
+        progress={i / (max - min)}
+        gradient={gradient}
+        {...blockProps}
+      />
     );
   }
 
@@ -62,11 +73,19 @@ const GraduatedBar = props => {
   if (!isFinite(percent)) percent = 0;
 
   return (
-    <div id={id} className={className} style={style}>
-      <LabelContainer label={label} labelPosition={labelPosition}>
+    <div id={id} className={elementName + ' ' + (className || '')} style={style}>
+      <LabelContainer
+        className={elementName + '__label'}
+        label={label}
+        labelPosition={labelPosition}
+      >
         <Container vertical={vertical} size={size}>
           {progressBlocks}
-          {showCurrentValue && <Value vertical={vertical}>{percent.toFixed(0)}%</Value>}
+          {showCurrentValue && (
+            <Value className={elementName + '__currentvalue'} vertical={vertical}>
+              {percent.toFixed(0)}%
+            </Value>
+          )}
         </Container>
       </LabelContainer>
     </div>
