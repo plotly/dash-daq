@@ -125,6 +125,7 @@ class Knob extends Component {
 
   render() {
     const { min, max, value } = this.state;
+    const { id, className, labelPosition, color, style, disabled, theme } = this.props;
     const progress = computeProgress({ min, max, value, progressionTarget: 1 });
 
     return (
