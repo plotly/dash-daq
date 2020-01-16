@@ -15,6 +15,8 @@ import {
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 import { light } from '../styled/constants';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 function getLabelProps(label) {
   if (typeof label === 'object') {
     return {
@@ -83,10 +85,21 @@ class ToggleSwitch extends Component {
 
     const doubleLabel = Array.isArray(label);
 
+    const elementName = getClassName(booleanSwitch ? 'booleanswitch' : 'toggleswitch', theme.dark);
+    const filteredProps = getFilteredProps(this.props);
+
     const switchCore = (
-      <Wrapper rotate={this.props.vertical ? -90 : 0} size={size}>
-        {!booleanSwitch && <Indicator on={this.state.value} size={indicatorSize} primary={color} />}
+      <Wrapper className={elementName} rotate={vertical ? -90 : 0} size={size}>
+        {!booleanSwitch && (
+          <Indicator
+            className={elementName + '__indicator' + (this.state.value ? '--off' : '--on')}
+            on={this.state.value}
+            size={indicatorSize}
+            primary={color}
+          />
+        )}
         <SwitchContainer
+          className={elementName + '__background'}
           onClick={this.click}
           size={size}
           color={color}
@@ -94,14 +107,21 @@ class ToggleSwitch extends Component {
           booleanSwitch={booleanSwitch}
         >
           <Switch
-            disabled={this.props.disabled}
+            className={elementName + '__button'}
+            disabled={disabled}
             on={this.state.value}
             size={size}
             booleanSwitch={booleanSwitch}
           />
         </SwitchContainer>
         {!booleanSwitch && (
-          <Indicator main={true} on={this.state.value} size={indicatorSize} primary={color} />
+          <Indicator
+            className={elementName + '__indicator' + (this.state.value ? '--on' : '--off')}
+            main={true}
+            on={this.state.value}
+            size={indicatorSize}
+            primary={color}
+          />
         )}
       </Wrapper>
     );
@@ -109,19 +129,25 @@ class ToggleSwitch extends Component {
     return (
       <div id={id} className={className} style={style}>
         {doubleLabel ? (
-          <RowContainer {...this.props}>
+          <RowContainer {...filteredProps}>
             <RowLabel
-              position={this.props.vertical ? 'bottom' : 'left'}
+              className={elementName + '__label'}
+              position={vertical ? 'bottom' : 'left'}
               {...getLabelProps(label[0])}
             />
             {switchCore}
             <RowLabel
-              position={this.props.vertical ? 'top' : 'right'}
+              className={elementName + '__label'}
+              position={vertical ? 'top' : 'right'}
               {...getLabelProps(label[1])}
             />
           </RowContainer>
         ) : (
-          <LabelContainer label={label} labelPosition={labelPosition}>
+          <LabelContainer
+            className={elementName + '__label'}
+            label={label}
+            labelPosition={labelPosition}
+          >
             {switchCore}
           </LabelContainer>
         )}
