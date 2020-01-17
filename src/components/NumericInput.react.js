@@ -36,7 +36,7 @@ class NumericInput extends Component {
   }
 
   render() {
-    const { size, theme, style, className, id, disabled, min, max, value } = this.props;
+    const { size, theme, style, className, id, disabled, min, max } = this.props;
 
     const buttonStyle = {
       background: 'none',
