@@ -3,7 +3,6 @@ include dash_daq/dash_daq.min.js.map
 include dash_daq/async~*.js
 include dash_daq/async~*.js.map
 include dash_daq/metadata.json
-include dash_daq/rc-slider@6.1.2.css
 include dash_daq/package-info.json
 include README.md
 include LICENSE.md
