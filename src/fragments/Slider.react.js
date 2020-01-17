@@ -6,6 +6,9 @@ import deepEqual from 'deep-equal';
 
 import { getLinearGradientCSS, isContiguous, getColorValue } from '../helpers/colorRanges';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
+
+import '../css/rc-slider@6.1.2.css';
+
 import {
   SliderContainer,
   Handle,
