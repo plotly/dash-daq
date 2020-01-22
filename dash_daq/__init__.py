@@ -63,7 +63,8 @@ _js_dist.extend([
             "https://unpkg.com/dash-daq@{}"
             "/dash_daq/dash_daq.min.js.map"
         ).format(__version__),
-        "namespace": "dash_daq"
+        "namespace": "dash_daq",
+        'dynamic': True
     }
 ])
 _css_dist = []
