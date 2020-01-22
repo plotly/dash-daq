@@ -8,6 +8,10 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 ### Fixed
+* [#84](https://github.com/plotly/dash-daq/pull/84) Fixed JS map not being included in the `js_dist` for the Python package.
+
+## [0.3.1] - 2019-11-14
+### Fixed
 * [#73](https://github.com/plotly/dash-daq/pull/73) Fix IE11 compatibility issues and ES5 compatibility and validation
 
 ## [0.3.0] - 2019-11-05
