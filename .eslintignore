@@ -7,7 +7,6 @@ node_modules/
 dash_daq/metadata.json
 dash_daq/*.js*
 inst/deps/*.js*
-*.css
 babel.config.js
 webpack.config.js
 .npm
