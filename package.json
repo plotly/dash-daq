@@ -50,7 +50,7 @@
     "nipplejs": "^0.7.1",
     "prop-types": "^15.5.9",
     "ramda": "^0.25.0",
-    "rc-slider": "^8.6.1",
+    "rc-slider": "^9.1.0",
     "react": "^16.8.6",
     "react-color": "^2.14.1",
     "react-dom": "^16.8.6",
@@ -101,8 +101,7 @@
     }
   },
   "files": [
-    "dash_daq/*{.js,.map}",
-    "dash_daq/rc-slider@6.1.2.css"
+    "dash_daq/*{.js,.map}"
   ],
   "pre-commit": [
     "test",
