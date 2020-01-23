@@ -6,5 +6,10 @@
   "plugins": [
     "react",
     "import"
-  ]
+  ],
+  "settings": {
+    "import/extensions": [
+      ".css$"
+     ]
+   }
 }
