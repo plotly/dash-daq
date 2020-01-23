@@ -6,6 +6,10 @@ The format is based on [Keep a
 Changelog](http://keepachangelog.com/en/1.0.0/) and this project
 adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.3.3] - 2020-01-23
+### Changed
+* [#82](https://github.com/plotly/dash-daq/pull/82) Updated `rc-slider` package and `daq.Slider` styling.
+
 ## [0.3.2] - 2020-01-22
 ### Fixed
 * [#84](https://github.com/plotly/dash-daq/pull/84) Fixed JS map not being included in the `js_dist` for the Python package.
