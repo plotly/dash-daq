@@ -6,6 +6,10 @@ The format is based on [Keep a
 Changelog](http://keepachangelog.com/en/1.0.0/) and this project
 adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Changed
+* [#91](https://github.com/plotly/dash-daq/pull/91) Renamed async modules with hyphen `-` instead of tilde `~`
+
 ## [0.3.3] - 2020-01-23
 ### Changed
 * [#82](https://github.com/plotly/dash-daq/pull/82) Updated `rc-slider` package and `daq.Slider` styling.

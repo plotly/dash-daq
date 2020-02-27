@@ -26,20 +26,20 @@ async_resources = [
 _js_dist = []
 
 _js_dist.extend([{
-        'relative_package_path': 'async~{}.js'.format(async_resource),
+        'relative_package_path': 'async-{}.js'.format(async_resource),
         'external_url': (
             'https://unpkg.com/dash-daq@{}'
-            '/dash_daq/async~{}.js'
+            '/dash_daq/async-{}.js'
         ).format(__version__, async_resource),
         'namespace': 'dash_daq',
         'async': True
     } for async_resource in async_resources])
 
 _js_dist.extend([{
-        'relative_package_path': 'async~{}.js.map'.format(async_resource),
+        'relative_package_path': 'async-{}.js.map'.format(async_resource),
         'external_url': (
             'https://unpkg.com/dash-daq@{}'
-            '/dash_daq/async~{}.js.map'
+            '/dash_daq/async-{}.js.map'
         ).format(__version__, async_resource),
         'namespace': 'dash_daq',
         'dynamic': True
