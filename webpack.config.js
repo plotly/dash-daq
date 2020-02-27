@@ -90,7 +90,7 @@ module.exports = (env, argv) => {
                         chunks: 'async',
                         minSize: 0,
                         name(module, chunks, cacheGroupKey) {
-                            return `${cacheGroupKey}~${chunks[0].name}`;
+                            return `${cacheGroupKey}-${chunks[0].name}`;
                         }
                     }
                 }
