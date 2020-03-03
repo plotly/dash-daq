@@ -21,6 +21,14 @@ export const SliderContainer = styled.div`
         box-shadow: none !important;
       `};
   }
+
+  /* remove rc-slider-dot styles, which overlap with the marker */
+  & .rc-slider-dot {
+    background: none !important;
+    border: none;
+    height: unset !important;
+    width: unset !important;
+  }
 `;
 
 export const HandleContainer = styled.div`
@@ -189,7 +197,9 @@ export const targetStyles = {
   width: 'auto',
   marginLeft: 0,
   marginBottom: 0,
-  textAlign: 'center'
+  textAlign: 'center',
+  border: 'none',
+  boxShadow: 'none'
 };
 
 export const Label = styled.div`

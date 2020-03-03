@@ -68,9 +68,11 @@ module.exports = (env, argv) => {
                     use: [
                         {
                             loader: 'style-loader',
-                            options: {
-                                insertAt: 'top'
-                            }
+			    options: {
+				insert: function insertAtTop(element) {
+				    document.head.insertBefore(element, document.head.firstElementChild);
+				},
+			    },
                         },
                         {
                             loader: 'css-loader'
@@ -88,7 +90,7 @@ module.exports = (env, argv) => {
                         chunks: 'async',
                         minSize: 0,
                         name(module, chunks, cacheGroupKey) {
-                            return `${cacheGroupKey}~${chunks[0].name}`;
+                            return `${cacheGroupKey}-${chunks[0].name}`;
                         }
                     }
                 }
