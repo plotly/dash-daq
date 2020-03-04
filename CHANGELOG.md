@@ -6,9 +6,16 @@ The format is based on [Keep a
 Changelog](http://keepachangelog.com/en/1.0.0/) and this project
 adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.4.0] - 2020-03-04
+### Added
+* [#80](https://github.com/plotly/dash-daq/pull/80) Added `theme` prop to `GraduatedBar` component.
+
 ### Changed
 * [#91](https://github.com/plotly/dash-daq/pull/91) Renamed async modules with hyphen `-` instead of tilde `~`
+* [#80](https://github.com/plotly/dash-daq/pull/80) Changed class names for components according to BEM conventions.
+
+### Fixed
+* [#80](https://github.com/plotly/dash-daq/pull/80) Fixed color problems for dark-theme buttons and inputs.
 
 ## [0.3.3] - 2020-01-23
 ### Changed
