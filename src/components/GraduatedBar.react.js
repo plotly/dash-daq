@@ -73,7 +73,7 @@ const GraduatedBar = props => {
   if (!isFinite(percent)) percent = 0;
 
   return (
-    <div id={id} className={elementName + ' ' + (className || '')} style={style}>
+    <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
       <LabelContainer
         className={elementName + '__label'}
         label={label}

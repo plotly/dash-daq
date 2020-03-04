@@ -23,7 +23,11 @@ const LEDDisplay = props => {
   const filteredProps = getFilteredProps(props);
 
   return (
-    <div id={props.id} className={elementName + ' ' + (props.className || '')} style={props.style}>
+    <div
+      id={props.id}
+      className={elementName + (props.className ? ' ' + props.className : '')}
+      style={props.style}
+    >
       <LabelContainer {...filteredProps}>{digits ? led : 'Invalid Input'}</LabelContainer>
     </div>
   );

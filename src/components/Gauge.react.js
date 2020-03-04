@@ -66,7 +66,7 @@ class Gauge extends React.Component {
     const filteredProps = getFilteredProps(this.props);
 
     return (
-      <div id={id} className={elementName + (className ? (' ' + className) : '')} style={style}>
+      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
         <LabelContainer
           className={elementName + '__label'}
           {...filteredProps}

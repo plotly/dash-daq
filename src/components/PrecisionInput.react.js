@@ -154,7 +154,7 @@ class PrecisionInput extends Component {
     return (
       <div
         id={id}
-        className={elementName + ' ' + (className || '')}
+        className={elementName + (className ? ' ' + className : '')}
         style={Object.assign({}, defaultRootStyles, style)}
       >
         <LabelContainer className={elementName + '__label'} {...filteredProps}>

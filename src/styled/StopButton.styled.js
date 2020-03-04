@@ -54,8 +54,7 @@ const darkButton = css`
   color: #ff6e6e;
   background-color: #22272a;
 
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9),
-            0 0 9px #ff6e6e;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9), 0 0 9px #ff6e6e;
 
   background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%);
   box-shadow: inset 0 0 8px -1px rgba(0, 0, 0, 0.7), inset 0 0 4px 0 rgba(0, 0, 0, 0.8),

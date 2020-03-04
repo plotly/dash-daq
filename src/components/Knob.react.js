@@ -134,7 +134,7 @@ class Knob extends Component {
     const filteredProps = getFilteredProps(this.props);
 
     return (
-      <div id={id} className={elementName + ' ' + (className || '')} style={style}>
+      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
         <LabelContainer
           className={elementName + '__label'}
           {...filteredProps}

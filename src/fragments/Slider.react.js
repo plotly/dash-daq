@@ -178,7 +178,7 @@ class Slider extends Component {
     const elementName = getClassName('slider', theme.dark);
     const filteredProps = getFilteredProps(this.props);
     return (
-      <div id={id} style={style} className={elementName + ' ' + (className || '')}>
+      <div id={id} style={style} className={elementName + (className ? ' ' + className : '')}>
         <LabelContainer
           className={elementName + '__label'}
           labelCSS={label ? this.calcLabelOffset(this.props) : null}

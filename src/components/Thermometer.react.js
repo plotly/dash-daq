@@ -77,7 +77,7 @@ const Thermometer = props => {
   const filteredProps = getFilteredProps(props);
 
   return (
-    <div id={id} className={elementName + ' ' + (className || '')} style={style}>
+    <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
       <LabelContainer
         className={elementName + '__label'}
         {...filteredProps}

@@ -17,7 +17,7 @@ const StopButton = props => {
   const filteredProps = getFilteredProps(props);
 
   return (
-    <div id={id} className={elementName + ' ' + (className || '')} style={style}>
+    <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
       <LabelContainer {...filteredProps}>
         <Button
           className={elementName + '__button'}

@@ -68,7 +68,7 @@ const Tank = props => {
   const filteredProps = getFilteredProps(props);
 
   return (
-    <div className={elementName + ' ' + (className || '')} id={id} style={style}>
+    <div className={elementName + (className ? ' ' + className : '')} id={id} style={style}>
       <LabelContainer className={elementName + '__label'} {...filteredProps}>
         <Container>
           {scaleContainer}
