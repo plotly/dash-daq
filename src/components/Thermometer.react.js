@@ -12,6 +12,8 @@ import log from '../helpers/logarithm';
 import { sanitizeRangeValue, computeProgress } from '../helpers/util';
 import generateScale from '../helpers/scale';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 /**
  * A thermometer component that
  * fills to a value between some
@@ -40,9 +42,15 @@ const Thermometer = props => {
   const formatter = logarithmic ? log.generateLogFormatter({ base }) : null;
   const scale = generateScale({ ...props, formatter });
 
+  const elementName = getClassName('thermometer', theme);
+
   const renderTicks = () => {
     return Object.entries(scale).map(([k, v]) => (
-      <Tick key={k} xPosition={computeProgress({ min, max, value: k })}>
+      <Tick
+        className={elementName + '__tick'}
+        key={k}
+        xPosition={computeProgress({ min, max, value: k })}
+      >
         <div className="tick" />
         <div className="label" style={v && v.style ? v.style : null}>
           {(v && v.label) || v}
@@ -55,24 +63,38 @@ const Thermometer = props => {
 
   const currentValue = (
     <CurrentValueContainer>
-      <CurrentValue valueColor={color} units={units} css={'top: 0;'}>
+      <CurrentValue
+        className={elementName + '__currentvalue'}
+        valueColor={color}
+        units={units}
+        css={'top: 0;'}
+      >
         {logarithmic ? log.formatValue(value, base) : value.toFixed(1)}
       </CurrentValue>
     </CurrentValueContainer>
   );
 
+  const filteredProps = getFilteredProps(props);
+
   return (
-    <div id={id} className={className} style={style}>
+    <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
       <LabelContainer
-        {...props}
+        className={elementName + '__label'}
+        {...filteredProps}
         labelCSS={props.labelPosition === 'top' ? null : 'transform: translateY(-30px);'}
       >
         <ThermometerContainer>
           <Container thermometer xPositioned={scale}>
             {scaleContainer}
-            <TankContainer thermometer height={height} width={width}>
+            <TankContainer
+              thermometer
+              className={elementName + '__container'}
+              height={height}
+              width={width}
+            >
               <TankFill
                 thermometer
+                className={elementName + '__fill'}
                 color={color}
                 height={`${computeProgress({ min, max, value })}%`}
               />

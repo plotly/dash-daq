@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import joystick from 'nipplejs';
+
 import { light } from '../styled/constants';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
+
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
 
 /**
  * A joystick.
@@ -51,12 +54,16 @@ class Joystick extends Component {
   }
 
   render() {
-    const { id, className, style, size } = this.props;
+    const { id, className, style, size, theme } = this.props;
+
+    const elementName = getClassName('joystick', theme);
+    const filteredProps = getFilteredProps(this.props);
 
     return (
-      <div id={id} className={className} style={style}>
-        <LabelContainer {...this.props}>
+      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
+        <LabelContainer className={elementName + '__label'} {...filteredProps}>
           <div
+            className={elementName + '__joystick'}
             ref={ref => (this.zoneRef = ref)}
             style={{
               position: 'relative',
