@@ -116,40 +116,45 @@ class PrecisionInput extends Component {
 
     const elementName = getClassName('precisioninput', theme.dark);
 
-    const precisionInput = (
-      <Input
-        autoFocus
-        className={elementName + '__input'}
-        disabled={disabled}
-        style={{
-          input: inputStyle,
-          'input:not(.form-control)': inputStyle,
-          btn: buttonStyle,
-          'btn:hover': buttonStyle,
-          'btn:active': buttonStyle,
-          'input:disabled': {
-            opacity: 0.65,
-            cursor: 'not-allowed'
-          }
-        }}
-        min={min}
-        max={max}
-        value={this.state.tempValue}
-        onChange={this.setTempValue}
-        onBlur={this.blur}
-      />
-    );
-
-    const precisionOutput = (
-      <PrecisionOutput
-        elementName={elementName + '__output'}
-        value={this.state.value}
-        size={size}
-        onClick={this.toggleInput}
-        color={theme.dark ? '#fff' : colors.OFF_WHITE}
-      />
-    );
     const filteredProps = getFilteredProps(this.props);
+
+    let precisionElement;
+
+    if (this.state.isInput) {
+      precisionElement = (
+        <Input
+          autoFocus
+          className={elementName + '__input'}
+          disabled={disabled}
+          style={{
+            input: inputStyle,
+            'input:not(.form-control)': inputStyle,
+            btn: buttonStyle,
+            'btn:hover': buttonStyle,
+            'btn:active': buttonStyle,
+            'input:disabled': {
+              opacity: 0.65,
+              cursor: 'not-allowed'
+            }
+          }}
+          min={min}
+          max={max}
+          value={this.state.tempValue}
+          onChange={this.setTempValue}
+          onBlur={this.blur}
+        />
+      );
+    } else {
+      precisionElement = (
+        <PrecisionOutput
+          elementName={elementName + '__output'}
+          value={this.state.value}
+          size={size}
+          onClick={this.toggleInput}
+          color={theme.dark ? '#fff' : colors.OFF_WHITE}
+        />
+      );
+    }
 
     return (
       <div
@@ -158,7 +163,7 @@ class PrecisionInput extends Component {
         style={Object.assign({}, defaultRootStyles, style)}
       >
         <LabelContainer className={elementName + '__label'} {...filteredProps}>
-          {this.state.isInput ? precisionInput : precisionOutput}
+          {precisionElement}
         </LabelContainer>
       </div>
     );
