@@ -75,8 +75,7 @@ class Gauge extends React.Component {
           <Container color={colorValue}>
             <GaugeSVG
               className={elementName + '__gauge'}
-              {...{ ...filteredProps, scale }}
-              progress={progress}
+              {...{ ...filteredProps, scale, progress }}
             />
             {showCurrentValue && currentValue}
           </Container>
