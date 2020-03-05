@@ -5,6 +5,7 @@ import { withTheme } from 'styled-components';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 
 import { light, colors } from '../styled/constants';
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
 import Input from './../helpers/NumericInput';
 
 /**
@@ -34,7 +35,7 @@ class NumericInput extends Component {
   }
 
   render() {
-    const { size, theme } = this.props;
+    const { size, theme, style, className, id, disabled, min, max } = this.props;
 
     const buttonStyle = {
       background: 'none',
@@ -59,15 +60,19 @@ class NumericInput extends Component {
       paddingBottom: 8,
       width: size || 56,
       color: theme.dark ? '#fff' : colors.OFF_WHITE,
+      backgroundColor: theme.dark ? '#22272a' : '#fff',
       fontSize: 14,
       boxSizing: 'border-box'
     };
 
+    const elementName = getClassName('numericinput', theme);
+    const filteredProps = getFilteredProps(this.props);
     return (
-      <div id={this.props.id} className={this.props.className} style={this.props.style}>
-        <LabelContainer {...this.props}>
+      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
+        <LabelContainer className={elementName + '__label'} {...filteredProps}>
           <Input
-            disabled={this.props.disabled}
+            className={elementName + '__input'}
+            disabled={disabled}
             style={{
               input: inputStyle,
               'input:not(.form-control)': inputStyle,
@@ -79,8 +84,8 @@ class NumericInput extends Component {
                 cursor: 'not-allowed'
               }
             }}
-            min={this.props.min}
-            max={this.props.max}
+            min={min}
+            max={max}
             value={this.state.value}
             onChange={this.setValue}
             mobile={false}

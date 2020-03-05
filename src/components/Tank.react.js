@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { withTheme } from 'styled-components';
+
 import { TankContainer, TankFill, TickContainer, Tick, Container } from '../styled/Tank.styled';
 import CurrentValue from '../styled/CurrentValue.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
@@ -8,6 +10,8 @@ import LabelContainer from '../styled/shared/LabelContainer.styled';
 import log from '../helpers/logarithm';
 import { computeProgress, sanitizeRangeValue } from '../helpers/util';
 import generateScale from '../helpers/scale';
+
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
 
 /**
  * A Tank component that fills to
@@ -26,7 +30,8 @@ const Tank = props => {
     logarithmic,
     base,
     height,
-    width
+    width,
+    theme
   } = props;
 
   const dirtyValue = logarithmic ? log.compute(props.value, base) : props.value;
@@ -36,9 +41,15 @@ const Tank = props => {
   const formatter = logarithmic ? log.generateLogFormatter({ base }) : null;
   const scale = generateScale({ ...props, formatter });
 
+  const elementName = getClassName('tank', theme);
+
   const renderTicks = () => {
     return Object.entries(scale).map(([k, v]) => (
-      <Tick key={k} xPosition={computeProgress({ min, max, value: k })}>
+      <Tick
+        className={elementName + '__tick'}
+        key={k}
+        xPosition={computeProgress({ min, max, value: k })}
+      >
         <div className="tick" />
         <div className="label">
           <div style={v && v.style ? v.style : null}>{(v && v.label) || v}</div>
@@ -54,13 +65,19 @@ const Tank = props => {
     </CurrentValue>
   );
 
+  const filteredProps = getFilteredProps(props);
+
   return (
-    <div className={className} id={id} style={style}>
-      <LabelContainer {...props}>
+    <div className={elementName + (className ? ' ' + className : '')} id={id} style={style}>
+      <LabelContainer className={elementName + '__label'} {...filteredProps}>
         <Container>
           {scaleContainer}
-          <TankContainer height={height} width={width}>
-            <TankFill color={color} height={`${percentageFill}%`} />
+          <TankContainer className={elementName + '__container'} height={height} width={width}>
+            <TankFill
+              className={elementName + '__fill'}
+              color={color}
+              height={`${percentageFill}%`}
+            />
             {showCurrentValue && currentValue}
           </TankContainer>
         </Container>
@@ -221,4 +238,4 @@ Tank.propTypes = {
   style: PropTypes.object
 };
 
-export default Tank;
+export default withTheme(Tank);

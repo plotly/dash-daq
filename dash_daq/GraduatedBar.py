@@ -32,6 +32,7 @@ Those keys have the following types:
 - step (number; default 0.5): Value by which progress blocks appear
 - showCurrentValue (boolean; optional): If true, the current percentage
  of the bar will be displayed
+- theme (dict; default light): Theme configuration to be set by a ThemeProvider
 - label (dict; optional): Description to be displayed alongside the control. To control styling, pass an object with label and style properties. label has the following type: string | dict containing keys 'style', 'label'.
 Those keys have the following types:
   - style (dict; optional)
@@ -40,12 +41,12 @@ Those keys have the following types:
 - className (string; optional): Class to apply to the root component element.
 - style (dict; optional): Style to apply to the root component element."""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, color=Component.UNDEFINED, size=Component.UNDEFINED, vertical=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, showCurrentValue=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'value', 'color', 'size', 'vertical', 'min', 'max', 'step', 'showCurrentValue', 'label', 'labelPosition', 'className', 'style']
+    def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, color=Component.UNDEFINED, size=Component.UNDEFINED, vertical=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, showCurrentValue=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'value', 'color', 'size', 'vertical', 'min', 'max', 'step', 'showCurrentValue', 'theme', 'label', 'labelPosition', 'className', 'style']
         self._type = 'GraduatedBar'
         self._namespace = 'dash_daq'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'value', 'color', 'size', 'vertical', 'min', 'max', 'step', 'showCurrentValue', 'label', 'labelPosition', 'className', 'style']
+        self.available_properties = ['id', 'value', 'color', 'size', 'vertical', 'min', 'max', 'step', 'showCurrentValue', 'theme', 'label', 'labelPosition', 'className', 'style']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')

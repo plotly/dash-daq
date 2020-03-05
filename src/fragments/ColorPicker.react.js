@@ -9,6 +9,8 @@ import LabelContainer from '../styled/shared/LabelContainer.styled';
 
 import { defaultProps, propTypes } from '../components/ColorPicker.react';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 const DEFAULT_COLOR = colors.PRIMARY;
 
 const parseValue = value => {
@@ -63,13 +65,25 @@ class ColorPicker extends Component {
   }
 
   render() {
-    const { id, className, style } = this.props;
+    const { id, className, style, theme } = this.props;
+
+    const elementName = getClassName('colorpicker', theme);
+
+    const filteredProps = getFilteredProps(this.props);
 
     return (
-      <div id={id} className={className} style={style}>
-        <LabelContainer {...this.props}>
-          <Container {...this.props} glow={this.calcHandleGlow}>
-            <ChromePicker color={parseValue(this.state.value)} onChangeComplete={this.setValue} />
+      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
+        <LabelContainer className={elementName + '__label'} {...filteredProps}>
+          <Container
+            className={elementName + '__container'}
+            {...filteredProps}
+            glow={this.calcHandleGlow}
+          >
+            <ChromePicker
+              className={elementName + '__chromepicker'}
+              color={parseValue(this.state.value)}
+              onChangeComplete={this.setValue}
+            />
           </Container>
         </LabelContainer>
       </div>

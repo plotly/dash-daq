@@ -90,13 +90,13 @@ describe('Tank', () => {
   });
 
   it('has assigned className', () => {
-    const component = shallow(<Tank className="testClass" />);
+    const component = mount(<Tank className="testClass" />);
     expect(component.hasClass('testClass')).toBeTruthy();
   });
 
   it('has assigned styles', () => {
     const style = { width: '600px' };
-    const component = shallow(<Tank style={style} />);
+    const component = mount(<Tank style={style} />);
 
     expect(component.prop('style')).toBe(style);
   });
