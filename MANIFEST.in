@@ -5,4 +5,4 @@ include dash_daq/async-*.js.map
 include dash_daq/metadata.json
 include dash_daq/package-info.json
 include README.md
-include LICENSE.md
+include LICENSE
