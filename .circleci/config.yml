@@ -27,8 +27,6 @@ jobs:
                 command: |
                     python -m venv venv
                     . venv/bin/activate
-                    pip install dash[dev]>=1.6.1
-                    pip uninstall dash dash-renderer -y
                     git clone --depth 1 https://github.com/plotly/dash.git dash-main
                     cd dash-main && pip install -e .[dev,testing]
                     cd dash-renderer && npm run build && pip install -e . && cd ../..
