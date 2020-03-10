@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
-import { default as Input } from 'react-numeric-input';
 
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 
 import { light, colors } from '../styled/constants';
-
 import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+import Input from './../helpers/NumericInput';
 
 /**
  * A numeric input component that can be
