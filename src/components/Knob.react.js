@@ -10,6 +10,8 @@ import { computeProgress, roundToDecimal } from '../helpers/util';
 import { getColorValue } from '../helpers/colorRanges';
 import generateScale from '../helpers/scale';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 const RESET_START_ANGLE = -1;
 
 const valueToDeg = ({ min, max, value }) =>
@@ -125,23 +127,28 @@ class Knob extends Component {
 
   render() {
     const { min, max, value } = this.state;
+    const { id, className, labelPosition, color, style, disabled, theme } = this.props;
     const progress = computeProgress({ min, max, value, progressionTarget: 1 });
 
+    const elementName = getClassName('knob', theme);
+    const filteredProps = getFilteredProps(this.props);
+
     return (
-      <div id={this.props.id} className={this.props.className} style={this.props.style}>
+      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
         <LabelContainer
-          {...this.props}
-          labelCSS={this.props.labelPosition === 'top' ? null : 'transform: translateY(-40px);'}
+          className={elementName + '__label'}
+          {...filteredProps}
+          labelCSS={labelPosition === 'top' ? null : 'transform: translateY(-40px);'}
         >
-          <Container color={getColorValue(this.props.color)}>
+          <Container className={elementName + '__container'} color={getColorValue(color)}>
             <KnobSvg
               progress={progress}
-              {...this.props}
+              {...filteredProps}
               {...this.state}
               refFunc={ele => (this.knobElement = ele)}
-              onMouseDown={this.props.disabled ? this.noop : this.onMouseDown}
-              onMouseUp={this.props.disabled ? this.noop : this.onMouseUp}
-              onMouseMove={this.props.disabled ? this.noop : this.onMouseMove}
+              onMouseDown={disabled ? this.noop : this.onMouseDown}
+              onMouseUp={disabled ? this.noop : this.onMouseUp}
+              onMouseMove={disabled ? this.noop : this.onMouseMove}
             />
           </Container>
         </LabelContainer>

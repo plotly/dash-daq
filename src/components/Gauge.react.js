@@ -13,6 +13,8 @@ import log from '../helpers/logarithm';
 import generateScale from '../helpers/scale';
 import { getColorValue } from '../helpers/colorRanges';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 /**
  * A Gauge component that points to
  * a value between some range.
@@ -34,7 +36,8 @@ class Gauge extends React.Component {
       base,
       id,
       className,
-      style
+      style,
+      theme
     } = this.props;
 
     const colorValue = getColorValue(color);
@@ -48,8 +51,11 @@ class Gauge extends React.Component {
 
     const progress = computeProgress({ min, max, value, progressionTarget: 1 });
 
+    const elementName = getClassName('gauge', theme);
+
     const currentValue = (
       <CurrentValue
+        className={elementName + '__current-value'}
         valueColor={colorValue}
         units={units}
         css={'transform: translateY(-150%); top: 0;'}
@@ -57,15 +63,20 @@ class Gauge extends React.Component {
         {logarithmic ? log.formatValue(value, base) : value.toFixed(1)}
       </CurrentValue>
     );
+    const filteredProps = getFilteredProps(this.props);
 
     return (
-      <div id={id} className={className} style={style}>
+      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
         <LabelContainer
-          {...this.props}
+          className={elementName + '__label'}
+          {...filteredProps}
           labelCSS={this.props.labelPosition === 'top' ? null : 'transform: translateY(-80px);'}
         >
           <Container color={colorValue}>
-            <GaugeSVG {...{ ...this.props, scale }} progress={progress} />
+            <GaugeSVG
+              className={elementName + '__gauge'}
+              {...{ ...filteredProps, scale, progress }}
+            />
             {showCurrentValue && currentValue}
           </Container>
         </LabelContainer>

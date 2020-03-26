@@ -7,6 +7,8 @@ import { LEDContainer } from '../styled/LEDDisplay.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 import { colors, light } from '../styled/constants';
 
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+
 const VALID_INPUT = /^(\-)?((\.|:)?[0-9])*$/;
 const isValidInput = VALID_INPUT.test.bind(VALID_INPUT);
 
@@ -14,17 +16,24 @@ const isValidInput = VALID_INPUT.test.bind(VALID_INPUT);
  * A 7-bar LED display component.
  */
 const LEDDisplay = props => {
-  const digits = isValidInput(props.value) ? extractDigits(props) : null;
+  const elementName = getClassName('leddisplay', props.theme);
+  const digits = isValidInput(props.value) ? extractDigits(props, elementName) : null;
   const led = <LEDContainer backgroundColor={props.backgroundColor}>{digits}</LEDContainer>;
 
+  const filteredProps = getFilteredProps(props);
+
   return (
-    <div id={props.id} className={props.className} style={props.style}>
-      <LabelContainer {...props}>{digits ? led : 'Invalid Input'}</LabelContainer>
+    <div
+      id={props.id}
+      className={elementName + (props.className ? ' ' + props.className : '')}
+      style={props.style}
+    >
+      <LabelContainer {...filteredProps}>{digits ? led : 'Invalid Input'}</LabelContainer>
     </div>
   );
 };
 
-function extractDigits({ value, color, backgroundColor, theme, size }) {
+function extractDigits({ value, color, backgroundColor, theme, size }, elementName) {
   const digitStack = value
     .toString()
     .split('')
@@ -41,6 +50,7 @@ function extractDigits({ value, color, backgroundColor, theme, size }) {
 
     formattedDigits.push(
       <Digit
+        className={elementName + '__digit'}
         theme={theme}
         key={currKey++}
         value={currDigit}

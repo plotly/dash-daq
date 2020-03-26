@@ -1,35 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import color from 'color';
+import convertColor from 'color';
 import { withTheme } from 'styled-components';
 
 import IndicatorLight from '../styled/shared/Indicator.styled';
+
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 
 import { colors, light } from '../styled/constants';
+
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
 
 /**
  * A boolean indicator LED.
  */
 const Indicator = props => {
-  const bg = color(props.color)
+  const { id, className, color, size, width, height, value, style, theme } = props;
+
+  const bg = convertColor(color)
     .desaturate(0.2)
     .lighten(0.2)
     .rgb()
     .toString();
 
+  const elementName = getClassName('indicator', theme);
+  const filteredProps = getFilteredProps(props);
+
   return (
-    <div id={props.id} className={props.className} style={props.style}>
-      <LabelContainer {...props}>
+    <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
+      <LabelContainer {...filteredProps}>
         <IndicatorLight
-          size={props.size}
-          width={props.width}
-          height={props.height}
-          rectangular={props.width && props.height}
+          className={elementName + '__indicator' + (props.value ? '--on' : '--off')}
+          size={size}
+          width={width}
+          height={height}
+          rectangular={width && height}
           main={true}
-          on={props.value}
-          primary={props.color}
-          secondary={!props.theme.dark ? bg : null}
+          on={value}
+          primary={color}
+          secondary={!theme.dark ? bg : null}
         />
       </LabelContainer>
     </div>

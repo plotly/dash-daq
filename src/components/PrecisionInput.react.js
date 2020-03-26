@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
-import { default as Input } from 'react-numeric-input';
 
 import { Container, Digit, ExponentialDigit } from '../styled/PrecisionInput.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 
 import { light, colors } from '../styled/constants';
+import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+import Input from './../helpers/NumericInput';
 
 const defaultRootStyles = {
   display: 'flex',
@@ -81,7 +82,7 @@ class PrecisionInput extends Component {
   }
 
   render() {
-    const { size, theme } = this.props;
+    const { id, className, style, size, theme, disabled, precision, min, max } = this.props;
 
     const buttonStyle = {
       background: 'none',
@@ -103,49 +104,65 @@ class PrecisionInput extends Component {
       paddingLeft: padding,
       paddingTop: 4,
       paddingBottom: 4,
-      width: size || 56 + this.props.precision * 20,
+      width: size || 56 + precision * 20,
       height: 36,
-      color: theme.dark ? '#fff' : colors.OFF_WHITE,
+      backgroundColor: theme.dark ? '#22272a' : '#fff',
+      color: theme.dark ? '#fff' : '#000',
       fontSize: 14,
       lineHeight: 14,
       boxSizing: 'border-box'
     };
 
-    const precisionInput = (
-      <Input
-        autoFocus
-        disabled={this.props.disabled}
-        style={{
-          input: inputStyle,
-          'input:not(.form-control)': inputStyle,
-          btn: buttonStyle,
-          'btn:hover': buttonStyle,
-          'btn:active': buttonStyle,
-          'input:disabled': {
-            opacity: 0.65,
-            cursor: 'not-allowed'
-          }
-        }}
-        min={this.props.min}
-        max={this.props.max}
-        value={this.state.tempValue}
-        onChange={this.setTempValue}
-        onBlur={this.blur}
-      />
-    );
+    const elementName = getClassName('precisioninput', theme.dark);
 
-    const precisionOutput = (
-      <PrecisionOutput value={this.state.value} size={this.props.size} onClick={this.toggleInput} />
-    );
+    const filteredProps = getFilteredProps(this.props);
+
+    let precisionElement;
+
+    if (this.state.isInput) {
+      precisionElement = (
+        <Input
+          autoFocus
+          className={elementName + '__input'}
+          disabled={disabled}
+          style={{
+            input: inputStyle,
+            'input:not(.form-control)': inputStyle,
+            btn: buttonStyle,
+            'btn:hover': buttonStyle,
+            'btn:active': buttonStyle,
+            'input:disabled': {
+              opacity: 0.65,
+              cursor: 'not-allowed'
+            }
+          }}
+          min={min}
+          max={max}
+          value={this.state.tempValue}
+          onChange={this.setTempValue}
+          onBlur={this.blur}
+        />
+      );
+    } else {
+      precisionElement = (
+        <PrecisionOutput
+          elementName={elementName + '__output'}
+          value={this.state.value}
+          size={size}
+          onClick={this.toggleInput}
+          color={theme.dark ? '#fff' : colors.OFF_WHITE}
+        />
+      );
+    }
 
     return (
       <div
-        id={this.props.id}
-        className={this.props.className}
-        style={Object.assign({}, defaultRootStyles, this.props.style)}
+        id={id}
+        className={elementName + (className ? ' ' + className : '')}
+        style={Object.assign({}, defaultRootStyles, style)}
       >
-        <LabelContainer {...this.props}>
-          {this.state.isInput ? precisionInput : precisionOutput}
+        <LabelContainer className={elementName + '__label'} {...filteredProps}>
+          {precisionElement}
         </LabelContainer>
       </div>
     );
@@ -167,19 +184,23 @@ const mergeLeadingNegative = digits => {
   return digits;
 };
 
-const PrecisionOutput = ({ value, onClick, size }) => {
+const PrecisionOutput = ({ value, onClick, size, elementName }) => {
   const [characteristic, mantissa] = toScientificNotation(value).split('e');
   const characteristicDigits = mergeLeadingNegative(characteristic.split(''));
   const mantissaDigits = mergeLeadingNegative(mantissa.split(''));
 
   return (
-    <Container size={size} onClick={onClick}>
+    <Container size={size} onClick={onClick} className={elementName}>
       {characteristicDigits.map((digit, i) => (
-        <Digit key={`d${i}`}>{digit}</Digit>
+        <Digit className={elementName + '__digit'} key={`d${i}`}>
+          {digit}
+        </Digit>
       ))}
-      <ExponentialDigit>E</ExponentialDigit>
+      <ExponentialDigit className={elementName + '__exp'}>E</ExponentialDigit>
       {mantissaDigits.map((digit, i) => (
-        <ExponentialDigit key={`e${i}`}>{digit}</ExponentialDigit>
+        <ExponentialDigit className={elementName + '__expdigit'} key={`e${i}`}>
+          {digit}
+        </ExponentialDigit>
       ))}
     </Container>
   );

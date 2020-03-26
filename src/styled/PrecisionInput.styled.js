@@ -36,6 +36,7 @@ export const Digit = styled.div`
 
 const darkDigit = css`
   border-right: 1px solid rgba(0, 0, 0, 0.4);
+  color: #fff;
 `;
 
 const lightDigit = css`
