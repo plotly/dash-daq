@@ -2,7 +2,7 @@
 
 DAQ components for Dash.
 
-Docs: https://dash.plot.ly/dash-daq
+Docs: https://dash.plotly.com/dash-daq
 
 ## Installation
 
@@ -24,7 +24,7 @@ $ yarn start
 ```
 
 ## Documentation
-Component API documentation can be found at https://dash.plot.ly/dash-daq
+Component API documentation can be found at https://dash.plotly.com/dash-daq
 
 ## Development
 

@@ -17,7 +17,7 @@ setup(
     version=package["version"],
     url='http://github.com/plotly/{}'.format(package_name.replace('_', '-')),
     author=package['author'],
-    author_email='dashdaq@plot.ly',
+    author_email='dashdaq@plotly.com',
     packages=[package_name],
     include_package_data=True,
     description=package['description'] if 'description' in package else package_name,
