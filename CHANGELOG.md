@@ -7,6 +7,11 @@ Changelog](http://keepachangelog.com/en/1.0.0/) and this project
 adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- [#105](https://github.com/plotly/dash-daq/pull/105) Added [persistence](https://dash.plotly.com/persistence) for
+components BooleanSwitch, ColorPicker, Knob, NumericInput, PowerButton, PrecisionInput, Slider and ToggleSwitch
+
+### Changed
 - [#92](https://github.com/plotly/dash-daq/pull/92) Update from React 16.8.6 to 16.13.0
 
 ## [0.4.0] - 2020-03-04
