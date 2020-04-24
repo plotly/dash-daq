@@ -150,4 +150,6 @@ BooleanSwitch.propTypes = {
   persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-export default withTheme(BooleanSwitch);
+const ThemedBooleanSwitch = withTheme(BooleanSwitch);
+ThemedBooleanSwitch.defaultProps = BooleanSwitch.defaultProps;
+export default ThemedBooleanSwitch;

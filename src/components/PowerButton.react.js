@@ -176,4 +176,6 @@ PowerButton.propTypes = {
   persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-export default withTheme(PowerButton);
+const ThemedPowerButton = withTheme(PowerButton);
+ThemedPowerButton.defaultProps = PowerButton.defaultProps;
+export default ThemedPowerButton;

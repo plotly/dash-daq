@@ -207,4 +207,6 @@ NumericInput.propTypes = {
   persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-export default withTheme(NumericInput);
+const ThemedNumericInput = withTheme(NumericInput);
+ThemedNumericInput.defaultProps = NumericInput.defaultProps;
+export default ThemedNumericInput;

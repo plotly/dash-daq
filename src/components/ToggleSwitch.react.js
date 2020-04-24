@@ -289,4 +289,6 @@ ToggleSwitch.propTypes = {
   persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-export default withTheme(ToggleSwitch);
+const ThemedToggleSwitch = withTheme(ToggleSwitch);
+ThemedToggleSwitch.defaultProps = ToggleSwitch.defaultProps;
+export default ThemedToggleSwitch;

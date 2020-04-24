@@ -347,4 +347,6 @@ Knob.propTypes = {
   persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-export default withTheme(Knob);
+const ThemedKnob = withTheme(Knob);
+ThemedKnob.defaultProps = Knob.defaultProps;
+export default ThemedKnob;

@@ -323,4 +323,6 @@ PrecisionInput.propTypes = {
   persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
 };
 
-export default withTheme(PrecisionInput);
+const ThemedPrecisionInput = withTheme(PrecisionInput);
+ThemedPrecisionInput.defaultProps = PrecisionInput.defaultProps;
+export default ThemedPrecisionInput;
