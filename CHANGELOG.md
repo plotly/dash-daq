@@ -12,6 +12,8 @@ adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 ## [0.4.0] - 2020-03-04
 ### Added
 - [#80](https://github.com/plotly/dash-daq/pull/80) Added `theme` prop to `GraduatedBar` component.
+- [#105](https://github.com/plotly/dash-daq/pull/105) Added [persistence](https://dash.plotly.com/persistence) for
+components BooleanSwitch, ColorPicker, Knob, NumericInput, PowerButton, PrecisionInput, Slider and ToggleSwitch
 
 ### Changed
 - [#91](https://github.com/plotly/dash-daq/pull/91) Renamed async modules with hyphen `-` instead of tilde `~`
