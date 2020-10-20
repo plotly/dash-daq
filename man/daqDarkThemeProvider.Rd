@@ -23,3 +23,6 @@ those elements have the following types:
   - detail (character; optional): color used for ui details, like borders
   - dark (logical; optional): true for dark mode, false for light. Theme object to override with a custom theme}
 }
+
+\value{named list of JSON elements corresponding to React.js properties and their values}
+

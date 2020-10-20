@@ -10,8 +10,9 @@ A boolean indicator LED.
 }
 
 \usage{
-daqIndicator(id=NULL, value=NULL, color=NULL, size=NULL, width=NULL, height=NULL, theme=NULL,
-label=NULL, labelPosition=NULL, className=NULL, style=NULL)
+daqIndicator(id=NULL, value=NULL, color=NULL, size=NULL, width=NULL,
+height=NULL, theme=NULL, label=NULL, labelPosition=NULL,
+className=NULL, style=NULL)
 }
 
 \arguments{
@@ -41,3 +42,6 @@ pass an object with label and style properties}
 
 \item{style}{Named list. Style to apply to the root component element}
 }
+
+\value{named list of JSON elements corresponding to React.js properties and their values}
+

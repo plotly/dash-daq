@@ -10,8 +10,9 @@ A joystick.
 }
 
 \usage{
-daqJoystick(id=NULL, disabled=NULL, angle=NULL, force=NULL, size=NULL, theme=NULL,
-label=NULL, labelPosition=NULL, className=NULL, style=NULL)
+daqJoystick(id=NULL, disabled=NULL, angle=NULL, force=NULL, size=NULL,
+theme=NULL, label=NULL, labelPosition=NULL, className=NULL,
+style=NULL)
 }
 
 \arguments{
@@ -39,3 +40,6 @@ pass an object with label and style properties}
 
 \item{style}{Named list. Style to apply to the root component element}
 }
+
+\value{named list of JSON elements corresponding to React.js properties and their values}
+

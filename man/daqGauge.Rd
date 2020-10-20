@@ -10,8 +10,9 @@ A Gauge component that points to a value between some range.
 }
 
 \usage{
-daqGauge(id=NULL, value=NULL, size=NULL, min=NULL, max=NULL, base=NULL, logarithmic=NULL,
-showCurrentValue=NULL, units=NULL, theme=NULL, label=NULL, labelPosition=NULL,
+daqGauge(id=NULL, value=NULL, size=NULL, min=NULL, max=NULL,
+base=NULL, logarithmic=NULL, showCurrentValue=NULL,
+units=NULL, theme=NULL, label=NULL, labelPosition=NULL,
 scale=NULL, color=NULL, className=NULL, style=NULL)
 }
 
@@ -83,3 +84,6 @@ those elements have the following types:
 
 \item{style}{Named list. Style to apply to the root component element.}
 }
+
+\value{named list of JSON elements corresponding to React.js properties and their values}
+

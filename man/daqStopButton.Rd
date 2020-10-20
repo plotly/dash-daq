@@ -10,9 +10,9 @@ A Stop button component
 }
 
 \usage{
-daqStopButton(children=NULL, id=NULL, size=NULL, buttonText=NULL, n_clicks=NULL,
-disabled=NULL, theme=NULL, label=NULL, labelPosition=NULL, className=NULL,
-style=NULL)
+daqStopButton(children=NULL, id=NULL, size=NULL, buttonText=NULL,
+n_clicks=NULL, disabled=NULL, theme=NULL, label=NULL,
+labelPosition=NULL, className=NULL, style=NULL)
 }
 
 \arguments{
@@ -43,3 +43,6 @@ style properties.}
 
 \item{style}{Named list. Style to apply to the root component element.}
 }
+
+\value{named list of JSON elements corresponding to React.js properties and their values}
+

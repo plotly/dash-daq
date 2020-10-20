@@ -10,9 +10,10 @@ A graduated bar component that displays a value within some range as a percentag
 }
 
 \usage{
-daqGraduatedBar(id=NULL, value=NULL, color=NULL, size=NULL, vertical=NULL, min=NULL, max=NULL,
-step=NULL, showCurrentValue=NULL, label=NULL, labelPosition=NULL,
-className=NULL, style=NULL)
+daqGraduatedBar(id=NULL, value=NULL, color=NULL, size=NULL, vertical=NULL,
+min=NULL, max=NULL, step=NULL, showCurrentValue=NULL,
+theme=NULL, label=NULL, labelPosition=NULL, className=NULL,
+style=NULL)
 }
 
 \arguments{
@@ -47,6 +48,8 @@ progress blocks.}
 \item{showCurrentValue}{Logical. If true, the current percentage
  of the bar will be displayed}
 
+\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
+
 \item{label}{Character | lists containing elements 'style', 'label'.
 those elements have the following types:
   - style (named list; optional)
@@ -58,3 +61,6 @@ those elements have the following types:
 
 \item{style}{Named list. Style to apply to the root component element.}
 }
+
+\value{named list of JSON elements corresponding to React.js properties and their values}
+

@@ -10,9 +10,10 @@ A thermometer component that fills to a value between some range
 }
 
 \usage{
-daqThermometer(id=NULL, value=NULL, height=NULL, width=NULL, color=NULL, min=NULL, max=NULL,
-base=NULL, logarithmic=NULL, showCurrentValue=NULL, units=NULL, theme=NULL,
-label=NULL, labelPosition=NULL, scale=NULL, className=NULL, style=NULL)
+daqThermometer(id=NULL, value=NULL, height=NULL, width=NULL, color=NULL,
+min=NULL, max=NULL, base=NULL, logarithmic=NULL,
+showCurrentValue=NULL, units=NULL, theme=NULL, label=NULL,
+labelPosition=NULL, scale=NULL, className=NULL, style=NULL)
 }
 
 \arguments{
@@ -75,3 +76,6 @@ those elements have the following types:
 
 \item{style}{Named list. Style to apply to the root component element.}
 }
+
+\value{named list of JSON elements corresponding to React.js properties and their values}
+
