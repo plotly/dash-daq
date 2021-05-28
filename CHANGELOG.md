@@ -6,6 +6,10 @@ The format is based on [Keep a
 Changelog](http://keepachangelog.com/en/1.0.0/) and this project
 adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- [#117](https://github.com/plotly/dash-daq/pull/117) Added `digits` prop to `Gauge` component.
+
 ## [0.5.0] - 2020-04-27
 ### Added
 - [#105](https://github.com/plotly/dash-daq/pull/105) Added [persistence](https://dash.plotly.com/persistence) for
