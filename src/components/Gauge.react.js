@@ -41,7 +41,6 @@ class Gauge extends React.Component {
     } = this.props;
 
     const colorValue = getColorValue(color);
-    console.log(colorValue);
     const rawValue = this.props.value != null ? this.props.value : min;
     const dirtyValue = logarithmic ? log.compute(rawValue) : rawValue;
     const value = sanitizeRangeValue({ min, max, value: dirtyValue });
@@ -52,6 +51,17 @@ class Gauge extends React.Component {
     const progress = computeProgress({ min, max, value, progressionTarget: 1 });
 
     const elementName = getClassName('gauge', theme);
+    // console.log(
+    //   `colorValue: ${colorValue}
+    //   rawValue: ${rawValue}
+    //   dirtyValue: ${dirtyValue}
+    //   value: ${value}
+    //   formatter: ${formatter}
+    //   scale: ${scale}
+    //   progress: ${progress}
+    //   min: ${min}
+    //   max: ${max}`
+    // );
 
     const currentValue = (
       <CurrentValue
@@ -64,7 +74,6 @@ class Gauge extends React.Component {
       </CurrentValue>
     );
     const filteredProps = getFilteredProps(this.props);
-
     return (
       <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
         <LabelContainer

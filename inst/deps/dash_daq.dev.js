@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630160101");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630154845");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26445,18 +26445,7 @@ function (_React$Component) {
         value: value,
         progressionTarget: 1
       });
-      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getClassName"])('gauge', theme); // console.log(
-      //   `colorValue: ${colorValue} 
-      //   rawValue: ${rawValue} 
-      //   dirtyValue: ${dirtyValue} 
-      //   value: ${value} 
-      //   formatter: ${formatter} 
-      //   scale: ${scale} 
-      //   progress: ${progress}
-      //   min: ${min}
-      //   max: ${max}`
-      // );
-
+      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getClassName"])('gauge', theme);
       var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_6__["default"], {
         className: elementName + '__current-value',
         valueColor: colorValue,
@@ -31032,11 +31021,7 @@ var getLinearGradientCSS = function getLinearGradientCSS(_ref9) {
 };
 var getColorValue = function getColorValue(color) {
   return color && (typeof color === 'string' ? color : color["default"]);
-}; // export const getColorValue = color => {
-//   // console.log(color && (typeof color === 'string' ? color : color.default));
-//   return color && (typeof color === 'string' ? color : color.default);
-// };
-
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   isContiguous: isContiguous,
   getSortedEntries: getSortedEntries,
@@ -34096,7 +34081,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/styled/constants.js");
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n              background-image: linear-gradient(\n                145deg,\n                rgba(255, 255, 255, 0.1) 0%,\n                rgba(0, 0, 0, 0.5) 100%\n              );\n              background-blend-mode: overlay;\n              box-shadow: inset 0 0 8px -1px rgba(0, 0, 0, 0.5), inset 0 0 4px 0 rgba(0, 0, 0, 0.6),\n                -1px -1px 0px 0px rgba(0, 0, 0, 0.9), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n            "]);
+  var data = _taggedTemplateLiteral(["\n        background-image: linear-gradient(145deg, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 100%);\n        background-blend-mode: overlay;\n        box-shadow: inset 0 0 8px -1px rgba(0,0,0,0.5),\n                    inset 0 0 4px 0 rgba(0,0,0,0.6),\n                    -1px -1px 0px 0px rgba(0,0,0,0.9),\n                    1px 1px 0px 0px rgba(255,255,255,0.1);\n        "]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -34106,7 +34091,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n              box-shadow: 0 0 8px 2px ", ", 1px 1px 0px 0px rgba(0, 0, 0, 0.9),\n                -1px -1px 0px 0px rgba(255, 255, 255, 0.1);\n            "]);
+  var data = _taggedTemplateLiteral(["\n          box-shadow: 0 0 8px 2px ", ", 1px 1px 0px 0px rgba(0,0,0,0.9), -1px -1px 0px 0px rgba(255,255,255,0.1);\n        "]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -34126,7 +34111,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: ", ";\n  transition: all 100ms ease-in-out;\n  ", "\n"]);
+  var data = _taggedTemplateLiteral(["\n  border-radius: ", ";\n  transition: all 100ms ease-in-out;\n  ", "\n\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -34191,7 +34176,7 @@ Indicator.propTypes = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n      ", "\n    "]);
+  var data = _taggedTemplateLiteral(["", ""]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -34201,7 +34186,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n          margin-top: 8px;\n        "]);
+  var data = _taggedTemplateLiteral(["margin-top: 8px;"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -34211,7 +34196,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n          margin-bottom: 8px;\n        "]);
+  var data = _taggedTemplateLiteral(["margin-bottom: 8px;"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
