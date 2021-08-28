@@ -15,39 +15,40 @@ export const colorRangesTrack = (props, dimensions) => {
 
   // calculate stops
   const stops = getSortedEntries(color.ranges).map(([colorValue, range], i) => {
-    const startDeg = range[0] * 1.0 / max * TRACK_ARC_DEG + GAP_ARC_DEG;
-    const endDeg = range[1] * 1.0 / max * TRACK_ARC_DEG + GAP_ARC_DEG;
+    const startDeg = ((range[0] * 1.0) / max) * TRACK_ARC_DEG + GAP_ARC_DEG;
+    const endDeg = ((range[1] * 1.0) / max) * TRACK_ARC_DEG + GAP_ARC_DEG;
 
     if (color.gradient) {
       // no transition between black band and first color
       if (i === 0) {
-        return `${colorValue} 0`
+        return `${colorValue} 0`;
       }
 
-      return `${colorValue} ${startDeg + GRADIENT_BLEND}deg, ${colorValue} ${endDeg - GRADIENT_BLEND}deg`;
+      return `${colorValue} ${startDeg + GRADIENT_BLEND}deg, ${colorValue} ${endDeg -
+        GRADIENT_BLEND}deg`;
     }
 
     return `${colorValue} ${startDeg}deg, ${colorValue} ${endDeg}deg`;
   });
 
-  stops.unshift([`black ${GAP_ARC_DEG}deg`]) // add black band for bottom gap
+  stops.unshift([`black ${GAP_ARC_DEG}deg`]); // add black band for bottom gap
 
   if (typeof window === 'undefined') {
-    return null
+    return null;
   }
 
   if (!window.ConicGradient) {
     // eslint-disable-next-line
     require('conic-gradient'); // globally sets ConicGradient
   }
-  const ConicGradient = window.ConicGradient
+  const ConicGradient = window.ConicGradient;
   const gradient = new ConicGradient({
     stops: stops.join(', '),
     size: 400
   });
 
   // unique id for each track
-  const id = `colorRangesImage-${getRandomInt()}`
+  const id = `colorRangesImage-${getRandomInt()}`;
   return (
     <g>
       <defs>
@@ -108,12 +109,15 @@ const getScaleString = v => {
   if (!v) return '';
 
   // is jsx element?
-  if (v.props) return v.props.children[0] + ' '
+  if (v.props) return v.props.children[0] + ' ';
 
-  return v && v.label || v;
-}
+  return (v && v.label) || v;
+};
 
-export const drawScale = ({ min, max, step, scale }, { CX, CY, SCALE_TICK_OUTER_RAD, SCALE_TICK_INNER_RAD, SCALE_TEXT_RAD, IS_GAUGE }) => {
+export const drawScale = (
+  { min, max, step, scale },
+  { CX, CY, SCALE_TICK_OUTER_RAD, SCALE_TICK_INNER_RAD, SCALE_TEXT_RAD, IS_GAUGE }
+) => {
   const START_ANGLE_OFFSET = -225;
   const DEFAULT_LONGEST_STRING = 3;
 
@@ -166,7 +170,7 @@ export const drawScale = ({ min, max, step, scale }, { CX, CY, SCALE_TICK_OUTER_
           textAnchor="middle"
           style={markValue && markValue.style ? markValue.style : null}
         >
-          { (markValue && markValue.label) || markValue }
+          {(markValue && markValue.label) || markValue}
         </text>
       );
     } else {
@@ -193,4 +197,4 @@ export const drawScale = ({ min, max, step, scale }, { CX, CY, SCALE_TICK_OUTER_
   });
 
   return scaleItems;
-}
+};
