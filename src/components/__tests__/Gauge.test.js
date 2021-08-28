@@ -142,4 +142,12 @@ describe.only('Gauge', () => {
     expect(label).toHaveLength(1);
     expect(label.prop('style').color).toBe('blue');
   });
+
+  it('custom test', () => {
+    const component = mount(<Gauge label={{ label: 'Test Label', style: { color: 'blue' } }} />);
+    const label = component.find(Label);
+    console.log({ ...component });
+    expect(label).toHaveLength(1);
+    expect(label.prop('style').color).toBe('blue');
+  });
 });

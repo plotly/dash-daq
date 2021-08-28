@@ -41,7 +41,7 @@ class Gauge extends React.Component {
     } = this.props;
 
     const colorValue = getColorValue(color);
-
+    console.log(colorValue);
     const rawValue = this.props.value != null ? this.props.value : min;
     const dirtyValue = logarithmic ? log.compute(rawValue) : rawValue;
     const value = sanitizeRangeValue({ min, max, value: dirtyValue });
