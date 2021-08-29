@@ -230,7 +230,11 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
+<<<<<<< HEAD
 /******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630183345");
+=======
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630160101");
+>>>>>>> 0f640bfa4ace10bb6811d741486d19b35513d7b3
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26446,7 +26450,18 @@ function (_React$Component) {
         value: value,
         progressionTarget: 1
       });
-      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getClassName"])('gauge', theme);
+      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getClassName"])('gauge', theme); // console.log(
+      //   `colorValue: ${colorValue} 
+      //   rawValue: ${rawValue} 
+      //   dirtyValue: ${dirtyValue} 
+      //   value: ${value} 
+      //   formatter: ${formatter} 
+      //   scale: ${scale} 
+      //   progress: ${progress}
+      //   min: ${min}
+      //   max: ${max}`
+      // );
+
       var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_6__["default"], {
         className: elementName + '__current-value',
         valueColor: colorValue,
@@ -31124,7 +31139,11 @@ var getLinearGradientCSS = function getLinearGradientCSS(_ref9) {
 };
 var getColorValue = function getColorValue(color) {
   return color && (typeof color === 'string' ? color : color["default"]);
-};
+}; // export const getColorValue = color => {
+//   // console.log(color && (typeof color === 'string' ? color : color.default));
+//   return color && (typeof color === 'string' ? color : color.default);
+// };
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   isContiguous: isContiguous,
   getSortedEntries: getSortedEntries,

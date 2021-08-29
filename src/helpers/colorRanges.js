@@ -3,6 +3,7 @@ import tinygradient from 'tinygradient';
 export const isContiguous = ({ color, min, max }) => {
   const ranges = Object.values(color.ranges);
   ranges.sort((r1, r2) => r1[0] - r2[0]);
+  console.log('isContiguous: ' + ranges + ranges[ranges.length - 1]);
 
   // color ranges start at min and end at max
   if (ranges[0][0] !== min || ranges[ranges.length - 1][1] !== max) return false;
@@ -126,7 +127,10 @@ export const getLinearGradientCSS = ({ color, min, max, vertical = false }) => {
 };
 
 export const getColorValue = color => color && (typeof color === 'string' ? color : color.default);
-
+// export const getColorValue = color => {
+//   // console.log(color && (typeof color === 'string' ? color : color.default));
+//   return color && (typeof color === 'string' ? color : color.default);
+// };
 export default {
   isContiguous,
   getSortedEntries,

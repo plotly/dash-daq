@@ -26413,6 +26413,8 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
+
+          color = _this$props.color,
           max = _this$props.max,
           min = _this$props.min,
           showCurrentValue = _this$props.showCurrentValue,
