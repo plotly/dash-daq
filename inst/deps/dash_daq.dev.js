@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630183345");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630167673");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26423,8 +26423,7 @@ function (_React$Component) {
           className = _this$props.className,
           style = _this$props.style,
           theme = _this$props.theme;
-      var color = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_11__["convertInRange"])(this.props.color, max, min ? min : 0);
-      window.color = color;
+      var color = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_11__["convertInRange"])(this.props.color, max);
       var colorValue = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_11__["getColorValue"])(color);
       var rawValue = this.props.value != null ? this.props.value : min;
       var dirtyValue = logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_9__["default"].compute(rawValue) : rawValue;
@@ -26458,7 +26457,7 @@ function (_React$Component) {
         id: id,
         className: elementName + (className ? ' ' + className : ''),
         style: style
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is color: ", JSON.stringify(color)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
         className: elementName + '__label'
       }, filteredProps, {
         labelCSS: this.props.labelPosition === 'top' ? null : 'transform: translateY(-80px);'
@@ -30943,14 +30942,6 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -30975,7 +30966,7 @@ var isContiguous = function isContiguous(_ref) {
 
   return true;
 };
-var convertInRange = function convertInRange(color, max, min) {
+var convertInRange = function convertInRange(color, max) {
   if (!color) {
     return color;
   }
@@ -30985,83 +30976,49 @@ var convertInRange = function convertInRange(color, max, min) {
   } else {
     var ranges = _objectSpread({}, color.ranges);
 
-    var rangeArr = getRangeArray(ranges);
-    rangeArr.sort(function (a1, a2) {
-      return a1 - a2;
-    });
-    var maxArr = [];
-    var minArr = [];
+    var maxObj = {
+      "key": null,
+      "index": null,
+      "value": 0
+    };
+    var foundGreater = false;
 
     for (var i in ranges) {
       if (ranges[i][0] > max) {
-        maxArr.push({
-          'key': i,
-          'index': 0
-        });
+        ranges[i][0] = max;
+        foundGreater = true;
       }
 
       if (ranges[i][1] > max) {
-        maxArr.push({
-          'key': i,
-          'index': 1
-        });
-      }
-
-      if (ranges[i][0] < min) {
-        minArr.push({
-          'key': i,
-          'index': 0
-        });
-      }
-
-      if (ranges[i][1] < min) {
-        minArr.push({
-          'key': i,
-          'index': 1
-        });
-      }
-
-      if (rangeArr[0] == ranges[i][0] && ranges[i][0] > min) {
-        ranges[i][0] = min;
-      }
-
-      if (rangeArr[0] == ranges[i][1] && ranges[i][1] > min) {
-        ranges[i][1] = min;
-      }
-
-      if (rangeArr[rangeArr.length - 1] == ranges[i][0] && ranges[i][0] < max) {
-        ranges[i][0] = max;
-      }
-
-      if (rangeArr[rangeArr.length - 1] == ranges[i][1] && ranges[i][1] < max) {
         ranges[i][1] = max;
+        foundGreater = true;
+      }
+
+      if (maxObj["value"] < ranges[i][0]) {
+        maxObj = {
+          "key": i,
+          "index": 0,
+          "value": ranges[i][0]
+        };
+      }
+
+      if (maxObj["value"] < ranges[i][1]) {
+        maxObj = {
+          "key": i,
+          "index": 1,
+          "value": ranges[i][1]
+        };
       }
     }
 
-    for (var _i = 0; _i < minArr.length; _i++) {
-      ranges[minArr[_i]['key']][minArr[_i]['index']] = min;
+    if (foundGreater) {
+      ranges[maxObj["key"]][maxObj["index"]] = max;
     }
 
-    for (var _i2 = 0; _i2 < maxArr.length; _i2++) {
-      ranges[maxArr[_i2]['key']][maxArr[_i2]['index']] = max;
-    }
-
-    console.log(ranges);
     color.ranges = ranges;
     return _objectSpread({}, color);
   }
 };
-
-var getRangeArray = function getRangeArray(ranges) {
-  var arr = [];
-
-  for (var i in ranges) {
-    arr = [].concat(_toConsumableArray(arr), _toConsumableArray(ranges[i]));
-  }
-
-  return arr;
-};
-
 var getSortedEntries = function getSortedEntries(scale) {
   var entries = Object.entries(scale);
   entries.sort(function (_ref2, _ref3) {

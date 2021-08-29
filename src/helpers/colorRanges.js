@@ -15,6 +15,71 @@ export const isContiguous = ({ color, min, max }) => {
   return true;
 };
 
+export const convertInRange = (color, max, min) => {
+  if (!color) {
+    return color;
+  }
+  if (color.ranges == null) {
+    return color;
+  } else {
+    let ranges = { ...color.ranges };
+    let rangeArr = getRangeArray(ranges);
+    rangeArr.sort((a1, a2) => a1 - a2);
+    let maxArr = [];
+    let minArr = [];
+    for (let i in ranges) {
+      if (ranges[i][0] > max) {
+        maxArr.push({ key: i, index: 0 });
+      }
+      if (ranges[i][1] > max) {
+        maxArr.push({ key: i, index: 1 });
+      }
+
+      if (ranges[i][0] < min) {
+        minArr.push({ key: i, index: 0 });
+      }
+      if (ranges[i][1] < min) {
+        minArr.push({ key: i, index: 1 });
+      }
+
+      if (rangeArr[0] == ranges[i][0] && ranges[i][0] > min) {
+        ranges[i][0] = min;
+      }
+      if (rangeArr[0] == ranges[i][1] && ranges[i][1] > min) {
+        ranges[i][1] = min;
+      }
+
+      if (rangeArr[rangeArr.length - 1] == ranges[i][0] && ranges[i][0] < max) {
+        ranges[i][0] = max;
+      }
+      if (rangeArr[rangeArr.length - 1] == ranges[i][1] && ranges[i][1] < max) {
+        ranges[i][1] = max;
+      }
+    }
+
+    for (let i = 0; i < minArr.length; i++) {
+      ranges[minArr[i]['key']][minArr[i]['index']] = min;
+    }
+
+    for (let i = 0; i < maxArr.length; i++) {
+      ranges[maxArr[i]['key']][maxArr[i]['index']] = max;
+    }
+
+    console.log(ranges);
+
+    color.ranges = ranges;
+    return { ...color };
+  }
+};
+
+const getRangeArray = ranges => {
+  let arr = [];
+  for (let i in ranges) {
+    arr = [...arr, ...ranges[i]];
+  }
+  return arr;
+};
+
 export const getSortedEntries = scale => {
   const entries = Object.entries(scale);
   entries.sort(([, r1], [, r2]) => r1[0] - r2[0]);

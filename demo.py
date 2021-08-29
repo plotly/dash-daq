@@ -25,6 +25,53 @@ root_layout = html.Div([
 
     html.Hr(),
 
+    html.Div([
+        Gauge(
+        label='Gauge',
+        logarithmic=True,
+        max=4,
+        min=0,
+        scale={
+            'start': 0,
+            'interval': 1,
+            'labelInterval': 1
+        },
+        value=2,
+        color={
+            'default': 'red',
+            'gradient': True,
+            'ranges': {
+                # 'red': [0, 1],
+                'blue': [1, 2],
+                'green': [2, 3],
+                'pink': [3, 10]
+            }
+        }
+        ),
+        # Gauge(
+        # label='Gauge',
+        # max=100,
+        # min=5,
+        # scale={
+        #     'start': 0,
+        #     'interval': 10,
+        #     'labelInterval': 1
+        # },
+        # value=10,
+        # color={
+        #     'default': 'red',
+        #     'gradient': True,
+        #     'ranges': {
+        #         'red': [5, 10],
+        #         'blue': [10, 20],
+        #         'green': [20, 30],
+        #         'pink': [40, 50],
+        #         'yellow': [30, 40],
+        #     }
+        # }
+        # )
+    ]),
+
     html.Div(id='page-content'),
 
     html.Div(

@@ -144,7 +144,21 @@ describe.only('Gauge', () => {
   });
 
   it('custom test', () => {
-    const component = mount(<Gauge label={{ label: 'Test Label', style: { color: 'blue' } }} />);
+    const component = mount(
+      <Gauge
+        label={{ label: 'Test Label', style: { color: 'blue' } }}
+        max={4}
+        color={{
+          default: 'red',
+          gradient: true,
+          ranges: {
+            blue: [1, 2],
+            green: [2, 3],
+            pink: [3, 10]
+          }
+        }}
+      />
+    );
     const label = component.find(Label);
     console.log({ ...component });
     expect(label).toHaveLength(1);

@@ -11,7 +11,7 @@ import { light } from '../styled/constants';
 import { sanitizeRangeValue, computeProgress } from '../helpers/util';
 import log from '../helpers/logarithm';
 import generateScale from '../helpers/scale';
-import { getColorValue } from '../helpers/colorRanges';
+import { convertInRange, getColorValue } from '../helpers/colorRanges';
 
 import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
 
@@ -27,7 +27,6 @@ class Gauge extends React.Component {
 
   render() {
     const {
-      color,
       max,
       min,
       showCurrentValue,
@@ -40,8 +39,10 @@ class Gauge extends React.Component {
       theme
     } = this.props;
 
+    const color = convertInRange(this.props.color, max, min ? min : 0);
+    window.color = color;
+
     const colorValue = getColorValue(color);
-    console.log(colorValue);
     const rawValue = this.props.value != null ? this.props.value : min;
     const dirtyValue = logarithmic ? log.compute(rawValue) : rawValue;
     const value = sanitizeRangeValue({ min, max, value: dirtyValue });
@@ -67,6 +68,7 @@ class Gauge extends React.Component {
 
     return (
       <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
+        <p>This is color: {JSON.stringify(color)}</p>
         <LabelContainer
           className={elementName + '__label'}
           {...filteredProps}
