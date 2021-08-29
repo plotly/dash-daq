@@ -69,73 +69,13 @@ root_layout = html.Div(
             ],
             style={"display": "none"},
         ),
-        html.Div(
-            [
-                Gauge(
-                    label="Gauge",
-                    logarithmic=True,
-                    max=4,
-                    min=1,
-                    scale={"start": 0, "interval": 1, "labelInterval": 1},
-                    value=2,
-                    color={
-                        "default": "red",
-                        "gradient": True,
-                        "ranges": {
-                            "blue": [-1, 2],
-                            "green": [2, 3],
-                        },
-                    },
-                    showCurrentValue=True,
-                ),
-                Gauge(
-                    logarithmic=False,
-                    max=40,
-                    min=0,
-                    scale={"start": 0, "interval": 5, "labelInterval": 2},
-                    value=200,
-                    color={
-                        "default": "red",
-                        "gradient": True,
-                        "ranges": {
-                            "red": [0, 10],
-                            "blue": [10, 20],
-                            "green": [20, 30],
-                            "pink": [30, 100],
-                        },
-                    },
-                    showCurrentValue=True,
-                ),
-                Gauge(
-                    label="Gauge",
-                    max=100,
-                    min=5,
-                    scale={"start": 0, "interval": 10, "labelInterval": 1},
-                    value=10,
-                    color={
-                        "default": "red",
-                        "gradient": True,
-                        "ranges": {
-                            "red": [5, 10],
-                            "blue": [10, 20],
-                            "green": [20, 30],
-                            "pink": [40, 50],
-                            "yellow": [30, 40],
-                        },
-                    },
-                ),
-            ]
-        ),
     ]
 )
 
 ################ Set up light layout ################
 controls = html.Div(
     [
-        Joystick(
-            id="demojoystick",
-            label="Joystick",
-        ),
+        Joystick(id="demojoystick", label="Joystick", labelPosition="bottom"),
         Knob(id="demoKnob", label="Knob", min=0, max=10, value=2),
         NumericInput(id="demoNumericInput", min=1, max=10000, value=100),
         BooleanSwitch(id="demoSwitch"),

@@ -47,7 +47,6 @@ components:
 
 ```sh
 $ npm run dash-demo
-$ open http://localhost:9000
 ```
 
 You have to maintain the list of components in `demo/Demo.react.js`.
@@ -79,7 +78,7 @@ $ npm run install-local
 3.  Run the Dash demo
 
 ```sh
-$ python demo.py
+$ npm run dash-demo
 ```
 
 ## Installing python package locally

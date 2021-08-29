@@ -143,12 +143,6 @@ describe.only('Gauge', () => {
     expect(label.prop('style').color).toBe('blue');
   });
 
-  it('bug fix github issue 124', () => {
-    const component = mount(shallow(<Gauge min={1} max={4} value={2} />).get(0));
-    expect(component).toBeTruthy();
-    expect(component.find(GaugeSvg).prop('min')).toBe(1);
-  });
-
   it('bug fix github issue 125', () => {
     const component = mount(
       shallow(
