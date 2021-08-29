@@ -25,17 +25,17 @@ function LabelContainer(props) {
     customLabelStyle = props.label.style;
   }
 
-  if (labelText && labelText.length) {
-    return (
-      <Container className={props.className} id={props.id} labelPosition={props.labelPosition}>
-        {props.children}
-        <Label style={customLabelStyle} css={props.labelCSS} position={props.labelPosition}>
-          {labelText}
-        </Label>
-      </Container>
-    );
-  }
-  return <div>{props.children}</div>;
+  // if (labelText && labelText.length) {
+  return (
+    <Container className={props.className} id={props.id} labelPosition={props.labelPosition}>
+      {props.children}
+      <Label style={customLabelStyle} css={props.labelCSS} position={props.labelPosition}>
+        {labelText && labelText.length ? labelText : ''}
+      </Label>
+    </Container>
+  );
+  // }
+  // return <div>{props.children}</div>;
 }
 
 LabelContainer.defaultProps = {

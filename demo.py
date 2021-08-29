@@ -64,7 +64,30 @@ root_layout = html.Div([
                 'green': [2, 3],
                 # 'pink': [3, 10]
             }
-        }
+        },
+        showCurrentValue=True
+        ),
+        Gauge(
+        logarithmic=True,
+        max=4,
+        min=1,
+        scale={
+            'start': 0,
+            'interval': 1,
+            'labelInterval': 1
+        },
+        value=2,
+        color={
+            'default': 'red',
+            'gradient': True,
+            'ranges': {
+                # 'red': [0, 1],
+                'blue': [-1, 2],
+                'green': [2, 3],
+                # 'pink': [3, 10]
+            }
+        },
+        showCurrentValue=True
         ),
         # Gauge(
         # label='Gauge',

@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630224439");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630232156");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -31000,9 +31000,7 @@ var convertInRange = function convertInRange(color, max, min) {
     var rangeArr = getRangeArray(ranges);
     rangeArr.sort(function (a1, a2) {
       return a1 - a2;
-    }); // rangeArr.unshift(Math.min(rangeArr));
-    // rangeArr.push(Math.max(rangeArr))
-
+    });
     var maxArr = [];
     var minArr = [];
 
@@ -34394,19 +34392,18 @@ function LabelContainer(props) {
   if (_typeof(props.label) === 'object') {
     labelText = props.label.label;
     customLabelStyle = props.label.style;
-  }
+  } // if (labelText && labelText.length) {
 
-  if (labelText && labelText.length) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Container, {
-      className: props.className,
-      id: props.id,
-      labelPosition: props.labelPosition
-    }, props.children, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Label_styled__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      style: customLabelStyle,
-      css: props.labelCSS,
-      position: props.labelPosition
-    }, labelText));
-  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Container, {
+    className: props.className,
+    id: props.id,
+    labelPosition: props.labelPosition
+  }, props.children, labelText && labelText.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Label_styled__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    style: customLabelStyle,
+    css: props.labelCSS,
+    position: props.labelPosition
+  }, labelText)); // }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.children);
 }
