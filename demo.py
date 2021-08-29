@@ -31,116 +31,103 @@ app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
 
 ################ Set up shared layout ################
-root_layout = html.Div([
-    dcc.Location(id='url', refresh=True),
-
-    html.Div([
-        html.H1('dash_daq Dash Demo'),
-        dcc.Link('Light Theme', href='/', refresh=True),
-        dcc.Link('Dark Theme', href='/dark', refresh=True),
-
-    ], style={ 'width': '80%', 'margin-left': '10%', 'margin-right': '10%', 'display': 'flex', 'flex-direction': 'row', 'align-items': 'center', 'justify-content': 'space-between' }),
-
-    html.Hr(),
-
-    html.Div([
-        Joystick(
-            label='Joystick',
-            labelPosition='bottom'
+root_layout = html.Div(
+    [
+        dcc.Location(id="url", refresh=True),
+        html.Div(
+            [
+                html.H1("dash_daq Dash Demo"),
+                dcc.Link("Light Theme", href="/", refresh=True),
+                dcc.Link("Dark Theme", href="/dark", refresh=True),
+            ],
+            style={
+                "width": "80%",
+                "margin-left": "10%",
+                "margin-right": "10%",
+                "display": "flex",
+                "flex-direction": "row",
+                "align-items": "center",
+                "justify-content": "space-between",
+            },
         ),
-        Joystick(
-            label='Joystick',
-            labelPosition='bottom'
+        html.Hr(),
+        html.Div(id="page-content"),
+        html.Div(
+            [
+                BooleanSwitch(id="hiddenBooleanSwitch"),
+                Gauge(id="hiddenGauge"),
+                GraduatedBar(id="hiddenGraduatedBar"),
+                Indicator(id="hiddenIndicator"),
+                Knob(id="hiddenKnob"),
+                NumericInput(id="hiddenNumericInput"),
+                PowerButton(id="hiddenPowerButton"),
+                StopButton(id="hiddenStopButton"),
+                Tank(id="hiddenTank"),
+                Thermometer(id="hiddenThermometer"),
+                ToggleSwitch(id="hiddenToggleSwitch"),
+                DarkThemeProvider(),
+            ],
+            style={"display": "none"},
         ),
-        Gauge(
-        label='Gauge',
-        logarithmic=True,
-        max=4,
-        min=1,
-        scale={
-            'start': 0,
-            'interval': 1,
-            'labelInterval': 1
-        },
-        value=2,
-        color={
-            'default': 'red',
-            'gradient': True,
-            'ranges': {
-                # 'red': [0, 1],
-                'blue': [-1, 2],
-                'green': [2, 3],
-                # 'pink': [3, 10]
-            }
-        },
-        showCurrentValue=True
+        html.Div(
+            [
+                Gauge(
+                    label="Gauge",
+                    logarithmic=True,
+                    max=4,
+                    min=1,
+                    scale={"start": 0, "interval": 1, "labelInterval": 1},
+                    value=2,
+                    color={
+                        "default": "red",
+                        "gradient": True,
+                        "ranges": {
+                            "blue": [-1, 2],
+                            "green": [2, 3],
+                        },
+                    },
+                    showCurrentValue=True,
+                ),
+                Gauge(
+                    logarithmic=False,
+                    max=40,
+                    min=0,
+                    scale={"start": 0, "interval": 5, "labelInterval": 2},
+                    value=200,
+                    color={
+                        "default": "red",
+                        "gradient": True,
+                        "ranges": {
+                            "red": [0, 10],
+                            "blue": [10, 20],
+                            "green": [20, 30],
+                            "pink": [30, 100],
+                        },
+                    },
+                    showCurrentValue=True,
+                ),
+                Gauge(
+                    label="Gauge",
+                    max=100,
+                    min=5,
+                    scale={"start": 0, "interval": 10, "labelInterval": 1},
+                    value=10,
+                    color={
+                        "default": "red",
+                        "gradient": True,
+                        "ranges": {
+                            "red": [5, 10],
+                            "blue": [10, 20],
+                            "green": [20, 30],
+                            "pink": [40, 50],
+                            "yellow": [30, 40],
+                        },
+                    },
+                ),
+            ]
         ),
-        Gauge(
-        logarithmic=False,
-        max=40,
-        min=0,
-        scale={
-            'start': 0,
-            'interval': 5,
-            'labelInterval': 2
-        },
-        value=2,
-        color={
-            'default': 'red',
-            'gradient': False,
-            'ranges': {
-                'red': [0, 10],
-                'blue': [10, 20],
-                'green': [20, 30],
-                'pink': [30, 100]
-            }
-        },
-        showCurrentValue=True
-        ),
-        # Gauge(
-        # label='Gauge',
-        # max=100,
-        # min=5,
-        # scale={
-        #     'start': 0,
-        #     'interval': 10,
-        #     'labelInterval': 1
-        # },
-        # value=10,
-        # color={
-        #     'default': 'red',
-        #     'gradient': True,
-        #     'ranges': {
-        #         'red': [5, 10],
-        #         'blue': [10, 20],
-        #         'green': [20, 30],
-        #         'pink': [40, 50],
-        #         'yellow': [30, 40],
-        #     }
-        # }
-        # )
-    ]),
-
-    html.Div(id='page-content'),
-
-    html.Div(
-        [
-            BooleanSwitch(id='hiddenBooleanSwitch'),
-            Gauge(id='hiddenGauge'),
-            GraduatedBar(id="hiddenGraduatedBar"),
-            Indicator(id="hiddenIndicator"),
-            Knob(id="hiddenKnob"),
-            NumericInput(id="hiddenNumericInput"),
-            PowerButton(id="hiddenPowerButton"),
-            StopButton(id="hiddenStopButton"),
-            Tank(id="hiddenTank"),
-            Thermometer(id="hiddenThermometer"),
-            ToggleSwitch(id="hiddenToggleSwitch"),
-            DarkThemeProvider()
-        ],
-        style={'display': 'none'}
-    )
-])
+    ]
+)
 
 ################ Set up light layout ################
 controls = html.Div(
@@ -433,7 +420,7 @@ dark_indicators = html.Div(
                 ),
             ],
             style={
-                "background-color":"black",
+                "background-color": "black",
                 "display": "flex",
                 "flexDirection": "row",
                 "alignItems": "center",
