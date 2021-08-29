@@ -31,7 +31,6 @@ app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
 
 ################ Set up shared layout ################
-<<<<<<< HEAD
 root_layout = html.Div([
     dcc.Location(id='url', refresh=True),
 
@@ -49,7 +48,7 @@ root_layout = html.Div([
         label='Gauge',
         logarithmic=True,
         max=4,
-        min=0,
+        min=1,
         scale={
             'start': 0,
             'interval': 1,
@@ -61,9 +60,9 @@ root_layout = html.Div([
             'gradient': True,
             'ranges': {
                 # 'red': [0, 1],
-                'blue': [1, 2],
+                'blue': [-1, 2],
                 'green': [2, 3],
-                'pink': [3, 10]
+                # 'pink': [3, 10]
             }
         }
         ),
@@ -111,91 +110,6 @@ root_layout = html.Div([
         style={'display': 'none'}
     )
 ])
-
-
-################ Set up light layout ################
-controls = html.Div([
-     Joystick(
-        id='demojoystick',
-        label='Joystick',
-     ),
-     Knob(
-        id='demoKnob',
-        label='Knob',
-        min=0,
-        max=10,
-        value=2
-        ),
-        NumericInput(
-            id='demoNumericInput',
-            min=1,
-            max=10000,
-            value=100
-        ),
-        BooleanSwitch(
-            id='demoSwitch'
-=======
-root_layout = html.Div(
-    [
-        dcc.Location(id="url", refresh=True),
-        html.Div(
-            [
-                html.H1("dash_daq Dash Demo"),
-                dcc.Link("Light Theme", href="/", refresh=True),
-                dcc.Link("Dark Theme", href="/dark", refresh=True),
-            ],
-            style={
-                "width": "80%",
-                "margin-left": "10%",
-                "margin-right": "10%",
-                "display": "flex",
-                "flex-direction": "row",
-                "align-items": "center",
-                "justify-content": "space-between",
-            },
->>>>>>> 0f640bfa4ace10bb6811d741486d19b35513d7b3
-        ),
-        html.Hr(),
-        html.Div(
-            [
-                Gauge(
-                    min=0,
-                    max=5,  # color="red",
-                    color={
-                        "default": "red",
-                        "gradient": True,
-                        "ranges": {
-                            "green": [0, 2],
-                            "yellow": [2, 3],
-                            "red": [3, 4],
-                            "purple":[4, 5]
-                        },
-                    },
-                )
-            ]
-        ),
-        html.Hr(),
-        html.Div(id="page-content"),
-        html.Div(
-            [
-                BooleanSwitch(id="hiddenBooleanSwitch"),
-                Gauge(id="hiddenGauge"),
-                GraduatedBar(id="hiddenGraduatedBar"),
-                Indicator(id="hiddenIndicator"),
-                Knob(id="hiddenKnob"),
-                NumericInput(id="hiddenNumericInput"),
-                PowerButton(id="hiddenPowerButton"),
-                StopButton(id="hiddenStopButton"),
-                Tank(id="hiddenTank"),
-                Thermometer(id="hiddenThermometer"),
-                ToggleSwitch(id="hiddenToggleSwitch"),
-                DarkThemeProvider(),
-            ],
-            style={"display": "none"},
-        ),
-    ]
-)
-
 
 ################ Set up light layout ################
 controls = html.Div(

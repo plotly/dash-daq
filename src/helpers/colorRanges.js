@@ -3,7 +3,7 @@ import tinygradient from 'tinygradient';
 export const isContiguous = ({ color, min, max }) => {
   const ranges = Object.values(color.ranges);
   ranges.sort((r1, r2) => r1[0] - r2[0]);
-  console.log('isContiguous: ' + ranges + ranges[ranges.length - 1]);
+  // console.log('isContiguous: ' + ranges + ranges[ranges.length - 1]);
 
   // color ranges start at min and end at max
   if (ranges[0][0] !== min || ranges[ranges.length - 1][1] !== max) return false;
@@ -65,8 +65,6 @@ export const convertInRange = (color, max, min) => {
     for (let i = 0; i < maxArr.length; i++) {
       ranges[maxArr[i]['key']][maxArr[i]['index']] = max;
     }
-
-    console.log(ranges);
 
     color.ranges = ranges;
     return { ...color };

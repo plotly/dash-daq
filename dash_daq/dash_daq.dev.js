@@ -230,11 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-<<<<<<< HEAD
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630183345");
-=======
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630160101");
->>>>>>> 0f640bfa4ace10bb6811d741486d19b35513d7b3
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630224439");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26451,12 +26447,12 @@ function (_React$Component) {
         progressionTarget: 1
       });
       var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getClassName"])('gauge', theme); // console.log(
-      //   `colorValue: ${colorValue} 
-      //   rawValue: ${rawValue} 
-      //   dirtyValue: ${dirtyValue} 
-      //   value: ${value} 
-      //   formatter: ${formatter} 
-      //   scale: ${scale} 
+      //   `colorValue: ${colorValue}
+      //   rawValue: ${rawValue}
+      //   dirtyValue: ${dirtyValue}
+      //   value: ${value}
+      //   formatter: ${formatter}
+      //   scale: ${scale}
       //   progress: ${progress}
       //   min: ${min}
       //   max: ${max}`
@@ -30980,7 +30976,8 @@ var isContiguous = function isContiguous(_ref) {
   var ranges = Object.values(color.ranges);
   ranges.sort(function (r1, r2) {
     return r1[0] - r2[0];
-  }); // color ranges start at min and end at max
+  }); // console.log('isContiguous: ' + ranges + ranges[ranges.length - 1]);
+  // color ranges start at min and end at max
 
   if (ranges[0][0] !== min || ranges[ranges.length - 1][1] !== max) return false; // color ranges are contiguous
 
@@ -31003,36 +31000,38 @@ var convertInRange = function convertInRange(color, max, min) {
     var rangeArr = getRangeArray(ranges);
     rangeArr.sort(function (a1, a2) {
       return a1 - a2;
-    });
+    }); // rangeArr.unshift(Math.min(rangeArr));
+    // rangeArr.push(Math.max(rangeArr))
+
     var maxArr = [];
     var minArr = [];
 
     for (var i in ranges) {
       if (ranges[i][0] > max) {
         maxArr.push({
-          'key': i,
-          'index': 0
+          key: i,
+          index: 0
         });
       }
 
       if (ranges[i][1] > max) {
         maxArr.push({
-          'key': i,
-          'index': 1
+          key: i,
+          index: 1
         });
       }
 
       if (ranges[i][0] < min) {
         minArr.push({
-          'key': i,
-          'index': 0
+          key: i,
+          index: 0
         });
       }
 
       if (ranges[i][1] < min) {
         minArr.push({
-          'key': i,
-          'index': 1
+          key: i,
+          index: 1
         });
       }
 
@@ -31061,7 +31060,6 @@ var convertInRange = function convertInRange(color, max, min) {
       ranges[maxArr[_i2]['key']][maxArr[_i2]['index']] = max;
     }
 
-    console.log(ranges);
     color.ranges = ranges;
     return _objectSpread({}, color);
   }
