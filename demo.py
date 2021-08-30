@@ -44,32 +44,23 @@ root_layout = html.Div([
     html.Hr(),
 
     html.Div([
-        Joystick(
-            label='Joystick',
-            labelPosition='bottom'
-        ),
-        Joystick(
-            label='Joystick',
-            labelPosition='bottom'
-        ),
         Gauge(
-        label='Gauge',
-        logarithmic=True,
-        max=4,
-        min=1,
+        label='Gauge 1',
+        max=40,
+        min=5,
         scale={
-            'start': 0,
-            'interval': 1,
-            'labelInterval': 1
+            'start': 5,
+            'interval': 5,
+            'labelInterval': 2
         },
-        value=2,
+        value=10,
         color={
             'default': 'red',
             'gradient': True,
             'ranges': {
                 # 'red': [0, 1],
-                'blue': [-1, 2],
-                'green': [2, 3],
+                'blue': [0, 10],
+                'green': [10, 20],
                 # 'pink': [3, 10]
             }
         },

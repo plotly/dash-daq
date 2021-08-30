@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630232156");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630346300");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26469,7 +26469,7 @@ function (_React$Component) {
         id: id,
         className: elementName + (className ? ' ' + className : ''),
         style: style
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is color: ", JSON.stringify(color)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
         className: elementName + '__label'
       }, filteredProps, {
         labelCSS: this.props.labelPosition === 'top' ? null : 'transform: translateY(-80px);'
@@ -34399,13 +34399,12 @@ function LabelContainer(props) {
     className: props.className,
     id: props.id,
     labelPosition: props.labelPosition
-  }, props.children, labelText && labelText.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Label_styled__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, props.children, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Label_styled__WEBPACK_IMPORTED_MODULE_2__["default"], {
     style: customLabelStyle,
     css: props.labelCSS,
     position: props.labelPosition
-  }, labelText)); // }
-
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.children);
+  }, labelText && labelText.length ? labelText : '')); // }
+  // return <div>{props.children}</div>;
 }
 
 LabelContainer.defaultProps = {

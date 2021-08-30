@@ -160,20 +160,30 @@ describe.only('Gauge', () => {
     expect(label.prop('style').color).toBe('blue');
   });
 
-  it('custom test', () => {
+  it('custom test 2', () => {
     const component = mount(
       <Gauge
         label={{ label: 'Test Label', style: { color: 'blue' } }}
+        logarithmic={true}
         max={4}
+        min={1}
+        scale={{
+          start: 0,
+          interval: 1,
+          labelInterval: 1
+        }}
+        value={2}
         color={{
           default: 'red',
           gradient: true,
           ranges: {
-            blue: [1, 2],
+            red: [0, 1],
+            blue: [-1, 2],
             green: [2, 3],
             pink: [3, 10]
           }
         }}
+        showCurrentValue={true}
       />
     );
     const label = component.find(Label);

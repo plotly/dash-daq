@@ -125,10 +125,10 @@ export const drawScale = (
   let count = 0;
 
   const offset =
-    Math.max(
+    (Math.max(
       longestString(Object.values(scale).map(getScaleString)).length,
       DEFAULT_LONGEST_STRING
-    ) * 2;
+    ) || DEFAULT_LONGEST_STRING) * 2;
 
   const sr1 = SCALE_TICK_OUTER_RAD;
   const sr2 = SCALE_TICK_INNER_RAD;
