@@ -10,29 +10,19 @@ A numeric input component that converts an input value to the desired precision.
 }
 
 \usage{
-daqPrecisionInput(id=NULL, value=NULL, size=NULL, min=NULL, max=NULL,
-precision=NULL, disabled=NULL, theme=NULL, label=NULL,
-labelPosition=NULL, className=NULL, style=NULL,
-persistence=NULL, persisted_props=NULL,
-persistence_type=NULL)
+daqPrecisionInput(id=NULL, className=NULL, disabled=NULL, label=NULL,
+labelPosition=NULL, max=NULL, min=NULL,
+persisted_props=NULL, persistence=NULL,
+persistence_type=NULL, precision=NULL, size=NULL,
+style=NULL, theme=NULL, value=NULL)
 }
 
 \arguments{
 \item{id}{Character. The ID used to identify this compnent in Dash callbacks}
 
-\item{value}{Numeric. The value of numeric input}
-
-\item{size}{Numeric. The size (length) of the numeric input in pixels}
-
-\item{min}{Numeric. The minimum value of the numeric input}
-
-\item{max}{Numeric. The maximum value of the numeric input}
-
-\item{precision}{Numeric. Number of significant figures}
+\item{className}{Character. Class to apply to the root component element.}
 
 \item{disabled}{Logical. If true, numeric input cannot be changed.}
-
-\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
 
 \item{label}{Character | lists containing elements 'style', 'label'.
 those elements have the following types:
@@ -42,9 +32,13 @@ pass an object with label and style properties.}
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the numeric input label is positioned.}
 
-\item{className}{Character. Class to apply to the root component element.}
+\item{max}{Numeric. The maximum value of the numeric input}
 
-\item{style}{Named list. Style to apply to the root component element.}
+\item{min}{Numeric. The minimum value of the numeric input}
+
+\item{persisted_props}{List of a value equal to: 'value's. Properties whose user interactions will persist after refreshing the
+component or the page. Since only `value` is allowed this prop can
+normally be ignored.}
 
 \item{persistence}{Logical | character | numeric. Used to allow user interactions in this component to be persisted when
 the component - or the page - is refreshed. If `persisted` is truthy and
@@ -53,14 +47,20 @@ changed while using the app will keep that change, as long as
 the new `value` also matches what was given originally.
 Used in conjunction with `persistence_type`.}
 
-\item{persisted_props}{List of a value equal to: 'value's. Properties whose user interactions will persist after refreshing the
-component or the page. Since only `value` is allowed this prop can
-normally be ignored.}
-
 \item{persistence_type}{A value equal to: 'local', 'session', 'memory'. Where persisted user changes will be stored:
 memory: only kept in memory, reset on page refresh.
 local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.}
+
+\item{precision}{Numeric. Number of significant figures}
+
+\item{size}{Numeric. The size (length) of the numeric input in pixels}
+
+\item{style}{Named list. Style to apply to the root component element.}
+
+\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
+
+\item{value}{Numeric. The value of numeric input}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}

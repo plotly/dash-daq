@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqKnob <- function(id=NULL, value=NULL, color=NULL, size=NULL, min=NULL, max=NULL, disabled=NULL, theme=NULL, label=NULL, labelPosition=NULL, scale=NULL, className=NULL, style=NULL, persistence=NULL, persisted_props=NULL, persistence_type=NULL) {
+daqKnob <- function(id=NULL, className=NULL, color=NULL, disabled=NULL, label=NULL, labelPosition=NULL, max=NULL, min=NULL, persisted_props=NULL, persistence=NULL, persistence_type=NULL, scale=NULL, size=NULL, style=NULL, theme=NULL, value=NULL) {
     
-    props <- list(id=id, value=value, color=color, size=size, min=min, max=max, disabled=disabled, theme=theme, label=label, labelPosition=labelPosition, scale=scale, className=className, style=style, persistence=persistence, persisted_props=persisted_props, persistence_type=persistence_type)
+    props <- list(id=id, className=className, color=color, disabled=disabled, label=label, labelPosition=labelPosition, max=max, min=min, persisted_props=persisted_props, persistence=persistence, persistence_type=persistence_type, scale=scale, size=size, style=style, theme=theme, value=value)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqKnob <- function(id=NULL, value=NULL, color=NULL, size=NULL, min=NULL, max=NU
         props = props,
         type = 'Knob',
         namespace = 'dash_daq',
-        propNames = c('id', 'value', 'color', 'size', 'min', 'max', 'disabled', 'theme', 'label', 'labelPosition', 'scale', 'className', 'style', 'persistence', 'persisted_props', 'persistence_type'),
+        propNames = c('id', 'className', 'color', 'disabled', 'label', 'labelPosition', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'scale', 'size', 'style', 'theme', 'value'),
         package = 'dashDaq'
         )
 

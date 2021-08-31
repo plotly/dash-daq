@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqIndicator <- function(id=NULL, value=NULL, color=NULL, size=NULL, width=NULL, height=NULL, theme=NULL, label=NULL, labelPosition=NULL, className=NULL, style=NULL) {
+daqIndicator <- function(id=NULL, className=NULL, color=NULL, height=NULL, label=NULL, labelPosition=NULL, size=NULL, style=NULL, theme=NULL, value=NULL, width=NULL) {
     
-    props <- list(id=id, value=value, color=color, size=size, width=width, height=height, theme=theme, label=label, labelPosition=labelPosition, className=className, style=style)
+    props <- list(id=id, className=className, color=color, height=height, label=label, labelPosition=labelPosition, size=size, style=style, theme=theme, value=value, width=width)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqIndicator <- function(id=NULL, value=NULL, color=NULL, size=NULL, width=NULL,
         props = props,
         type = 'Indicator',
         namespace = 'dash_daq',
-        propNames = c('id', 'value', 'color', 'size', 'width', 'height', 'theme', 'label', 'labelPosition', 'className', 'style'),
+        propNames = c('id', 'className', 'color', 'height', 'label', 'labelPosition', 'size', 'style', 'theme', 'value', 'width'),
         package = 'dashDaq'
         )
 

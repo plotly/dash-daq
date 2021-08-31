@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630346855");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630435272");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26424,7 +26424,6 @@ function (_React$Component) {
           style = _this$props.style,
           theme = _this$props.theme;
       var color = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_11__["convertInRange"])(this.props.color, max, min ? min : 0);
-      window.color = color;
       var colorValue = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_11__["getColorValue"])(color);
       var rawValue = this.props.value != null ? this.props.value : min;
       var dirtyValue = logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_9__["default"].compute(rawValue) : rawValue;
@@ -26446,18 +26445,7 @@ function (_React$Component) {
         value: value,
         progressionTarget: 1
       });
-      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getClassName"])('gauge', theme); // console.log(
-      //   `colorValue: ${colorValue}
-      //   rawValue: ${rawValue}
-      //   dirtyValue: ${dirtyValue}
-      //   value: ${value}
-      //   formatter: ${formatter}
-      //   scale: ${scale}
-      //   progress: ${progress}
-      //   min: ${min}
-      //   max: ${max}`
-      // );
-
+      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getClassName"])('gauge', theme);
       var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_6__["default"], {
         className: elementName + '__current-value',
         valueColor: colorValue,
@@ -30976,8 +30964,7 @@ var isContiguous = function isContiguous(_ref) {
   var ranges = Object.values(color.ranges);
   ranges.sort(function (r1, r2) {
     return r1[0] - r2[0];
-  }); // console.log('isContiguous: ' + ranges + ranges[ranges.length - 1]);
-  // color ranges start at min and end at max
+  }); // color ranges start at min and end at max
 
   if (ranges[0][0] !== min || ranges[ranges.length - 1][1] !== max) return false; // color ranges are contiguous
 
@@ -30988,14 +30975,25 @@ var isContiguous = function isContiguous(_ref) {
   return true;
 };
 var convertInRange = function convertInRange(color, max, min) {
+  /*
+  * The function will check color and range attribute.
+  * if range attribute is provided, it will check for unequal range values.
+  * args: color, max and min props from the gauge component
+  * example 1:
+  * input: color -> {"red":[1, 10], "green":[10, 50]}, max -> 40, min -> 0
+  * output: {"red":[0, 10], "green":[10, 40]}
+  * if color is underfined
+  */
   if (!color) {
     return color;
-  }
+  } // if ranges is not passed with color
+
 
   if (color.ranges == null) {
     return color;
   } else {
-    var ranges = _objectSpread({}, color.ranges);
+    var ranges = _objectSpread({}, color.ranges); // get a flat array of ranges
+
 
     var rangeArr = getRangeArray(ranges);
     rangeArr.sort(function (a1, a2) {
@@ -31064,6 +31062,11 @@ var convertInRange = function convertInRange(color, max, min) {
 };
 
 var getRangeArray = function getRangeArray(ranges) {
+  /*
+  * convert range passed in colors to flat array
+  * example -> ranges = {"red":[0, 1], "green":[1, 10]}
+  * output ->  arr = [0, 1, 1, 10]
+  */
   var arr = [];
 
   for (var i in ranges) {
@@ -31135,11 +31138,7 @@ var getLinearGradientCSS = function getLinearGradientCSS(_ref9) {
 };
 var getColorValue = function getColorValue(color) {
   return color && (typeof color === 'string' ? color : color["default"]);
-}; // export const getColorValue = color => {
-//   // console.log(color && (typeof color === 'string' ? color : color.default));
-//   return color && (typeof color === 'string' ? color : color.default);
-// };
-
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   isContiguous: isContiguous,
   getSortedEntries: getSortedEntries,
@@ -31312,6 +31311,7 @@ function processInput(_ref) {
   var noConfigPassed = !START_FLAG && !INTERVAL_FLAG && !LABEL_INTERVAL_FLAG;
   var customTicks = Object.keys(config.custom).length;
   config.onlyRenderCustom = customTicks && noConfigPassed;
+  config.start = config.start != min ? min : config.start;
   return config;
 }
 

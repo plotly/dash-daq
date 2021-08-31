@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqGauge <- function(id=NULL, value=NULL, size=NULL, min=NULL, max=NULL, base=NULL, logarithmic=NULL, showCurrentValue=NULL, units=NULL, theme=NULL, label=NULL, labelPosition=NULL, scale=NULL, color=NULL, className=NULL, style=NULL) {
+daqGauge <- function(id=NULL, base=NULL, className=NULL, color=NULL, label=NULL, labelPosition=NULL, logarithmic=NULL, max=NULL, min=NULL, scale=NULL, showCurrentValue=NULL, size=NULL, style=NULL, theme=NULL, units=NULL, value=NULL) {
     
-    props <- list(id=id, value=value, size=size, min=min, max=max, base=base, logarithmic=logarithmic, showCurrentValue=showCurrentValue, units=units, theme=theme, label=label, labelPosition=labelPosition, scale=scale, color=color, className=className, style=style)
+    props <- list(id=id, base=base, className=className, color=color, label=label, labelPosition=labelPosition, logarithmic=logarithmic, max=max, min=min, scale=scale, showCurrentValue=showCurrentValue, size=size, style=style, theme=theme, units=units, value=value)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqGauge <- function(id=NULL, value=NULL, size=NULL, min=NULL, max=NULL, base=NU
         props = props,
         type = 'Gauge',
         namespace = 'dash_daq',
-        propNames = c('id', 'value', 'size', 'min', 'max', 'base', 'logarithmic', 'showCurrentValue', 'units', 'theme', 'label', 'labelPosition', 'scale', 'color', 'className', 'style'),
+        propNames = c('id', 'base', 'className', 'color', 'label', 'labelPosition', 'logarithmic', 'max', 'min', 'scale', 'showCurrentValue', 'size', 'style', 'theme', 'units', 'value'),
         package = 'dashDaq'
         )
 

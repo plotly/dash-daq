@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqGraduatedBar <- function(id=NULL, value=NULL, color=NULL, size=NULL, vertical=NULL, min=NULL, max=NULL, step=NULL, showCurrentValue=NULL, theme=NULL, label=NULL, labelPosition=NULL, className=NULL, style=NULL) {
+daqGraduatedBar <- function(id=NULL, className=NULL, color=NULL, label=NULL, labelPosition=NULL, max=NULL, min=NULL, showCurrentValue=NULL, size=NULL, step=NULL, style=NULL, theme=NULL, value=NULL, vertical=NULL) {
     
-    props <- list(id=id, value=value, color=color, size=size, vertical=vertical, min=min, max=max, step=step, showCurrentValue=showCurrentValue, theme=theme, label=label, labelPosition=labelPosition, className=className, style=style)
+    props <- list(id=id, className=className, color=color, label=label, labelPosition=labelPosition, max=max, min=min, showCurrentValue=showCurrentValue, size=size, step=step, style=style, theme=theme, value=value, vertical=vertical)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqGraduatedBar <- function(id=NULL, value=NULL, color=NULL, size=NULL, vertical
         props = props,
         type = 'GraduatedBar',
         namespace = 'dash_daq',
-        propNames = c('id', 'value', 'color', 'size', 'vertical', 'min', 'max', 'step', 'showCurrentValue', 'theme', 'label', 'labelPosition', 'className', 'style'),
+        propNames = c('id', 'className', 'color', 'label', 'labelPosition', 'max', 'min', 'showCurrentValue', 'size', 'step', 'style', 'theme', 'value', 'vertical'),
         package = 'dashDaq'
         )
 

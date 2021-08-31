@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqStopButton <- function(children=NULL, id=NULL, size=NULL, buttonText=NULL, n_clicks=NULL, disabled=NULL, theme=NULL, label=NULL, labelPosition=NULL, className=NULL, style=NULL) {
+daqStopButton <- function(children=NULL, id=NULL, buttonText=NULL, className=NULL, disabled=NULL, label=NULL, labelPosition=NULL, n_clicks=NULL, size=NULL, style=NULL, theme=NULL) {
     
-    props <- list(children=children, id=id, size=size, buttonText=buttonText, n_clicks=n_clicks, disabled=disabled, theme=theme, label=label, labelPosition=labelPosition, className=className, style=style)
+    props <- list(children=children, id=id, buttonText=buttonText, className=className, disabled=disabled, label=label, labelPosition=labelPosition, n_clicks=n_clicks, size=size, style=style, theme=theme)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqStopButton <- function(children=NULL, id=NULL, size=NULL, buttonText=NULL, n_
         props = props,
         type = 'StopButton',
         namespace = 'dash_daq',
-        propNames = c('children', 'id', 'size', 'buttonText', 'n_clicks', 'disabled', 'theme', 'label', 'labelPosition', 'className', 'style'),
+        propNames = c('children', 'id', 'buttonText', 'className', 'disabled', 'label', 'labelPosition', 'n_clicks', 'size', 'style', 'theme'),
         package = 'dashDaq'
         )
 

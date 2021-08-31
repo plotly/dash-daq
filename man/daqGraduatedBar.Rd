@@ -10,16 +10,16 @@ A graduated bar component that displays a value within some range as a percentag
 }
 
 \usage{
-daqGraduatedBar(id=NULL, value=NULL, color=NULL, size=NULL, vertical=NULL,
-min=NULL, max=NULL, step=NULL, showCurrentValue=NULL,
-theme=NULL, label=NULL, labelPosition=NULL, className=NULL,
-style=NULL)
+daqGraduatedBar(id=NULL, className=NULL, color=NULL, label=NULL,
+labelPosition=NULL, max=NULL, min=NULL,
+showCurrentValue=NULL, size=NULL, step=NULL, style=NULL,
+theme=NULL, value=NULL, vertical=NULL)
 }
 
 \arguments{
 \item{id}{Character. The ID used to identify this compnent in Dash callbacks}
 
-\item{value}{Numeric. The value of the graduated bar}
+\item{className}{Character. Class to apply to the root component element.}
 
 \item{color}{Character | lists containing elements 'default', 'gradient', 'ranges'.
 those elements have the following types:
@@ -35,21 +35,6 @@ those elements have the following types:
   - color (list of numerics; optional). Color configuration for the graduated bar's
 progress blocks.}
 
-\item{size}{Numeric. The size (length) of the graduated bar in pixels}
-
-\item{vertical}{Logical. If true, will display bar vertically instead of horizontally}
-
-\item{min}{Numeric. The minimum value of the graduated bar}
-
-\item{max}{Numeric. The maximum value of the graduated bar}
-
-\item{step}{Numeric. Value by which progress blocks appear}
-
-\item{showCurrentValue}{Logical. If true, the current percentage
- of the bar will be displayed}
-
-\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
-
 \item{label}{Character | lists containing elements 'style', 'label'.
 those elements have the following types:
   - style (named list; optional)
@@ -57,9 +42,24 @@ those elements have the following types:
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the component label is positioned.}
 
-\item{className}{Character. Class to apply to the root component element.}
+\item{max}{Numeric. The maximum value of the graduated bar}
+
+\item{min}{Numeric. The minimum value of the graduated bar}
+
+\item{showCurrentValue}{Logical. If true, the current percentage
+ of the bar will be displayed}
+
+\item{size}{Numeric. The size (length) of the graduated bar in pixels}
+
+\item{step}{Numeric. Value by which progress blocks appear}
 
 \item{style}{Named list. Style to apply to the root component element.}
+
+\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
+
+\item{value}{Numeric. The value of the graduated bar}
+
+\item{vertical}{Logical. If true, will display bar vertically instead of horizontally}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}

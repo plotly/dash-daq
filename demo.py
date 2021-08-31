@@ -25,7 +25,8 @@ from dash_daq import (
 
 app = dash.Dash("")
 
-app.css.append_css({"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
+app.css.append_css(
+    {"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
 
 app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
@@ -39,35 +40,11 @@ root_layout = html.Div([
         dcc.Link('Light Theme', href='/', refresh=True),
         dcc.Link('Dark Theme', href='/dark', refresh=True),
 
-    ], style={ 'width': '80%', 'margin-left': '10%', 'margin-right': '10%', 'display': 'flex', 'flex-direction': 'row', 'align-items': 'center', 'justify-content': 'space-between' }),
+    ], style={'width': '80%', 'margin-left': '10%', 'margin-right': '10%', 'display': 'flex', 'flex-direction': 'row', 'align-items': 'center', 'justify-content': 'space-between'}),
 
     html.Hr(),
 
     html.Div([
-        Gauge(
-        label='Gauge 1',
-        max=40,
-        min=5,
-        scale={
-            'start': 5,
-            'interval': 5,
-            'labelInterval': 2
-        },
-        value=10,
-        color={
-            'default': 'red',
-            'gradient': True,
-            'ranges': {
-                # 'red': [0, 1],
-                'blue': [0, 10],
-                'green': [10, 20],
-                # 'pink': [3, 10]
-            }
-        },
-        showCurrentValue=True
-
-        ),
-        html.Hr(),
         html.Div(id="page-content"),
         html.Div(
             [
@@ -227,7 +204,8 @@ indicators = html.Div(
 
 light_layout = html.Div(
     [
-        html.Link(href="https://codepen.io/plotly/pen/EQZeaW.css", rel="stylesheet"),
+        html.Link(href="https://codepen.io/plotly/pen/EQZeaW.css",
+                  rel="stylesheet"),
         html.Div([html.H2("Controls"), controls], style={"width": "80%"}),
         html.Br(),
         html.Br(),
@@ -389,10 +367,12 @@ dark_indicators = html.Div(
 
 dark_layout = DarkThemeProvider(
     [
-        html.Link(href="https://codepen.io/anon/pen/BYEPbO.css", rel="stylesheet"),
+        html.Link(href="https://codepen.io/anon/pen/BYEPbO.css",
+                  rel="stylesheet"),
         html.Div(
             [
-                html.Div([html.H2("Controls"), dark_controls], style={"width": "80%"}),
+                html.Div([html.H2("Controls"), dark_controls],
+                         style={"width": "80%"}),
                 html.Br(),
                 html.Br(),
                 html.Div(
@@ -413,6 +393,8 @@ dark_layout = DarkThemeProvider(
 app.layout = root_layout
 
 ################ Set up shared callbacks ###############
+
+
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
     if pathname == "/dark":
@@ -474,7 +456,8 @@ def update_boolean_indicator(on):
 
 
 @app.callback(
-    Output("demoToggleIndicator", "value"), [Input("demoToggleSwitch", "value")]
+    Output("demoToggleIndicator", "value"), [
+        Input("demoToggleSwitch", "value")]
 )
 def update_boolean_indicator(value):
     return value
@@ -496,7 +479,8 @@ def update_thermometer(on):
 
 ################ Set up dark callbacks ################
 @app.callback(
-    Output("dark-demoLEDDisplay", "value"), [Input("dark-demoPrecisionInput", "value")]
+    Output("dark-demoLEDDisplay",
+           "value"), [Input("dark-demoPrecisionInput", "value")]
 )
 def update_LEDDisplay(value):
     digits = str(value)[:2]
@@ -504,7 +488,8 @@ def update_LEDDisplay(value):
 
 
 @app.callback(
-    Output("dark-demoGauge", "value"), [Input("dark-demoNumericInput", "value")]
+    Output("dark-demoGauge",
+           "value"), [Input("dark-demoNumericInput", "value")]
 )
 def dark_update_gauge(value):
     return value
@@ -525,14 +510,16 @@ def dark_update_tank_color(value):
 
 
 @app.callback(
-    Output("dark-demoGraduatedBar", "color"), [Input("dark-demoColorPicker", "value")]
+    Output("dark-demoGraduatedBar",
+           "color"), [Input("dark-demoColorPicker", "value")]
 )
 def dark_update_graduatedBar_color(value):
     return value["hex"]
 
 
 @app.callback(
-    Output("dark-demoThermometer", "color"), [Input("dark-demoColorPicker", "value")]
+    Output("dark-demoThermometer",
+           "color"), [Input("dark-demoColorPicker", "value")]
 )
 def dark_update_thermometer_color(value):
     return value["hex"]
@@ -551,14 +538,16 @@ def dark_update_thermometer(value):
 
 
 @app.callback(
-    Output("dark-demoGraduatedBar", "value"), [Input("dark-demoSlider", "value")]
+    Output("dark-demoGraduatedBar",
+           "value"), [Input("dark-demoSlider", "value")]
 )
 def dark_update_graduated_bar(value):
     return value
 
 
 @app.callback(
-    Output("dark-demoBooleanIndicator", "value"), [Input("dark-demoSwitch", "on")]
+    Output("dark-demoBooleanIndicator",
+           "value"), [Input("dark-demoSwitch", "on")]
 )
 def dark_update_boolean_indicator(on):
     return on
@@ -582,7 +571,8 @@ def dark_update_indicator(_, indicatorState):
 
 
 @app.callback(
-    Output("dark-demoPowerIndicator", "value"), [Input("dark-demoPowerButton", "on")]
+    Output("dark-demoPowerIndicator",
+           "value"), [Input("dark-demoPowerButton", "on")]
 )
 def dark_update_thermometer(on):
     return on

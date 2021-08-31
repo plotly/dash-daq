@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqToggleSwitch <- function(id=NULL, value=NULL, size=NULL, color=NULL, vertical=NULL, disabled=NULL, theme=NULL, label=NULL, labelPosition=NULL, className=NULL, style=NULL, persistence=NULL, persisted_props=NULL, persistence_type=NULL) {
+daqToggleSwitch <- function(id=NULL, className=NULL, color=NULL, disabled=NULL, label=NULL, labelPosition=NULL, persisted_props=NULL, persistence=NULL, persistence_type=NULL, size=NULL, style=NULL, theme=NULL, value=NULL, vertical=NULL) {
     
-    props <- list(id=id, value=value, size=size, color=color, vertical=vertical, disabled=disabled, theme=theme, label=label, labelPosition=labelPosition, className=className, style=style, persistence=persistence, persisted_props=persisted_props, persistence_type=persistence_type)
+    props <- list(id=id, className=className, color=color, disabled=disabled, label=label, labelPosition=labelPosition, persisted_props=persisted_props, persistence=persistence, persistence_type=persistence_type, size=size, style=style, theme=theme, value=value, vertical=vertical)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqToggleSwitch <- function(id=NULL, value=NULL, size=NULL, color=NULL, vertical
         props = props,
         type = 'ToggleSwitch',
         namespace = 'dash_daq',
-        propNames = c('id', 'value', 'size', 'color', 'vertical', 'disabled', 'theme', 'label', 'labelPosition', 'className', 'style', 'persistence', 'persisted_props', 'persistence_type'),
+        propNames = c('id', 'className', 'color', 'disabled', 'label', 'labelPosition', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'theme', 'value', 'vertical'),
         package = 'dashDaq'
         )
 

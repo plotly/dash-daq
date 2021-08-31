@@ -10,9 +10,9 @@ A Stop button component
 }
 
 \usage{
-daqStopButton(children=NULL, id=NULL, size=NULL, buttonText=NULL,
-n_clicks=NULL, disabled=NULL, theme=NULL, label=NULL,
-labelPosition=NULL, className=NULL, style=NULL)
+daqStopButton(children=NULL, id=NULL, buttonText=NULL, className=NULL,
+disabled=NULL, label=NULL, labelPosition=NULL,
+n_clicks=NULL, size=NULL, style=NULL, theme=NULL)
 }
 
 \arguments{
@@ -20,15 +20,11 @@ labelPosition=NULL, className=NULL, style=NULL)
 
 \item{id}{Character. The ID used to identify this compnent in Dash callbacks}
 
-\item{size}{Numeric. The size (width) of the stop button in pixels}
-
 \item{buttonText}{Character. Text displayed in the button}
 
-\item{n_clicks}{Numeric. Number of times the button was clicked}
+\item{className}{Character. Class to apply to the root component element.}
 
 \item{disabled}{Logical. If true, button cannot be pressesd.}
-
-\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
 
 \item{label}{Character | lists containing elements 'style', 'label'.
 those elements have the following types:
@@ -39,9 +35,13 @@ style properties.}
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the  label is positioned.}
 
-\item{className}{Character. Class to apply to the root component element.}
+\item{n_clicks}{Numeric. Number of times the button was clicked}
+
+\item{size}{Numeric. The size (width) of the stop button in pixels}
 
 \item{style}{Named list. Style to apply to the root component element.}
+
+\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}
