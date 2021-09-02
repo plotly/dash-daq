@@ -103,7 +103,8 @@ NumericInput.defaultProps = {
   theme: light,
   labelPosition: 'top',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  style: { display: 'flex', justifyContent: 'center' }
 };
 
 NumericInput.propTypes = {
