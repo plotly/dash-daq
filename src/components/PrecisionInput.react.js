@@ -13,7 +13,7 @@ const defaultRootStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  alignItems: 'flex-start'
+  alignItems: 'center'
 };
 
 /**

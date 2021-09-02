@@ -67,8 +67,17 @@ class NumericInput extends Component {
 
     const elementName = getClassName('numericinput', theme);
     const filteredProps = getFilteredProps(this.props);
+
+    var newStyle = style;
+    newStyle = style ? style : new Object();
+    if (!newStyle.hasOwnProperty('display')) {
+      newStyle['display'] = 'flex';
+    }
+    if (!newStyle.hasOwnProperty('justify-content') || !newStyle.hasOwnProperty('justifyContent')) {
+      newStyle['justifyContent'] = 'center';
+    }
     return (
-      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
+      <div id={id} className={elementName + (className ? ' ' + className : '')} style={newStyle}>
         <LabelContainer className={elementName + '__label'} {...filteredProps}>
           <Input
             className={elementName + '__input'}
