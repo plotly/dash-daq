@@ -15,6 +15,12 @@ const Container = styled.div`
   }};
 `
 
+const DefaultContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+`
+
 function LabelContainer(props) {
   let labelText = props.label;
   let customLabelStyle = {}
@@ -31,7 +37,7 @@ function LabelContainer(props) {
       </Container>
     )
   }
-  return <div>{props.children}</div>;
+  return <DefaultContainer>{props.children}</DefaultContainer>;
 }
 
 LabelContainer.defaultProps = {
