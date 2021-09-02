@@ -36,7 +36,8 @@ class Gauge extends React.Component {
       id,
       className,
       style,
-      theme
+      theme,
+      digits
     } = this.props;
 
     const color = convertInRange(this.props.color, max, min ? min : 0);
@@ -60,7 +61,7 @@ class Gauge extends React.Component {
         units={units}
         css={'transform: translateY(-150%); top: 0;'}
       >
-        {logarithmic ? log.formatValue(value, base) : value.toFixed(1)}
+        {logarithmic ? log.formatValue(value, base) : value.toFixed(digits)}
       </CurrentValue>
     );
     const filteredProps = getFilteredProps(this.props);
@@ -89,7 +90,8 @@ Gauge.defaultProps = {
   max: 10,
   base: 10,
   theme: light,
-  labelPosition: 'top'
+  labelPosition: 'top',
+  digits: 1
 };
 
 Gauge.propTypes = {
@@ -137,6 +139,11 @@ Gauge.propTypes = {
    * will be displayed
    */
   showCurrentValue: PropTypes.bool,
+
+  /**
+   * Number of digits for current value
+   */
+  digits: PropTypes.number,
 
   /**
    * Label for the current value
