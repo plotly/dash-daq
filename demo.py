@@ -35,6 +35,34 @@ app.scripts.config.serve_locally = True
 root_layout = html.Div([
     dcc.Location(id='url', refresh=True),
 
+    Tank(
+        id="demoTank",
+        label="Tank",
+        showCurrentValue=True,
+        logarithmic=True,
+        min=0,
+        max=3,
+        value=100,
+        scale={"custom": {0: "Low", 1: "low-medium", 2: "Medium", 3: "High"}},
+    ),
+
+    Gauge(
+        label="Gauge",
+        logarithmic=True,
+        min=0,
+        max=4,
+        showCurrentValue=True,
+        scale={"start": 0, "interval": 1, "labelInterval": 1},
+        value=11000,
+        style={"transform": "scale(1)"},
+        exceedMessage="exceed"
+    ),
+
+    Gauge(
+        color={"gradient":False,"ranges":{"#00998c":[0,6],"#E09A4F":[6,8],"#E0554E":[8,10]}},
+            showCurrentValue=True,
+    ),
+
     html.Div([
         html.H1('dash_daq Dash Demo'),
         dcc.Link('Light Theme', href='/', refresh=True),
@@ -70,7 +98,7 @@ root_layout = html.Div([
 controls = html.Div(
     [
         Joystick(id="demojoystick", label="Joystick", labelPosition="bottom"),
-        Knob(id="demoKnob", label="Knob", min=0, max=10, value=2),
+        Knob(id="demoKnob", label="Knob", min=0, max=15, value=2),
         NumericInput(id="demoNumericInput", min=1, max=10000, value=100),
         BooleanSwitch(id="demoSwitch"),
         ToggleSwitch(id="demoToggleSwitch", value="false", vertical=True),
@@ -105,6 +133,9 @@ controls = html.Div(
     },
 )
 
+def warning(x,y):
+    return x+" "+y
+
 indicators = html.Div(
     [
         html.Div(
@@ -116,7 +147,7 @@ indicators = html.Div(
                     min=0,
                     max=4,
                     scale={"start": 0, "interval": 1, "labelInterval": 1},
-                    value=100,
+                    value=1,
                 ),
                 Tank(
                     id="demoTank",
@@ -125,6 +156,7 @@ indicators = html.Div(
                     max=10,
                     value=2,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
+                    exceedMessage= "Exceed"
                 ),
                 Thermometer(
                     id="demoThermometer", label="Thermometer", min=0, max=10, value=2

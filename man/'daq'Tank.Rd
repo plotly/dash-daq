@@ -10,10 +10,11 @@ A Tank component that fills to a value between some range.
 }
 
 \usage{
-'daq'Tank(id=NULL, base=NULL, className=NULL, color=NULL, height=NULL,
-label=NULL, labelPosition=NULL, logarithmic=NULL, max=NULL,
-min=NULL, scale=NULL, showCurrentValue=NULL, style=NULL,
-units=NULL, value=NULL, width=NULL)
+'daq'Tank(id=NULL, base=NULL, className=NULL, color=NULL,
+exceedMessage=NULL, height=NULL, label=NULL,
+labelPosition=NULL, lagingMessage=NULL, logarithmic=NULL,
+max=NULL, min=NULL, scale=NULL, showCurrentValue=NULL,
+style=NULL, units=NULL, value=NULL, width=NULL)
 }
 
 \arguments{
@@ -25,6 +26,8 @@ units=NULL, value=NULL, width=NULL)
 
 \item{color}{Character. The color of tank fill}
 
+\item{exceedMessage}{Character. Warning message when value exceed max}
+
 \item{height}{Numeric. The height of the tank in pixels}
 
 \item{label}{Character | lists containing elements 'style', 'label'.
@@ -34,6 +37,8 @@ those elements have the following types:
 pass an object with label and style properties.}
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the component label is positioned.}
+
+\item{lagingMessage}{Character. Warning message when value is laging from min}
 
 \item{logarithmic}{Logical. If set to true, a logarithmic scale will be
 used.}

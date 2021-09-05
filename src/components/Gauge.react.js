@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 
@@ -7,6 +7,7 @@ import Container from '../styled/Gauge.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 import CurrentValue from '../styled/CurrentValue.styled';
 import { light } from '../styled/constants';
+import { ExceededWarning } from '../styled/Tank.styled';
 
 import { sanitizeRangeValue, computeProgress } from '../helpers/util';
 import log from '../helpers/logarithm';
@@ -14,76 +15,100 @@ import generateScale from '../helpers/scale';
 import { convertInRange, getColorValue } from '../helpers/colorRanges';
 
 import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+import 'conic-gradient';
 
 /**
  * A Gauge component that points to
  * a value between some range.
  */
-class Gauge extends React.Component {
-  componentDidMount() {
-    // eslint-disable-next-line
-    require('conic-gradient');
-  }
+const Gauge = props => {
+  const {
+    max,
+    min,
+    showCurrentValue,
+    units,
+    logarithmic,
+    base,
+    id,
+    className,
+    style,
+    theme,
+    digits
+  } = props;
 
-  render() {
-    const {
-      max,
-      min,
-      showCurrentValue,
-      units,
-      logarithmic,
-      base,
-      id,
-      className,
-      style,
-      theme,
-      digits
-    } = this.props;
+  const warningPara = useRef(null);
 
-    const color = convertInRange(this.props.color, max, min ? min : 0);
+  const color = convertInRange(props.color, max, min ? min : 0);
 
-    const colorValue = getColorValue(color);
-    const rawValue = this.props.value != null ? this.props.value : min;
-    const dirtyValue = logarithmic ? log.compute(rawValue) : rawValue;
-    const value = sanitizeRangeValue({ min, max, value: dirtyValue });
+  const colorValue = getColorValue(color);
+  const rawValue = props.value != null ? props.value : min;
+  const dirtyValue = logarithmic ? log.compute(rawValue) : rawValue;
+  const currentDisplayValue = dirtyValue;
+  const value = sanitizeRangeValue({ min, max, value: dirtyValue });
 
-    const formatter = logarithmic ? log.generateLogFormatter({ base, isSVG: true }) : null;
-    const scale = generateScale({ ...this.props, formatter });
+  const formatter = logarithmic ? log.generateLogFormatter({ base, isSVG: true }) : null;
+  const scale = generateScale({ ...props, formatter });
 
-    const progress = computeProgress({ min, max, value, progressionTarget: 1 });
+  const progress = computeProgress({ min, max, value, progressionTarget: 1 });
 
-    const elementName = getClassName('gauge', theme);
+  const elementName = getClassName('gauge', theme);
 
-    const currentValue = (
-      <CurrentValue
-        className={elementName + '__current-value'}
-        valueColor={colorValue}
-        units={units}
-        css={'transform: translateY(-150%); top: 0;'}
+  const currentValue = (
+    <CurrentValue
+      className={elementName + '__current-value'}
+      valueColor={colorValue}
+      units={units}
+      css={'transform: translateY(-150%); top: 0;'}
+    >
+      {logarithmic
+        ? log.formatValue(currentDisplayValue, base)
+        : currentDisplayValue.toFixed(digits)}
+    </CurrentValue>
+  );
+  const filteredProps = getFilteredProps(props);
+
+  useEffect(() => {
+    let currValue = logarithmic ? Math.pow(base || 10, currentDisplayValue) : currentDisplayValue;
+    let maximum = logarithmic ? Math.pow(base || 10, max) : max;
+    let minimum = logarithmic ? Math.pow(base || 10, min) : min;
+    if (currValue > maximum) {
+      let str = '';
+      warningPara.current.innerHTML = props.exceedMessage
+        ? typeof props.exceedMessage == 'string'
+          ? props.exceedMessage
+          : props.exceedMessage(currValue, maximum) || str
+        : str;
+    } else if (currValue < minimum) {
+      let str = '';
+      warningPara.current.innerHTML = props.lagingMessage
+        ? typeof props.lagingMessage == 'string'
+          ? props.lagingMessage
+          : props.lagingMessage(currValue, minimum) || str
+        : str;
+    } else {
+      warningPara.current.innerHTML = '';
+    }
+  }, [currentDisplayValue]);
+
+  return (
+    <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
+      <ExceededWarning ref={warningPara} />
+      <LabelContainer
+        className={elementName + '__label'}
+        {...filteredProps}
+        labelCSS={props.labelPosition === 'top' ? null : 'transform: translateY(-80px);'}
       >
-        {logarithmic ? log.formatValue(value, base) : value.toFixed(digits)}
-      </CurrentValue>
-    );
-    const filteredProps = getFilteredProps(this.props);
-    return (
-      <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
-        <LabelContainer
-          className={elementName + '__label'}
-          {...filteredProps}
-          labelCSS={this.props.labelPosition === 'top' ? null : 'transform: translateY(-80px);'}
-        >
-          <Container color={colorValue}>
-            <GaugeSVG
-              className={elementName + '__gauge'}
-              {...{ ...filteredProps, scale, progress }}
-            />
-            {showCurrentValue && currentValue}
-          </Container>
-        </LabelContainer>
-      </div>
-    );
-  }
-}
+        <Container color={colorValue}>
+          <GaugeSVG
+            className={elementName + '__gauge'}
+            {...{ ...filteredProps, scale, progress }}
+          />
+          {showCurrentValue && currentValue}
+        </Container>
+      </LabelContainer>
+    </div>
+  );
+};
 
 Gauge.defaultProps = {
   min: 0,
@@ -266,7 +291,17 @@ Gauge.propTypes = {
   /**
    * Style to apply to the root component element.
    */
-  style: PropTypes.object
+  style: PropTypes.object,
+
+  /**
+   * Warning message when value exceed max
+   */
+  exceedMessage: PropTypes.oneOfType([PropTypes.string]),
+
+  /**
+   * Warning message when value is laging from min
+   */
+  lagingMessage: PropTypes.oneOfType([PropTypes.string])
 };
 
 export default withTheme(Gauge);

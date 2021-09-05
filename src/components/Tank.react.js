@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { withTheme } from 'styled-components';
 
-import { TankContainer, TankFill, TickContainer, Tick, Container } from '../styled/Tank.styled';
+import {
+  TankContainer,
+  TankFill,
+  TickContainer,
+  Tick,
+  Container,
+  ExceededWarning
+} from '../styled/Tank.styled';
 import CurrentValue from '../styled/CurrentValue.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
 
@@ -34,7 +41,10 @@ const Tank = props => {
     theme
   } = props;
 
+  const warningPara = useRef(null);
+
   const dirtyValue = logarithmic ? log.compute(props.value, base) : props.value;
+  const currentDisplayValue = dirtyValue;
   const value = sanitizeRangeValue({ min, max, value: dirtyValue });
   const percentageFill = computeProgress({ min, max, value });
 
@@ -61,14 +71,38 @@ const Tank = props => {
   const scaleContainer = <TickContainer xPositioned={scale}>{renderTicks()}</TickContainer>;
   const currentValue = (
     <CurrentValue units={units} valueColor="#535D63">
-      {logarithmic ? log.formatValue(value, base) : value}
+      {logarithmic ? log.formatValue(currentDisplayValue, base) : currentDisplayValue}
     </CurrentValue>
   );
 
   const filteredProps = getFilteredProps(props);
 
+  useEffect(() => {
+    let currValue = logarithmic ? Math.pow(base || 10, currentDisplayValue) : currentDisplayValue;
+    let maximum = logarithmic ? Math.pow(base || 10, max) : max;
+    let minimum = logarithmic ? Math.pow(base || 10, min) : min;
+    if (currValue > maximum) {
+      let str = '';
+      warningPara.current.innerHTML = props.exceedMessage
+        ? typeof props.exceedMessage == 'string'
+          ? props.exceedMessage
+          : props.exceedMessage(currValue, maximum) || str
+        : str;
+    } else if (currValue < minimum) {
+      let str = '';
+      warningPara.current.innerHTML = props.lagingMessage
+        ? typeof props.lagingMessage == 'string'
+          ? props.lagingMessage
+          : props.lagingMessage(currValue, minimum) || str
+        : str;
+    } else {
+      warningPara.current.innerHTML = '';
+    }
+  }, [currentDisplayValue]);
+
   return (
     <div className={elementName + (className ? ' ' + className : '')} id={id} style={style}>
+      <ExceededWarning ref={warningPara} />
       <LabelContainer className={elementName + '__label'} {...filteredProps}>
         <Container>
           {scaleContainer}
@@ -235,7 +269,17 @@ Tank.propTypes = {
   /**
    * Style to apply to the root component element.
    */
-  style: PropTypes.object
+  style: PropTypes.object,
+
+  /**
+   * Warning message when value exceed max
+   */
+  exceedMessage: PropTypes.oneOfType([PropTypes.string]),
+
+  /**
+   * Warning message when value is laging from min
+   */
+  lagingMessage: PropTypes.oneOfType([PropTypes.string])
 };
 
 export default withTheme(Tank);

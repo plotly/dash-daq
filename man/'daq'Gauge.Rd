@@ -10,8 +10,9 @@ A Gauge component that points to a value between some range.
 }
 
 \usage{
-'daq'Gauge(id=NULL, base=NULL, className=NULL, color=NULL, label=NULL,
-labelPosition=NULL, logarithmic=NULL, max=NULL, min=NULL,
+'daq'Gauge(id=NULL, base=NULL, className=NULL, color=NULL, digits=NULL,
+exceedMessage=NULL, label=NULL, labelPosition=NULL,
+lagingMessage=NULL, logarithmic=NULL, max=NULL, min=NULL,
 scale=NULL, showCurrentValue=NULL, size=NULL, style=NULL,
 theme=NULL, units=NULL, value=NULL)
 }
@@ -35,12 +36,18 @@ of the gauge's range of values.. ranges has the following type: lists containing
 those elements have the following types:
   - color (list of numerics; optional). Color configuration for the gauge's track.}
 
+\item{digits}{Numeric. Number of digits for current value}
+
+\item{exceedMessage}{Character. Warning message when value exceed max}
+
 \item{label}{Character | lists containing elements 'style', 'label'.
 those elements have the following types:
   - style (named list; optional)
   - label (character; optional). Description to be displayed alongside the control. To control styling, pass an object with label and style properties.}
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the component label is positioned.}
+
+\item{lagingMessage}{Character. Warning message when value is laging from min}
 
 \item{logarithmic}{Logical. If set to true, a logarithmic scale will be
 used.}

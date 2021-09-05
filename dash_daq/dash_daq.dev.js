@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630511489");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630837167");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26343,13 +26343,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styled/shared/LabelContainer.styled */ "./src/styled/shared/LabelContainer.styled.js");
 /* harmony import */ var _styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styled/CurrentValue.styled */ "./src/styled/CurrentValue.styled.js");
 /* harmony import */ var _styled_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../styled/constants */ "./src/styled/constants.js");
-/* harmony import */ var _helpers_util__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/util */ "./src/helpers/util.js");
-/* harmony import */ var _helpers_logarithm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../helpers/logarithm */ "./src/helpers/logarithm.js");
-/* harmony import */ var _helpers_scale__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../helpers/scale */ "./src/helpers/scale.js");
-/* harmony import */ var _helpers_colorRanges__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../helpers/colorRanges */ "./src/helpers/colorRanges.js");
-/* harmony import */ var _helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../helpers/classNameGenerator */ "./src/helpers/classNameGenerator.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+/* harmony import */ var _styled_Tank_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styled/Tank.styled */ "./src/styled/Tank.styled.js");
+/* harmony import */ var _helpers_util__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../helpers/util */ "./src/helpers/util.js");
+/* harmony import */ var _helpers_logarithm__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../helpers/logarithm */ "./src/helpers/logarithm.js");
+/* harmony import */ var _helpers_scale__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../helpers/scale */ "./src/helpers/scale.js");
+/* harmony import */ var _helpers_colorRanges__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../helpers/colorRanges */ "./src/helpers/colorRanges.js");
+/* harmony import */ var _helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../helpers/classNameGenerator */ "./src/helpers/classNameGenerator.js");
+/* harmony import */ var conic_gradient__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! conic-gradient */ "./node_modules/conic-gradient/conic-gradient.js");
+/* harmony import */ var conic_gradient__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(conic_gradient__WEBPACK_IMPORTED_MODULE_14__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -26358,21 +26359,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
@@ -26392,95 +26379,92 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
  * a value between some range.
  */
 
-var Gauge =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Gauge, _React$Component);
+var Gauge = function Gauge(props) {
+  var max = props.max,
+      min = props.min,
+      showCurrentValue = props.showCurrentValue,
+      units = props.units,
+      logarithmic = props.logarithmic,
+      base = props.base,
+      id = props.id,
+      className = props.className,
+      style = props.style,
+      theme = props.theme,
+      digits = props.digits;
+  var warningPara = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+  var color = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_12__["convertInRange"])(props.color, max, min ? min : 0);
+  var colorValue = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_12__["getColorValue"])(color);
+  var rawValue = props.value != null ? props.value : min;
+  var dirtyValue = logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_10__["default"].compute(rawValue) : rawValue;
+  var currentDisplayValue = dirtyValue;
+  var value = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_9__["sanitizeRangeValue"])({
+    min: min,
+    max: max,
+    value: dirtyValue
+  });
+  var formatter = logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_10__["default"].generateLogFormatter({
+    base: base,
+    isSVG: true
+  }) : null;
+  var scale = Object(_helpers_scale__WEBPACK_IMPORTED_MODULE_11__["default"])(_objectSpread({}, props, {
+    formatter: formatter
+  }));
+  var progress = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_9__["computeProgress"])({
+    min: min,
+    max: max,
+    value: value,
+    progressionTarget: 1
+  });
+  var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_13__["getClassName"])('gauge', theme);
+  var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: elementName + '__current-value',
+    valueColor: colorValue,
+    units: units,
+    css: 'transform: translateY(-150%); top: 0;'
+  }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_10__["default"].formatValue(currentDisplayValue, base) : currentDisplayValue.toFixed(digits));
+  var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_13__["getFilteredProps"])(props);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var currValue = logarithmic ? Math.pow(base || 10, currentDisplayValue) : currentDisplayValue;
+    var maximum = logarithmic ? Math.pow(base || 10, max) : max;
+    var minimum = logarithmic ? Math.pow(base || 10, min) : min;
 
-  function Gauge() {
-    _classCallCheck(this, Gauge);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Gauge).apply(this, arguments));
-  }
-
-  _createClass(Gauge, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      // eslint-disable-next-line
-      __webpack_require__(/*! conic-gradient */ "./node_modules/conic-gradient/conic-gradient.js");
+    if (currValue > maximum) {
+      var str = '';
+      warningPara.current.innerHTML = props.exceedMessage ? typeof props.exceedMessage == 'string' ? props.exceedMessage : props.exceedMessage(currValue, maximum) || str : str;
+    } else if (currValue < minimum) {
+      var _str = '';
+      warningPara.current.innerHTML = props.lagingMessage ? typeof props.lagingMessage == 'string' ? props.lagingMessage : props.lagingMessage(currValue, minimum) || _str : _str;
+    } else {
+      warningPara.current.innerHTML = '';
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          max = _this$props.max,
-          min = _this$props.min,
-          showCurrentValue = _this$props.showCurrentValue,
-          units = _this$props.units,
-          logarithmic = _this$props.logarithmic,
-          base = _this$props.base,
-          id = _this$props.id,
-          className = _this$props.className,
-          style = _this$props.style,
-          theme = _this$props.theme;
-      var color = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_11__["convertInRange"])(this.props.color, max, min ? min : 0);
-      var colorValue = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_11__["getColorValue"])(color);
-      var rawValue = this.props.value != null ? this.props.value : min;
-      var dirtyValue = logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_9__["default"].compute(rawValue) : rawValue;
-      var value = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_8__["sanitizeRangeValue"])({
-        min: min,
-        max: max,
-        value: dirtyValue
-      });
-      var formatter = logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_9__["default"].generateLogFormatter({
-        base: base,
-        isSVG: true
-      }) : null;
-      var scale = Object(_helpers_scale__WEBPACK_IMPORTED_MODULE_10__["default"])(_objectSpread({}, this.props, {
-        formatter: formatter
-      }));
-      var progress = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_8__["computeProgress"])({
-        min: min,
-        max: max,
-        value: value,
-        progressionTarget: 1
-      });
-      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getClassName"])('gauge', theme);
-      var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        className: elementName + '__current-value',
-        valueColor: colorValue,
-        units: units,
-        css: 'transform: translateY(-150%); top: 0;'
-      }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_9__["default"].formatValue(value, base) : value.toFixed(1));
-      var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_12__["getFilteredProps"])(this.props);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: id,
-        className: elementName + (className ? ' ' + className : ''),
-        style: style
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
-        className: elementName + '__label'
-      }, filteredProps, {
-        labelCSS: this.props.labelPosition === 'top' ? null : 'transform: translateY(-80px);'
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Gauge_styled__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        color: colorValue
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_GaugeSvg_react__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
-        className: elementName + '__gauge'
-      }, _objectSpread({}, filteredProps, {
-        scale: scale,
-        progress: progress
-      }))), showCurrentValue && currentValue)));
-    }
-  }]);
-
-  return Gauge;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+  }, [currentDisplayValue]);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: id,
+    className: elementName + (className ? ' ' + className : ''),
+    style: style
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_8__["ExceededWarning"], {
+    ref: warningPara
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
+    className: elementName + '__label'
+  }, filteredProps, {
+    labelCSS: props.labelPosition === 'top' ? null : 'transform: translateY(-80px);'
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Gauge_styled__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    color: colorValue
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_GaugeSvg_react__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
+    className: elementName + '__gauge'
+  }, _objectSpread({}, filteredProps, {
+    scale: scale,
+    progress: progress
+  }))), showCurrentValue && currentValue)));
+};
 
 Gauge.defaultProps = {
   min: 0,
   max: 10,
   base: 10,
   theme: _styled_constants__WEBPACK_IMPORTED_MODULE_7__["light"],
-  labelPosition: 'top'
+  labelPosition: 'top',
+  digits: 1
 };
 Gauge.propTypes = {
   /**
@@ -26527,6 +26511,11 @@ Gauge.propTypes = {
    * will be displayed
    */
   showCurrentValue: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Number of digits for current value
+   */
+  digits: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
 
   /**
    * Label for the current value
@@ -26646,7 +26635,17 @@ Gauge.propTypes = {
   /**
    * Style to apply to the root component element.
    */
-  style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+  style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * Warning message when value exceed max
+   */
+  exceedMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+  * Warning message when value is laging from min
+  */
+  lagingMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["withTheme"])(Gauge));
 
@@ -29327,7 +29326,9 @@ var Tank = function Tank(props) {
       height = props.height,
       width = props.width,
       theme = props.theme;
+  var warningPara = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   var dirtyValue = logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_6__["default"].compute(props.value, base) : props.value;
+  var currentDisplayValue = dirtyValue;
   var value = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_7__["sanitizeRangeValue"])({
     min: min,
     max: max,
@@ -29376,13 +29377,30 @@ var Tank = function Tank(props) {
   var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_4__["default"], {
     units: units,
     valueColor: "#535D63"
-  }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_6__["default"].formatValue(value, base) : value);
+  }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_6__["default"].formatValue(currentDisplayValue, base) : currentDisplayValue);
   var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_9__["getFilteredProps"])(props);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var currValue = logarithmic ? Math.pow(base || 10, currentDisplayValue) : currentDisplayValue;
+    var maximum = logarithmic ? Math.pow(base || 10, max) : max;
+    var minimum = logarithmic ? Math.pow(base || 10, min) : min;
+
+    if (currValue > maximum) {
+      var str = '';
+      warningPara.current.innerHTML = props.exceedMessage ? typeof props.exceedMessage == 'string' ? props.exceedMessage : props.exceedMessage(currValue, maximum) || str : str;
+    } else if (currValue < minimum) {
+      var _str = '';
+      warningPara.current.innerHTML = props.lagingMessage ? typeof props.lagingMessage == 'string' ? props.lagingMessage : props.lagingMessage(currValue, minimum) || _str : _str;
+    } else {
+      warningPara.current.innerHTML = '';
+    }
+  }, [currentDisplayValue]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: elementName + (className ? ' ' + className : ''),
     id: id,
     style: style
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_3__["ExceededWarning"], {
+    ref: warningPara
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
     className: elementName + '__label'
   }, filteredProps), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_3__["Container"], null, scaleContainer, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_3__["TankContainer"], {
     className: elementName + '__container',
@@ -29539,7 +29557,17 @@ Tank.propTypes = {
   /**
    * Style to apply to the root component element.
    */
-  style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+  style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * Warning message when value exceed max
+   */
+  exceedMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * Warning message when value is laging from min
+   */
+  lagingMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["withTheme"])(Tank));
 
@@ -32593,7 +32621,7 @@ var darkButton = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_
 /*!***********************************!*\
   !*** ./src/styled/Tank.styled.js ***!
   \***********************************/
-/*! exports provided: TankContainer, TankFill, TickContainer, Tick, Container */
+/*! exports provided: TankContainer, TankFill, TickContainer, Tick, Container, ExceededWarning */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32603,10 +32631,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TickContainer", function() { return TickContainer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tick", function() { return Tick; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Container", function() { return Container; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExceededWarning", function() { return ExceededWarning; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! color */ "./node_modules/color/index.js");
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(color__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./src/styled/constants.js");
+function _templateObject13() {
+  var data = _taggedTemplateLiteral(["\n  color: #DC3545;\n  font-size: 0.8rem;\n  text-align: center;\n  display: block;\n"]);
+
+  _templateObject13 = function _templateObject13() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject12() {
   var data = _taggedTemplateLiteral(["\n          margin-top: 8px;\n          margin-left: ", ";\n        "]);
 
@@ -32688,7 +32727,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: ", ";\n\n  border-radius: ", ";\n\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  height: ", ";\n\n  border-radius: ", ";\n  border-radius: 0px;\n\n  ", ";\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -32803,6 +32842,7 @@ var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_t
     return xPositioned ? '-4px' : '-24px';
   }) : '';
 });
+var ExceededWarning = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].span(_templateObject13());
 
 /***/ }),
 
