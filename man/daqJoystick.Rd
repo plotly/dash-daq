@@ -29,7 +29,7 @@ style=NULL, theme=NULL)
 \item{label}{Character | lists containing elements 'style', 'label'.
 those elements have the following types:
   - style (named list; optional)
-  - label (character; optional). Description to be displayed alongside the control. To control styling,
+  - label (character; optional). Description to be displayed alongside the control. To control styling,
 pass an object with label and style properties}
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the indicator label is positioned}

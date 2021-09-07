@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1630783418");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1631041763");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26429,11 +26429,10 @@ var Gauge = function Gauge(props) {
     var minimum = logarithmic ? Math.pow(base || 10, min) : min;
 
     if (currValue > maximum) {
-      var str = "Value(".concat(Math.ceil(currValue), ") greater than max(").concat(maximum, ")");
+      var str = '';
       warningPara.current.innerHTML = props.exceedMessage ? typeof props.exceedMessage == 'string' ? props.exceedMessage : props.exceedMessage(currValue, maximum) || str : str;
     } else if (currValue < minimum) {
-      var _str = "Value(".concat(Math.ceil(currValue), ") less than min(").concat(minimum, ")");
-
+      var _str = '';
       warningPara.current.innerHTML = props.lagingMessage ? typeof props.lagingMessage == 'string' ? props.lagingMessage : props.lagingMessage(currValue, minimum) || _str : _str;
     } else {
       warningPara.current.innerHTML = '';
@@ -26644,8 +26643,8 @@ Gauge.propTypes = {
   exceedMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
 
   /**
-  * Warning message when value is laging from min
-  */
+   * Warning message when value is laging from min
+   */
   lagingMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["withTheme"])(Gauge));
@@ -29386,11 +29385,10 @@ var Tank = function Tank(props) {
     var minimum = logarithmic ? Math.pow(base || 10, min) : min;
 
     if (currValue > maximum) {
-      var str = "Value(".concat(Math.ceil(currValue), ") greater than max(").concat(maximum, ")");
+      var str = '';
       warningPara.current.innerHTML = props.exceedMessage ? typeof props.exceedMessage == 'string' ? props.exceedMessage : props.exceedMessage(currValue, maximum) || str : str;
     } else if (currValue < minimum) {
-      var _str = "Value(".concat(Math.ceil(currValue), ") less than min(").concat(minimum, ")");
-
+      var _str = '';
       warningPara.current.innerHTML = props.lagingMessage ? typeof props.lagingMessage == 'string' ? props.lagingMessage : props.lagingMessage(currValue, minimum) || _str : _str;
     } else {
       warningPara.current.innerHTML = '';
@@ -32639,7 +32637,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var color__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(color__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./src/styled/constants.js");
 function _templateObject13() {
-  var data = _taggedTemplateLiteral(["\n  color: #DC3545;\n  font-size: 0.8rem;\n  text-align: center;\n  display: block;\n"]);
+  var data = _taggedTemplateLiteral(["\n  color: #dc3545;\n  font-size: 0.8rem;\n  text-align: center;\n  display: block;\n"]);
 
   _templateObject13 = function _templateObject13() {
     return data;
