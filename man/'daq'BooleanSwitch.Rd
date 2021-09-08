@@ -13,7 +13,8 @@ A switch component that toggles between on and off.
 'daq'BooleanSwitch(id=NULL, className=NULL, color=NULL, disabled=NULL,
 label=NULL, labelPosition=NULL, on=NULL,
 persisted_props=NULL, persistence=NULL,
-persistence_type=NULL, style=NULL, theme=NULL, vertical=NULL)
+persistence_type=NULL, size=NULL, style=NULL, theme=NULL,
+vertical=NULL)
 }
 
 \arguments{
@@ -50,6 +51,8 @@ Used in conjunction with `persistence_type`.}
 memory: only kept in memory, reset on page refresh.
 local: window.localStorage, data is kept after the browser quit.
 session: window.sessionStorage, data is cleared once the browser quit.}
+
+\item{size}{Numeric. size of the switch}
 
 \item{style}{Named list. Style to apply to the root object.}
 

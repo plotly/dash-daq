@@ -17,6 +17,9 @@ export const colorRangesTrack = (props, dimensions) => {
   const stops = getSortedEntries(color.ranges).map(([colorValue, range], i) => {
     const startDeg = ((range[0] * 1.0) / max) * TRACK_ARC_DEG + GAP_ARC_DEG;
     const endDeg = ((range[1] * 1.0) / max) * TRACK_ARC_DEG + GAP_ARC_DEG;
+    let p = document.createElement('p');
+    p.innerHTML = `${colorValue} : ${startDeg} ${endDeg}`;
+    document.body.appendChild(p);
 
     if (color.gradient) {
       // no transition between black band and first color
