@@ -6,7 +6,7 @@
 \title{DarkThemeProvider component}
 
 \description{
-DarkThemeProvider is a component that is placed at the root of the component tree to make all components match the dark theme
+DarkThemeProvider is a component that is placed at the root of the component tree to make all components match the dark theme
 }
 
 \usage{

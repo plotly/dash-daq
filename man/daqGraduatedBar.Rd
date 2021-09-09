@@ -6,7 +6,7 @@
 \title{GraduatedBar component}
 
 \description{
-A graduated bar component that displays a value within some range as a percentage.
+A graduated bar component that displays a value within some range as a percentage.
 }
 
 \usage{
@@ -23,16 +23,16 @@ theme=NULL, value=NULL, vertical=NULL)
 
 \item{color}{Character | lists containing elements 'default', 'gradient', 'ranges'.
 those elements have the following types:
-  - default (character; optional): fallback color to use when color.ranges
+  - default (character; optional): fallback color to use when color.ranges
 has gaps.
-  - gradient (logical; optional): display ranges as a gradient between given colors.
-requires color.ranges to be contiguous along
+  - gradient (logical; optional): display ranges as a gradient between given colors.
+requires color.ranges to be contiguous along
 the entirety of the graduated bar's range of values.
-  - ranges (optional): define multiple color ranges on the graduated bar's track.
-the key determines the color of the range and
+  - ranges (optional): define multiple color ranges on the graduated bar's track.
+the key determines the color of the range and
 the value is the start,end of the range itself.. ranges has the following type: lists containing elements 'color'.
 those elements have the following types:
-  - color (list of numerics; optional). Color configuration for the graduated bar's
+  - color (list of numerics; optional). Color configuration for the graduated bar's
 progress blocks.}
 
 \item{label}{Character | lists containing elements 'style', 'label'.
@@ -46,7 +46,7 @@ those elements have the following types:
 
 \item{min}{Numeric. The minimum value of the graduated bar}
 
-\item{showCurrentValue}{Logical. If true, the current percentage
+\item{showCurrentValue}{Logical. If true, the current percentage
  of the bar will be displayed}
 
 \item{size}{Numeric. The size (length) of the graduated bar in pixels}

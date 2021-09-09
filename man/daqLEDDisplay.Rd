@@ -27,7 +27,7 @@ theme=NULL, value=NULL)
 \item{label}{Character | lists containing elements 'style', 'label'.
 those elements have the following types:
   - style (named list; optional)
-  - label (character; optional). Description to be displayed alongside the control. To control styling,
+  - label (character; optional). Description to be displayed alongside the control. To control styling,
 pass an object with label and style properties}
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the display label is positioned}
@@ -38,8 +38,8 @@ pass an object with label and style properties}
 
 \item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
 
-\item{value}{Numeric | character. Value to be displayed. A number or a string
-containing only digits (0-9), periods, and colons,
+\item{value}{Numeric | character. Value to be displayed. A number or a string
+containing only digits (0-9), periods, and colons,
 and possibly starting with a minus sign.}
 }
 

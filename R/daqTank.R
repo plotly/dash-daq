@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqTank <- function(id=NULL, base=NULL, className=NULL, color=NULL, height=NULL, label=NULL, labelPosition=NULL, logarithmic=NULL, max=NULL, min=NULL, scale=NULL, showCurrentValue=NULL, style=NULL, units=NULL, value=NULL, width=NULL) {
+daqTank <- function(id=NULL, base=NULL, className=NULL, color=NULL, exceedMessage=NULL, height=NULL, label=NULL, labelPosition=NULL, lagingMessage=NULL, logarithmic=NULL, max=NULL, min=NULL, scale=NULL, showCurrentValue=NULL, style=NULL, units=NULL, value=NULL, width=NULL) {
     
-    props <- list(id=id, base=base, className=className, color=color, height=height, label=label, labelPosition=labelPosition, logarithmic=logarithmic, max=max, min=min, scale=scale, showCurrentValue=showCurrentValue, style=style, units=units, value=value, width=width)
+    props <- list(id=id, base=base, className=className, color=color, exceedMessage=exceedMessage, height=height, label=label, labelPosition=labelPosition, lagingMessage=lagingMessage, logarithmic=logarithmic, max=max, min=min, scale=scale, showCurrentValue=showCurrentValue, style=style, units=units, value=value, width=width)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqTank <- function(id=NULL, base=NULL, className=NULL, color=NULL, height=NULL,
         props = props,
         type = 'Tank',
         namespace = 'dash_daq',
-        propNames = c('id', 'base', 'className', 'color', 'height', 'label', 'labelPosition', 'logarithmic', 'max', 'min', 'scale', 'showCurrentValue', 'style', 'units', 'value', 'width'),
+        propNames = c('id', 'base', 'className', 'color', 'exceedMessage', 'height', 'label', 'labelPosition', 'lagingMessage', 'logarithmic', 'max', 'min', 'scale', 'showCurrentValue', 'style', 'units', 'value', 'width'),
         package = 'dashDaq'
         )
 

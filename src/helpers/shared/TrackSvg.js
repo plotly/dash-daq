@@ -5,7 +5,7 @@ import { isContiguous, getSortedEntries } from '../../helpers/colorRanges';
 import { RADIAN, TRACK_TOTAL_DEG } from '../../styled/constants';
 
 export const colorRangesTrack = (props, dimensions) => {
-  const { color, max } = props;
+  // const { max } = props;
   const { CX, CY, GAUGE_RAD, CIRCLE_CIR, GAP_ARC_LENGTH } = dimensions;
   const TRACK_ARC_DEG = 270;
   const GAP_ARC_DEG = 90;
@@ -13,13 +13,13 @@ export const colorRangesTrack = (props, dimensions) => {
 
   if (!isContiguous(props)) return null;
 
+  // set colors start from 0 if negative value is present
+  const { color, max } = setColorRangeStartFromZero(props.color, props.max);
+
   // calculate stops
   const stops = getSortedEntries(color.ranges).map(([colorValue, range], i) => {
     const startDeg = ((range[0] * 1.0) / max) * TRACK_ARC_DEG + GAP_ARC_DEG;
     const endDeg = ((range[1] * 1.0) / max) * TRACK_ARC_DEG + GAP_ARC_DEG;
-    let p = document.createElement('p');
-    p.innerHTML = `${colorValue} : ${startDeg} ${endDeg}`;
-    document.body.appendChild(p);
 
     if (color.gradient) {
       // no transition between black band and first color
@@ -200,4 +200,27 @@ export const drawScale = (
   });
 
   return scaleItems;
+};
+
+const setColorRangeStartFromZero = (color, max) => {
+  let { ranges } = color;
+  let minimum = Infinity;
+
+  for (let i in ranges) {
+    if (ranges[i][0] < minimum) {
+      minimum = ranges[i][0];
+    }
+    if (ranges[i][1] < minimum) {
+      minimum = ranges[i][1];
+    }
+  }
+  if (minimum < 0) {
+    for (let i in ranges) {
+      ranges[i][0] = ranges[i][0] - minimum;
+      ranges[i][1] = ranges[i][1] - minimum;
+    }
+    max = max - minimum;
+  }
+  color = { ...color, ranges };
+  return { color, max };
 };

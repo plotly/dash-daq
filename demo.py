@@ -78,6 +78,16 @@ root_layout = html.Div([
         showCurrentValue=True,
     ),
 
+    Gauge(
+        label="Test 2",
+        value=20,
+        min=0,
+        max=45,
+        color={"gradient":False,"ranges":{"green":[0,10],"yellow":[10,30],"red":[30,45]}},
+        units="Celsius",
+        showCurrentValue=True,
+    ),
+
     html.Div([
         html.H1('dash_daq Dash Demo'),
         dcc.Link('Light Theme', href='/', refresh=True),

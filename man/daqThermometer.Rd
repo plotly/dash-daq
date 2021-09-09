@@ -6,7 +6,7 @@
 \title{Thermometer component}
 
 \description{
-A thermometer component that fills to a value between some range
+A thermometer component that fills to a value between some range
 }
 
 \usage{
@@ -34,35 +34,35 @@ those elements have the following types:
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the component label is positioned.}
 
-\item{logarithmic}{Logical. If set to true, a logarithmic scale will be
+\item{logarithmic}{Logical. If set to true, a logarithmic scale will be
 used.}
 
-\item{max}{Numeric. The maximum value of the thermometer. If logarithmic,
+\item{max}{Numeric. The maximum value of the thermometer. If logarithmic,
 represents the maximum exponent.}
 
-\item{min}{Numeric. The minimum value of the thermometer. If logarithmic,
+\item{min}{Numeric. The minimum value of the thermometer. If logarithmic,
 represents the minimum exponent.}
 
 \item{scale}{Lists containing elements 'start', 'interval', 'labelinterval', 'custom'.
 those elements have the following types:
-  - start (numeric; optional): value to start the scale from. defaults
+  - start (numeric; optional): value to start the scale from. defaults
 to min.
-  - interval (numeric; optional): interval by which the scale goes up. attempts
-to dynamically divide min-max range by
+  - interval (numeric; optional): interval by which the scale goes up. attempts
+to dynamically divide min-max range by
 default.
-  - labelinterval (numeric; optional): interval by which labels are added to
-scale marks. defaults to 2 (every other
+  - labelinterval (numeric; optional): interval by which labels are added to
+scale marks. defaults to 2 (every other
 mark has a label).
-  - custom (optional): custom scale marks. the key determines the position
-and the value determines what will show. if you want
-to set the style of a specific mark point, the value
-should be an object which contains style and label
+  - custom (optional): custom scale marks. the key determines the position
+and the value determines what will show. if you want
+to set the style of a specific mark point, the value
+should be an object which contains style and label
 properties. custom has the following type: numeric | lists containing elements 'style', 'label'.
 those elements have the following types:
   - style (character; optional)
   - label (character; optional). Configuration for the component scale.}
 
-\item{showCurrentValue}{Logical. If true, the current value of the
+\item{showCurrentValue}{Logical. If true, the current value of the
 thermometer will be displayed}
 
 \item{style}{Named list. Style to apply to the root component element.}
@@ -71,7 +71,7 @@ thermometer will be displayed}
 
 \item{units}{Character. Label for the current value}
 
-\item{value}{Numeric. The value of thermometer. If logarthmic, the value
+\item{value}{Numeric. The value of thermometer. If logarthmic, the value
 displayed will be the logarithm of the inputted value.}
 
 \item{width}{Numeric. The width of the thermometer in pixels}
