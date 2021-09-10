@@ -14,7 +14,8 @@ export const colorRangesTrack = (props, dimensions) => {
   if (!isContiguous(props)) return null;
 
   // set colors start from 0 if negative value is present
-  const { color, max } = setColorRangeStartFromZero(props.color, props.max);
+  let deepColorCopy = JSON.parse(JSON.stringify(props.color));
+  const { color, max } = setColorRangeStartFromZero({ ...deepColorCopy }, props.max);
 
   // calculate stops
   const stops = getSortedEntries(color.ranges).map(([colorValue, range], i) => {
@@ -203,7 +204,7 @@ export const drawScale = (
 };
 
 const setColorRangeStartFromZero = (color, max) => {
-  let { ranges } = color;
+  let ranges = { ...color.ranges };
   let minimum = Infinity;
 
   for (let i in ranges) {

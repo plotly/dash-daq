@@ -68,22 +68,11 @@ root_layout = html.Div([
     ),
 
     Gauge(
-        id='test-1',
         label="Test 1",
         value=20,
         min=-10,
         max=35,
         color={"gradient":False,"ranges":{"green":[-10,0],"yellow":[0,20],"red":[20,35]}},
-        units="Celsius",
-        showCurrentValue=True,
-    ),
-
-    Gauge(
-        label="Test 2",
-        value=20,
-        min=0,
-        max=45,
-        color={"gradient":False,"ranges":{"green":[0,10],"yellow":[10,30],"red":[30,45]}},
         units="Celsius",
         showCurrentValue=True,
     ),

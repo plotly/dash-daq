@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1631126928");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1631215947");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -31384,13 +31384,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/util */ "./src/helpers/util.js");
 /* harmony import */ var _helpers_colorRanges__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/colorRanges */ "./src/helpers/colorRanges.js");
 /* harmony import */ var _styled_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../styled/constants */ "./src/styled/constants.js");
-/* harmony import */ var ramda__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ramda */ "./node_modules/ramda/es/index.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -31399,6 +31392,11 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -31416,7 +31414,9 @@ var colorRangesTrack = function colorRangesTrack(props, dimensions) {
   var GRADIENT_BLEND = 25;
   if (!Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_2__["isContiguous"])(props)) return null; // set colors start from 0 if negative value is present
 
-  var _setColorRangeStartFr = setColorRangeStartFromZero(props.color, props.max),
+  var deepColorCopy = JSON.parse(JSON.stringify(props.color));
+
+  var _setColorRangeStartFr = setColorRangeStartFromZero(_objectSpread({}, deepColorCopy), props.max),
       color = _setColorRangeStartFr.color,
       max = _setColorRangeStartFr.max; // calculate stops
 
@@ -31441,10 +31441,6 @@ var colorRangesTrack = function colorRangesTrack(props, dimensions) {
     return "".concat(colorValue, " ").concat(startDeg, "deg, ").concat(colorValue, " ").concat(endDeg, "deg");
   });
   stops.unshift(["black ".concat(GAP_ARC_DEG, "deg")]); // add black band for bottom gap
-
-  var p = document.createElement('p');
-  p.innerHTML = "".concat(JSON.stringify(stops), "<br/>").concat(JSON.stringify(color), "<br/>max ").concat(max);
-  document.body.appendChild(p);
 
   if (typeof window === 'undefined') {
     return null;
@@ -31603,8 +31599,8 @@ var drawScale = function drawScale(_ref3, _ref4) {
 };
 
 var setColorRangeStartFromZero = function setColorRangeStartFromZero(color, max) {
-  var _color = color,
-      ranges = _color.ranges;
+  var ranges = _objectSpread({}, color.ranges);
+
   var minimum = Infinity;
 
   for (var i in ranges) {
@@ -31616,10 +31612,6 @@ var setColorRangeStartFromZero = function setColorRangeStartFromZero(color, max)
       minimum = ranges[i][1];
     }
   }
-
-  var p = document.createElement('p');
-  p.innerHTML = "minimum: ".concat(minimum, ", ");
-  document.body.appendChild(p);
 
   if (minimum < 0) {
     for (var _i2 in ranges) {
