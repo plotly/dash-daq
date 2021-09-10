@@ -147,8 +147,10 @@ controls = html.Div(
     },
 )
 
-def warning(x,y):
+
+def warning(x, y):
     return x+" "+y
+
 
 indicators = html.Div(
     [
@@ -170,7 +172,7 @@ indicators = html.Div(
                     max=10,
                     value=2,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
-                    exceedMessage= "Exceed"
+                    exceedMessage="Exceed"
                 ),
                 Thermometer(
                     id="demoThermometer", label="Thermometer", min=0, max=10, value=2
