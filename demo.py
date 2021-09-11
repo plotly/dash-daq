@@ -34,49 +34,6 @@ app.scripts.config.serve_locally = True
 ################ Set up shared layout ################
 root_layout = html.Div([
     dcc.Location(id='url', refresh=True),
-
-    # Tank(
-    #     id="demoTank",
-    #     label="Tank",
-    #     showCurrentValue=True,
-    #     logarithmic=True,
-    #     min=0,
-    #     max=3,
-    #     value=100,
-    #     scale={"custom": {0: "Low", 1: "low-medium", 2: "Medium", 3: "High"}},
-    # ),
-
-    # Gauge(
-    #     label="Gauge",
-    #     logarithmic=True,
-    #     min=0,
-    #     max=4,
-    #     showCurrentValue=True,
-    #     scale={"start": 0, "interval": 1, "labelInterval": 1},
-    #     value=11000,
-    #     style={"transform": "scale(1)"},
-    #     exceedMessage="exceed"
-    # ),
-
-    # Gauge(
-    #     color={"gradient":False,"ranges":{"#00998c":[0,6],"#E09A4F":[6,8],"#E0554E":[8,10]}},
-    #         showCurrentValue=True,
-    # ),
-
-    BooleanSwitch(
-        size=150
-    ),
-
-    Gauge(
-        label="Test 1",
-        value=20,
-        min=-10,
-        max=35,
-        color={"gradient":False,"ranges":{"green":[-10,0],"yellow":[0,20],"red":[20,35]}},
-        units="Celsius",
-        showCurrentValue=True,
-    ),
-
     html.Div([
         html.H1('dash_daq Dash Demo'),
         dcc.Link('Light Theme', href='/', refresh=True),
