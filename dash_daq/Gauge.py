@@ -31,10 +31,10 @@ Keyword arguments:
         Display ranges as a gradient between given colors.
 
     - ranges (dict; optional):
-        Define multiple color ranges on the gauge's track.  The key
-        determines the color of the range and  the value is the
-        start,end of the range itself.  Ranges must be contiguous
-        along the entirety  of the gauge's range of values.
+        Define multiple color ranges on the gauge's track. The key
+        determines the color of the range and the value is the
+        start,end of the range itself. Ranges must be contiguous along
+        the entirety of the gauge's range of values.
 
         `ranges` is a dict with keys:
 
@@ -63,14 +63,14 @@ Keyword arguments:
     Warning message when value is laging from min.
 
 - logarithmic (boolean; optional):
-    If set to True, a logarithmic scale will be  used.
+    If set to True, a logarithmic scale will be used.
 
 - max (number; default 10):
-    The maximum value of the gauge. If logarithmic,  represents the
+    The maximum value of the gauge. If logarithmic, represents the
     maximum exponent.
 
 - min (number; default 0):
-    The minimum value of the gauge. If logarithmic,  represents the
+    The minimum value of the gauge. If logarithmic, represents the
     minimum exponent.
 
 - scale (dict; optional):
@@ -79,10 +79,10 @@ Keyword arguments:
     `scale` is a dict with keys:
 
     - custom (dict; optional):
-        Custom scale marks. The key determines the position  and the
-        value determines what will show. If you want  to set the style
-        of a specific mark point, the value  should be an object which
-        contains style and label  properties.
+        Custom scale marks. The key determines the position and the
+        value determines what will show. If you want to set the style
+        of a specific mark point, the value should be an object which
+        contains style and label properties.
 
         `custom` is a number
 
@@ -93,18 +93,18 @@ Keyword arguments:
         - style (string; optional)
 
     - interval (number; optional):
-        Interval by which the scale goes up. Attempts  to dynamically
-        divide min-max range by  default.
+        Interval by which the scale goes up. Attempts to dynamically
+        divide min-max range by default.
 
     - labelInterval (number; optional):
-        Interval by which labels are added to  scale marks. Defaults
-        to 2 (every other  mark has a label).
+        Interval by which labels are added to scale marks. Defaults to
+        2 (every other mark has a label).
 
     - start (number; optional):
-        Value to start the scale from. Defaults  to min.
+        Value to start the scale from. Defaults to min.
 
 - showCurrentValue (boolean; optional):
-    If True, the current value of the gauge  will be displayed.
+    If True, the current value of the gauge will be displayed.
 
 - size (number; optional):
     The size (diameter) of the gauge in pixels.
@@ -119,7 +119,7 @@ Keyword arguments:
     Label for the current value.
 
 - value (number; optional):
-    The value of gauge. If logarithmic, the displayed  value will be
+    The value of gauge. If logarithmic, the displayed value will be
     the logarithm of the inputted value."""
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, size=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, base=Component.UNDEFINED, logarithmic=Component.UNDEFINED, showCurrentValue=Component.UNDEFINED, digits=Component.UNDEFINED, units=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, scale=Component.UNDEFINED, color=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, exceedMessage=Component.UNDEFINED, lagingMessage=Component.UNDEFINED, **kwargs):

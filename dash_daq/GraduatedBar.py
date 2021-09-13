@@ -18,22 +18,22 @@ Keyword arguments:
     Class to apply to the root component element.
 
 - color (dict; default light.primary):
-    Color configuration for the graduated bar's  progress blocks.
+    Color configuration for the graduated bar's progress blocks.
 
     `color` is a string | dict with keys:
 
     - default (string; optional):
-        Fallback color to use when color.ranges  has gaps.
+        Fallback color to use when color.ranges has gaps.
 
     - gradient (boolean; optional):
-        Display ranges as a gradient between given colors.  Requires
-        color.ranges to be contiguous along  the entirety of the
+        Display ranges as a gradient between given colors. Requires
+        color.ranges to be contiguous along the entirety of the
         graduated bar's range of values.
 
     - ranges (dict; optional):
-        Define multiple color ranges on the graduated bar's track.
-        The key determines the color of the range and  the value is
-        the start,end of the range itself.
+        Define multiple color ranges on the graduated bar's track. The
+        key determines the color of the range and the value is the
+        start,end of the range itself.
 
         `ranges` is a dict with keys:
 
@@ -59,7 +59,7 @@ Keyword arguments:
     The minimum value of the graduated bar.
 
 - showCurrentValue (boolean; optional):
-    If True, the current percentage   of the bar will be displayed.
+    If True, the current percentage  of the bar will be displayed.
 
 - size (number; default 250):
     The size (length) of the graduated bar in pixels.

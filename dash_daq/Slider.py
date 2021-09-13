@@ -22,16 +22,16 @@ Keyword arguments:
     `color` is a string | dict with keys:
 
     - default (string; optional):
-        Fallback color to use when color.ranges  has gaps.
+        Fallback color to use when color.ranges has gaps.
 
     - gradient (boolean; optional):
-        Display ranges as a gradient between given colors.  Requires
-        color.ranges to be contiguous along  the entirety of the
+        Display ranges as a gradient between given colors. Requires
+        color.ranges to be contiguous along the entirety of the
         gauge's range of values.
 
     - ranges (dict; optional):
-        Define multiple color ranges on the slider's track.  The key
-        determines the color of the range and  the value is the
+        Define multiple color ranges on the slider's track. The key
+        determines the color of the range and the value is the
         start,end of the range itself.
 
         `ranges` is a dict with keys:
@@ -42,12 +42,12 @@ Keyword arguments:
     If True, the handles can't be moved.
 
 - dots (boolean; optional):
-    When the step value is greater than 1,  you can set the dots to
-    True if you want to  render the slider with dots.   Note: dots are
-    disabled automatically when  using color.ranges.
+    When the step value is greater than 1, you can set the dots to
+    True if you want to render the slider with dots.  Note: dots are
+    disabled automatically when using color.ranges.
 
 - handleLabel (dict; optional):
-    Configuration of the slider handle's label.  Passing falsy value
+    Configuration of the slider handle's label. Passing falsy value
     will disable the label.
 
     `handleLabel` is a string | dict with keys:
@@ -61,17 +61,17 @@ Keyword arguments:
     - style (dict; optional)
 
 - included (boolean; optional):
-    If the value is True, it means a continuous  value is included.
+    If the value is True, it means a continuous value is included.
     Otherwise, it is an independent value.
 
 - labelPosition (a value equal to: 'top', 'bottom'; default 'bottom'):
     Where the component label is positioned.
 
 - marks (dict; optional):
-    Marks on the slider.  The key determines the position,  and the
-    value determines what will show.  If you want to set the style of
-    a specific mark point,  the value should be an object which
-    contains style and label properties.
+    Marks on the slider. The key determines the position, and the
+    value determines what will show. If you want to set the style of a
+    specific mark point, the value should be an object which contains
+    style and label properties.
 
     `marks` is a dict with keys:
 
@@ -93,22 +93,22 @@ Keyword arguments:
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `value` is allowed this
-    prop can  normally be ignored.
+    the component or the page. Since only `value` is allowed this prop
+    can normally be ignored.
 
 - persistence (boolean | string | number; optional):
     Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    when the component - or the page - is refreshed. If `persisted` is
+    truthy and hasn't changed from its previous value, a `value` that
+    the user has changed while using the app will keep that change, as
+    long as the new `value` also matches what was given originally.
+    Used in conjunction with `persistence_type`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    Where persisted user changes will be stored: memory: only kept in
+    memory, reset on page refresh. local: window.localStorage, data is
+    kept after the browser quit. session: window.sessionStorage, data
+    is cleared once the browser quit.
 
 - size (number; default 265):
     Size of the slider in pixels.
@@ -117,9 +117,9 @@ Keyword arguments:
     Value by which increments or decrements are made.
 
 - targets (dict; optional):
-    Targets on the slider.  The key determines the position,  and the
-    value determines what will show.  If you want to set the style of
-    a specific target point,  the value should be an object which
+    Targets on the slider. The key determines the position, and the
+    value determines what will show. If you want to set the style of a
+    specific target point, the value should be an object which
     contains style and label properties.
 
     `targets` is a dict with keys:
@@ -142,11 +142,11 @@ Keyword arguments:
     Theme configuration to be set by a ThemeProvider.
 
 - updatemode (a value equal to: 'mouseup', 'drag'; default 'mouseup'):
-    Determines when the component should update  its value. If
-    `mouseup`, then the slider  will only trigger its value when the
-    user has  finished dragging the slider. If `drag`, then  the
-    slider will update its value continuously  as it is being dragged.
-    Only use `drag` if your updates are fast.
+    Determines when the component should update its value. If
+    `mouseup`, then the slider will only trigger its value when the
+    user has finished dragging the slider. If `drag`, then the slider
+    will update its value continuously as it is being dragged. Only
+    use `drag` if your updates are fast.
 
 - value (number; optional):
     The value of the input.
