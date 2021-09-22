@@ -28,7 +28,8 @@ Slider.defaultProps = {
   size: 265,
   labelPosition: 'bottom',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  style: { display: 'flex', justifyContent: 'center' }
 };
 
 Slider.propTypes = {
@@ -36,6 +37,11 @@ Slider.propTypes = {
    * The ID used to identify this component in Dash callbacks
    */
   id: PropTypes.string,
+
+  /**
+   * Style to apply to the root component element.
+   */
+  style: PropTypes.object,
 
   /**
    * Marks on the slider.
