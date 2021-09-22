@@ -29,10 +29,8 @@ jobs:
                 command: |
                     python -m venv venv
                     . venv/bin/activate
-                    git clone --depth 1 https://github.com/plotly/dash.git dash-main
-                    cd dash-main && pip install -e .[dev,testing]
-                    cd dash-renderer && npm run build && pip install -e . && cd ../..
-                    npm run build
+                    pip install --upgrade dash[dev,testing]
+
 
             - run:
                 name: Run unit tests
@@ -43,5 +41,4 @@ workflows:
     version: 2
     build:
         jobs:
-            - build_and_test_node:
-                context: dash-docker-hub
+            - build_and_test_node

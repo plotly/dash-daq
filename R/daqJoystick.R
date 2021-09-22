@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqJoystick <- function(id=NULL, disabled=NULL, angle=NULL, force=NULL, size=NULL, theme=NULL, label=NULL, labelPosition=NULL, className=NULL, style=NULL) {
+daqJoystick <- function(id=NULL, angle=NULL, className=NULL, disabled=NULL, force=NULL, label=NULL, labelPosition=NULL, size=NULL, style=NULL, theme=NULL) {
     
-    props <- list(id=id, disabled=disabled, angle=angle, force=force, size=size, theme=theme, label=label, labelPosition=labelPosition, className=className, style=style)
+    props <- list(id=id, angle=angle, className=className, disabled=disabled, force=force, label=label, labelPosition=labelPosition, size=size, style=style, theme=theme)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqJoystick <- function(id=NULL, disabled=NULL, angle=NULL, force=NULL, size=NUL
         props = props,
         type = 'Joystick',
         namespace = 'dash_daq',
-        propNames = c('id', 'disabled', 'angle', 'force', 'size', 'theme', 'label', 'labelPosition', 'className', 'style'),
+        propNames = c('id', 'angle', 'className', 'disabled', 'force', 'label', 'labelPosition', 'size', 'style', 'theme'),
         package = 'dashDaq'
         )
 

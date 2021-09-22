@@ -56,6 +56,7 @@ function processInput({ min, max, scale = {}, formatter }) {
   const noConfigPassed = !START_FLAG && !INTERVAL_FLAG && !LABEL_INTERVAL_FLAG;
   const customTicks = Object.keys(config.custom).length;
   config.onlyRenderCustom = customTicks && noConfigPassed;
+  config.start = config.start != min ? min : config.start;
 
   return config;
 }

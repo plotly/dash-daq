@@ -34,6 +34,7 @@ export const TankFill = styled.div`
   height: ${({ height }) => height || 0};
 
   border-radius: ${({ thermometer }) => (thermometer ? '40px' : '0')};
+  border-radius: 0px;
 
   ${({ theme }) => (theme.dark ? darkTankFill : lightTankFill)};
 `;
@@ -112,4 +113,11 @@ export const Container = styled.div`
           margin-left: ${({ xPositioned }) => (xPositioned ? '-4px' : '-24px')};
         `
       : ''};
+`;
+
+export const ExceededWarning = styled.span`
+  color: #dc3545;
+  font-size: 0.8rem;
+  text-align: center;
+  display: block;
 `;

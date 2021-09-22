@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqThermometer <- function(id=NULL, value=NULL, height=NULL, width=NULL, color=NULL, min=NULL, max=NULL, base=NULL, logarithmic=NULL, showCurrentValue=NULL, units=NULL, theme=NULL, label=NULL, labelPosition=NULL, scale=NULL, className=NULL, style=NULL) {
+daqThermometer <- function(id=NULL, base=NULL, className=NULL, color=NULL, height=NULL, label=NULL, labelPosition=NULL, logarithmic=NULL, max=NULL, min=NULL, scale=NULL, showCurrentValue=NULL, style=NULL, theme=NULL, units=NULL, value=NULL, width=NULL) {
     
-    props <- list(id=id, value=value, height=height, width=width, color=color, min=min, max=max, base=base, logarithmic=logarithmic, showCurrentValue=showCurrentValue, units=units, theme=theme, label=label, labelPosition=labelPosition, scale=scale, className=className, style=style)
+    props <- list(id=id, base=base, className=className, color=color, height=height, label=label, labelPosition=labelPosition, logarithmic=logarithmic, max=max, min=min, scale=scale, showCurrentValue=showCurrentValue, style=style, theme=theme, units=units, value=value, width=width)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ daqThermometer <- function(id=NULL, value=NULL, height=NULL, width=NULL, color=N
         props = props,
         type = 'Thermometer',
         namespace = 'dash_daq',
-        propNames = c('id', 'value', 'height', 'width', 'color', 'min', 'max', 'base', 'logarithmic', 'showCurrentValue', 'units', 'theme', 'label', 'labelPosition', 'scale', 'className', 'style'),
+        propNames = c('id', 'base', 'className', 'color', 'height', 'label', 'labelPosition', 'logarithmic', 'max', 'min', 'scale', 'showCurrentValue', 'style', 'theme', 'units', 'value', 'width'),
         package = 'dashDaq'
         )
 

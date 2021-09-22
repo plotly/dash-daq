@@ -142,4 +142,48 @@ describe.only('Gauge', () => {
     expect(label).toHaveLength(1);
     expect(label.prop('style').color).toBe('blue');
   });
+
+  it('custom test 2', () => {
+    const component = mount(
+      <Gauge
+        label={{ label: 'Test Label', style: { color: 'blue' } }}
+        logarithmic={true}
+        max={4}
+        min={1}
+        scale={{
+          start: 0,
+          interval: 1,
+          labelInterval: 1
+        }}
+        value={2}
+        color={{
+          default: 'red',
+          gradient: true,
+          ranges: {
+            red: [0, 1],
+            blue: [-1, 2],
+            green: [2, 3],
+            pink: [3, 10]
+          }
+        }}
+        showCurrentValue={true}
+      />
+    );
+  });
+  it('bug fix github issue 125', () => {
+    const component = mount(
+      shallow(
+        <Gauge
+          color={{
+            gradient: true,
+            ranges: { green: [0, 6], yellow: [6, 8], red: [8, 10] }
+          }}
+          min={0}
+          max={11}
+        />
+      ).get(0)
+    );
+    expect(component).toBeTruthy();
+    expect(component.find(GaugeSvg).prop('color').ranges.red).toStrictEqual([8, 11]);
+  });
 });
