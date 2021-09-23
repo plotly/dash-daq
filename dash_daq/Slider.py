@@ -116,6 +116,9 @@ Keyword arguments:
 - step (number; optional):
     Value by which increments or decrements are made.
 
+- style (dict; default { display: 'flex', justifyContent: 'center' }):
+    Style to apply to the root component element.
+
 - targets (dict; optional):
     Targets on the slider. The key determines the position, and the
     value determines what will show. If you want to set the style of a
@@ -154,12 +157,12 @@ Keyword arguments:
 - vertical (boolean; optional):
     If True, the slider will be vertical."""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, marks=Component.UNDEFINED, color=Component.UNDEFINED, value=Component.UNDEFINED, className=Component.UNDEFINED, labelPosition=Component.UNDEFINED, disabled=Component.UNDEFINED, dots=Component.UNDEFINED, included=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, vertical=Component.UNDEFINED, size=Component.UNDEFINED, targets=Component.UNDEFINED, theme=Component.UNDEFINED, handleLabel=Component.UNDEFINED, updatemode=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'color', 'disabled', 'dots', 'handleLabel', 'included', 'labelPosition', 'marks', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'size', 'step', 'targets', 'theme', 'updatemode', 'value', 'vertical']
+    def __init__(self, id=Component.UNDEFINED, style=Component.UNDEFINED, marks=Component.UNDEFINED, color=Component.UNDEFINED, value=Component.UNDEFINED, className=Component.UNDEFINED, labelPosition=Component.UNDEFINED, disabled=Component.UNDEFINED, dots=Component.UNDEFINED, included=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, step=Component.UNDEFINED, vertical=Component.UNDEFINED, size=Component.UNDEFINED, targets=Component.UNDEFINED, theme=Component.UNDEFINED, handleLabel=Component.UNDEFINED, updatemode=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'color', 'disabled', 'dots', 'handleLabel', 'included', 'labelPosition', 'marks', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'size', 'step', 'style', 'targets', 'theme', 'updatemode', 'value', 'vertical']
         self._type = 'Slider'
         self._namespace = 'dash_daq'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'color', 'disabled', 'dots', 'handleLabel', 'included', 'labelPosition', 'marks', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'size', 'step', 'targets', 'theme', 'updatemode', 'value', 'vertical']
+        self.available_properties = ['id', 'className', 'color', 'disabled', 'dots', 'handleLabel', 'included', 'labelPosition', 'marks', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'size', 'step', 'style', 'targets', 'theme', 'updatemode', 'value', 'vertical']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

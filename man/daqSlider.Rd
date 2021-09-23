@@ -14,8 +14,9 @@ daqSlider(id=NULL, className=NULL, color=NULL, disabled=NULL,
 dots=NULL, handleLabel=NULL, included=NULL,
 labelPosition=NULL, marks=NULL, max=NULL, min=NULL,
 persisted_props=NULL, persistence=NULL,
-persistence_type=NULL, size=NULL, step=NULL, targets=NULL,
-theme=NULL, updatemode=NULL, value=NULL, vertical=NULL)
+persistence_type=NULL, size=NULL, step=NULL, style=NULL,
+targets=NULL, theme=NULL, updatemode=NULL, value=NULL,
+vertical=NULL)
 }
 
 \arguments{
@@ -93,6 +94,8 @@ session: window.sessionStorage, data is cleared once the browser quit.}
 \item{size}{Numeric. Size of the slider in pixels.}
 
 \item{step}{Numeric. Value by which increments or decrements are made.}
+
+\item{style}{Named list. Style to apply to the root component element.}
 
 \item{targets}{Lists containing elements 'number'.
 those elements have the following types:
