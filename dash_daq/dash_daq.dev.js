@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632590414");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632591141");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -27301,6 +27301,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_colorRanges__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/colorRanges */ "./src/helpers/colorRanges.js");
 /* harmony import */ var _helpers_scale__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../helpers/scale */ "./src/helpers/scale.js");
 /* harmony import */ var _helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../helpers/classNameGenerator */ "./src/helpers/classNameGenerator.js");
+/* harmony import */ var _styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../styled/CurrentValue.styled */ "./src/styled/CurrentValue.styled.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -27320,6 +27321,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -27523,6 +27525,14 @@ function (_Component) {
       });
       var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_10__["getClassName"])('knob', theme);
       var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_10__["getFilteredProps"])(this.props);
+      var colorValue = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_8__["getColorValue"])(color);
+      var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        className: elementName + '__current-value',
+        valueColor: colorValue,
+        valueSize: Math.min((this.props.size + 32) * 13.3333 / 100, 32),
+        units: false,
+        css: 'transform: translateY(0%); top: 0;'
+      }, this.state.value.toFixed(this.props.digits)));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: id,
         className: elementName + (className ? ' ' + className : ''),
@@ -27534,7 +27544,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Knob_styled__WEBPACK_IMPORTED_MODULE_4__["default"], {
         className: elementName + '__container',
         color: Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_8__["getColorValue"])(color)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_KnobSvg_react__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
+      }, this.props.showCurrentValue && currentValue, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_KnobSvg_react__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
         progress: progress
       }, filteredProps, this.state, {
         refFunc: function refFunc(ele) {
@@ -27733,7 +27743,17 @@ Knob.propTypes = {
    * local: window.localStorage, data is kept after the browser quit.
    * session: window.sessionStorage, data is cleared once the browser quit.
    */
-  persistence_type: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['local', 'session', 'memory'])
+  persistence_type: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['local', 'session', 'memory']),
+
+  /**
+   * show current value of knob
+   */
+  showCurrentValue: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+  * number of digits to show after decimal places
+  */
+  digits: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number
 };
 var ThemedKnob = Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["withTheme"])(Knob);
 ThemedKnob.defaultProps = Knob.defaultProps;
@@ -31846,7 +31866,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["font-size: ", "px;"]);
+  var data = _taggedTemplateLiteral(["\n          font-size: ", "px;\n        "]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -31866,7 +31886,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  font-size: 1em;\n  color: ", ";\n  ", ";\n      ", "\n"]);
+  var data = _taggedTemplateLiteral(["\n  font-size: 1em;\n  color: ", ";\n  ", ";\n  ", "\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;

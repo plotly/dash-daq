@@ -11,6 +11,7 @@ import { getColorValue } from '../helpers/colorRanges';
 import generateScale from '../helpers/scale';
 
 import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+import CurrentValue from '../styled/CurrentValue.styled';
 
 const RESET_START_ANGLE = -1;
 
@@ -132,6 +133,21 @@ class Knob extends Component {
 
     const elementName = getClassName('knob', theme);
     const filteredProps = getFilteredProps(this.props);
+    const colorValue = getColorValue(color);
+
+    const currentValue = (
+      <>
+        <CurrentValue
+          className={elementName + '__current-value'}
+          valueColor={colorValue}
+          valueSize={Math.min(((this.props.size + 32) * 13.3333) / 100, 32)}
+          units={false}
+          css={'transform: translateY(0%); top: 0;'}
+        >
+          {this.state.value.toFixed(this.props.digits)}
+        </CurrentValue>
+      </>
+    );
 
     return (
       <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
@@ -141,6 +157,7 @@ class Knob extends Component {
           labelCSS={labelPosition === 'top' ? null : 'transform: translateY(-40px);'}
         >
           <Container className={elementName + '__container'} color={getColorValue(color)}>
+            {this.props.showCurrentValue && currentValue}
             <KnobSvg
               progress={progress}
               {...filteredProps}
@@ -163,7 +180,8 @@ Knob.defaultProps = {
   theme: light,
   labelPosition: 'top',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  size: 114
 };
 
 Knob.propTypes = {
@@ -344,7 +362,17 @@ Knob.propTypes = {
    * local: window.localStorage, data is kept after the browser quit.
    * session: window.sessionStorage, data is cleared once the browser quit.
    */
-  persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+  persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
+
+  /**
+   * show current value of knob
+   */
+  showCurrentValue: PropTypes.bool,
+
+  /**
+   * number of digits to show after decimal places
+   */
+  digits: PropTypes.number
 };
 
 const ThemedKnob = withTheme(Knob);
