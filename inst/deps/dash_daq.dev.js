@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1631295068");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632590414");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26425,6 +26425,7 @@ var Gauge = function Gauge(props) {
     className: elementName + '__current-value',
     valueColor: colorValue,
     units: units,
+    valueSize: (props.size + 32) * 13.3333 / 100,
     css: 'transform: translateY(-150%); top: 0;'
   }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_10__["default"].formatValue(currentDisplayValue, base) : currentDisplayValue.toFixed(digits));
   var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_13__["getFilteredProps"])(props);
@@ -28068,7 +28069,11 @@ NumericInput.defaultProps = {
   theme: _styled_constants__WEBPACK_IMPORTED_MODULE_4__["light"],
   labelPosition: 'top',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  style: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
 };
 NumericInput.propTypes = {
   /**
@@ -28477,7 +28482,7 @@ var defaultRootStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  alignItems: 'flex-start'
+  alignItems: 'center'
 };
 /**
  * A numeric input component that converts
@@ -28903,13 +28908,22 @@ Slider.defaultProps = {
   size: 265,
   labelPosition: 'bottom',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  style: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
 };
 Slider.propTypes = {
   /**
    * The ID used to identify this component in Dash callbacks
    */
   id: prop_types__WEBPACK_IMPORTED_MODULE_0___default.a.string,
+
+  /**
+   * Style to apply to the root component element.
+   */
+  style: prop_types__WEBPACK_IMPORTED_MODULE_0___default.a.object,
 
   /**
    * Marks on the slider.
@@ -30616,6 +30630,9 @@ var KnobSvg = function KnobSvg(props) {
     onMouseDown: props.onMouseDown,
     onMouseUp: props.onMouseUp,
     onMouseMove: props.onMouseMove,
+    onTouchStart: props.onMouseDown,
+    onTouchEnd: props.onMouseUp,
+    onTouchMove: props.onMouseMove,
     className: "knob ".concat(disabled ? 'disabled' : '')
   }, knob), track);
 };
@@ -31818,8 +31835,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./src/styled/constants.js");
-function _templateObject5() {
+function _templateObject6() {
   var data = _taggedTemplateLiteral(["\n  margin-top: -4px;\n  text-transform: uppercase;\n  font-size: 8px;\n  color: #535d63;\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["font-size: ", "px;"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -31839,7 +31866,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  color: ", ";\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  font-size: 1em;\n  color: ", ";\n  ", ";\n      ", "\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -31883,15 +31910,19 @@ var Value = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templ
 }, function (_ref2) {
   var theme = _ref2.theme;
   return theme.dark ? Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject4()) : '';
+}, function (_ref3) {
+  var fontSize = _ref3.fontSize;
+  return fontSize ? Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject5(), fontSize) : '';
 });
 Value.defaultProps = {
   theme: _constants__WEBPACK_IMPORTED_MODULE_2__["light"]
 };
-var ValueLabel = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].label(_templateObject5());
+var ValueLabel = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].label(_templateObject6());
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ValueContainer, {
     css: props.css
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Value, {
+    fontSize: props.valueSize,
     color: props.valueColor
   }, props.children), props.units ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ValueLabel, null, props.units) : null);
 });
@@ -32216,7 +32247,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  & svg {\n    text-align: center;\n  }\n\n  & circle {\n    user-select: none;\n  }\n\n  & .scale {\n    font-size: 12px;\n    user-select: none;\n  }\n\n  & .tick {\n    stroke: ", ";\n    stroke-width: 2;\n  }\n\n  & .knob {\n    cursor: pointer;\n  }\n\n  & .disabled {\n    opacity: ", ";\n    cursor: not-allowed;\n  }\n\n  & .track.progress {\n    stroke: ", ";\n  }\n\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  & svg {\n    text-align: center;\n  }\n\n  & circle {\n    user-select: none;\n  }\n\n  & .scale {\n    font-size: 12px;\n    user-select: none;\n  }\n\n  & .tick {\n    stroke: ", ";\n    stroke-width: 2;\n  }\n\n  & .knob {\n    cursor: pointer;\n  }\n\n  & .disabled {\n    opacity: ", ";\n    cursor: not-allowed;\n  }\n\n  & .track.progress {\n    stroke: ", ";\n  }\n\n  ", ";\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -32707,7 +32738,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n\n  ", ";\n"]);
 
   _templateObject11 = function _templateObject11() {
     return data;
