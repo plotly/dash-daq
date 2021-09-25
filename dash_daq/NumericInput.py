@@ -60,7 +60,7 @@ Keyword arguments:
 - size (number; optional):
     The size (length) of the numeric input in pixels.
 
-- style (dict; optional):
+- style (dict; default { display: 'flex', justifyContent: 'center' }):
     Style to apply to the root component element.
 
 - theme (dict; default light):

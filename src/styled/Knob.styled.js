@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 import { light } from './constants';
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
   & svg {
     text-align: center;
   }

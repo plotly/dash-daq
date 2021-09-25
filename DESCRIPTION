@@ -1,6 +1,6 @@
 Package: dashDaq
 Title: Interactive Data Acquisition and Control Components for Dash 
-Version: 0.5.0
+Version: 0.5.1
 Description: A robust set of controls that make it simpler to integrate data acquisition and controls into your Dash applications.
 Depends: R (>= 3.0.2)
 Imports: 
