@@ -66,7 +66,10 @@ const getTrackStyle = props => {
 class Slider extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: props.value || props.min, trackStyle: getTrackStyle(props) };
+    this.state = {
+      value: props.value != null ? props.value : props.min,
+      trackStyle: getTrackStyle(props)
+    };
 
     this.onChange = this.onChange.bind(this);
     this.onAfterChange = this.onAfterChange.bind(this);
