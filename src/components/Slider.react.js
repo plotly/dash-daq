@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component, Suspense } from 'react';
 
 import { colors, light } from '../styled/constants';
 
-const RealSlider = lazy(() => import(/* webpackChunkName: "slider" */ '../fragments/Slider.react'));
+import RealSlider from '../fragments/Slider.react';
+// const RealSlider = lazy(() => import(/* webpackChunkName: "slider" */ '../fragments/Slider.react'));
 
 /**
  * A slider component with support for
