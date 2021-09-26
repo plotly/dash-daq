@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_0m1631295068");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632663236");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -26398,7 +26398,7 @@ var Gauge = function Gauge(props) {
       digits = props.digits;
   var warningPara = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   var color = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_12__["convertInRange"])(props.color, max, min ? min : 0);
-  var colorValue = Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_12__["getColorValue"])(color);
+  var colorValue = props.textColor || Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_12__["getColorValue"])(color);
   var rawValue = props.value != null ? props.value : min;
   var dirtyValue = logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_10__["default"].compute(rawValue) : rawValue;
   var currentDisplayValue = dirtyValue;
@@ -26650,7 +26650,12 @@ Gauge.propTypes = {
   /**
    * Warning message when value is laging from min
    */
-  lagingMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
+  lagingMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * text color for theme
+   */
+  textColor: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["withTheme"])(Gauge));
 
@@ -27295,11 +27300,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_KnobSvg_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/KnobSvg.react */ "./src/helpers/KnobSvg.react.js");
 /* harmony import */ var _styled_Knob_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styled/Knob.styled */ "./src/styled/Knob.styled.js");
 /* harmony import */ var _styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styled/shared/LabelContainer.styled */ "./src/styled/shared/LabelContainer.styled.js");
-/* harmony import */ var _styled_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styled/constants */ "./src/styled/constants.js");
-/* harmony import */ var _helpers_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../helpers/util */ "./src/helpers/util.js");
-/* harmony import */ var _helpers_colorRanges__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/colorRanges */ "./src/helpers/colorRanges.js");
-/* harmony import */ var _helpers_scale__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../helpers/scale */ "./src/helpers/scale.js");
-/* harmony import */ var _helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../helpers/classNameGenerator */ "./src/helpers/classNameGenerator.js");
+/* harmony import */ var _styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styled/CurrentValue.styled */ "./src/styled/CurrentValue.styled.js");
+/* harmony import */ var _styled_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../styled/constants */ "./src/styled/constants.js");
+/* harmony import */ var _helpers_util__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/util */ "./src/helpers/util.js");
+/* harmony import */ var _helpers_colorRanges__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../helpers/colorRanges */ "./src/helpers/colorRanges.js");
+/* harmony import */ var _helpers_scale__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../helpers/scale */ "./src/helpers/scale.js");
+/* harmony import */ var _helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../helpers/classNameGenerator */ "./src/helpers/classNameGenerator.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -27331,17 +27337,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var RESET_START_ANGLE = -1;
 
 var valueToDeg = function valueToDeg(_ref) {
   var min = _ref.min,
       max = _ref.max,
       value = _ref.value;
-  return Object(_helpers_util__WEBPACK_IMPORTED_MODULE_7__["computeProgress"])({
+  return Object(_helpers_util__WEBPACK_IMPORTED_MODULE_8__["computeProgress"])({
     min: min,
     max: max,
     value: value,
-    progressionTarget: _styled_constants__WEBPACK_IMPORTED_MODULE_6__["TRACK_TOTAL_DEG"]
+    progressionTarget: _styled_constants__WEBPACK_IMPORTED_MODULE_7__["TRACK_TOTAL_DEG"]
   });
 };
 
@@ -27349,9 +27356,9 @@ var degToValue = function degToValue(_ref2) {
   var min = _ref2.min,
       max = _ref2.max,
       deg = _ref2.deg;
-  return Object(_helpers_util__WEBPACK_IMPORTED_MODULE_7__["computeProgress"])({
+  return Object(_helpers_util__WEBPACK_IMPORTED_MODULE_8__["computeProgress"])({
     min: 0,
-    max: _styled_constants__WEBPACK_IMPORTED_MODULE_6__["TRACK_TOTAL_DEG"],
+    max: _styled_constants__WEBPACK_IMPORTED_MODULE_7__["TRACK_TOTAL_DEG"],
     value: deg,
     progressionTarget: max - min
   }) + min;
@@ -27382,7 +27389,7 @@ function (_Component) {
       min: props.min,
       max: props.max,
       value: props.value || props.min,
-      scale: Object(_helpers_scale__WEBPACK_IMPORTED_MODULE_9__["default"])(props),
+      scale: Object(_helpers_scale__WEBPACK_IMPORTED_MODULE_10__["default"])(props),
       isDragging: false,
       startAngle: RESET_START_ANGLE,
       rotation: currentDeg,
@@ -27476,12 +27483,12 @@ function (_Component) {
       }
 
       var tmp = Math.floor(angle - startAngle + rotation);
-      tmp = Math.min(tmp, _styled_constants__WEBPACK_IMPORTED_MODULE_6__["TRACK_TOTAL_DEG"]);
+      tmp = Math.min(tmp, _styled_constants__WEBPACK_IMPORTED_MODULE_7__["TRACK_TOTAL_DEG"]);
       tmp = Math.max(tmp, 0);
       this.setState({
         currentDeg: tmp
       });
-      this.setValue(Object(_helpers_util__WEBPACK_IMPORTED_MODULE_7__["roundToDecimal"])(degToValue({
+      this.setValue(Object(_helpers_util__WEBPACK_IMPORTED_MODULE_8__["roundToDecimal"])(degToValue({
         min: min,
         max: max,
         deg: tmp
@@ -27513,15 +27520,24 @@ function (_Component) {
           color = _this$props2.color,
           style = _this$props2.style,
           disabled = _this$props2.disabled,
-          theme = _this$props2.theme;
-      var progress = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_7__["computeProgress"])({
+          theme = _this$props2.theme,
+          textColor = _this$props2.textColor;
+      var progress = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_8__["computeProgress"])({
         min: min,
         max: max,
         value: value,
         progressionTarget: 1
       });
-      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_10__["getClassName"])('knob', theme);
-      var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_10__["getFilteredProps"])(this.props);
+      var colorValue = textColor || Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_9__["getColorValue"])(color);
+      var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_11__["getClassName"])('knob', theme);
+      var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_11__["getFilteredProps"])(this.props);
+      var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        className: elementName + '__current-value',
+        valueColor: colorValue,
+        valueSize: Math.min((this.props.size + 32) * 13.3333 / 100, 32),
+        units: false,
+        css: 'transform: translateY(0%); top: 0;'
+      }, this.state.value.toFixed(this.props.digits)));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: id,
         className: elementName + (className ? ' ' + className : ''),
@@ -27532,8 +27548,9 @@ function (_Component) {
         labelCSS: labelPosition === 'top' ? null : 'transform: translateY(-40px);'
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Knob_styled__WEBPACK_IMPORTED_MODULE_4__["default"], {
         className: elementName + '__container',
-        color: Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_8__["getColorValue"])(color)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_KnobSvg_react__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
+        colorValue: colorValue,
+        color: Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_9__["getColorValue"])(color)
+      }, this.props.showCurrentValue && currentValue, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_KnobSvg_react__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
         progress: progress
       }, filteredProps, this.state, {
         refFunc: function refFunc(ele) {
@@ -27552,7 +27569,7 @@ function (_Component) {
 Knob.defaultProps = {
   min: 0,
   max: 10,
-  theme: _styled_constants__WEBPACK_IMPORTED_MODULE_6__["light"],
+  theme: _styled_constants__WEBPACK_IMPORTED_MODULE_7__["light"],
   labelPosition: 'top',
   persisted_props: ['value'],
   persistence_type: 'local'
@@ -27732,7 +27749,17 @@ Knob.propTypes = {
    * local: window.localStorage, data is kept after the browser quit.
    * session: window.sessionStorage, data is cleared once the browser quit.
    */
-  persistence_type: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['local', 'session', 'memory'])
+  persistence_type: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['local', 'session', 'memory']),
+
+  /**
+   * show current value
+   */
+  showCurrentValue: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * text color of scale
+   */
+  textColor: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
 };
 var ThemedKnob = Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["withTheme"])(Knob);
 ThemedKnob.defaultProps = Knob.defaultProps;
@@ -28068,7 +28095,11 @@ NumericInput.defaultProps = {
   theme: _styled_constants__WEBPACK_IMPORTED_MODULE_4__["light"],
   labelPosition: 'top',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  style: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
 };
 NumericInput.propTypes = {
   /**
@@ -28477,7 +28508,7 @@ var defaultRootStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  alignItems: 'flex-start'
+  alignItems: 'center'
 };
 /**
  * A numeric input component that converts
@@ -28903,13 +28934,22 @@ Slider.defaultProps = {
   size: 265,
   labelPosition: 'bottom',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  style: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
 };
 Slider.propTypes = {
   /**
    * The ID used to identify this component in Dash callbacks
    */
   id: prop_types__WEBPACK_IMPORTED_MODULE_0___default.a.string,
+
+  /**
+   * Style to apply to the root component element.
+   */
+  style: prop_types__WEBPACK_IMPORTED_MODULE_0___default.a.object,
 
   /**
    * Marks on the slider.
@@ -29339,6 +29379,7 @@ var Tank = function Tank(props) {
     max: max,
     value: dirtyValue
   });
+  var colorValue = props.textColor || color;
   var percentageFill = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_7__["computeProgress"])({
     min: min,
     max: max,
@@ -29361,6 +29402,7 @@ var Tank = function Tank(props) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_3__["Tick"], {
         className: elementName + '__tick',
         key: k,
+        color: colorValue,
         xPosition: Object(_helpers_util__WEBPACK_IMPORTED_MODULE_7__["computeProgress"])({
           min: min,
           max: max,
@@ -29381,7 +29423,7 @@ var Tank = function Tank(props) {
   }, renderTicks());
   var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_4__["default"], {
     units: units,
-    valueColor: "#535D63"
+    valueColor: colorValue
   }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_6__["default"].formatValue(currentDisplayValue, base) : currentDisplayValue);
   var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_9__["getFilteredProps"])(props);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -29572,7 +29614,12 @@ Tank.propTypes = {
   /**
    * Warning message when value is laging from min
    */
-  lagingMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
+  lagingMessage: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * text color
+   */
+  textColor: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["withTheme"])(Tank));
 
@@ -31570,8 +31617,11 @@ var drawScale = function drawScale(_ref3, _ref4) {
         x: sxT,
         y: syT,
         textAnchor: "middle",
-        style: markValue && markValue.style ? markValue.style : null
-      }, markValue && markValue.label || markValue));
+        style: markValue && markValue.style ? markValue.style : null,
+        dangerouslySetInnerHTML: {
+          __html: markValue && markValue.label || markValue
+        }
+      }));
     } else {
       // draw mini mark
       var _sx = CX + sr1 * Math.cos(markAngle * _styled_constants__WEBPACK_IMPORTED_MODULE_3__["RADIAN"]);
@@ -31879,7 +31929,7 @@ var ValueContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].d
 var Value = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject3(), function (_ref) {
   var theme = _ref.theme,
       color = _ref.color;
-  return theme.dark ? '#fff' : color || theme.primary;
+  return color || (theme.dark ? '#fff' : color || theme.primary);
 }, function (_ref2) {
   var theme = _ref2.theme;
   return theme.dark ? Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject4()) : '';
@@ -31934,13 +31984,14 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject(), function (_ref) {
-  var theme = _ref.theme;
-  return theme.dark ? '#fff' : '#5b6268';
+  var theme = _ref.theme,
+      color = _ref.color;
+  return color || (theme.dark ? '#000' : '#5b6268');
 }, function (props) {
   return props.theme.detail;
 }, function (_ref2) {
   var theme = _ref2.theme;
-  return theme.dark ? '#fff' : '#5b6268';
+  return theme.dark ? '#000' : '#5b6268';
 }, function (_ref3) {
   var theme = _ref3.theme;
   return !theme.dark && lightTheme;
@@ -32216,7 +32267,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  & svg {\n    text-align: center;\n  }\n\n  & circle {\n    user-select: none;\n  }\n\n  & .scale {\n    font-size: 12px;\n    user-select: none;\n  }\n\n  & .tick {\n    stroke: ", ";\n    stroke-width: 2;\n  }\n\n  & .knob {\n    cursor: pointer;\n  }\n\n  & .disabled {\n    opacity: ", ";\n    cursor: not-allowed;\n  }\n\n  & .track.progress {\n    stroke: ", ";\n  }\n\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  & svg {\n    text-align: center;\n  }\n\n  & circle {\n    user-select: none;\n  }\n\n  & .scale {\n    font-size: 12px;\n    user-select: none;\n    fill: ", " !important;\n  }\n\n  & .tick {\n    stroke: ", ";\n    stroke-width: 2;\n  }\n\n  & .knob {\n    cursor: pointer;\n  }\n\n  & .disabled {\n    opacity: ", ";\n    cursor: not-allowed;\n  }\n\n  & .track.progress {\n    stroke: ", ";\n  }\n\n  ", ";\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -32229,17 +32280,20 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject(), function (props) {
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject(), function (_ref) {
+  var colorValue = _ref.colorValue;
+  return colorValue || 'black';
+}, function (props) {
   return props.theme.detail;
-}, function (_ref) {
-  var theme = _ref.theme;
-  return theme.dark ? 1 : 0.65;
 }, function (_ref2) {
-  var color = _ref2.color,
-      theme = _ref2.theme;
-  return color || theme.primary;
+  var theme = _ref2.theme;
+  return theme.dark ? 1 : 0.65;
 }, function (_ref3) {
-  var theme = _ref3.theme;
+  var color = _ref3.color,
+      theme = _ref3.theme;
+  return color || theme.primary;
+}, function (_ref4) {
+  var theme = _ref4.theme;
   return theme.dark ? darkTheme : lightTheme;
 });
 var lightTheme = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject2());
@@ -32707,7 +32761,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n\n  ", ";\n"]);
 
   _templateObject11 = function _templateObject11() {
     return data;
@@ -32876,7 +32930,7 @@ var Tick = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templa
   var xPosition = _ref12.xPosition;
   return xPosition || xPosition === 0 ? Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject10(), "calc(".concat(xPosition, "% - ").concat(xPosition / 100.0 * 18, "px)")) : '';
 }, function (props) {
-  return props.theme.dark ? '#ddd' : '#000';
+  return props.color || (props.theme.dark ? '#ddd' : '#000');
 }, function (props) {
   return props.width || 4;
 }, function (props) {
@@ -32978,8 +33032,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./src/styled/constants.js");
 /* harmony import */ var _shared_Label_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shared/Label.styled */ "./src/styled/shared/Label.styled.js");
-function _templateObject19() {
+function _templateObject20() {
   var data = _taggedTemplateLiteral(["\n  margin: 0;\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
+
+  _templateObject20 = function _templateObject20() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject19() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  flex-direction: ", ";\n"]);
 
   _templateObject19 = function _templateObject19() {
     return data;
@@ -32989,7 +33053,7 @@ function _templateObject19() {
 }
 
 function _templateObject18() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  flex-direction: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%),\n          linear-gradient(90deg, rgba(0,0,0,0.6) 40%, rgba(255,255,255,0) 100%)"]);
 
   _templateObject18 = function _templateObject18() {
     return data;
@@ -32999,7 +33063,7 @@ function _templateObject18() {
 }
 
 function _templateObject17() {
-  var data = _taggedTemplateLiteral(["linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%),\n          linear-gradient(90deg, rgba(0,0,0,0.6) 40%, rgba(255,255,255,0) 100%)"]);
+  var data = _taggedTemplateLiteral(["linear-gradient(135deg, rgba(255,255,255,0.7) 20%, rgba(0,0,0,0) 100%),\n          linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(0,0,0,0.8) 100%)"]);
 
   _templateObject17 = function _templateObject17() {
     return data;
@@ -33009,7 +33073,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["linear-gradient(135deg, rgba(255,255,255,0.7) 20%, rgba(0,0,0,0) 100%),\n          linear-gradient(90deg, rgba(255,255,255,0) 40%, rgba(0,0,0,0.8) 100%)"]);
+  var data = _taggedTemplateLiteral(["\n            margin-right: ", "px;\n          "]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -33019,7 +33083,7 @@ function _templateObject16() {
 }
 
 function _templateObject15() {
-  var data = _taggedTemplateLiteral(["\n            margin-right: ", "px;\n          "]);
+  var data = _taggedTemplateLiteral(["\n            margin-left: ", "px;\n          "]);
 
   _templateObject15 = function _templateObject15() {
     return data;
@@ -33029,7 +33093,7 @@ function _templateObject15() {
 }
 
 function _templateObject14() {
-  var data = _taggedTemplateLiteral(["\n            margin-left: ", "px;\n          "]);
+  var data = _taggedTemplateLiteral(["radial-gradient(farthest-corner at 0px 0px, rgba(256,255,255,1) 5%, rgba(0,0,0,0.6) 90%)"]);
 
   _templateObject14 = function _templateObject14() {
     return data;
@@ -33049,7 +33113,7 @@ function _templateObject13() {
 }
 
 function _templateObject12() {
-  var data = _taggedTemplateLiteral(["radial-gradient(farthest-corner at 0px 0px, rgba(256,255,255,1) 5%, rgba(0,0,0,0.6) 90%)"]);
+  var data = _taggedTemplateLiteral(["\n  display: block;\n  position: relative;\n  margin: 0;\n  transition: all 100ms ease-in-out;\n  outline: none;\n  background: #161616;\n  height: ", ";\n  width: ", ";\n  background-blend-mode: overlay;\n  background-color: #111;\n  background-image: ;\n  background-image: ", ";\n  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.9);\n  border-radius: 2px;\n\n  &:disabled {\n    cursor: not-allowed;\n  }\n\n  &:hover::after,\n  &:active::after,\n  &:focus::after {\n    box-shadow: none;\n  }\n\n  &::before {\n    content: none;\n  }\n\n  &::after {\n    transition: all 100ms ease-in-out;\n    content: '';\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 4%;\n    height: 92%;\n    width: 92%;\n    margin: 0 auto;\n    ", " background-color: #161616;\n    background-blend-mode: overlay;\n    background-image: ", ";\n    border-radius: 2px;\n  }\n\n  &:hover::after {\n    background-color: #181818;\n  }\n"]);
 
   _templateObject12 = function _templateObject12() {
     return data;
@@ -33059,7 +33123,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["\n  display: block;\n  position: relative;\n  margin: 0;\n  transition: all 100ms ease-in-out;\n  outline: none;\n  background: #161616;\n  height: ", ";\n  width: ", ";\n  background-blend-mode: overlay;\n  background-color: #111;\n  background-image: ;\n  background-image: ", ";\n  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.9);\n  border-radius: 2px;\n\n  &:disabled {\n    cursor: not-allowed;\n  }\n\n  &:hover::after,\n  &:active::after,\n  &:focus::after {\n    box-shadow: none;\n  }\n\n  &::before {\n    content: none;\n  }\n\n  &::after {\n    transition: all 100ms ease-in-out;\n    content: '';\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 4%;\n    height: 92%;\n    width: 92%;\n    margin: 0 auto;\n    ", " background-color: #161616;\n    background-blend-mode: overlay;\n    background-image: ", ";\n    border-radius: 2px;\n  }\n\n  &:hover::after {\n    background-color: #181818;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  padding: 2px 4px;\n  cursor: pointer;\n  border-radius: 1px;\n  margin: 0 8px;\n\n  background: #22272a;\n  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);\n  box-shadow: inset 0 0 8px -1px #000000, inset 0 0 8px 0 rgba(0, 0, 0, 0.8),\n    -1px -1px 0px 0px rgba(0, 0, 0, 0.9), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n"]);
 
   _templateObject11 = function _templateObject11() {
     return data;
@@ -33069,7 +33133,7 @@ function _templateObject11() {
 }
 
 function _templateObject10() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  padding: 2px 4px;\n  cursor: pointer;\n  border-radius: 1px;\n  margin: 0 8px;\n\n  background: #22272a;\n  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);\n  box-shadow: inset 0 0 8px -1px #000000, inset 0 0 8px 0 rgba(0, 0, 0, 0.8),\n    -1px -1px 0px 0px rgba(0, 0, 0, 0.9), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n"]);
+  var data = _taggedTemplateLiteral(["\n  background-color: #141414;\n  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5) -20%, rgba(0, 0, 0, 0.7) 100%);\n  box-shadow: inset 0 0 1px 0 rgba(52, 52, 52, 0.4), inset 0 0 0 1px rgba(0, 0, 0, 0.2),\n    1px 1px 2px 0px rgba(0, 0, 0, 0.7);\n\n  &:hover {\n    background-color: rgba(0, 0, 0, 0.7);\n  }\n\n  &::before,\n  &::after {\n    content: none;\n  }\n"]);
 
   _templateObject10 = function _templateObject10() {
     return data;
@@ -33079,7 +33143,7 @@ function _templateObject10() {
 }
 
 function _templateObject9() {
-  var data = _taggedTemplateLiteral(["\n  background-color: #141414;\n  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5) -20%, rgba(0, 0, 0, 0.7) 100%);\n  box-shadow: inset 0 0 1px 0 rgba(52, 52, 52, 0.4), inset 0 0 0 1px rgba(0, 0, 0, 0.2),\n    1px 1px 2px 0px rgba(0, 0, 0, 0.7);\n\n  &:hover {\n    background-color: rgba(0, 0, 0, 0.7);\n  }\n\n  &::before,\n  &::after {\n    content: none;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n    border: none;\n    border: 1px solid ", ";\n    width: ", "px;\n    height: ", "px;\n    transform: translateX(", "px);\n  "]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -33089,7 +33153,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n    border: none;\n    border: 1px solid ", ";\n    width: ", "px;\n    height: ", "px;\n    transform: translateX(", "px);\n  "]);
+  var data = _taggedTemplateLiteral(["\n  background: white;\n  border-radius: 50%;\n  display: block;\n  padding: 0;\n  margin: 0;\n  transition: all 100ms ease-in-out;\n  outline: none;\n  ", " &:focus, &:active, &:hover {\n    border: none;\n    border: ", ";\n  }\n\n  &:disabled {\n    opacity: ", ";\n    cursor: not-allowed;\n  }\n\n  ", ";\n"]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -33099,7 +33163,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n  background: white;\n  border-radius: 50%;\n  display: block;\n  padding: 0;\n  margin: 0;\n  transition: all 100ms ease-in-out;\n  outline: none;\n  ", " &:focus, &:active, &:hover {\n    border: none;\n    border: ", ";\n  }\n\n  &:disabled {\n    opacity: ", ";\n    cursor: not-allowed;\n  }\n\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  background: ", ";\n  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%);\n  box-shadow: inset 0 0 8px -1px #000000, inset 0 0 8px 0 rgba(0, 0, 0, 0.8),\n    -1px -1px 0px 0px rgba(0, 0, 0, 0.9), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -33109,7 +33173,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n  background: ", ";\n  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%);\n  box-shadow: inset 0 0 8px -1px #000000, inset 0 0 8px 0 rgba(0, 0, 0, 0.8),\n    -1px -1px 0px 0px rgba(0, 0, 0, 0.9), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n"]);
+  var data = _taggedTemplateLiteral(["\n  background: ", ";\n"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -33119,7 +33183,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  background: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n    width: ", "px;\n    cursor: pointer;\n    padding: ", "px;\n    border-radius: ", "px;\n    margin-left: ", "px;\n    margin-right: ", "px;\n  "]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -33129,7 +33193,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n    width: ", "px;\n    cursor: pointer;\n    padding: ", "px;\n    border-radius: ", "px;\n    margin-left: ", "px;\n    margin-right: ", "px;\n  "]);
+  var data = _taggedTemplateLiteral(["\n  height: auto;\n  display: flex;\n  transition: all 0.1s ease-in;\n\n  ", " ", ";\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -33139,7 +33203,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  height: auto;\n  display: flex;\n  transition: all 0.1s ease-in;\n\n  ", " ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n    height: ", "px;\n  "]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -33159,7 +33223,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  ", ";\n  ", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -33176,85 +33240,89 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var Wrapper = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["default"])('div')(_templateObject(), function (_ref) {
   var rotate = _ref.rotate;
   return Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject2(), parseInt(rotate, 10));
+}, function (_ref2) {
+  var rotate = _ref2.rotate,
+      size = _ref2.size;
+  return rotate == -90 ? Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject3(), size) : '';
 });
-var ButtonContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["default"])('div')(_templateObject3(), function (_ref2) {
-  var size = _ref2.size;
-  return Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject4(), size, 0.05 * size, size, 0.05 * size, 0.05 * size);
-}, function (_ref3) {
-  var theme = _ref3.theme;
+var ButtonContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["default"])('div')(_templateObject4(), function (_ref3) {
+  var size = _ref3.size;
+  return Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject5(), size, 0.05 * size, size, 0.05 * size, 0.05 * size);
+}, function (_ref4) {
+  var theme = _ref4.theme;
   return theme.dark ? darkContainer : lightContainer;
 });
 ButtonContainer.defaultProps = {
   theme: _constants__WEBPACK_IMPORTED_MODULE_1__["light"]
 };
-var lightContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject5(), function (_ref4) {
-  var on = _ref4.on,
-      theme = _ref4.theme,
-      color = _ref4.color;
-  return on ? color || theme.secondary : theme.secondary;
-});
-var darkContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject6(), function (_ref5) {
+var lightContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject6(), function (_ref5) {
   var on = _ref5.on,
       theme = _ref5.theme,
       color = _ref5.color;
+  return on ? color || theme.secondary : theme.secondary;
+});
+var darkContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject7(), function (_ref6) {
+  var on = _ref6.on,
+      theme = _ref6.theme,
+      color = _ref6.color;
   return on ? color || theme.secondary : '#22272a';
 });
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject7(), function (_ref6) {
-  var size = _ref6.size,
-      on = _ref6.on,
-      theme = _ref6.theme;
-  return Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject8(), theme.dark ? 'none' : theme.detail, size / 2, size / 2, on ? size - size / 2 : 0);
-}, function (_ref7) {
-  var theme = _ref7.theme;
-  return theme.dark ? 'none' : "1px solid ".concat(theme.detail);
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject8(), function (_ref7) {
+  var size = _ref7.size,
+      on = _ref7.on,
+      theme = _ref7.theme;
+  return Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject9(), theme.dark ? 'none' : theme.detail, size / 2, size / 2, on ? size - size / 2 : 0);
 }, function (_ref8) {
   var theme = _ref8.theme;
-  return theme.dark ? 1 : 0.65;
+  return theme.dark ? 'none' : "1px solid ".concat(theme.detail);
 }, function (_ref9) {
   var theme = _ref9.theme;
+  return theme.dark ? 1 : 0.65;
+}, function (_ref10) {
+  var theme = _ref10.theme;
   return theme.dark ? darkButton : null;
 });
 Button.defaultProps = {
   theme: _constants__WEBPACK_IMPORTED_MODULE_1__["light"]
 };
-var darkButton = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject9());
-var DarkSwitchContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject10());
-var DarkSwitch = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject11(), function (_ref10) {
-  var size = _ref10.size;
-  return "".concat(size * 0.72, "px");
-}, function (_ref11) {
+var darkButton = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject10());
+var DarkSwitchContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject11());
+var DarkSwitch = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].button(_templateObject12(), function (_ref11) {
   var size = _ref11.size;
-  return "".concat(size * 1.44, "px");
+  return "".concat(size * 0.72, "px");
 }, function (_ref12) {
-  var on = _ref12.on;
-  return on ? Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject12()) : Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject13());
+  var size = _ref12.size;
+  return "".concat(size * 1.44, "px");
 }, function (_ref13) {
-  var size = _ref13.size,
-      on = _ref13.on;
-  var margin = size * 0.08;
-  return on ? Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject14(), margin) : Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject15(), margin);
+  var on = _ref13.on;
+  return on ? Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject13()) : Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject14());
 }, function (_ref14) {
-  var on = _ref14.on;
-  return on ? Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject16()) : Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject17());
+  var size = _ref14.size,
+      on = _ref14.on;
+  var margin = size * 0.08;
+  return on ? Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject15(), margin) : Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject16(), margin);
+}, function (_ref15) {
+  var on = _ref15.on;
+  return on ? Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject17()) : Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject18());
 });
-var RowContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject18(), function (props) {
+var RowContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject19(), function (props) {
   return props.vertical ? 'column-reverse' : 'row';
 });
-var RowLabel = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["default"])(_shared_Label_styled__WEBPACK_IMPORTED_MODULE_2__["default"])(_templateObject19(), function (_ref15) {
-  var position = _ref15.position,
-      theme = _ref15.theme;
-  return position === 'right' ? "margin-left: ".concat(theme.dark ? 12 : 8, "px;") : '';
-}, function (_ref16) {
+var RowLabel = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["default"])(_shared_Label_styled__WEBPACK_IMPORTED_MODULE_2__["default"])(_templateObject20(), function (_ref16) {
   var position = _ref16.position,
       theme = _ref16.theme;
-  return position === 'left' ? "margin-right: ".concat(theme.dark ? 12 : 8, "px;") : '';
+  return position === 'right' ? "margin-left: ".concat(theme.dark ? 12 : 8, "px;") : '';
 }, function (_ref17) {
   var position = _ref17.position,
       theme = _ref17.theme;
-  return position === 'top' ? "margin-bottom: ".concat(theme.dark ? 34 : 20, "px;") : '';
+  return position === 'left' ? "margin-right: ".concat(theme.dark ? 12 : 8, "px;") : '';
 }, function (_ref18) {
   var position = _ref18.position,
       theme = _ref18.theme;
+  return position === 'top' ? "margin-bottom: ".concat(theme.dark ? 34 : 20, "px;") : '';
+}, function (_ref19) {
+  var position = _ref19.position,
+      theme = _ref19.theme;
   return position === 'bottom' ? "margin-top: ".concat(theme.dark ? 34 : 20, "px;") : '';
 });
 RowLabel.defaultProps = {

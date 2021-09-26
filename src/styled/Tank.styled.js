@@ -82,7 +82,7 @@ export const Tick = styled.div`
   align-items: center;
   justify-content: flex-end;
   height: 18px;
-  color: ${props => (props.theme.dark ? '#ddd' : '#000')};
+  color: ${props => props.color || (props.theme.dark ? '#ddd' : '#000')};
   & .label {
     font-size: 12px;
     text-align: right;

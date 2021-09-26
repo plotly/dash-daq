@@ -23,7 +23,7 @@ const ValueContainer = styled.div`
 `;
 
 export const Value = styled.div`
-  color: ${({ theme, color }) => (theme.dark ? '#fff' : color || theme.primary)};
+  color: ${({ theme, color }) => color || (theme.dark ? '#fff' : color || theme.primary)};
   ${({ theme }) =>
     theme.dark
       ? css`

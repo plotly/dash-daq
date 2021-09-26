@@ -121,6 +121,7 @@ indicators = html.Div(
                     max=4,
                     scale={"start": 0, "interval": 1, "labelInterval": 1},
                     value=1,
+                    showCurrentValue=True
                 ),
                 Tank(
                     id="demoTank",
@@ -232,7 +233,7 @@ dark_controls = html.Div(
             id="dark-demojoystick",
             label="Joystick",
         ),
-        Knob(id="dark-demoKnob", label="Knob", min=0, max=10, value=2),
+        Knob(id="dark-demoKnob", label="Knob", min=0, max=10, value=2, textColor="black", showCurrentValue=True),
         NumericInput(id="dark-demoNumericInput", min=1, max=10000, value=100),
         BooleanSwitch(id="dark-demoSwitch"),
         ToggleSwitch(id="dark-demoToggleSwitch", value="false", vertical=True),
@@ -280,6 +281,8 @@ dark_indicators = html.Div(
                     color="red",
                     scale={"start": 0, "interval": 1, "labelInterval": 1},
                     value=100,
+                    showCurrentValue=True,
+                    textColor="black"
                 ),
                 Tank(
                     id="dark-demoTank",
@@ -288,6 +291,8 @@ dark_indicators = html.Div(
                     max=10,
                     value=2,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
+                    textColor="red",
+                    showCurrentValue=True
                 ),
                 Thermometer(
                     id="dark-demoThermometer",
@@ -360,7 +365,7 @@ dark_indicators = html.Div(
                 ),
             ],
             style={
-                "background-color": "black",
+                # "background-color": "black",
                 "display": "flex",
                 "flexDirection": "row",
                 "alignItems": "center",

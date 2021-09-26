@@ -40,7 +40,7 @@ const Gauge = props => {
 
   const color = convertInRange(props.color, max, min ? min : 0);
 
-  const colorValue = getColorValue(color);
+  const colorValue = props.textColor || getColorValue(color);
   const rawValue = props.value != null ? props.value : min;
   const dirtyValue = logarithmic ? log.compute(rawValue) : rawValue;
   const currentDisplayValue = dirtyValue;
@@ -301,7 +301,12 @@ Gauge.propTypes = {
   /**
    * Warning message when value is laging from min
    */
-  lagingMessage: PropTypes.oneOfType([PropTypes.string])
+  lagingMessage: PropTypes.oneOfType([PropTypes.string]),
+
+  /**
+   * text color for theme
+   */
+  textColor: PropTypes.string
 };
 
 export default withTheme(Gauge);
