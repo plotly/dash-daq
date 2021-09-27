@@ -233,7 +233,7 @@ dark_controls = html.Div(
             id="dark-demojoystick",
             label="Joystick",
         ),
-        Knob(id="dark-demoKnob", label="Knob", min=0, max=10, value=2, textColor="black", showCurrentValue=True),
+        Knob(id="dark-demoKnob", label="Knob", min=0, max=10, value=2, showCurrentValue=True),
         NumericInput(id="dark-demoNumericInput", min=1, max=10000, value=100),
         BooleanSwitch(id="dark-demoSwitch"),
         ToggleSwitch(id="dark-demoToggleSwitch", value="false", vertical=True),
@@ -282,7 +282,6 @@ dark_indicators = html.Div(
                     scale={"start": 0, "interval": 1, "labelInterval": 1},
                     value=100,
                     showCurrentValue=True,
-                    textColor="black"
                 ),
                 Tank(
                     id="dark-demoTank",
@@ -291,7 +290,7 @@ dark_indicators = html.Div(
                     max=10,
                     value=2,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
-                    textColor="red",
+                    # textColor="red",
                     showCurrentValue=True
                 ),
                 Thermometer(

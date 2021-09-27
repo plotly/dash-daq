@@ -173,8 +173,9 @@ export const drawScale = (
           y={syT}
           textAnchor="middle"
           style={markValue && markValue.style ? markValue.style : null}
-          dangerouslySetInnerHTML={{ __html: (markValue && markValue.label) || markValue }}
-        />
+        >
+          {(markValue && markValue.label) || markValue}
+        </text>
       );
     } else {
       // draw mini mark
