@@ -4,7 +4,7 @@ import { light } from './constants';
 
 export const LEDContainer = styled.div`
   display: inline-flex;
-
+  flex-direction: row;
   ${({ theme }) => (theme.dark ? darkLEDContainer : lightLEDContainer)};
 `;
 

@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632763629");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632764265");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -38324,6 +38324,7 @@ var Gauge = function Gauge(props) {
     className: elementName + '__current-value',
     valueColor: colorValue,
     units: units,
+    valueSize: (props.size + 32) * 13.3333 / 100,
     css: 'transform: translateY(-150%); top: 0;'
   }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_10__["default"].formatValue(currentDisplayValue, base) : currentDisplayValue.toFixed(digits));
   var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_13__["getFilteredProps"])(props);
@@ -39472,7 +39473,8 @@ Knob.defaultProps = {
   theme: _styled_constants__WEBPACK_IMPORTED_MODULE_7__["light"],
   labelPosition: 'top',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  size: 114
 };
 Knob.propTypes = {
   /**
@@ -39652,14 +39654,19 @@ Knob.propTypes = {
   persistence_type: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['local', 'session', 'memory']),
 
   /**
-   * show current value
+     * show current value of knob
    */
   showCurrentValue: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
 
   /**
    * text color of scale
    */
-  textColor: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  textColor: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /** 
+   * number of digits to show after decimal places
+   */
+  digits: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number
 };
 var ThemedKnob = Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["withTheme"])(Knob);
 ThemedKnob.defaultProps = Knob.defaultProps;
@@ -42882,6 +42889,9 @@ var KnobSvg = function KnobSvg(props) {
     onMouseDown: props.onMouseDown,
     onMouseUp: props.onMouseUp,
     onMouseMove: props.onMouseMove,
+    onTouchStart: props.onMouseDown,
+    onTouchEnd: props.onMouseUp,
+    onTouchMove: props.onMouseMove,
     className: "knob ".concat(disabled ? 'disabled' : '')
   }, knob), track);
 };
@@ -44084,8 +44094,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./src/styled/constants.js");
-function _templateObject5() {
+function _templateObject6() {
   var data = _taggedTemplateLiteral(["\n  margin-top: -4px;\n  text-transform: uppercase;\n  font-size: 8px;\n  color: #535d63;\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n          font-size: ", "px;\n        "]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -44105,7 +44125,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  color: ", ";\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  font-size: 1em;\n  color: ", ";\n  ", ";\n  ", "\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -44149,15 +44169,19 @@ var Value = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templ
 }, function (_ref2) {
   var theme = _ref2.theme;
   return theme.dark ? Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject4()) : '';
+}, function (_ref3) {
+  var fontSize = _ref3.fontSize;
+  return fontSize ? Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject5(), fontSize) : '';
 });
 Value.defaultProps = {
   theme: _constants__WEBPACK_IMPORTED_MODULE_2__["light"]
 };
-var ValueLabel = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].label(_templateObject5());
+var ValueLabel = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].label(_templateObject6());
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ValueContainer, {
     css: props.css
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Value, {
+    fontSize: props.valueSize,
     color: props.valueColor
   }, props.children), props.units ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ValueLabel, null, props.units) : null);
 });
@@ -44565,7 +44589,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: inline-flex;\n\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: inline-flex;\n  flex-direction: row;\n  ", ";\n"]);
 
   _templateObject = function _templateObject() {
     return data;

@@ -185,7 +185,8 @@ Knob.defaultProps = {
   theme: light,
   labelPosition: 'top',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  size: 114
 };
 
 Knob.propTypes = {
@@ -369,14 +370,20 @@ Knob.propTypes = {
   persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
 
   /**
-   * show current value
+
+   * show current value of knob
    */
   showCurrentValue: PropTypes.bool,
 
   /**
    * text color of scale
    */
-  textColor: PropTypes.string
+  textColor: PropTypes.string,
+
+  /**
+   * number of digits to show after decimal places
+   */
+  digits: PropTypes.number
 };
 
 const ThemedKnob = withTheme(Knob);

@@ -23,6 +23,7 @@ const ValueContainer = styled.div`
 `;
 
 export const Value = styled.div`
+  font-size: 1em;
   color: ${({ theme, color }) => color || (theme.dark ? '#000' : color || theme.primary)};
   ${({ theme }) =>
     theme.dark
@@ -30,7 +31,15 @@ export const Value = styled.div`
           text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.4);
         `
       : ''};
+  ${({ fontSize }) => {
+    return fontSize
+      ? css`
+          font-size: ${fontSize}px;
+        `
+      : '';
+  }}
 `;
+
 Value.defaultProps = {
   theme: light
 };
@@ -44,7 +53,9 @@ export const ValueLabel = styled.label`
 
 export default props => (
   <ValueContainer css={props.css}>
-    <Value color={props.valueColor}>{props.children}</Value>
+    <Value fontSize={props.valueSize} color={props.valueColor}>
+      {props.children}
+    </Value>
     {props.units ? <ValueLabel>{props.units}</ValueLabel> : null}
   </ValueContainer>
 );

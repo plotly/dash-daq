@@ -58,6 +58,7 @@ const Gauge = props => {
       className={elementName + '__current-value'}
       valueColor={colorValue}
       units={units}
+      valueSize={((props.size + 32) * 13.3333) / 100}
       css={'transform: translateY(-150%); top: 0;'}
     >
       {logarithmic

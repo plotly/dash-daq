@@ -37,6 +37,9 @@ Keyword arguments:
 
         - color (list of numbers; optional)
 
+- digits (number; optional):
+    number of digits to show after decimal places.
+
 - disabled (boolean; optional):
     If True, knob cannot be moved.
 
@@ -109,9 +112,9 @@ Keyword arguments:
         Value to start the scale from. Defaults  to min.
 
 - showCurrentValue (boolean; optional):
-    show current value.
+    show current value of knob.
 
-- size (number; optional):
+- size (number; default 114):
     The size (diameter) of the knob in pixels.
 
 - style (dict; optional):
@@ -126,12 +129,12 @@ Keyword arguments:
 - value (number; optional):
     The value of knob."""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, color=Component.UNDEFINED, size=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, disabled=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, scale=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, showCurrentValue=Component.UNDEFINED, textColor=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'color', 'disabled', 'label', 'labelPosition', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'scale', 'showCurrentValue', 'size', 'style', 'textColor', 'theme', 'value']
+    def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, color=Component.UNDEFINED, size=Component.UNDEFINED, min=Component.UNDEFINED, max=Component.UNDEFINED, disabled=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, scale=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, showCurrentValue=Component.UNDEFINED, textColor=Component.UNDEFINED, digits=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'color', 'digits', 'disabled', 'label', 'labelPosition', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'scale', 'showCurrentValue', 'size', 'style', 'textColor', 'theme', 'value']
         self._type = 'Knob'
         self._namespace = 'dash_daq'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'color', 'disabled', 'label', 'labelPosition', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'scale', 'showCurrentValue', 'size', 'style', 'textColor', 'theme', 'value']
+        self.available_properties = ['id', 'className', 'color', 'digits', 'disabled', 'label', 'labelPosition', 'max', 'min', 'persisted_props', 'persistence', 'persistence_type', 'scale', 'showCurrentValue', 'size', 'style', 'textColor', 'theme', 'value']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

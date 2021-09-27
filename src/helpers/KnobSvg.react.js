@@ -129,6 +129,9 @@ const KnobSvg = props => {
         onMouseDown={props.onMouseDown}
         onMouseUp={props.onMouseUp}
         onMouseMove={props.onMouseMove}
+        onTouchStart={props.onMouseDown}
+        onTouchEnd={props.onMouseUp}
+        onTouchMove={props.onMouseMove}
         className={`knob ${disabled ? 'disabled' : ''}`}
       >
         {knob}
