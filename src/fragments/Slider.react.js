@@ -127,7 +127,7 @@ class Slider extends Component {
     handleProps = {
       ...handleProps,
       value,
-      label: handleLabel.label || handleLabel,
+      label: handleLabel.label || (handleLabel instanceof Object ? '  ' : handleLabel),
       color: handleLabel.color || getColorValue(this.props.color),
       style: handleLabel.style
     };

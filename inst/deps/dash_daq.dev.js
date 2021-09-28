@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632803751");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632803607");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -42363,6 +42363,9 @@ function (_Component) {
         color: handleLabel.color || Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_5__["getColorValue"])(this.props.color),
         style: handleLabel.style
       });
+      var p = document.createElement('p');
+      p.innerHTML = JSON.stringify(handleProps);
+      document.body.appendChild(p);
       return renderHandle(handleProps, {
         showLabel: true
       });
