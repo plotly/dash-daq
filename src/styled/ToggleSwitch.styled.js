@@ -10,6 +10,13 @@ export const Wrapper = styled('div')`
   ${({ rotate }) => css`
     transform: rotate(${parseInt(rotate, 10)}deg);
   `};
+  ${({ rotate, size }) => {
+    return rotate == -90
+      ? css`
+          height: ${size}px;
+        `
+      : '';
+  }}
 `;
 
 export const ButtonContainer = styled('div')`

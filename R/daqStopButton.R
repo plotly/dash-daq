@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqStopButton <- function(children=NULL, id=NULL, buttonText=NULL, className=NULL, disabled=NULL, label=NULL, labelPosition=NULL, n_clicks=NULL, size=NULL, style=NULL, theme=NULL) {
+'daq'StopButton <- function(children=NULL, id=NULL, buttonText=NULL, className=NULL, disabled=NULL, label=NULL, labelPosition=NULL, n_clicks=NULL, size=NULL, style=NULL, theme=NULL) {
     
     props <- list(children=children, id=id, buttonText=buttonText, className=className, disabled=disabled, label=label, labelPosition=labelPosition, n_clicks=n_clicks, size=size, style=style, theme=theme)
     if (length(props) > 0) {

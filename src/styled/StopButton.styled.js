@@ -29,7 +29,7 @@ const lightButton = css`
   text-transform: uppercase;
   padding: 0;
   width: ${({ size }) => `${size}px`};
-  height: ${({ size }) => `${size * 0.42}px`};
+  min-height: ${({ size }) => `${size * 0.42}px`};
   text-align: center;
   cursor: pointer;
   letter-spacing: 0.1;

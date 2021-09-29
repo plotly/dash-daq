@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqJoystick <- function(id=NULL, angle=NULL, className=NULL, disabled=NULL, force=NULL, label=NULL, labelPosition=NULL, size=NULL, style=NULL, theme=NULL) {
+'daq'Joystick <- function(id=NULL, angle=NULL, className=NULL, disabled=NULL, force=NULL, label=NULL, labelPosition=NULL, size=NULL, style=NULL, theme=NULL) {
     
     props <- list(id=id, angle=angle, className=className, disabled=disabled, force=force, label=label, labelPosition=labelPosition, size=size, style=style, theme=theme)
     if (length(props) > 0) {

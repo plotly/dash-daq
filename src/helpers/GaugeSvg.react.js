@@ -113,7 +113,6 @@ const defs = <defs>{darkGradientDefs}</defs>;
 const GaugeSvg = props => {
   const { progress, min, max, step, scale } = props;
   const dimensions = calcDimensions(props);
-
   const scaleItems = drawScale({ min, max, step, scale }, dimensions);
   const knob = props.theme.dark ? darkNeedleKnob(dimensions) : lightNeedleKnob(dimensions);
   const track = props.theme.dark ? darkTrack(props, dimensions) : lightTrack(props, dimensions);

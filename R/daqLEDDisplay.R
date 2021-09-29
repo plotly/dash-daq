@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqLEDDisplay <- function(id=NULL, backgroundColor=NULL, className=NULL, color=NULL, label=NULL, labelPosition=NULL, size=NULL, style=NULL, theme=NULL, value=NULL) {
+'daq'LEDDisplay <- function(id=NULL, backgroundColor=NULL, className=NULL, color=NULL, label=NULL, labelPosition=NULL, size=NULL, style=NULL, theme=NULL, value=NULL) {
     
     props <- list(id=id, backgroundColor=backgroundColor, className=className, color=color, label=label, labelPosition=labelPosition, size=size, style=style, theme=theme, value=value)
     if (length(props) > 0) {

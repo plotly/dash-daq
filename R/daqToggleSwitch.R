@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqToggleSwitch <- function(id=NULL, className=NULL, color=NULL, disabled=NULL, label=NULL, labelPosition=NULL, persisted_props=NULL, persistence=NULL, persistence_type=NULL, size=NULL, style=NULL, theme=NULL, value=NULL, vertical=NULL) {
+'daq'ToggleSwitch <- function(id=NULL, className=NULL, color=NULL, disabled=NULL, label=NULL, labelPosition=NULL, persisted_props=NULL, persistence=NULL, persistence_type=NULL, size=NULL, style=NULL, theme=NULL, value=NULL, vertical=NULL) {
     
     props <- list(id=id, className=className, color=color, disabled=disabled, label=label, labelPosition=labelPosition, persisted_props=persisted_props, persistence=persistence, persistence_type=persistence_type, size=size, style=style, theme=theme, value=value, vertical=vertical)
     if (length(props) > 0) {

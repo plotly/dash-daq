@@ -3,7 +3,8 @@ import { light } from './constants';
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   & svg {
     text-align: center;
   }
@@ -15,6 +16,7 @@ const Container = styled.div`
   & .scale {
     font-size: 12px;
     user-select: none;
+    fill: ${({ colorValue }) => colorValue || 'black'} !important;
   }
 
   & .tick {

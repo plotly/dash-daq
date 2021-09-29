@@ -46,6 +46,7 @@ const Tank = props => {
   const dirtyValue = logarithmic ? log.compute(props.value, base) : props.value;
   const currentDisplayValue = dirtyValue;
   const value = sanitizeRangeValue({ min, max, value: dirtyValue });
+  const colorValue = props.textColor || color;
   const percentageFill = computeProgress({ min, max, value });
 
   const formatter = logarithmic ? log.generateLogFormatter({ base }) : null;
@@ -58,6 +59,7 @@ const Tank = props => {
       <Tick
         className={elementName + '__tick'}
         key={k}
+        color={colorValue}
         xPosition={computeProgress({ min, max, value: k })}
       >
         <div className="tick" />
@@ -70,7 +72,7 @@ const Tank = props => {
 
   const scaleContainer = <TickContainer xPositioned={scale}>{renderTicks()}</TickContainer>;
   const currentValue = (
-    <CurrentValue units={units} valueColor="#535D63">
+    <CurrentValue units={units} valueColor={colorValue}>
       {logarithmic ? log.formatValue(currentDisplayValue, base) : currentDisplayValue}
     </CurrentValue>
   );
@@ -279,7 +281,12 @@ Tank.propTypes = {
   /**
    * Warning message when value is laging from min
    */
-  lagingMessage: PropTypes.oneOfType([PropTypes.string])
+  lagingMessage: PropTypes.oneOfType([PropTypes.string]),
+
+  /**
+   * text color
+   */
+  textColor: PropTypes.string
 };
 
 export default withTheme(Tank);

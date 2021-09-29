@@ -66,7 +66,10 @@ const getTrackStyle = props => {
 class Slider extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: props.value || props.min, trackStyle: getTrackStyle(props) };
+    this.state = {
+      value: props.value != null ? props.value : props.min,
+      trackStyle: getTrackStyle(props)
+    };
 
     this.onChange = this.onChange.bind(this);
     this.onAfterChange = this.onAfterChange.bind(this);
@@ -124,7 +127,7 @@ class Slider extends Component {
     handleProps = {
       ...handleProps,
       value,
-      label: handleLabel.label || handleLabel,
+      label: handleLabel.label || (handleLabel instanceof Object ? '  ' : handleLabel),
       color: handleLabel.color || getColorValue(this.props.color),
       style: handleLabel.style
     };
@@ -178,7 +181,11 @@ class Slider extends Component {
     const elementName = getClassName('slider', theme.dark);
     const filteredProps = getFilteredProps(this.props);
     return (
-      <div id={id} style={style} className={elementName + (className ? ' ' + className : '')}>
+      <div
+        id={id}
+        style={{ ...style, marginTop: '45px' }}
+        className={elementName + (className ? ' ' + className : '')}
+      >
         <LabelContainer
           className={elementName + '__label'}
           labelCSS={label ? this.calcLabelOffset(this.props) : null}

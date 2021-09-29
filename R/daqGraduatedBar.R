@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-daqGraduatedBar <- function(id=NULL, className=NULL, color=NULL, label=NULL, labelPosition=NULL, max=NULL, min=NULL, showCurrentValue=NULL, size=NULL, step=NULL, style=NULL, theme=NULL, value=NULL, vertical=NULL) {
+'daq'GraduatedBar <- function(id=NULL, className=NULL, color=NULL, label=NULL, labelPosition=NULL, max=NULL, min=NULL, showCurrentValue=NULL, size=NULL, step=NULL, style=NULL, theme=NULL, value=NULL, vertical=NULL) {
     
     props <- list(id=id, className=className, color=color, label=label, labelPosition=labelPosition, max=max, min=min, showCurrentValue=showCurrentValue, size=size, step=step, style=style, theme=theme, value=value, vertical=vertical)
     if (length(props) > 0) {

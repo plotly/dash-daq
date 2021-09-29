@@ -13,7 +13,7 @@ const Container = styled.div`
   & .scale {
     font-size: 12px;
 
-    fill: ${({ theme }) => (theme.dark ? '#fff' : '#5b6268')};
+    fill: ${({ theme, color }) => color || (theme.dark ? '#000' : '#5b6268')};
     user-select: none;
   }
 
@@ -27,7 +27,7 @@ const Container = styled.div`
   }
 
   & .needle {
-    stroke: ${({ theme }) => (theme.dark ? '#fff' : '#5b6268')};
+    stroke: ${({ theme }) => (theme.dark ? '#000' : '#5b6268')};
     stroke-width: 3;
   }
 

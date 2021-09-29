@@ -5,6 +5,7 @@ import { withTheme } from 'styled-components';
 import KnobSvg from '../helpers/KnobSvg.react';
 import Container from '../styled/Knob.styled';
 import LabelContainer from '../styled/shared/LabelContainer.styled';
+import CurrentValue from '../styled/CurrentValue.styled';
 import { light, TRACK_TOTAL_DEG } from '../styled/constants';
 import { computeProgress, roundToDecimal } from '../helpers/util';
 import { getColorValue } from '../helpers/colorRanges';
@@ -126,12 +127,28 @@ class Knob extends Component {
   }
 
   render() {
-    const { min, max, value } = this.state;
-    const { id, className, labelPosition, color, style, disabled, theme } = this.props;
+    const { min, max, value = this.props.min } = this.props;
+    const { id, className, labelPosition, color, style, disabled, theme, textColor } = this.props;
     const progress = computeProgress({ min, max, value, progressionTarget: 1 });
+
+    const colorValue = textColor || getColorValue(color);
 
     const elementName = getClassName('knob', theme);
     const filteredProps = getFilteredProps(this.props);
+
+    const currentValue = (
+      <>
+        <CurrentValue
+          className={elementName + '__current-value'}
+          valueColor={colorValue}
+          valueSize={Math.min(((this.props.size + 32) * 13.3333) / 100, 32)}
+          units={false}
+          css={'transform: translateY(0%); top: 0;'}
+        >
+          {this.state.value.toFixed(this.props.digits)}
+        </CurrentValue>
+      </>
+    );
 
     return (
       <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
@@ -140,7 +157,12 @@ class Knob extends Component {
           {...filteredProps}
           labelCSS={labelPosition === 'top' ? null : 'transform: translateY(-40px);'}
         >
-          <Container className={elementName + '__container'} color={getColorValue(color)}>
+          <Container
+            className={elementName + '__container'}
+            colorValue={colorValue}
+            color={getColorValue(color)}
+          >
+            {this.props.showCurrentValue && currentValue}
             <KnobSvg
               progress={progress}
               {...filteredProps}
@@ -163,7 +185,8 @@ Knob.defaultProps = {
   theme: light,
   labelPosition: 'top',
   persisted_props: ['value'],
-  persistence_type: 'local'
+  persistence_type: 'local',
+  size: 114
 };
 
 Knob.propTypes = {
@@ -344,7 +367,23 @@ Knob.propTypes = {
    * local: window.localStorage, data is kept after the browser quit.
    * session: window.sessionStorage, data is cleared once the browser quit.
    */
-  persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+  persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
+
+  /**
+
+   * show current value of knob
+   */
+  showCurrentValue: PropTypes.bool,
+
+  /**
+   * text color of scale
+   */
+  textColor: PropTypes.string,
+
+  /**
+   * number of digits to show after decimal places
+   */
+  digits: PropTypes.number
 };
 
 const ThemedKnob = withTheme(Knob);
