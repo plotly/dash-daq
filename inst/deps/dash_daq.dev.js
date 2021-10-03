@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633207210");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633243318");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -40227,7 +40227,8 @@ function (_Component) {
         color: color,
         size: size,
         disabled: disabled,
-        onClick: this.onClick
+        onClick: this.onClick,
+        style: this.props.buttonStyle
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_PowerButtonSvg_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
         on: this.state.on,
         color: color,
@@ -40314,6 +40315,11 @@ PowerButton.propTypes = {
    * Style to apply to the root component element.
    */
   style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * style to apply on button
+   */
+  buttonStyle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
 
   /**
    * Dash-assigned callback that gets fired when
@@ -43767,21 +43773,7 @@ var colorRangesTrack = function colorRangesTrack(props, dimensions) {
   var TRACK_ARC_DEG = 270;
   var GAP_ARC_DEG = 90;
   var GRADIENT_BLEND = 25;
-  var p = document.createElement('p');
-  p.innerHTML = '-------============--------';
-  document.body.appendChild(p);
-  document.body.appendChild(document.createTextNode('start 1 : ' + JSON.stringify(props.color)));
-  p = document.createElement('p');
-  p.innerHTML = '-------============--------';
-  document.body.appendChild(p);
-  if (!Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_2__["isContiguous"])(props)) return null;
-  p = document.createElement('p');
-  p.innerHTML = '-------============--------';
-  document.body.appendChild(p);
-  document.body.appendChild(document.createTextNode('start'));
-  p = document.createElement('p');
-  p.innerHTML = '-------============--------';
-  document.body.appendChild(p); // set colors start from 0 if negative value is present
+  if (!Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_2__["isContiguous"])(props)) return null; // set colors start from 0 if negative value is present
 
   var deepColorCopy = JSON.parse(JSON.stringify(props.color));
 
@@ -43822,20 +43814,6 @@ var colorRangesTrack = function colorRangesTrack(props, dimensions) {
   }
 
   var ConicGradient = window.ConicGradient;
-  p = document.createElement('p');
-  p.innerHTML = '-------============--------';
-  document.body.appendChild(p);
-  document.body.appendChild(document.createTextNode('stops: ' + JSON.stringify(stops)));
-  p = document.createElement('p');
-  p.innerHTML = '-------============--------';
-  document.body.appendChild(p);
-  p = document.createElement('p');
-  p.innerHTML = '-------============--------';
-  document.body.appendChild(p);
-  document.body.appendChild(document.createTextNode('color: ' + JSON.stringify(color)));
-  p = document.createElement('p');
-  p.innerHTML = '-------============--------';
-  document.body.appendChild(p);
   var gradient = new ConicGradient({
     stops: stops.join(', '),
     size: 400
@@ -44688,8 +44666,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DarkDigitContainer", function() { return DarkDigitContainer; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./src/styled/constants.js");
-function _templateObject4() {
+function _templateObject5() {
   var data = _taggedTemplateLiteral(["\n  & .darkLED-fill {\n    fill: ", ";\n  }\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  border-radius: 3px;\n  padding: 12px 8px 12px 14px;\n  border: 1px solid ", ";\n  background: ", ";\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -44699,7 +44687,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 3px;\n  padding: 12px 8px 12px 14px;\n  border: 1px solid ", ";\n  background: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  padding: 12px 8px 4px 16px;\n  background-color: #22272a;\n  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%);\n  box-shadow: inset 0 0 8px -1px rgba(0, 0, 0, 0.7), inset 0 0 4px 0 rgba(0, 0, 0, 0.8),\n    -1px -1px 0px 0px rgba(0, 0, 0, 0.8), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -44709,7 +44697,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  padding: 12px 8px 4px 16px;\n  background-color: #22272a;\n  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%);\n  box-shadow: inset 0 0 8px -1px rgba(0, 0, 0, 0.7), inset 0 0 4px 0 rgba(0, 0, 0, 0.8),\n    -1px -1px 0px 0px rgba(0, 0, 0, 0.8), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n"]);
+  var data = _taggedTemplateLiteral(["background-color: ", ";"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -44719,7 +44707,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: inline-flex;\n  flex-direction: row;\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: inline-flex;\n  flex-direction: row;\n  ", ";\n  ", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -44735,20 +44723,23 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var LEDContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject(), function (_ref) {
   var theme = _ref.theme;
   return theme.dark ? darkLEDContainer : lightLEDContainer;
+}, function (_ref2) {
+  var backgroundColor = _ref2.backgroundColor;
+  return Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject2(), backgroundColor);
 });
-var darkLEDContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject2());
-var lightLEDContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject3(), function (_ref2) {
-  var theme = _ref2.theme;
+var darkLEDContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject3());
+var lightLEDContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject4(), function (_ref3) {
+  var theme = _ref3.theme;
   return theme.detail;
-}, function (_ref3) {
-  var backgroundColor = _ref3.backgroundColor;
+}, function (_ref4) {
+  var backgroundColor = _ref4.backgroundColor;
   return backgroundColor;
 });
 LEDContainer.defaultProps = {
   theme: _constants__WEBPACK_IMPORTED_MODULE_1__["light"]
 };
-var DarkDigitContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4(), function (_ref4) {
-  var color = _ref4.color;
+var DarkDigitContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5(), function (_ref5) {
+  var color = _ref5.color;
   return color;
 });
 /* harmony default export */ __webpack_exports__["default"] = (LEDContainer);

@@ -76,7 +76,7 @@ controls = html.Div(
         BooleanSwitch(id="demoSwitch"),
         ToggleSwitch(id="demoToggleSwitch", value="false", vertical=True),
         StopButton(id="demoStopButton", n_clicks=0),
-        PowerButton(id="demoPowerButton", on="false"),
+        PowerButton(id="demoPowerButton", on="false", onButtonStyle={"backgroundColor": "red"}, offButtonStyle={"backgroundColor":"blue"}),
         Slider(
             id="demoSlider",
             min=0,
@@ -145,7 +145,7 @@ indicators = html.Div(
                     max=100,
                     value=40,
                 ),
-                LEDDisplay(id="demoLEDDisplay", value="-1.2"),
+                LEDDisplay(id="demoLEDDisplay", value="-1.2",backgroundColor="#FFFFFF"),
                 html.Div(
                     [
                         html.Div(
@@ -310,7 +310,7 @@ dark_indicators = html.Div(
                     max=100,
                     value=40,
                 ),
-                LEDDisplay(id="dark-demoLEDDisplay", value=1.2),
+                LEDDisplay(id="dark-demoLEDDisplay", value=1.2, backgroundColor="#FFFFFF"),
                 html.Div(
                     [
                         html.Div(

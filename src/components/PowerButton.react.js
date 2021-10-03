@@ -54,6 +54,7 @@ class PowerButton extends Component {
               size={size}
               disabled={disabled}
               onClick={this.onClick}
+              style={this.state.on ? this.props.onButtonStyle : this.props.offButtonStyle}
             >
               <PowerButtonSvg on={this.state.on} color={color} size={size * 0.3} />
             </Button>
@@ -143,6 +144,16 @@ PowerButton.propTypes = {
    * Style to apply to the root component element.
    */
   style: PropTypes.object,
+
+  /**
+   * style to apply on switch on button
+   */
+  onButtonStyle: PropTypes.object,
+
+  /**
+   * style to apply on switch off button
+   */
+  offButtonStyle: PropTypes.object,
 
   /**
    * Dash-assigned callback that gets fired when

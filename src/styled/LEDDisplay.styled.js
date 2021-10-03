@@ -6,6 +6,10 @@ export const LEDContainer = styled.div`
   display: inline-flex;
   flex-direction: row;
   ${({ theme }) => (theme.dark ? darkLEDContainer : lightLEDContainer)};
+  ${({ backgroundColor }) =>
+    css`
+      background-color: ${backgroundColor};
+    `}
 `;
 
 const darkLEDContainer = css`

@@ -35,8 +35,14 @@ Keyword arguments:
 - labelPosition (a value equal to: 'top', 'bottom'; default 'top'):
     Where the button label is positioned.
 
+- offButtonStyle (dict; optional):
+    style to apply on switch off button.
+
 - on (boolean; default False):
     Whether or not the power button is on.
+
+- onButtonStyle (dict; optional):
+    style to apply on switch on button.
 
 - persisted_props (list of a value equal to: 'on's; default ['on']):
     Properties whose user interactions will persist after refreshing
@@ -66,12 +72,12 @@ Keyword arguments:
 - theme (dict; default light):
     Theme configuration to be set by a ThemeProvider."""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, on=Component.UNDEFINED, color=Component.UNDEFINED, size=Component.UNDEFINED, disabled=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'className', 'color', 'disabled', 'label', 'labelPosition', 'on', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'theme']
+    def __init__(self, id=Component.UNDEFINED, on=Component.UNDEFINED, color=Component.UNDEFINED, size=Component.UNDEFINED, disabled=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, onButtonStyle=Component.UNDEFINED, offButtonStyle=Component.UNDEFINED, persistence=Component.UNDEFINED, persisted_props=Component.UNDEFINED, persistence_type=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'className', 'color', 'disabled', 'label', 'labelPosition', 'offButtonStyle', 'on', 'onButtonStyle', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'theme']
         self._type = 'PowerButton'
         self._namespace = 'dash_daq'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'className', 'color', 'disabled', 'label', 'labelPosition', 'on', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'theme']
+        self.available_properties = ['id', 'className', 'color', 'disabled', 'label', 'labelPosition', 'offButtonStyle', 'on', 'onButtonStyle', 'persisted_props', 'persistence', 'persistence_type', 'size', 'style', 'theme']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
