@@ -93,6 +93,7 @@ const Gauge = props => {
 
   return (
     <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
+      <p>{JSON.stringify(color)}</p>
       <ExceededWarning ref={warningPara} />
       <LabelContainer
         className={elementName + '__label'}
@@ -102,7 +103,7 @@ const Gauge = props => {
         <Container color={colorValue}>
           <GaugeSVG
             className={elementName + '__gauge'}
-            {...{ ...filteredProps, scale, progress }}
+            {...{ ...filteredProps, scale, progress, color }}
           />
           {showCurrentValue && currentValue}
         </Container>
@@ -279,7 +280,9 @@ Gauge.propTypes = {
        * of the gauge's range of values.
        */
       ranges: PropTypes.shape({
-        color: PropTypes.arrayOf(PropTypes.number)
+        color: PropTypes.arrayOf(
+          PropTypes.oneOfType(PropTypes.number, PropTypes.arrayOf(PropTypes.number))
+        )
       })
     })
   ]),

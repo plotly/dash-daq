@@ -33,6 +33,8 @@ app.scripts.config.serve_locally = True
 
 ################ Set up shared layout ################
 root_layout = html.Div([
+    Gauge(min=0, max=10, value=4, color={"gradient": False, "ranges": {"red": [-10,5], "green": [5,11]}}),
+    # Gauge(min=0, max=10, value=4, color={"ranges": {"grey": [-10,4], "black": [4,8], "yellow": [8,11]}}),
     dcc.Location(id='url', refresh=True),
     html.Div([
         html.H1('dash_daq Dash Demo'),
@@ -121,7 +123,8 @@ indicators = html.Div(
                     max=4,
                     scale={"start": 0, "interval": 1, "labelInterval": 1},
                     value=1,
-                    showCurrentValue=True
+                    showCurrentValue=True,
+                    color={"gradient": True, "default": "yellow", "ranges": {"red": [0,2], "green": [2,4]}}
                 ),
                 Tank(
                     id="demoTank",

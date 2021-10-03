@@ -10,19 +10,16 @@ A joystick.
 }
 
 \usage{
-'daq'Joystick(id=NULL, angle=NULL, className=NULL, disabled=NULL,
-force=NULL, label=NULL, labelPosition=NULL, size=NULL,
-style=NULL, theme=NULL)
+'daq'Joystick(id=NULL, angle=NULL, className=NULL, force=NULL, label=NULL,
+labelPosition=NULL, size=NULL, style=NULL, theme=NULL)
 }
 
 \arguments{
-\item{id}{Character. The ID used to identify the color picker in Dash callbacks}
+\item{id}{Character. The ID used to identify the Joystick in Dash callbacks}
 
 \item{angle}{Numeric. Joystick angle in degrees, 0 = right, 90 = up, 180 = left, 270 = down}
 
 \item{className}{Character. Class to apply to the root component element}
-
-\item{disabled}{Logical. If true, color cannot be picked.}
 
 \item{force}{Numeric. Joystick force: distance between cursor and center in big-circle radii}
 

@@ -38,7 +38,7 @@ Keyword arguments:
 
         `ranges` is a dict with keys:
 
-        - color (list of numbers; optional)
+        - color (list; optional)
 
 - digits (number; default 1):
     Number of digits for current value.

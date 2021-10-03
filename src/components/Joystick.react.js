@@ -85,14 +85,9 @@ Joystick.defaultProps = {
 
 Joystick.propTypes = {
   /**
-   * The ID used to identify the color picker in Dash callbacks
+   * The ID used to identify the Joystick in Dash callbacks
    */
   id: PropTypes.string,
-
-  /**
-   * If true, color cannot be picked.
-   */
-  disabled: PropTypes.bool,
 
   /**
    * Joystick angle in degrees, 0 = right, 90 = up, 180 = left, 270 = down
