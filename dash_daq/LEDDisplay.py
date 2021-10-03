@@ -23,7 +23,7 @@ Keyword arguments:
 
 - label (dict; optional):
     Description to be displayed alongside the control. To control
-    styling,  pass an object with label and style properties.
+    styling, pass an object with label and style properties.
 
     `label` is a string | dict with keys:
 
@@ -44,9 +44,9 @@ Keyword arguments:
     Theme configuration to be set by a ThemeProvider.
 
 - value (number | string; optional):
-    Value to be displayed. A number or a string  containing only
-    digits (0-9), periods, and colons,  and possibly starting with a
-    minus sign."""
+    Value to be displayed. A number or a string containing only digits
+    (0-9), periods, and colons, and possibly starting with a minus
+    sign."""
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, value=Component.UNDEFINED, color=Component.UNDEFINED, backgroundColor=Component.UNDEFINED, size=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'backgroundColor', 'className', 'color', 'label', 'labelPosition', 'size', 'style', 'theme', 'value']

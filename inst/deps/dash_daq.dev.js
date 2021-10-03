@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633243318");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633243733");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -40228,7 +40228,7 @@ function (_Component) {
         size: size,
         disabled: disabled,
         onClick: this.onClick,
-        style: this.props.buttonStyle
+        style: this.state.on ? this.props.onButtonStyle : this.props.offButtonStyle
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_PowerButtonSvg_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
         on: this.state.on,
         color: color,
@@ -40317,9 +40317,14 @@ PowerButton.propTypes = {
   style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
 
   /**
-   * style to apply on button
+   * style to apply on switch on button 
    */
-  buttonStyle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onButtonStyle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * style to apply on switch off button
+   */
+  offButtonStyle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
 
   /**
    * Dash-assigned callback that gets fired when

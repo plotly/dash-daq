@@ -28,10 +28,10 @@ Keyword arguments:
         Display ranges as a gradient between given colors.
 
     - ranges (dict; optional):
-        Define multiple color ranges on the knob's track.  The key
-        determines the color of the range and  the value is the
-        start,end of the range itself.  Ranges must be contiguous
-        along the entirety  of the knob's range of values.
+        Define multiple color ranges on the knob's track. The key
+        determines the color of the range and the value is the
+        start,end of the range itself. Ranges must be contiguous along
+        the entirety of the knob's range of values.
 
         `ranges` is a dict with keys:
 
@@ -64,22 +64,22 @@ Keyword arguments:
 
 - persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `value` is allowed this
-    prop can  normally be ignored.
+    the component or the page. Since only `value` is allowed this prop
+    can normally be ignored.
 
 - persistence (boolean | string | number; optional):
     Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    when the component - or the page - is refreshed. If `persisted` is
+    truthy and hasn't changed from its previous value, a `value` that
+    the user has changed while using the app will keep that change, as
+    long as the new `value` also matches what was given originally.
+    Used in conjunction with `persistence_type`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    Where persisted user changes will be stored: memory: only kept in
+    memory, reset on page refresh. local: window.localStorage, data is
+    kept after the browser quit. session: window.sessionStorage, data
+    is cleared once the browser quit.
 
 - scale (dict; optional):
     Configuration for the component scale.
@@ -87,10 +87,10 @@ Keyword arguments:
     `scale` is a dict with keys:
 
     - custom (dict; optional):
-        Custom scale marks. The key determines the position  and the
-        value determines what will show. If you want  to set the style
-        of a specific mark point, the value  should be an object which
-        contains style and label  properties.
+        Custom scale marks. The key determines the position and the
+        value determines what will show. If you want to set the style
+        of a specific mark point, the value should be an object which
+        contains style and label properties.
 
         `custom` is a number
 
@@ -101,15 +101,15 @@ Keyword arguments:
         - style (string; optional)
 
     - interval (number; optional):
-        Interval by which the scale goes up. Attempts  to dynamically
-        divide min-max range by  default.
+        Interval by which the scale goes up. Attempts to dynamically
+        divide min-max range by default.
 
     - labelInterval (number; optional):
-        Interval by which labels are added to  scale marks. Defaults
-        to 2 (every other  mark has a label).
+        Interval by which labels are added to scale marks. Defaults to
+        2 (every other mark has a label).
 
     - start (number; optional):
-        Value to start the scale from. Defaults  to min.
+        Value to start the scale from. Defaults to min.
 
 - showCurrentValue (boolean; optional):
     show current value of knob.

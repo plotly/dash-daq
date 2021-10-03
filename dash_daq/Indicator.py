@@ -24,7 +24,7 @@ Keyword arguments:
 
 - label (dict; optional):
     Description to be displayed alongside the control. To control
-    styling,  pass an object with label and style properties.
+    styling, pass an object with label and style properties.
 
     `label` is a string | dict with keys:
 
