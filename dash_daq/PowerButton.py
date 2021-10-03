@@ -40,22 +40,22 @@ Keyword arguments:
 
 - persisted_props (list of a value equal to: 'on's; default ['on']):
     Properties whose user interactions will persist after refreshing
-    the  component or the page. Since only `on` is allowed this prop
-    can  normally be ignored.
+    the component or the page. Since only `on` is allowed this prop
+    can normally be ignored.
 
 - persistence (boolean | string | number; optional):
     Used to allow user interactions in this component to be persisted
-    when  the component - or the page - is refreshed. If `persisted`
-    is truthy and  hasn't changed from its previous value, a `value`
-    that the user has  changed while using the app will keep that
-    change, as long as  the new `value` also matches what was given
-    originally.  Used in conjunction with `persistence_type`.
+    when the component - or the page - is refreshed. If `persisted` is
+    truthy and hasn't changed from its previous value, a `value` that
+    the user has changed while using the app will keep that change, as
+    long as the new `value` also matches what was given originally.
+    Used in conjunction with `persistence_type`.
 
 - persistence_type (a value equal to: 'local', 'session', 'memory'; default 'local'):
-    Where persisted user changes will be stored:  memory: only kept in
-    memory, reset on page refresh.  local: window.localStorage, data
-    is kept after the browser quit.  session: window.sessionStorage,
-    data is cleared once the browser quit.
+    Where persisted user changes will be stored: memory: only kept in
+    memory, reset on page refresh. local: window.localStorage, data is
+    kept after the browser quit. session: window.sessionStorage, data
+    is cleared once the browser quit.
 
 - size (number; default 48):
     The size (diameter) of the power button in pixels.

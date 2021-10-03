@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-'daq'DarkThemeProvider <- function(children=NULL, theme=NULL) {
+daqDarkThemeProvider <- function(children=NULL, theme=NULL) {
     
     props <- list(children=children, theme=theme)
     if (length(props) > 0) {

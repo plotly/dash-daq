@@ -14,7 +14,7 @@ daqGauge(id=NULL, base=NULL, className=NULL, color=NULL, digits=NULL,
 exceedMessage=NULL, label=NULL, labelPosition=NULL,
 lagingMessage=NULL, logarithmic=NULL, max=NULL, min=NULL,
 scale=NULL, showCurrentValue=NULL, size=NULL, style=NULL,
-theme=NULL, units=NULL, value=NULL)
+textColor=NULL, theme=NULL, units=NULL, value=NULL)
 }
 
 \arguments{
@@ -83,6 +83,8 @@ will be displayed}
 \item{size}{Numeric. The size (diameter) of the gauge in pixels}
 
 \item{style}{Named list. Style to apply to the root component element.}
+
+\item{textColor}{Character. text color for theme}
 
 \item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
 

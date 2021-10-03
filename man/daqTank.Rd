@@ -14,7 +14,8 @@ daqTank(id=NULL, base=NULL, className=NULL, color=NULL,
 exceedMessage=NULL, height=NULL, label=NULL,
 labelPosition=NULL, lagingMessage=NULL, logarithmic=NULL,
 max=NULL, min=NULL, scale=NULL, showCurrentValue=NULL,
-style=NULL, units=NULL, value=NULL, width=NULL)
+style=NULL, textColor=NULL, units=NULL, value=NULL,
+width=NULL)
 }
 
 \arguments{
@@ -72,6 +73,8 @@ those elements have the following types:
 will be displayed}
 
 \item{style}{Named list. Style to apply to the root component element.}
+
+\item{textColor}{Character. text color}
 
 \item{units}{Character. Label for the current value}
 
