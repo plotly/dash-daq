@@ -1,6 +1,6 @@
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 from dash.dependencies import Input, Output, State
 
 from dash_daq import (
@@ -29,7 +29,7 @@ app.css.append_css(
     {"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
 
 app.config.suppress_callback_exceptions = True
-app.scripts.config.serve_locally = True
+app.scripts.config.serve_locally = False
 
 ################ Set up shared layout ################
 root_layout = html.Div([
