@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633243733");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633459172");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -40317,7 +40317,7 @@ PowerButton.propTypes = {
   style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
 
   /**
-   * style to apply on switch on button 
+   * style to apply on switch on button
    */
   onButtonStyle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
 
@@ -41337,7 +41337,8 @@ var Tank = function Tank(props) {
   }, renderTicks());
   var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_4__["default"], {
     units: units,
-    valueColor: colorValue
+    valueColor: colorValue,
+    customStyle: props.currentValueStyle
   }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_6__["default"].formatValue(currentDisplayValue, base) : currentDisplayValue);
   var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_9__["getFilteredProps"])(props);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -41408,6 +41409,11 @@ Tank.propTypes = {
    * The color of tank fill
    */
   color: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * text style of current value
+   */
+  currentValueStyle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
 
   /**
    * The minimum value of the tank. If logarithmic,
@@ -44295,7 +44301,8 @@ var ValueLabel = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].label
     css: props.css
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Value, {
     fontSize: props.valueSize,
-    color: props.valueColor
+    color: props.valueColor,
+    style: props.customStyle
   }, props.children), props.units ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ValueLabel, null, props.units) : null);
 });
 
@@ -44702,7 +44709,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["background-color: ", ";"]);
+  var data = _taggedTemplateLiteral(["\n      background-color: ", ";\n    "]);
 
   _templateObject2 = function _templateObject2() {
     return data;

@@ -72,7 +72,7 @@ const Tank = props => {
 
   const scaleContainer = <TickContainer xPositioned={scale}>{renderTicks()}</TickContainer>;
   const currentValue = (
-    <CurrentValue units={units} valueColor={colorValue}>
+    <CurrentValue units={units} valueColor={colorValue} customStyle={props.currentValueStyle}>
       {logarithmic ? log.formatValue(currentDisplayValue, base) : currentDisplayValue}
     </CurrentValue>
   );
@@ -157,6 +157,11 @@ Tank.propTypes = {
    * The color of tank fill
    */
   color: PropTypes.string,
+
+  /**
+   * text style of current value
+   */
+  currentValueStyle: PropTypes.object,
 
   /**
    * The minimum value of the tank. If logarithmic,
