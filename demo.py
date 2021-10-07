@@ -29,12 +29,10 @@ app.css.append_css(
     {"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
 
 app.config.suppress_callback_exceptions = True
-app.scripts.config.serve_locally = False
+app.scripts.config.serve_locally = True
 
 ################ Set up shared layout ################
 root_layout = html.Div([
-    Gauge(min=0, max=10, value=4, color={"gradient": False, "ranges": {"red": [-10,5], "green": [5,11]}}),
-    # Gauge(min=0, max=10, value=4, color={"ranges": {"grey": [-10,4], "black": [4,8], "yellow": [8,11]}}),
     dcc.Location(id='url', refresh=True),
     html.Div([
         html.H1('dash_daq Dash Demo'),
@@ -76,7 +74,8 @@ controls = html.Div(
         BooleanSwitch(id="demoSwitch"),
         ToggleSwitch(id="demoToggleSwitch", value="false", vertical=True),
         StopButton(id="demoStopButton", n_clicks=0),
-        PowerButton(id="demoPowerButton", on="false", onButtonStyle={"backgroundColor": "red"}, offButtonStyle={"backgroundColor":"blue"}),
+        PowerButton(id="demoPowerButton", on="false", onButtonStyle={
+                    "backgroundColor": "red"}, offButtonStyle={"backgroundColor": "blue"}),
         Slider(
             id="demoSlider",
             min=0,
@@ -124,7 +123,8 @@ indicators = html.Div(
                     scale={"start": 0, "interval": 1, "labelInterval": 1},
                     value=1,
                     showCurrentValue=True,
-                    color={"gradient": True, "default": "yellow", "ranges": {"red": [0,2], "green": [2,4]}}
+                    color={"gradient": True, "default": "yellow",
+                           "ranges": {"red": [0, 2], "green": [2, 4]}}
                 ),
                 Tank(
                     id="demoTank",
@@ -132,6 +132,7 @@ indicators = html.Div(
                     min=0,
                     max=10,
                     value=2,
+                    showCurrentValue=True,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
                     exceedMessage="Exceed"
                 ),
@@ -145,7 +146,8 @@ indicators = html.Div(
                     max=100,
                     value=40,
                 ),
-                LEDDisplay(id="demoLEDDisplay", value="-1.2",backgroundColor="#FFFFFF"),
+                LEDDisplay(id="demoLEDDisplay", value="-1.2",
+                           backgroundColor="#FFFFFF"),
                 html.Div(
                     [
                         html.Div(
@@ -236,7 +238,8 @@ dark_controls = html.Div(
             id="dark-demojoystick",
             label="Joystick",
         ),
-        Knob(id="dark-demoKnob", label="Knob", min=0, max=10, value=2, showCurrentValue=True),
+        Knob(id="dark-demoKnob", label="Knob", min=0,
+             max=10, value=2, showCurrentValue=True),
         NumericInput(id="dark-demoNumericInput", min=1, max=10000, value=100),
         BooleanSwitch(id="dark-demoSwitch"),
         ToggleSwitch(id="dark-demoToggleSwitch", value="false", vertical=True),
@@ -310,7 +313,8 @@ dark_indicators = html.Div(
                     max=100,
                     value=40,
                 ),
-                LEDDisplay(id="dark-demoLEDDisplay", value=1.2, backgroundColor="#FFFFFF"),
+                LEDDisplay(id="dark-demoLEDDisplay", value=1.2,
+                           backgroundColor="#FFFFFF"),
                 html.Div(
                     [
                         html.Div(
