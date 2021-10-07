@@ -1,6 +1,13 @@
 import dash
-from dash import html
-from dash import dcc
+
+print(f"Dash Version: {dash.__version__}")
+if dash.__version__ == "2.0.0":
+    from dash import html
+    from dash import dcc
+else:
+    import dash_html_components as html
+    import dash_core_components as dcc
+
 from dash.dependencies import Input, Output, State
 
 from dash_daq import (
