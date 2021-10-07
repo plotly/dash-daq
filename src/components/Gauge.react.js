@@ -102,7 +102,7 @@ const Gauge = props => {
         <Container color={colorValue}>
           <GaugeSVG
             className={elementName + '__gauge'}
-            {...{ ...filteredProps, scale, progress }}
+            {...{ ...filteredProps, scale, progress, color }}
           />
           {showCurrentValue && currentValue}
         </Container>
@@ -279,7 +279,9 @@ Gauge.propTypes = {
        * of the gauge's range of values.
        */
       ranges: PropTypes.shape({
-        color: PropTypes.arrayOf(PropTypes.number)
+        color: PropTypes.arrayOf(
+          PropTypes.oneOfType(PropTypes.number, PropTypes.arrayOf(PropTypes.number))
+        )
       })
     })
   ]),

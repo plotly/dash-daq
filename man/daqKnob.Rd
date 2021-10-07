@@ -10,11 +10,12 @@ A knob component that can be turned to a value between some range.
 }
 
 \usage{
-daqKnob(id=NULL, className=NULL, color=NULL, disabled=NULL,
-label=NULL, labelPosition=NULL, max=NULL, min=NULL,
-persisted_props=NULL, persistence=NULL,
-persistence_type=NULL, scale=NULL, size=NULL, style=NULL,
-theme=NULL, value=NULL)
+daqKnob(id=NULL, className=NULL, color=NULL, digits=NULL,
+disabled=NULL, label=NULL, labelPosition=NULL, max=NULL,
+min=NULL, persisted_props=NULL, persistence=NULL,
+persistence_type=NULL, scale=NULL, showCurrentValue=NULL,
+size=NULL, style=NULL, textColor=NULL, theme=NULL,
+value=NULL)
 }
 
 \arguments{
@@ -33,6 +34,8 @@ ranges must be contiguous along the entirety
 of the knob's range of values.. ranges has the following type: lists containing elements 'color'.
 those elements have the following types:
   - color (list of numerics; optional). Color configuration for the knob's track.}
+
+\item{digits}{Numeric. number of digits to show after decimal places}
 
 \item{disabled}{Logical. If true, knob cannot be moved.}
 
@@ -82,9 +85,13 @@ those elements have the following types:
   - style (character; optional)
   - label (character; optional). Configuration for the component scale.}
 
+\item{showCurrentValue}{Logical. show current value of knob}
+
 \item{size}{Numeric. The size (diameter) of the knob in pixels}
 
 \item{style}{Named list. Style to apply to the root component element.}
+
+\item{textColor}{Character. text color of scale}
 
 \item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
 

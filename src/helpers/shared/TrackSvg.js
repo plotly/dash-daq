@@ -46,6 +46,7 @@ export const colorRangesTrack = (props, dimensions) => {
     require('conic-gradient'); // globally sets ConicGradient
   }
   const ConicGradient = window.ConicGradient;
+
   const gradient = new ConicGradient({
     stops: stops.join(', '),
     size: 400
@@ -208,6 +209,17 @@ const setColorRangeStartFromZero = (color, max) => {
   let minimum = Infinity;
 
   for (let i in ranges) {
+    if (ranges[i][0] instanceof Array) {
+      for (let j = 0; j < ranges[i].length; j++) {
+        if (ranges[i][j][0] < minimum) {
+          minimum = ranges[i][j][0];
+        }
+        if (ranges[i][j][1] < minimum) {
+          minimum = ranges[i][j][1];
+        }
+      }
+      continue;
+    }
     if (ranges[i][0] < minimum) {
       minimum = ranges[i][0];
     }
@@ -217,6 +229,13 @@ const setColorRangeStartFromZero = (color, max) => {
   }
   if (minimum < 0) {
     for (let i in ranges) {
+      if (ranges[i][0] instanceof Array) {
+        for (let j = 0; j < ranges[i].length; j++) {
+          ranges[i][j][0] = ranges[i][j][0] - minimum;
+          ranges[i][j][1] = ranges[i][j][1] - minimum;
+        }
+        continue;
+      }
       ranges[i][0] = ranges[i][0] - minimum;
       ranges[i][1] = ranges[i][1] - minimum;
     }

@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1632803751");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633243733");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -38347,7 +38347,7 @@ var Gauge = function Gauge(props) {
     id: id,
     className: elementName + (className ? ' ' + className : ''),
     style: style
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_8__["ExceededWarning"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, JSON.stringify(color)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_8__["ExceededWarning"], {
     ref: warningPara
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
     className: elementName + '__label'
@@ -38359,7 +38359,8 @@ var Gauge = function Gauge(props) {
     className: elementName + '__gauge'
   }, _objectSpread({}, filteredProps, {
     scale: scale,
-    progress: progress
+    progress: progress,
+    color: color
   }))), showCurrentValue && currentValue)));
 };
 
@@ -38528,7 +38529,7 @@ Gauge.propTypes = {
      * of the gauge's range of values.
      */
     ranges: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
-      color: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number)
+      color: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number)))
     })
   })]),
 
@@ -39112,14 +39113,9 @@ Joystick.defaultProps = {
 };
 Joystick.propTypes = {
   /**
-   * The ID used to identify the color picker in Dash callbacks
+   * The ID used to identify the Joystick in Dash callbacks
    */
   id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
-
-  /**
-   * If true, color cannot be picked.
-   */
-  disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
 
   /**
    * Joystick angle in degrees, 0 = right, 90 = up, 180 = left, 270 = down
@@ -40231,7 +40227,8 @@ function (_Component) {
         color: color,
         size: size,
         disabled: disabled,
-        onClick: this.onClick
+        onClick: this.onClick,
+        style: this.state.on ? this.props.onButtonStyle : this.props.offButtonStyle
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_PowerButtonSvg_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
         on: this.state.on,
         color: color,
@@ -40318,6 +40315,16 @@ PowerButton.propTypes = {
    * Style to apply to the root component element.
    */
   style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * style to apply on switch on button 
+   */
+  onButtonStyle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * style to apply on switch off button
+   */
+  offButtonStyle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
 
   /**
    * Dash-assigned callback that gets fired when
@@ -43230,12 +43237,13 @@ var getFilteredProps = function getFilteredProps(props) {
 /*!************************************!*\
   !*** ./src/helpers/colorRanges.js ***!
   \************************************/
-/*! exports provided: isContiguous, convertInRange, getSortedEntries, getGradientObject, getLinearGradientCSS, getColorValue, default */
+/*! exports provided: isContiguous, toOneDArray, convertInRange, getSortedEntries, getGradientObject, getLinearGradientCSS, getColorValue, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isContiguous", function() { return isContiguous; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toOneDArray", function() { return toOneDArray; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertInRange", function() { return convertInRange; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSortedEntries", function() { return getSortedEntries; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGradientObject", function() { return getGradientObject; });
@@ -43270,7 +43278,7 @@ var isContiguous = function isContiguous(_ref) {
   var color = _ref.color,
       min = _ref.min,
       max = _ref.max;
-  var ranges = Object.values(color.ranges);
+  var ranges = toOneDArray(Object.values(color.ranges));
   ranges.sort(function (r1, r2) {
     return r1[0] - r2[0];
   }); // color ranges start at min and end at max
@@ -43282,6 +43290,21 @@ var isContiguous = function isContiguous(_ref) {
   }
 
   return true;
+};
+var toOneDArray = function toOneDArray(ranges) {
+  var arr = [];
+
+  for (var i = 0; i < ranges.length; i++) {
+    if (ranges[i][0] instanceof Array) {
+      for (var j = 0; j < ranges[i].length; j++) {
+        arr.push(ranges[i][j]);
+      }
+    } else {
+      arr.push(ranges[i]);
+    }
+  }
+
+  return arr;
 };
 var convertInRange = function convertInRange(color, max, min) {
   /*
@@ -43310,63 +43333,109 @@ var convertInRange = function convertInRange(color, max, min) {
     });
     var maxArr = [];
     var minArr = [];
+    manageRange({
+      ranges: ranges,
+      max: max,
+      min: min,
+      rangeArr: rangeArr,
+      minArr: minArr,
+      maxArr: maxArr
+    });
 
-    for (var i in ranges) {
-      if (ranges[i][0] > max) {
-        maxArr.push({
-          key: i,
-          index: 0
-        });
-      }
-
-      if (ranges[i][1] > max) {
-        maxArr.push({
-          key: i,
-          index: 1
-        });
-      }
-
-      if (ranges[i][0] < min) {
-        minArr.push({
-          key: i,
-          index: 0
-        });
-      }
-
-      if (ranges[i][1] < min) {
-        minArr.push({
-          key: i,
-          index: 1
-        });
-      }
-
-      if (rangeArr[0] == ranges[i][0] && ranges[i][0] > min) {
-        ranges[i][0] = min;
-      }
-
-      if (rangeArr[0] == ranges[i][1] && ranges[i][1] > min) {
-        ranges[i][1] = min;
-      }
-
-      if (rangeArr[rangeArr.length - 1] == ranges[i][0] && ranges[i][0] < max) {
-        ranges[i][0] = max;
-      }
-
-      if (rangeArr[rangeArr.length - 1] == ranges[i][1] && ranges[i][1] < max) {
-        ranges[i][1] = max;
+    for (var i = 0; i < minArr.length; i++) {
+      if (minArr[i]['subKey']) {
+        ranges[minArr[i]['subKey']][minArr[i]['key']][minArr[i]['index']] = min;
+      } else {
+        ranges[minArr[i]['key']][minArr[i]['index']] = min;
       }
     }
 
-    for (var _i = 0; _i < minArr.length; _i++) {
-      ranges[minArr[_i]['key']][minArr[_i]['index']] = min;
-    }
-
-    for (var _i2 = 0; _i2 < maxArr.length; _i2++) {
-      ranges[maxArr[_i2]['key']][maxArr[_i2]['index']] = max;
+    for (var _i = 0; _i < maxArr.length; _i++) {
+      if (maxArr[_i]['subKey']) {
+        ranges[maxArr[_i]['subKey']][maxArr[_i]['key']][maxArr[_i]['index']] = max;
+      } else {
+        ranges[maxArr[_i]['key']][maxArr[_i]['index']] = max;
+      }
     }
 
     color.ranges = ranges;
     return _objectSpread({}, color);
+  }
+};
+
+var manageRange = function manageRange(_ref2) {
+  var ranges = _ref2.ranges,
+      _ref2$subKey = _ref2.subKey,
+      subKey = _ref2$subKey === void 0 ? undefined : _ref2$subKey,
+      max = _ref2.max,
+      min = _ref2.min,
+      rangeArr = _ref2.rangeArr,
+      _ref2$minArr = _ref2.minArr,
+      minArr = _ref2$minArr === void 0 ? [] : _ref2$minArr,
+      _ref2$maxArr = _ref2.maxArr,
+      maxArr = _ref2$maxArr === void 0 ? [] : _ref2$maxArr;
+
+  for (var i in ranges) {
+    if (ranges[i][0] instanceof Array) {
+      manageRange({
+        ranges: ranges[i],
+        subKey: i,
+        max: max,
+        min: min,
+        rangeArr: rangeArr,
+        minArr: minArr,
+        maxArr: maxArr
+      });
+      continue;
+    }
+
+    if (ranges[i][0] > max) {
+      maxArr.push({
+        key: i,
+        subKey: subKey,
+        index: 0
+      });
+    }
+
+    if (ranges[i][1] > max) {
+      maxArr.push({
+        key: i,
+        subKey: subKey,
+        index: 1
+      });
+    }
+
+    if (ranges[i][0] < min) {
+      minArr.push({
+        key: i,
+        subKey: subKey,
+        index: 0
+      });
+    }
+
+    if (ranges[i][1] < min) {
+      minArr.push({
+        key: i,
+        subKey: subKey,
+        index: 1
+      });
+    }
+
+    if (rangeArr[0] == ranges[i][0] && ranges[i][0] > min) {
+      ranges[i][0] = min;
+    }
+
+    if (rangeArr[0] == ranges[i][1] && ranges[i][1] > min) {
+      ranges[i][1] = min;
+    }
+
+    if (rangeArr[rangeArr.length - 1] == ranges[i][0] && ranges[i][0] < max) {
+      ranges[i][0] = max;
+    }
+
+    if (rangeArr[rangeArr.length - 1] == ranges[i][1] && ranges[i][1] < max) {
+      ranges[i][1] = max;
+    }
   }
 };
 
@@ -43379,34 +43448,55 @@ var getRangeArray = function getRangeArray(ranges) {
   var arr = [];
 
   for (var i in ranges) {
-    arr = [].concat(_toConsumableArray(arr), _toConsumableArray(ranges[i]));
+    if (ranges[i][0] instanceof Array) {
+      for (var j in ranges[i]) {
+        arr = [].concat(_toConsumableArray(arr), _toConsumableArray(ranges[i][j]));
+      }
+    } else {
+      arr = [].concat(_toConsumableArray(arr), _toConsumableArray(ranges[i]));
+    }
   }
 
   return arr;
 };
 
 var getSortedEntries = function getSortedEntries(scale) {
-  var entries = Object.entries(scale);
-  entries.sort(function (_ref2, _ref3) {
-    var _ref4 = _slicedToArray(_ref2, 2),
-        r1 = _ref4[1];
+  var arr = Object.entries(scale);
+  var arr1 = [];
 
+  for (var i = 0; i < arr.length; i++) {
+    var key = arr[i][0];
+
+    if (arr[i][1][0] instanceof Array) {
+      for (var j = 0; j < arr[i][1].length; j++) {
+        arr1.push([key, arr[i][1][j]]);
+      }
+    } else {
+      arr1.push([key, arr[i][1]]);
+    }
+  }
+
+  var entries = arr1;
+  entries.sort(function (_ref3, _ref4) {
     var _ref5 = _slicedToArray(_ref3, 2),
-        r2 = _ref5[1];
+        r1 = _ref5[1];
+
+    var _ref6 = _slicedToArray(_ref4, 2),
+        r2 = _ref6[1];
 
     return r1[0] - r2[0];
   });
   return entries;
 };
-var getGradientObject = function getGradientObject(_ref6) {
-  var color = _ref6.color,
-      min = _ref6.min,
-      max = _ref6.max;
+var getGradientObject = function getGradientObject(_ref7) {
+  var color = _ref7.color,
+      min = _ref7.min,
+      max = _ref7.max;
   var currentPos = 0;
-  var stops = getSortedEntries(color.ranges).map(function (_ref7) {
-    var _ref8 = _slicedToArray(_ref7, 2),
-        colorValue = _ref8[0],
-        range = _ref8[1];
+  var stops = getSortedEntries(color.ranges).map(function (_ref8) {
+    var _ref9 = _slicedToArray(_ref8, 2),
+        colorValue = _ref9[0],
+        range = _ref9[1];
 
     var rangeLength = (range[1] - range[0]) * 1.0 / (max - min);
     var start = currentPos;
@@ -43419,17 +43509,17 @@ var getGradientObject = function getGradientObject(_ref6) {
   });
   return tinygradient__WEBPACK_IMPORTED_MODULE_0___default()(stops);
 };
-var getLinearGradientCSS = function getLinearGradientCSS(_ref9) {
-  var color = _ref9.color,
-      min = _ref9.min,
-      max = _ref9.max,
-      _ref9$vertical = _ref9.vertical,
-      vertical = _ref9$vertical === void 0 ? false : _ref9$vertical;
+var getLinearGradientCSS = function getLinearGradientCSS(_ref10) {
+  var color = _ref10.color,
+      min = _ref10.min,
+      max = _ref10.max,
+      _ref10$vertical = _ref10.vertical,
+      vertical = _ref10$vertical === void 0 ? false : _ref10$vertical;
   var currentPercentage = 0;
-  var stops = getSortedEntries(color.ranges).map(function (_ref10, i) {
-    var _ref11 = _slicedToArray(_ref10, 2),
-        colorValue = _ref11[0],
-        range = _ref11[1];
+  var stops = getSortedEntries(color.ranges).map(function (_ref11, i) {
+    var _ref12 = _slicedToArray(_ref11, 2),
+        colorValue = _ref12[0],
+        range = _ref12[1];
 
     var rangeLength = (range[1] - range[0]) * 1.0 / (max - min) * 100;
     var start = currentPercentage;
@@ -43880,6 +43970,20 @@ var setColorRangeStartFromZero = function setColorRangeStartFromZero(color, max)
   var minimum = Infinity;
 
   for (var i in ranges) {
+    if (ranges[i][0] instanceof Array) {
+      for (var j = 0; j < ranges[i].length; j++) {
+        if (ranges[i][j][0] < minimum) {
+          minimum = ranges[i][j][0];
+        }
+
+        if (ranges[i][j][1] < minimum) {
+          minimum = ranges[i][j][1];
+        }
+      }
+
+      continue;
+    }
+
     if (ranges[i][0] < minimum) {
       minimum = ranges[i][0];
     }
@@ -43891,6 +43995,15 @@ var setColorRangeStartFromZero = function setColorRangeStartFromZero(color, max)
 
   if (minimum < 0) {
     for (var _i2 in ranges) {
+      if (ranges[_i2][0] instanceof Array) {
+        for (var _j = 0; _j < ranges[_i2].length; _j++) {
+          ranges[_i2][_j][0] = ranges[_i2][_j][0] - minimum;
+          ranges[_i2][_j][1] = ranges[_i2][_j][1] - minimum;
+        }
+
+        continue;
+      }
+
       ranges[_i2][0] = ranges[_i2][0] - minimum;
       ranges[_i2][1] = ranges[_i2][1] - minimum;
     }
@@ -44558,8 +44671,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DarkDigitContainer", function() { return DarkDigitContainer; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./src/styled/constants.js");
-function _templateObject4() {
+function _templateObject5() {
   var data = _taggedTemplateLiteral(["\n  & .darkLED-fill {\n    fill: ", ";\n  }\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  border-radius: 3px;\n  padding: 12px 8px 12px 14px;\n  border: 1px solid ", ";\n  background: ", ";\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -44569,7 +44692,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  border-radius: 3px;\n  padding: 12px 8px 12px 14px;\n  border: 1px solid ", ";\n  background: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  padding: 12px 8px 4px 16px;\n  background-color: #22272a;\n  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%);\n  box-shadow: inset 0 0 8px -1px rgba(0, 0, 0, 0.7), inset 0 0 4px 0 rgba(0, 0, 0, 0.8),\n    -1px -1px 0px 0px rgba(0, 0, 0, 0.8), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -44579,7 +44702,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  padding: 12px 8px 4px 16px;\n  background-color: #22272a;\n  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%);\n  box-shadow: inset 0 0 8px -1px rgba(0, 0, 0, 0.7), inset 0 0 4px 0 rgba(0, 0, 0, 0.8),\n    -1px -1px 0px 0px rgba(0, 0, 0, 0.8), 1px 1px 0px 0px rgba(255, 255, 255, 0.1);\n"]);
+  var data = _taggedTemplateLiteral(["background-color: ", ";"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -44589,7 +44712,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: inline-flex;\n  flex-direction: row;\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: inline-flex;\n  flex-direction: row;\n  ", ";\n  ", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -44605,20 +44728,23 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var LEDContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject(), function (_ref) {
   var theme = _ref.theme;
   return theme.dark ? darkLEDContainer : lightLEDContainer;
+}, function (_ref2) {
+  var backgroundColor = _ref2.backgroundColor;
+  return Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject2(), backgroundColor);
 });
-var darkLEDContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject2());
-var lightLEDContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject3(), function (_ref2) {
-  var theme = _ref2.theme;
+var darkLEDContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject3());
+var lightLEDContainer = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject4(), function (_ref3) {
+  var theme = _ref3.theme;
   return theme.detail;
-}, function (_ref3) {
-  var backgroundColor = _ref3.backgroundColor;
+}, function (_ref4) {
+  var backgroundColor = _ref4.backgroundColor;
   return backgroundColor;
 });
 LEDContainer.defaultProps = {
   theme: _constants__WEBPACK_IMPORTED_MODULE_1__["light"]
 };
-var DarkDigitContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject4(), function (_ref4) {
-  var color = _ref4.color;
+var DarkDigitContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject5(), function (_ref5) {
+  var color = _ref5.color;
   return color;
 });
 /* harmony default export */ __webpack_exports__["default"] = (LEDContainer);

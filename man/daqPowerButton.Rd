@@ -11,9 +11,10 @@ A power button component can be turned on and off.
 
 \usage{
 daqPowerButton(id=NULL, className=NULL, color=NULL, disabled=NULL,
-label=NULL, labelPosition=NULL, on=NULL,
-persisted_props=NULL, persistence=NULL,
-persistence_type=NULL, size=NULL, style=NULL, theme=NULL)
+label=NULL, labelPosition=NULL, offButtonStyle=NULL,
+on=NULL, onButtonStyle=NULL, persisted_props=NULL,
+persistence=NULL, persistence_type=NULL, size=NULL,
+style=NULL, theme=NULL)
 }
 
 \arguments{
@@ -32,7 +33,11 @@ those elements have the following types:
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the button label is positioned.}
 
+\item{offButtonStyle}{Named list. style to apply on switch off button}
+
 \item{on}{Logical. Whether or not the power button is on}
+
+\item{onButtonStyle}{Named list. style to apply on switch on button}
 
 \item{persisted_props}{List of a value equal to: 'on's. Properties whose user interactions will persist after refreshing the
 component or the page. Since only `on` is allowed this prop can
