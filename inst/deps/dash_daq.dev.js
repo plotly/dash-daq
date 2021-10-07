@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633458851");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633540809");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -44298,11 +44298,11 @@ Value.defaultProps = {
 var ValueLabel = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].label(_templateObject6());
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ValueContainer, {
-    css: props.css,
-    style: props.customStyle
+    css: props.css
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Value, {
     fontSize: props.valueSize,
-    color: props.valueColor
+    color: props.valueColor,
+    style: props.customStyle
   }, props.children), props.units ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ValueLabel, null, props.units) : null);
 });
 

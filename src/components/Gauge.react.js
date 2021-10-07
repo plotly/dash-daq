@@ -93,7 +93,6 @@ const Gauge = props => {
 
   return (
     <div id={id} className={elementName + (className ? ' ' + className : '')} style={style}>
-      <p>{JSON.stringify(color)}</p>
       <ExceededWarning ref={warningPara} />
       <LabelContainer
         className={elementName + '__label'}

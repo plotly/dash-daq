@@ -1,6 +1,6 @@
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 from dash.dependencies import Input, Output, State
 
 from dash_daq import (
@@ -29,10 +29,17 @@ app.css.append_css(
     {"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
 
 app.config.suppress_callback_exceptions = True
-app.scripts.config.serve_locally = True
+app.scripts.config.serve_locally = False
 
 ################ Set up shared layout ################
 root_layout = html.Div([
+    GraduatedBar(
+        label="GraduatedBar",
+        min=0,
+        max=100,
+        value=40,
+        style={"marginTop": "50px", "marginLeft": "50px"}
+    ),
     Gauge(min=0, max=10, value=4, color={"gradient": False, "ranges": {"red": [-10,5], "green": [5,11]}}),
     # Gauge(min=0, max=10, value=4, color={"ranges": {"grey": [-10,4], "black": [4,8], "yellow": [8,11]}}),
     dcc.Location(id='url', refresh=True),
