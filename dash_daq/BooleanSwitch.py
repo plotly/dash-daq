@@ -38,7 +38,7 @@ Keyword arguments:
 - on (boolean; default False):
     Whether or not the switch is on.
 
-- persisted_props (list of a value equal to: 'on's; default ['on']):
+- persisted_props (list of a value equal to: 'value's; default ['value']):
     Properties whose user interactions will persist after refreshing
     the component or the page. Since only `on` is allowed this prop
     can normally be ignored.

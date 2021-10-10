@@ -7,14 +7,11 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  flex-direction: ${props => {
-    switch (props.labelPosition) {
-      case 'top':
-        return 'column-reverse';
-      case 'bottom':
-        return 'column';
-    }
-  }};
+  flex-direction: column;
+  ${({ fullSize }) => {
+    if (fullSize) return 'width: 100%;';
+    return '';
+  }}
 `;
 
 function LabelContainer(props) {
@@ -24,14 +21,15 @@ function LabelContainer(props) {
     labelText = props.label.label;
     customLabelStyle = props.label.style;
   }
-
+  const labelElement = <Label style={customLabelStyle} css={props.labelCSS} position={props.labelPosition}>
+    {labelText && labelText.length ? labelText : ''}
+  </Label>
   // if (labelText && labelText.length) {
   return (
-    <Container className={props.className} id={props.id} labelPosition={props.labelPosition}>
+    <Container className={props.className} id={props.id} labelPosition={props.labelPosition} fullSize={props.fullSize}>
+      {props.labelPosition == 'top' && labelElement}
       {props.children}
-      <Label style={customLabelStyle} css={props.labelCSS} position={props.labelPosition}>
-        {labelText && labelText.length ? labelText : ''}
-      </Label>
+      {props.labelPosition != 'top' && labelElement}
     </Container>
   );
   // }

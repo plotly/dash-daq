@@ -36,7 +36,7 @@ pass an object with label and style properties.}
 
 \item{on}{Logical. Whether or not the switch is on}
 
-\item{persisted_props}{List of a value equal to: 'on's. Properties whose user interactions will persist after refreshing the
+\item{persisted_props}{List of a value equal to: 'value's. Properties whose user interactions will persist after refreshing the
 component or the page. Since only `on` is allowed this prop can
 normally be ignored.}
 

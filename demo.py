@@ -40,6 +40,7 @@ app.scripts.config.serve_locally = True
 
 ################ Set up shared layout ################
 root_layout = html.Div([
+    # original
     dcc.Location(id='url', refresh=True),
     html.Div([
         html.H1('dash_daq Dash Demo'),

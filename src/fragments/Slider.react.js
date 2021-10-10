@@ -180,18 +180,22 @@ class Slider extends Component {
 
     const elementName = getClassName('slider', theme.dark);
     const filteredProps = getFilteredProps(this.props);
+    let cssStyle = this.props.vertical
+      ? { ...style, marginLeft: '45px' }
+      : { ...style, marginTop: '45px' };
+    cssStyle = this.props.fullSize
+      ? this.props.vertical
+        ? { ...cssStyle, height: '100%' }
+        : { ...cssStyle, width: '100%' }
+      : cssStyle;
     return (
-      <div
-        id={id}
-        style={{ ...style, marginTop: '45px' }}
-        className={elementName + (className ? ' ' + className : '')}
-      >
+      <div id={id} style={cssStyle} className={elementName + (className ? ' ' + className : '')}>
         <LabelContainer
           className={elementName + '__label'}
           labelCSS={label ? this.calcLabelOffset(this.props) : null}
           {...filteredProps}
         >
-          <SliderContainer size={size} vertical={vertical}>
+          <SliderContainer fullSize={this.props.fullSize} size={size} vertical={vertical}>
             <ReactSlider
               className={elementName + '__slider'}
               onChange={this.onChange}

@@ -5,7 +5,8 @@ import { UnstyledDarkHandle } from './shared/DarkGradient';
 import { colors } from './constants';
 
 export const SliderContainer = styled.div`
-  ${({ vertical, size }) => {
+  ${({ vertical, size, fullSize }) => {
+    if (fullSize) return vertical ? 'height: 100%;' : 'width: 100%;';
     if (size) return vertical ? `height: ${size}px;` : `width: ${size}px`;
   }};
 

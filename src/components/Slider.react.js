@@ -255,7 +255,12 @@ Slider.propTypes = {
    * local: window.localStorage, data is kept after the browser quit.
    * session: window.sessionStorage, data is cleared once the browser quit.
    */
-  persistence_type: PropTypes.oneOf(['local', 'session', 'memory'])
+  persistence_type: PropTypes.oneOf(['local', 'session', 'memory']),
+
+  /**
+   * make slider same size of its parent
+   */
+  fullSize: PropTypes.bool
 };
 
 export const defaultProps = Slider.defaultProps;
