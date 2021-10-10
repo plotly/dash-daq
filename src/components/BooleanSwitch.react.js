@@ -48,7 +48,7 @@ BooleanSwitch.defaultProps = {
   vertical: false,
   theme: light,
   labelPosition: 'top',
-  persisted_props: ['on'],
+  persisted_props: ['value'],
   persistence_type: 'local'
 };
 
@@ -139,7 +139,7 @@ BooleanSwitch.propTypes = {
    * component or the page. Since only `on` is allowed this prop can
    * normally be ignored.
    */
-  persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['on'])),
+  persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
 
   /**
    * Where persisted user changes will be stored:
