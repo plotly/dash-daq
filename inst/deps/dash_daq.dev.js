@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633540809");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633543340");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -38347,7 +38347,7 @@ var Gauge = function Gauge(props) {
     id: id,
     className: elementName + (className ? ' ' + className : ''),
     style: style
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, JSON.stringify(color)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_8__["ExceededWarning"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Tank_styled__WEBPACK_IMPORTED_MODULE_8__["ExceededWarning"], {
     ref: warningPara
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
     className: elementName + '__label'
@@ -43234,7 +43234,7 @@ var getClassName = function getClassName(componentName, theme) {
   return 'daq-' + componentName + (theme && theme.dark ? '--dark' : '--light');
 };
 var getFilteredProps = function getFilteredProps(props) {
-  return Object(ramda__WEBPACK_IMPORTED_MODULE_0__["omit"])(['className', 'id', 'setProps'], props);
+  return Object(ramda__WEBPACK_IMPORTED_MODULE_0__["omit"])(['className', 'id', 'setProps', 'style'], props);
 };
 
 /***/ }),

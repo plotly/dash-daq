@@ -25,8 +25,8 @@ Keyword arguments:
     If True, button cannot be pressesd.
 
 - label (dict; optional):
-    Description to be displayed alongside the button.  To control
-    styling, pass an object with label and  style properties.
+    Description to be displayed alongside the button. To control
+    styling, pass an object with label and style properties.
 
     `label` is a string | dict with keys:
 

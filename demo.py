@@ -142,7 +142,6 @@ indicators = html.Div(
                     showCurrentValue=True,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
                     exceedMessage="Exceed",
-                    showCurrentValue=True,
                     currentValueStyle={"color": "black"}
                 ),
                 Thermometer(
