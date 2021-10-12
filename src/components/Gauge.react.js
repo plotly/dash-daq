@@ -280,7 +280,7 @@ Gauge.propTypes = {
        */
       ranges: PropTypes.shape({
         color: PropTypes.arrayOf(
-          PropTypes.oneOfType(PropTypes.number, PropTypes.arrayOf(PropTypes.number))
+          PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
         )
       })
     })

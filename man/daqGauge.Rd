@@ -34,7 +34,7 @@ the value is the start,end of the range itself.
 ranges must be contiguous along the entirety
 of the gauge's range of values.. ranges has the following type: lists containing elements 'color'.
 those elements have the following types:
-  - color (list; optional). Color configuration for the gauge's track.}
+  - color (list of numeric | list of numericss; optional). Color configuration for the gauge's track.}
 
 \item{digits}{Numeric. Number of digits for current value}
 
