@@ -117,7 +117,8 @@ Gauge.defaultProps = {
   base: 10,
   theme: light,
   labelPosition: 'top',
-  digits: 1
+  digits: 1,
+  size: 208
 };
 
 Gauge.propTypes = {

@@ -106,7 +106,7 @@ Keyword arguments:
 - showCurrentValue (boolean; optional):
     If True, the current value of the gauge will be displayed.
 
-- size (number; optional):
+- size (number; default 208):
     The size (diameter) of the gauge in pixels.
 
 - style (dict; optional):
