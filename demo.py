@@ -47,7 +47,7 @@ root_layout = html.Div([
         dcc.Link('Light Theme', href='/', refresh=True),
         dcc.Link('Dark Theme', href='/dark', refresh=True),
 
-    ], style={'width': '80%', 'margin-left': '10%', 'margin-right': '10%', 'display': 'flex', 'flex-direction': 'row', 'align-items': 'center', 'justify-content': 'space-between'}),
+    ], style={'width': '80%', 'marginLeft': '10%', 'marginRight': '10%', 'display': 'flex', 'flexDirection': 'row', 'alignItems': 'center', 'justifyContent': 'space-between'}),
 
     html.Hr(),
 
@@ -143,7 +143,6 @@ indicators = html.Div(
                     showCurrentValue=True,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
                     exceedMessage="Exceed",
-                    currentValueStyle={"color": "black"}
                 ),
                 Thermometer(
                     id="demoThermometer", label="Thermometer", min=0, max=10, value=2

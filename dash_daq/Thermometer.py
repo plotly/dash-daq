@@ -40,14 +40,14 @@ Keyword arguments:
     Where the component label is positioned.
 
 - logarithmic (boolean; optional):
-    If set to True, a logarithmic scale will be used.
+    If set to True, a logarithmic scale will be  used.
 
 - max (number; default 10):
-    The maximum value of the thermometer. If logarithmic, represents
+    The maximum value of the thermometer. If logarithmic,  represents
     the maximum exponent.
 
 - min (number; default 0):
-    The minimum value of the thermometer. If logarithmic, represents
+    The minimum value of the thermometer. If logarithmic,  represents
     the minimum exponent.
 
 - scale (dict; optional):
@@ -56,10 +56,10 @@ Keyword arguments:
     `scale` is a dict with keys:
 
     - custom (dict; optional):
-        Custom scale marks. The key determines the position and the
-        value determines what will show. If you want to set the style
-        of a specific mark point, the value should be an object which
-        contains style and label properties.
+        Custom scale marks. The key determines the position  and the
+        value determines what will show. If you want  to set the style
+        of a specific mark point, the value  should be an object which
+        contains style and label  properties.
 
         `custom` is a number
 
@@ -70,18 +70,18 @@ Keyword arguments:
         - style (string; optional)
 
     - interval (number; optional):
-        Interval by which the scale goes up. Attempts to dynamically
-        divide min-max range by default.
+        Interval by which the scale goes up. Attempts  to dynamically
+        divide min-max range by  default.
 
     - labelInterval (number; optional):
-        Interval by which labels are added to scale marks. Defaults to
-        2 (every other mark has a label).
+        Interval by which labels are added to  scale marks. Defaults
+        to 2 (every other  mark has a label).
 
     - start (number; optional):
-        Value to start the scale from. Defaults to min.
+        Value to start the scale from. Defaults  to min.
 
 - showCurrentValue (boolean; optional):
-    If True, the current value of the thermometer will be displayed.
+    If True, the current value of the  thermometer will be displayed.
 
 - style (dict; optional):
     Style to apply to the root component element.
@@ -93,7 +93,7 @@ Keyword arguments:
     Label for the current value.
 
 - value (number; optional):
-    The value of thermometer. If logarthmic, the value displayed will
+    The value of thermometer. If logarthmic, the value  displayed will
     be the logarithm of the inputted value.
 
 - width (number; default 20):

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 
+import { omit } from 'ramda';
 import { light } from '../styled/constants';
 import ToggleSwitch from './ToggleSwitch.react';
 
@@ -14,7 +15,12 @@ class BooleanSwitch extends Component {
     super(props);
 
     this.state = {
-      on: props.on
+      on:
+        props.persisted_props == 'on'
+          ? localStorage.getItem(props.id) == null
+            ? props.on
+            : localStorage.getItem(props.id) == 'true'
+          : props.on
     };
 
     this.setPropsOverride = this.setPropsOverride.bind(this);
@@ -31,9 +37,13 @@ class BooleanSwitch extends Component {
 
   render() {
     const { color, theme } = this.props;
+    const filteredProps = omit(['persisted_props'], this.props);
+    if (this.props.persisted_props == 'on' && this.props.id != null) {
+      localStorage.setItem(this.props.id, this.state.on);
+    }
     return (
       <ToggleSwitch
-        {...this.props}
+        {...filteredProps}
         value={this.state.on}
         setProps={this.setPropsOverride}
         booleanSwitch={true}
@@ -48,7 +58,7 @@ BooleanSwitch.defaultProps = {
   vertical: false,
   theme: light,
   labelPosition: 'top',
-  persisted_props: ['value'],
+  persisted_props: ['on'],
   persistence_type: 'local'
 };
 
@@ -139,7 +149,7 @@ BooleanSwitch.propTypes = {
    * component or the page. Since only `on` is allowed this prop can
    * normally be ignored.
    */
-  persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['value'])),
+  persisted_props: PropTypes.arrayOf(PropTypes.oneOf(['on'])),
 
   /**
    * Where persisted user changes will be stored:

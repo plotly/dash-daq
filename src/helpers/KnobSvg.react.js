@@ -116,6 +116,8 @@ const KnobSvg = props => {
   const knob = theme.dark ? darkKnob(color, newAngle, dimensions) : lightKnob(newAngle, dimensions);
   const track = theme.dark ? darkTrack(props, dimensions) : lightTrack(props, dimensions);
 
+  const scaleElements = drawScale(props, dimensions);
+
   return (
     <svg
       width={dimensions.SVG_WIDTH}
@@ -123,7 +125,7 @@ const KnobSvg = props => {
       viewBox={`0 0 ${dimensions.SVG_WIDTH} ${dimensions.SVG_WIDTH}`}
     >
       {theme.dark && darkGradientDefs}
-      <g className="scale">{drawScale(props, dimensions)}</g>
+      <g className="scale">{scaleElements}</g>
       <g
         ref={props.refFunc}
         onMouseDown={props.onMouseDown}

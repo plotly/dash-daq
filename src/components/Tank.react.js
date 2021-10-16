@@ -19,6 +19,7 @@ import { computeProgress, sanitizeRangeValue } from '../helpers/util';
 import generateScale from '../helpers/scale';
 
 import { getClassName, getFilteredProps } from '../helpers/classNameGenerator';
+import { light } from '../styled/constants';
 
 /**
  * A Tank component that fills to
@@ -54,6 +55,9 @@ const Tank = props => {
 
   const elementName = getClassName('tank', theme);
 
+  const currentValueStyle =
+    props.currentValueStyle || (theme.dark ? { color: 'white' } : { color: 'black' });
+
   const renderTicks = () => {
     return Object.entries(scale).map(([k, v]) => (
       <Tick
@@ -72,7 +76,7 @@ const Tank = props => {
 
   const scaleContainer = <TickContainer xPositioned={scale}>{renderTicks()}</TickContainer>;
   const currentValue = (
-    <CurrentValue units={units} valueColor={colorValue} customStyle={props.currentValueStyle}>
+    <CurrentValue units={units} valueColor={colorValue} customStyle={currentValueStyle}>
       {logarithmic ? log.formatValue(currentDisplayValue, base) : currentDisplayValue}
     </CurrentValue>
   );
@@ -128,7 +132,8 @@ Tank.defaultProps = {
   height: 192,
   width: 112,
   base: 10,
-  labelPosition: 'top'
+  labelPosition: 'top',
+  theme: light
 };
 
 Tank.propTypes = {
@@ -157,6 +162,11 @@ Tank.propTypes = {
    * The color of tank fill
    */
   color: PropTypes.string,
+
+  /**
+   * Theme configuration to be set by a ThemeProvider
+   */
+  theme: PropTypes.object,
 
   /**
    * text style of current value

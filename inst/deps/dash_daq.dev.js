@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1633543340");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1634418721");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -37778,8 +37778,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "prop-types");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _styled_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styled/constants */ "./src/styled/constants.js");
-/* harmony import */ var _ToggleSwitch_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ToggleSwitch.react */ "./src/components/ToggleSwitch.react.js");
+/* harmony import */ var ramda__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ramda */ "./node_modules/ramda/es/index.js");
+/* harmony import */ var _styled_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styled/constants */ "./src/styled/constants.js");
+/* harmony import */ var _ToggleSwitch_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ToggleSwitch.react */ "./src/components/ToggleSwitch.react.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -37805,6 +37806,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 /**
  * A switch component that toggles
  * between on and off.
@@ -37822,7 +37824,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BooleanSwitch).call(this, props));
     _this.state = {
-      on: props.on
+      on: props.persisted_props == 'on' ? localStorage.getItem(props.id) == null ? props.on : Boolean(localStorage.getItem(props.id)) : props.on
     };
     _this.setPropsOverride = _this.setPropsOverride.bind(_assertThisInitialized(_this));
     return _this;
@@ -37852,7 +37854,13 @@ function (_Component) {
       var _this$props = this.props,
           color = _this$props.color,
           theme = _this$props.theme;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ToggleSwitch_react__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({}, this.props, {
+      var filteredProps = Object(ramda__WEBPACK_IMPORTED_MODULE_3__["omit"])(['persisted_props'], this.props);
+
+      if (this.props.persisted_props == 'on' && this.props.id != null) {
+        localStorage.setItem(this.props.id, this.state.on);
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ToggleSwitch_react__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({}, filteredProps, {
         value: this.state.on,
         setProps: this.setPropsOverride,
         booleanSwitch: true,
@@ -37867,7 +37875,7 @@ function (_Component) {
 BooleanSwitch.defaultProps = {
   on: false,
   vertical: false,
-  theme: _styled_constants__WEBPACK_IMPORTED_MODULE_3__["light"],
+  theme: _styled_constants__WEBPACK_IMPORTED_MODULE_4__["light"],
   labelPosition: 'top',
   persisted_props: ['on'],
   persistence_type: 'local'
@@ -38370,7 +38378,8 @@ Gauge.defaultProps = {
   base: 10,
   theme: _styled_constants__WEBPACK_IMPORTED_MODULE_7__["light"],
   labelPosition: 'top',
-  digits: 1
+  digits: 1,
+  size: 208
 };
 Gauge.propTypes = {
   /**
@@ -38529,7 +38538,7 @@ Gauge.propTypes = {
      * of the gauge's range of values.
      */
     ranges: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
-      color: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number)))
+      color: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number)]))
     })
   })]),
 
@@ -39307,6 +39316,18 @@ function (_Component) {
       if (typeof newProps.value !== 'undefined') this.setState({
         value: newProps.value
       });
+
+      if (this.state.max != newProps.max) {
+        this.setState({
+          max: newProps.max instanceof Number ? newProps.max : this.state.max
+        });
+      }
+
+      if (this.state.min != newProps.min) {
+        this.setState({
+          min: newProps.min instanceof Number ? newProps.min : this.state.min
+        });
+      }
     }
   }, {
     key: "componentDidMount",
@@ -39422,7 +39443,7 @@ function (_Component) {
       var progress = Object(_helpers_util__WEBPACK_IMPORTED_MODULE_8__["computeProgress"])({
         min: min,
         max: max,
-        value: value,
+        value: value > min && value < max ? value : (min + max) / 2,
         progressionTarget: 1
       });
       var colorValue = textColor || Object(_helpers_colorRanges__WEBPACK_IMPORTED_MODULE_9__["getColorValue"])(color);
@@ -39434,7 +39455,7 @@ function (_Component) {
         valueSize: Math.min((this.props.size + 32) * 13.3333 / 100, 32),
         units: false,
         css: 'transform: translateY(0%); top: 0;'
-      }, this.state.value.toFixed(this.props.digits)));
+      }, value.toFixed(this.props.digits)));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: id,
         className: elementName + (className ? ' ' + className : ''),
@@ -39450,6 +39471,15 @@ function (_Component) {
       }, this.props.showCurrentValue && currentValue, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_KnobSvg_react__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
         progress: progress
       }, filteredProps, this.state, {
+        min: this.props.min != this.state.min ? this.props.min : this.state.min,
+        max: this.props.max != this.state.max ? this.props.max : this.state.max,
+        value: value > min && value < max ? value : (min + max) / 2,
+        scale: Object(_helpers_scale__WEBPACK_IMPORTED_MODULE_10__["default"])(this.props),
+        currentDeg: valueToDeg({
+          min: this.props.min,
+          max: this.props.max,
+          value: value > min && value < max ? value : (min + max) / 2
+        }),
         refFunc: function refFunc(ele) {
           return _this2.knobElement = ele;
         },
@@ -41072,7 +41102,12 @@ Slider.propTypes = {
    * local: window.localStorage, data is kept after the browser quit.
    * session: window.sessionStorage, data is cleared once the browser quit.
    */
-  persistence_type: prop_types__WEBPACK_IMPORTED_MODULE_0___default.a.oneOf(['local', 'session', 'memory'])
+  persistence_type: prop_types__WEBPACK_IMPORTED_MODULE_0___default.a.oneOf(['local', 'session', 'memory']),
+
+  /**
+   * make slider same size of its parent
+   */
+  fullSize: prop_types__WEBPACK_IMPORTED_MODULE_0___default.a.bool
 };
 var defaultProps = Slider.defaultProps;
 var propTypes = Slider.propTypes;
@@ -41240,6 +41275,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../helpers/util */ "./src/helpers/util.js");
 /* harmony import */ var _helpers_scale__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/scale */ "./src/helpers/scale.js");
 /* harmony import */ var _helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../helpers/classNameGenerator */ "./src/helpers/classNameGenerator.js");
+/* harmony import */ var _styled_constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../styled/constants */ "./src/styled/constants.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -41255,6 +41291,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -41306,6 +41343,11 @@ var Tank = function Tank(props) {
     formatter: formatter
   }));
   var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_9__["getClassName"])('tank', theme);
+  var currentValueStyle = props.currentValueStyle || (theme.dark ? {
+    'color': 'white'
+  } : {
+    'color': 'black'
+  });
 
   var renderTicks = function renderTicks() {
     return Object.entries(scale).map(function (_ref) {
@@ -41338,7 +41380,7 @@ var Tank = function Tank(props) {
   var currentValue = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_CurrentValue_styled__WEBPACK_IMPORTED_MODULE_4__["default"], {
     units: units,
     valueColor: colorValue,
-    customStyle: props.currentValueStyle
+    customStyle: currentValueStyle
   }, logarithmic ? _helpers_logarithm__WEBPACK_IMPORTED_MODULE_6__["default"].formatValue(currentDisplayValue, base) : currentDisplayValue);
   var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_9__["getFilteredProps"])(props);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -41381,7 +41423,8 @@ Tank.defaultProps = {
   height: 192,
   width: 112,
   base: 10,
-  labelPosition: 'top'
+  labelPosition: 'top',
+  theme: _styled_constants__WEBPACK_IMPORTED_MODULE_10__["light"]
 };
 Tank.propTypes = {
   /**
@@ -41409,6 +41452,11 @@ Tank.propTypes = {
    * The color of tank fill
    */
   color: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Theme configuration to be set by a ThemeProvider
+   */
+  theme: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
 
   /**
    * text style of current value
@@ -42448,16 +42496,25 @@ function (_Component) {
           marks = _this$props3.marks;
       var elementName = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_10__["getClassName"])('slider', theme.dark);
       var filteredProps = Object(_helpers_classNameGenerator__WEBPACK_IMPORTED_MODULE_10__["getFilteredProps"])(this.props);
+      var cssStyle = this.props.vertical ? _objectSpread({}, style, {
+        marginLeft: '45px'
+      }) : _objectSpread({}, style, {
+        marginTop: '45px'
+      });
+      cssStyle = this.props.fullSize ? this.props.vertical ? _objectSpread({}, cssStyle, {
+        height: '100%'
+      }) : _objectSpread({}, cssStyle, {
+        width: '100%'
+      }) : cssStyle;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: id,
-        style: _objectSpread({}, style, {
-          marginTop: '45px'
-        }),
+        style: cssStyle,
         className: elementName + (className ? ' ' + className : '')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_shared_LabelContainer_styled__WEBPACK_IMPORTED_MODULE_6__["default"], _extends({
         className: elementName + '__label',
         labelCSS: label ? this.calcLabelOffset(this.props) : null
       }, filteredProps), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styled_Slider_styled__WEBPACK_IMPORTED_MODULE_8__["SliderContainer"], {
+        fullSize: this.props.fullSize,
         size: size,
         vertical: vertical
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(rc_slider__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
@@ -42891,13 +42948,14 @@ var KnobSvg = function KnobSvg(props) {
   var dimensions = calcDimensions(props);
   var knob = theme.dark ? darkKnob(color, newAngle, dimensions) : lightKnob(newAngle, dimensions);
   var track = theme.dark ? darkTrack(props, dimensions) : Object(_shared_TrackSvg__WEBPACK_IMPORTED_MODULE_4__["lightTrack"])(props, dimensions);
+  var scaleElements = Object(_shared_TrackSvg__WEBPACK_IMPORTED_MODULE_4__["drawScale"])(props, dimensions);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     width: dimensions.SVG_WIDTH,
     height: dimensions.SVG_WIDTH,
     viewBox: "0 0 ".concat(dimensions.SVG_WIDTH, " ").concat(dimensions.SVG_WIDTH)
   }, theme.dark && _styled_shared_DarkGradient__WEBPACK_IMPORTED_MODULE_2__["default"], react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
     className: "scale"
-  }, Object(_shared_TrackSvg__WEBPACK_IMPORTED_MODULE_4__["drawScale"])(props, dimensions)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+  }, scaleElements), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
     ref: props.refFunc,
     onMouseDown: props.onMouseDown,
     onMouseUp: props.onMouseUp,
@@ -45367,7 +45425,9 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var SliderContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject(), function (_ref) {
   var vertical = _ref.vertical,
-      size = _ref.size;
+      size = _ref.size,
+      fullSize = _ref.fullSize;
+  if (fullSize) return vertical ? 'height: 100%;' : 'width: 100%;';
   if (size) return vertical ? "height: ".concat(size, "px;") : "width: ".concat(size, "px");
 }, function (_ref2) {
   var theme = _ref2.theme;
@@ -47383,7 +47443,7 @@ __webpack_require__.r(__webpack_exports__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  flex-direction: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  flex-direction: column;\n  ", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -47397,14 +47457,10 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject(), function (props) {
-  switch (props.labelPosition) {
-    case 'top':
-      return 'column-reverse';
-
-    case 'bottom':
-      return 'column';
-  }
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject(), function (_ref) {
+  var fullSize = _ref.fullSize;
+  if (fullSize) return 'width: 100%;';
+  return '';
 });
 
 function LabelContainer(props) {
@@ -47414,18 +47470,20 @@ function LabelContainer(props) {
   if (_typeof(props.label) === 'object') {
     labelText = props.label.label;
     customLabelStyle = props.label.style;
-  } // if (labelText && labelText.length) {
+  }
 
+  var labelElement = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Label_styled__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    style: customLabelStyle,
+    css: props.labelCSS,
+    position: props.labelPosition
+  }, labelText && labelText.length ? labelText : ''); // if (labelText && labelText.length) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Container, {
     className: props.className,
     id: props.id,
-    labelPosition: props.labelPosition
-  }, props.children, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Label_styled__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    style: customLabelStyle,
-    css: props.labelCSS,
-    position: props.labelPosition
-  }, labelText && labelText.length ? labelText : '')); // }
+    labelPosition: props.labelPosition,
+    fullSize: props.fullSize
+  }, props.labelPosition == 'top' && labelElement, props.children, props.labelPosition != 'top' && labelElement); // }
   // return <div>{props.children}</div>;
 }
 
