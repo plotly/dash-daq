@@ -49,9 +49,18 @@ class Knob extends Component {
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.setValue = this.setValue.bind(this);
+    this.getValue = this.getValue.bind(this);
   }
 
   noop() {}
+
+  getValue(value) {
+    return value > this.props.min && value < this.props.max
+      ? value
+      : this.props.min > value
+      ? this.props.min
+      : this.props.max;
+  }
 
   UNSAFE_componentWillReceiveProps(newProps) {
     if (typeof newProps.value !== 'undefined') this.setState({ value: newProps.value });
@@ -138,7 +147,7 @@ class Knob extends Component {
     const progress = computeProgress({
       min,
       max,
-      value: value > min && value < max ? value : (min + max) / 2,
+      value: this.getValue(value),
       progressionTarget: 1
     });
 
@@ -180,12 +189,12 @@ class Knob extends Component {
               {...this.state}
               min={this.props.min != this.state.min ? this.props.min : this.state.min}
               max={this.props.max != this.state.max ? this.props.max : this.state.max}
-              value={value > min && value < max ? value : (min + max) / 2}
+              value={this.getValue(value)}
               scale={generateScale(this.props)}
               currentDeg={valueToDeg({
                 min: this.props.min,
                 max: this.props.max,
-                value: value > min && value < max ? value : (min + max) / 2
+                value: this.getValue(value)
               })}
               refFunc={ele => (this.knobElement = ele)}
               onMouseDown={disabled ? this.noop : this.onMouseDown}
