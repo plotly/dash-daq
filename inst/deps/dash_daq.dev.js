@@ -230,7 +230,7 @@ window["dash_daq"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1634418721");
+/******/ 	        fileFragments.splice(1, 0, "v0_5_1m1634418925");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -37824,7 +37824,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BooleanSwitch).call(this, props));
     _this.state = {
-      on: props.persisted_props == 'on' ? localStorage.getItem(props.id) == null ? props.on : Boolean(localStorage.getItem(props.id)) : props.on
+      on: props.persisted_props == 'on' ? localStorage.getItem(props.id) == null ? props.on : localStorage.getItem(props.id) == 'true' : props.on
     };
     _this.setPropsOverride = _this.setPropsOverride.bind(_assertThisInitialized(_this));
     return _this;
