@@ -40,13 +40,14 @@ app.scripts.config.serve_locally = True
 
 ################ Set up shared layout ################
 root_layout = html.Div([
+    # original
     dcc.Location(id='url', refresh=True),
     html.Div([
         html.H1('dash_daq Dash Demo'),
         dcc.Link('Light Theme', href='/', refresh=True),
         dcc.Link('Dark Theme', href='/dark', refresh=True),
 
-    ], style={'width': '80%', 'margin-left': '10%', 'margin-right': '10%', 'display': 'flex', 'flex-direction': 'row', 'align-items': 'center', 'justify-content': 'space-between'}),
+    ], style={'width': '80%', 'marginLeft': '10%', 'marginRight': '10%', 'display': 'flex', 'flexDirection': 'row', 'alignItems': 'center', 'justifyContent': 'space-between'}),
 
     html.Hr(),
 
@@ -141,7 +142,7 @@ indicators = html.Div(
                     value=2,
                     showCurrentValue=True,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
-                    exceedMessage="Exceed"
+                    exceedMessage="Exceed",
                 ),
                 Thermometer(
                     id="demoThermometer", label="Thermometer", min=0, max=10, value=2

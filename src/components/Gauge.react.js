@@ -117,7 +117,8 @@ Gauge.defaultProps = {
   base: 10,
   theme: light,
   labelPosition: 'top',
-  digits: 1
+  digits: 1,
+  size: 208
 };
 
 Gauge.propTypes = {
@@ -280,7 +281,7 @@ Gauge.propTypes = {
        */
       ranges: PropTypes.shape({
         color: PropTypes.arrayOf(
-          PropTypes.oneOfType(PropTypes.number, PropTypes.arrayOf(PropTypes.number))
+          PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
         )
       })
     })

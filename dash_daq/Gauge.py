@@ -38,7 +38,7 @@ Keyword arguments:
 
         `ranges` is a dict with keys:
 
-        - color (list; optional)
+        - color (list of number | list of numberss; optional)
 
 - digits (number; default 1):
     Number of digits for current value.
@@ -106,7 +106,7 @@ Keyword arguments:
 - showCurrentValue (boolean; optional):
     If True, the current value of the gauge will be displayed.
 
-- size (number; optional):
+- size (number; default 208):
     The size (diameter) of the gauge in pixels.
 
 - style (dict; optional):

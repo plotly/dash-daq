@@ -53,7 +53,7 @@ export const ValueLabel = styled.label`
 
 export default props => (
   <ValueContainer css={props.css}>
-    <Value fontSize={props.valueSize} color={props.valueColor}>
+    <Value fontSize={props.valueSize} color={props.valueColor} style={props.customStyle}>
       {props.children}
     </Value>
     {props.units ? <ValueLabel>{props.units}</ValueLabel> : null}

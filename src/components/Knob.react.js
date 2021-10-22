@@ -49,12 +49,27 @@ class Knob extends Component {
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.setValue = this.setValue.bind(this);
+    this.getValue = this.getValue.bind(this);
   }
 
   noop() {}
 
+  getValue(value) {
+    return value > this.props.min && value < this.props.max
+      ? value
+      : this.props.min > value
+      ? this.props.min
+      : this.props.max;
+  }
+
   UNSAFE_componentWillReceiveProps(newProps) {
     if (typeof newProps.value !== 'undefined') this.setState({ value: newProps.value });
+    if (this.state.max != newProps.max) {
+      this.setState({ max: newProps.max instanceof Number ? newProps.max : this.state.max });
+    }
+    if (this.state.min != newProps.min) {
+      this.setState({ min: newProps.min instanceof Number ? newProps.min : this.state.min });
+    }
   }
 
   componentDidMount() {
@@ -129,7 +144,12 @@ class Knob extends Component {
   render() {
     const { min, max, value = this.props.min } = this.props;
     const { id, className, labelPosition, color, style, disabled, theme, textColor } = this.props;
-    const progress = computeProgress({ min, max, value, progressionTarget: 1 });
+    const progress = computeProgress({
+      min,
+      max,
+      value: this.getValue(value),
+      progressionTarget: 1
+    });
 
     const colorValue = textColor || getColorValue(color);
 
@@ -145,7 +165,7 @@ class Knob extends Component {
           units={false}
           css={'transform: translateY(0%); top: 0;'}
         >
-          {this.state.value.toFixed(this.props.digits)}
+          {value.toFixed(this.props.digits)}
         </CurrentValue>
       </>
     );
@@ -167,6 +187,15 @@ class Knob extends Component {
               progress={progress}
               {...filteredProps}
               {...this.state}
+              min={this.props.min != this.state.min ? this.props.min : this.state.min}
+              max={this.props.max != this.state.max ? this.props.max : this.state.max}
+              value={this.getValue(value)}
+              scale={generateScale(this.props)}
+              currentDeg={valueToDeg({
+                min: this.props.min,
+                max: this.props.max,
+                value: this.getValue(value)
+              })}
               refFunc={ele => (this.knobElement = ele)}
               onMouseDown={disabled ? this.noop : this.onMouseDown}
               onMouseUp={disabled ? this.noop : this.onMouseUp}

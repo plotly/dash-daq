@@ -11,7 +11,7 @@ A slider component with support for a target value.
 
 \usage{
 daqSlider(id=NULL, className=NULL, color=NULL, disabled=NULL,
-dots=NULL, handleLabel=NULL, included=NULL,
+dots=NULL, fullSize=NULL, handleLabel=NULL, included=NULL,
 labelPosition=NULL, marks=NULL, max=NULL, min=NULL,
 persisted_props=NULL, persistence=NULL,
 persistence_type=NULL, size=NULL, step=NULL, style=NULL,
@@ -45,6 +45,8 @@ render the slider with dots.
 
 Note: dots are disabled automatically when
 using color.ranges}
+
+\item{fullSize}{Logical. make slider same size of its parent}
 
 \item{handleLabel}{Character | lists containing elements 'showcurrentvalue', 'label', 'color', 'style'.
 those elements have the following types:

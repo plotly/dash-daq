@@ -11,11 +11,11 @@ A Tank component that fills to a value between some range.
 
 \usage{
 daqTank(id=NULL, base=NULL, className=NULL, color=NULL,
-exceedMessage=NULL, height=NULL, label=NULL,
-labelPosition=NULL, lagingMessage=NULL, logarithmic=NULL,
-max=NULL, min=NULL, scale=NULL, showCurrentValue=NULL,
-style=NULL, textColor=NULL, units=NULL, value=NULL,
-width=NULL)
+currentValueStyle=NULL, exceedMessage=NULL, height=NULL,
+label=NULL, labelPosition=NULL, lagingMessage=NULL,
+logarithmic=NULL, max=NULL, min=NULL, scale=NULL,
+showCurrentValue=NULL, style=NULL, textColor=NULL,
+theme=NULL, units=NULL, value=NULL, width=NULL)
 }
 
 \arguments{
@@ -26,6 +26,8 @@ width=NULL)
 \item{className}{Character. Class to apply to the root component element.}
 
 \item{color}{Character. The color of tank fill}
+
+\item{currentValueStyle}{Named list. text style of current value}
 
 \item{exceedMessage}{Character. Warning message when value exceed max}
 
@@ -75,6 +77,8 @@ will be displayed}
 \item{style}{Named list. Style to apply to the root component element.}
 
 \item{textColor}{Character. text color}
+
+\item{theme}{Named list. Theme configuration to be set by a ThemeProvider}
 
 \item{units}{Character. Label for the current value}
 
