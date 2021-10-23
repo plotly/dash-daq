@@ -76,7 +76,13 @@ root_layout = html.Div([
 ################ Set up light layout ################
 controls = html.Div(
     [
-        Joystick(id="demojoystick", label="Joystick", labelPosition="bottom"),
+        Joystick(
+            id="demojoystick", 
+            label="Joystick", 
+            labelPosition="bottom", 
+            lockX=False, 
+            lockY=True
+            ),
         Knob(id="demoKnob", label="Knob", min=0, max=15, value=2),
         NumericInput(id="demoNumericInput", min=1, max=10000, value=100),
         BooleanSwitch(id="demoSwitch"),
