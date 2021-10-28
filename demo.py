@@ -277,7 +277,7 @@ dark_controls = html.Div(
                 "gradient": True,
             },
         ),
-        ColorPicker(id="dark-demoColorPicker", value={'rgb': {'r': 20, 'g': 142, 'b': 229, 'a': 1}}),
+        ColorPicker(id="dark-demoColorPicker", value={"hex": "#ade2fa"}),
         PrecisionInput(id="dark-demoPrecisionInput", precision=2, value=120),
     ],
     style={
