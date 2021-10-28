@@ -16,3 +16,4 @@ export { default as Thermometer } from './components/Thermometer.react';
 export { default as ToggleSwitch } from './components/ToggleSwitch.react';
 export { default as DarkThemeProvider } from './components/DarkThemeProvider.react';
 export { default as Joystick } from './components/Joystick.react';
+export { default as DirectionCompass } from './components/DirectionCompass.react';
