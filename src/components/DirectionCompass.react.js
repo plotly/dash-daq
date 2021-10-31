@@ -20,7 +20,7 @@ const DirectionCompass = props => {
       valueSize={((size + 32) * 13.3333) / 100}
       css={'transform: translateY(0%); top: 0;'}
     >
-      {direction}º
+      {direction}
     </CurrentValue>
   );
 

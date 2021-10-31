@@ -448,7 +448,7 @@ dark_layout = DarkThemeProvider(
                         html.H2("Indicators"),
                         dark_indicators,
                         DirectionCompass(
-                            id="direction-compass",
+                            id="dark-direction-compass",
                             direction=20,
                             label={
                                 "label": "label",
@@ -493,6 +493,9 @@ def update_LEDDisplay(value):
     digits = str(value)[:2]
     return "-" + ".".join(digits)
 
+@app.callback(Output("direction-compass", "direction"), [Input("demoKnob", "value")])
+def update_direction_compass(value):
+    return int((value * 360 / 15) * 100) / 100
 
 @app.callback(Output("demoGauge", "value"), [Input("demoNumericInput", "value")])
 def update_gauge(value):
@@ -615,6 +618,9 @@ def dark_update_tank(value):
 def dark_update_thermometer(value):
     return value
 
+@app.callback(Output("dark-direction-compass", "direction"), [Input("dark-demoKnob", "value")])
+def update_direction_compass(value):
+    return int((value * 360 / 15) * 100) / 100
 
 @app.callback(
     Output("dark-demoGraduatedBar", "value"), [Input("dark-demoSlider", "value")]
