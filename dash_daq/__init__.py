@@ -9,14 +9,8 @@ _filepath = _os.path.abspath(_os.path.join(_basepath, 'package-info.json'))
 with open(_filepath) as f:
     __version__ = json.loads(f.read())['version']
 
-_current_path = _os.path.dirname(_os.path.abspath(__file__))
-
-_components = _dash.development.component_loader.load_components(
-    _os.path.join(_current_path, 'metadata.json'),
-    'dash_daq'
-)
-
-_this_module = _sys.modules[__name__]
+from ._imports_ import *  # noqa: F401, F403, E402
+from ._imports_ import __all__  # noqa: E402
 
 async_resources = [
     'colorpicker',
@@ -70,7 +64,5 @@ _js_dist.extend([
 _css_dist = []
 
 
-for _component in _components:
-    setattr(_this_module, _component.__name__, _component)
-    setattr(_component, '_js_dist', _js_dist)
-    setattr(_component, '_css_dist', _css_dist)
+for _component in __all__:
+    setattr(locals()[_component], '_js_dist', _js_dist)
