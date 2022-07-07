@@ -227,20 +227,18 @@ const setColorRangeStartFromZero = (color, max) => {
       minimum = ranges[i][1];
     }
   }
-  if (minimum < 0) {
-    for (let i in ranges) {
-      if (ranges[i][0] instanceof Array) {
-        for (let j = 0; j < ranges[i].length; j++) {
-          ranges[i][j][0] = ranges[i][j][0] - minimum;
-          ranges[i][j][1] = ranges[i][j][1] - minimum;
-        }
-        continue;
+  for (let i in ranges) {
+    if (ranges[i][0] instanceof Array) {
+      for (let j = 0; j < ranges[i].length; j++) {
+        ranges[i][j][0] = ranges[i][j][0] - minimum;
+        ranges[i][j][1] = ranges[i][j][1] - minimum;
       }
-      ranges[i][0] = ranges[i][0] - minimum;
-      ranges[i][1] = ranges[i][1] - minimum;
+      continue;
     }
-    max = max - minimum;
+    ranges[i][0] = ranges[i][0] - minimum;
+    ranges[i][1] = ranges[i][1] - minimum;
   }
+  max = max - minimum;
   color = { ...color, ranges };
   return { color, max };
 };
