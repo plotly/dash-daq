@@ -11,7 +11,7 @@ between on and off.
 Keyword arguments:
 
 - id (string; optional):
-    The ID used to identify this compnent in Dash callbacks.
+    The ID used to identify this component in Dash callbacks.
 
 - className (string; optional):
     Class to apply to the root component element.
