@@ -36,6 +36,12 @@ Keyword arguments:
 - labelPosition (a value equal to: 'top', 'bottom'; default 'top'):
     Where the indicator label is positioned.
 
+- lockX (boolean; optional):
+    Joystick only move on X axis Its value will either True or False.
+
+- lockY (boolean; optional):
+    Joystick only move on Y axis Its value will either True or False.
+
 - size (number; default 100):
     Size (width) of the component in pixels.
 
@@ -45,12 +51,12 @@ Keyword arguments:
 - theme (dict; default light):
     Theme configuration to be set by a ThemeProvider."""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, angle=Component.UNDEFINED, force=Component.UNDEFINED, size=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'angle', 'className', 'force', 'label', 'labelPosition', 'size', 'style', 'theme']
+    def __init__(self, id=Component.UNDEFINED, angle=Component.UNDEFINED, force=Component.UNDEFINED, size=Component.UNDEFINED, theme=Component.UNDEFINED, label=Component.UNDEFINED, labelPosition=Component.UNDEFINED, className=Component.UNDEFINED, style=Component.UNDEFINED, lockX=Component.UNDEFINED, lockY=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'angle', 'className', 'force', 'label', 'labelPosition', 'lockX', 'lockY', 'size', 'style', 'theme']
         self._type = 'Joystick'
         self._namespace = 'dash_daq'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'angle', 'className', 'force', 'label', 'labelPosition', 'size', 'style', 'theme']
+        self.available_properties = ['id', 'angle', 'className', 'force', 'label', 'labelPosition', 'lockX', 'lockY', 'size', 'style', 'theme']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -3,6 +3,7 @@
 export(daqBooleanSwitch)
 export(daqColorPicker)
 export(daqDarkThemeProvider)
+export(daqDirectionCompass)
 export(daqGauge)
 export(daqGraduatedBar)
 export(daqIndicator)

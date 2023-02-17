@@ -33,7 +33,10 @@ describe('Color Picker', () => {
     const component = mount(
       shallow(<ColorPicker value={{ rgb: { r: 50, g: 100, b: 150, a: 0.8 } }} />).get(0)
     );
-    expect(component.state('value')).toEqual({ rgb: { r: 50, g: 100, b: 150, a: 0.8 } });
+    expect(component.state('value')).toEqual({
+      hex: '#326496CC',
+      rgb: { r: 50, g: 100, b: 150, a: 0.8 }
+    });
   });
 
   it('calls setProps callbacks', () => {

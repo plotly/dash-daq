@@ -1,6 +1,7 @@
 from .BooleanSwitch import BooleanSwitch
 from .ColorPicker import ColorPicker
 from .DarkThemeProvider import DarkThemeProvider
+from .DirectionCompass import DirectionCompass
 from .Gauge import Gauge
 from .GraduatedBar import GraduatedBar
 from .Indicator import Indicator
@@ -20,6 +21,7 @@ __all__ = [
     "BooleanSwitch",
     "ColorPicker",
     "DarkThemeProvider",
+    "DirectionCompass",
     "Gauge",
     "GraduatedBar",
     "Indicator",
