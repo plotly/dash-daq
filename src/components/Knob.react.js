@@ -55,7 +55,7 @@ class Knob extends Component {
   noop() {}
 
   getValue(value) {
-    return value > this.props.min && value < this.props.max
+    return value >= this.props.min && value <= this.props.max
       ? value
       : this.props.min > value
       ? this.props.min

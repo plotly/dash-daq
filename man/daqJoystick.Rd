@@ -11,7 +11,8 @@ A joystick.
 
 \usage{
 daqJoystick(id=NULL, angle=NULL, className=NULL, force=NULL, label=NULL,
-labelPosition=NULL, size=NULL, style=NULL, theme=NULL)
+labelPosition=NULL, lockX=NULL, lockY=NULL, size=NULL,
+style=NULL, theme=NULL)
 }
 
 \arguments{
@@ -30,6 +31,12 @@ those elements have the following types:
 pass an object with label and style properties}
 
 \item{labelPosition}{A value equal to: 'top', 'bottom'. Where the indicator label is positioned}
+
+\item{lockX}{Logical. Joystick only move on X axis
+Its value will either true or false}
+
+\item{lockY}{Logical. Joystick only move on Y axis
+Its value will either true or false}
 
 \item{size}{Numeric. Size (width) of the component in pixels}
 

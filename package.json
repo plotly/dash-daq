@@ -32,7 +32,6 @@
     "build:dev": "npm run build:js-dev && npm run build:py",
     "build-tarball": "npm run build && python setup.py sdist",
     "test": "jest src/components/__tests__",
-    "test-gauge": "jest src/components/__tests__/Gauge.test.js",
     "test:frontend-cov": "jest --coverage --silent",
     "test:watch": "jest --watch",
     "uninstall-local": "pip uninstall dash_daq -y",
