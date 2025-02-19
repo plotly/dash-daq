@@ -23,6 +23,8 @@ class Joystick extends Component {
       mode: 'static',
       color: 'grey',
       size: size,
+      lockY: this.props.lockY || false,
+      lockX: this.props.lockX || false,
       position: { left: '50%', top: '50%' },
       zone: this.zoneRef
     });
@@ -147,7 +149,19 @@ Joystick.propTypes = {
   /**
    * Style to apply to the root component element
    */
-  style: PropTypes.object
+  style: PropTypes.object,
+
+  /**
+   * Joystick only move on X axis
+   * Its value will either true or false
+   */
+  lockX: PropTypes.bool,
+
+  /**
+   * Joystick only move on Y axis
+   * Its value will either true or false
+   */
+  lockY: PropTypes.bool
 };
 
 export default withTheme(Joystick);

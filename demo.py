@@ -28,62 +28,83 @@ from dash_daq import (
     Thermometer,
     ToggleSwitch,
     DarkThemeProvider,
+    DirectionCompass,
 )
 
 app = dash.Dash("")
 
-app.css.append_css(
-    {"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
+app.css.append_css({"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
 
 app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
 
 ################ Set up shared layout ################
-root_layout = html.Div([
-    # original
-    dcc.Location(id='url', refresh=True),
-    html.Div([
-        html.H1('dash_daq Dash Demo'),
-        dcc.Link('Light Theme', href='/', refresh=True),
-        dcc.Link('Dark Theme', href='/dark', refresh=True),
-
-    ], style={'width': '80%', 'marginLeft': '10%', 'marginRight': '10%', 'display': 'flex', 'flexDirection': 'row', 'alignItems': 'center', 'justifyContent': 'space-between'}),
-
-    html.Hr(),
-
-    html.Div([
-        html.Div(id="page-content"),
+root_layout = html.Div(
+    [
+        dcc.Location(id="url", refresh=True),
         html.Div(
             [
-                BooleanSwitch(id="hiddenBooleanSwitch"),
-                Gauge(id="hiddenGauge"),
-                GraduatedBar(id="hiddenGraduatedBar"),
-                Indicator(id="hiddenIndicator"),
-                Knob(id="hiddenKnob"),
-                NumericInput(id="hiddenNumericInput"),
-                PowerButton(id="hiddenPowerButton"),
-                StopButton(id="hiddenStopButton"),
-                Tank(id="hiddenTank"),
-                Thermometer(id="hiddenThermometer"),
-                ToggleSwitch(id="hiddenToggleSwitch"),
-                DarkThemeProvider(),
+                html.H1("dash_daq Dash Demo"),
+                dcc.Link("Light Theme", href="/", refresh=True),
+                dcc.Link("Dark Theme", href="/dark", refresh=True),
             ],
-            style={"display": "none"},
+            style={
+                "width": "80%",
+                "marginLeft": "10%",
+                "marginRight": "10%",
+                "display": "flex",
+                "flexDirection": "row",
+                "alignItems": "center",
+                "justifyContent": "space-between",
+            },
         ),
-    ])]
+        html.Hr(),
+        html.Div(
+            [
+                html.Div(id="page-content"),
+                html.Div(
+                    [
+                        BooleanSwitch(id="hiddenBooleanSwitch"),
+                        Gauge(id="hiddenGauge"),
+                        GraduatedBar(id="hiddenGraduatedBar"),
+                        Indicator(id="hiddenIndicator"),
+                        Knob(id="hiddenKnob"),
+                        NumericInput(id="hiddenNumericInput"),
+                        PowerButton(id="hiddenPowerButton"),
+                        StopButton(id="hiddenStopButton"),
+                        Tank(id="hiddenTank"),
+                        Thermometer(id="hiddenThermometer"),
+                        ToggleSwitch(id="hiddenToggleSwitch"),
+                        DarkThemeProvider(),
+                    ],
+                    style={"display": "none"},
+                ),
+            ]
+        ),
+    ]
 )
 
 ################ Set up light layout ################
 controls = html.Div(
     [
-        Joystick(id="demojoystick", label="Joystick", labelPosition="bottom"),
+        Joystick(
+            id="demojoystick",
+            label="Joystick",
+            labelPosition="bottom",
+            lockX=False,
+            lockY=True,
+        ),
         Knob(id="demoKnob", label="Knob", min=0, max=15, value=2),
         NumericInput(id="demoNumericInput", min=1, max=10000, value=100),
         BooleanSwitch(id="demoSwitch"),
         ToggleSwitch(id="demoToggleSwitch", value="false", vertical=True),
         StopButton(id="demoStopButton", n_clicks=0),
-        PowerButton(id="demoPowerButton", on="false", onButtonStyle={
-                    "backgroundColor": "red"}, offButtonStyle={"backgroundColor": "blue"}),
+        PowerButton(
+            id="demoPowerButton",
+            on="false",
+            onButtonStyle={"backgroundColor": "red"},
+            offButtonStyle={"backgroundColor": "blue"},
+        ),
         Slider(
             id="demoSlider",
             min=0,
@@ -115,7 +136,7 @@ controls = html.Div(
 
 
 def warning(x, y):
-    return x+" "+y
+    return x + " " + y
 
 
 indicators = html.Div(
@@ -131,18 +152,20 @@ indicators = html.Div(
                     scale={"start": 0, "interval": 1, "labelInterval": 1},
                     value=1,
                     showCurrentValue=True,
-                    color={"gradient": True, "default": "yellow",
-                           "ranges": {"red": [0, 2], "green": [2, 4]}}
+                    color={
+                        "gradient": True,
+                        "default": "yellow",
+                        "ranges": {"red": [0, 2], "green": [2, 4]},
+                    },
                 ),
-                Tank(
-                    id="demoTank",
-                    label="Tank",
-                    min=0,
-                    max=10,
-                    value=2,
+                DirectionCompass(
+                    id="direction-compass",
+                    direction=20,
+                    label={
+                        "label": "label",
+                        "style": {"color": "red", "textDecoration": "underline"},
+                    },
                     showCurrentValue=True,
-                    scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
-                    exceedMessage="Exceed",
                 ),
                 Thermometer(
                     id="demoThermometer", label="Thermometer", min=0, max=10, value=2
@@ -154,8 +177,9 @@ indicators = html.Div(
                     max=100,
                     value=40,
                 ),
-                LEDDisplay(id="demoLEDDisplay", value="-1.2",
-                           backgroundColor="#FFFFFF"),
+                LEDDisplay(
+                    id="demoLEDDisplay", value="-1.2", backgroundColor="#FFFFFF"
+                ),
                 html.Div(
                     [
                         html.Div(
@@ -223,12 +247,27 @@ indicators = html.Div(
 
 light_layout = html.Div(
     [
-        html.Link(href="https://codepen.io/plotly/pen/EQZeaW.css",
-                  rel="stylesheet"),
+        html.Link(href="https://codepen.io/plotly/pen/EQZeaW.css", rel="stylesheet"),
         html.Div([html.H2("Controls"), controls], style={"width": "80%"}),
         html.Br(),
         html.Br(),
-        html.Div([html.H2("Indicators"), indicators], style={"width": "80%"}),
+        html.Div(
+            [
+                html.H2("Indicators"),
+                indicators,
+                Tank(
+                    id="demoTank",
+                    label="Tank",
+                    min=0,
+                    max=10,
+                    value=2,
+                    showCurrentValue=True,
+                    scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
+                    exceedMessage="Exceed",
+                ),
+            ],
+            style={"width": "80%"},
+        ),
     ],
     style={
         "width": "100%",
@@ -246,8 +285,14 @@ dark_controls = html.Div(
             id="dark-demojoystick",
             label="Joystick",
         ),
-        Knob(id="dark-demoKnob", label="Knob", min=0,
-             max=10, value=2, showCurrentValue=True),
+        Knob(
+            id="dark-demoKnob",
+            label="Knob",
+            min=0,
+            max=10,
+            value=2,
+            showCurrentValue=True,
+        ),
         NumericInput(id="dark-demoNumericInput", min=1, max=10000, value=100),
         BooleanSwitch(id="dark-demoSwitch"),
         ToggleSwitch(id="dark-demoToggleSwitch", value="false", vertical=True),
@@ -305,7 +350,7 @@ dark_indicators = html.Div(
                     value=2,
                     scale={"custom": {0: "Low", 5: "Medium", 10: "High"}},
                     # textColor="red",
-                    showCurrentValue=True
+                    showCurrentValue=True,
                 ),
                 Thermometer(
                     id="dark-demoThermometer",
@@ -321,8 +366,9 @@ dark_indicators = html.Div(
                     max=100,
                     value=40,
                 ),
-                LEDDisplay(id="dark-demoLEDDisplay", value=1.2,
-                           backgroundColor="#FFFFFF"),
+                LEDDisplay(
+                    id="dark-demoLEDDisplay", value=1.2, backgroundColor="#FFFFFF"
+                ),
                 html.Div(
                     [
                         html.Div(
@@ -391,16 +437,30 @@ dark_indicators = html.Div(
 
 dark_layout = DarkThemeProvider(
     [
-        html.Link(href="https://codepen.io/anon/pen/BYEPbO.css",
-                  rel="stylesheet"),
+        html.Link(href="https://codepen.io/anon/pen/BYEPbO.css", rel="stylesheet"),
         html.Div(
             [
-                html.Div([html.H2("Controls"), dark_controls],
-                         style={"width": "80%"}),
+                html.Div([html.H2("Controls"), dark_controls], style={"width": "80%"}),
                 html.Br(),
                 html.Br(),
                 html.Div(
-                    [html.H2("Indicators"), dark_indicators], style={"width": "80%"}
+                    [
+                        html.H2("Indicators"),
+                        dark_indicators,
+                        DirectionCompass(
+                            id="dark-direction-compass",
+                            direction=20,
+                            label={
+                                "label": "label",
+                                "style": {
+                                    "color": "red",
+                                    "textDecoration": "underline",
+                                },
+                            },
+                            showCurrentValue=True,
+                        ),
+                    ],
+                    style={"width": "80%"},
                 ),
             ],
             style={
@@ -433,6 +493,9 @@ def update_LEDDisplay(value):
     digits = str(value)[:2]
     return "-" + ".".join(digits)
 
+@app.callback(Output("direction-compass", "direction"), [Input("demoKnob", "value")])
+def update_direction_compass(value):
+    return int((value * 360 / 15) * 100) / 100
 
 @app.callback(Output("demoGauge", "value"), [Input("demoNumericInput", "value")])
 def update_gauge(value):
@@ -480,8 +543,7 @@ def update_boolean_indicator(on):
 
 
 @app.callback(
-    Output("demoToggleIndicator", "value"), [
-        Input("demoToggleSwitch", "value")]
+    Output("demoToggleIndicator", "value"), [Input("demoToggleSwitch", "value")]
 )
 def update_boolean_indicator(value):
     return value
@@ -503,8 +565,7 @@ def update_thermometer(on):
 
 ################ Set up dark callbacks ################
 @app.callback(
-    Output("dark-demoLEDDisplay",
-           "value"), [Input("dark-demoPrecisionInput", "value")]
+    Output("dark-demoLEDDisplay", "value"), [Input("dark-demoPrecisionInput", "value")]
 )
 def update_LEDDisplay(value):
     digits = str(value)[:2]
@@ -512,8 +573,7 @@ def update_LEDDisplay(value):
 
 
 @app.callback(
-    Output("dark-demoGauge",
-           "value"), [Input("dark-demoNumericInput", "value")]
+    Output("dark-demoGauge", "value"), [Input("dark-demoNumericInput", "value")]
 )
 def dark_update_gauge(value):
     return value
@@ -534,16 +594,14 @@ def dark_update_tank_color(value):
 
 
 @app.callback(
-    Output("dark-demoGraduatedBar",
-           "color"), [Input("dark-demoColorPicker", "value")]
+    Output("dark-demoGraduatedBar", "color"), [Input("dark-demoColorPicker", "value")]
 )
 def dark_update_graduatedBar_color(value):
     return value["hex"]
 
 
 @app.callback(
-    Output("dark-demoThermometer",
-           "color"), [Input("dark-demoColorPicker", "value")]
+    Output("dark-demoThermometer", "color"), [Input("dark-demoColorPicker", "value")]
 )
 def dark_update_thermometer_color(value):
     return value["hex"]
@@ -560,18 +618,19 @@ def dark_update_tank(value):
 def dark_update_thermometer(value):
     return value
 
+@app.callback(Output("dark-direction-compass", "direction"), [Input("dark-demoKnob", "value")])
+def update_direction_compass(value):
+    return int((value * 360 / 15) * 100) / 100
 
 @app.callback(
-    Output("dark-demoGraduatedBar",
-           "value"), [Input("dark-demoSlider", "value")]
+    Output("dark-demoGraduatedBar", "value"), [Input("dark-demoSlider", "value")]
 )
 def dark_update_graduated_bar(value):
     return value
 
 
 @app.callback(
-    Output("dark-demoBooleanIndicator",
-           "value"), [Input("dark-demoSwitch", "on")]
+    Output("dark-demoBooleanIndicator", "value"), [Input("dark-demoSwitch", "on")]
 )
 def dark_update_boolean_indicator(on):
     return on
@@ -595,8 +654,7 @@ def dark_update_indicator(_, indicatorState):
 
 
 @app.callback(
-    Output("dark-demoPowerIndicator",
-           "value"), [Input("dark-demoPowerButton", "on")]
+    Output("dark-demoPowerIndicator", "value"), [Input("dark-demoPowerButton", "on")]
 )
 def dark_update_thermometer(on):
     return on

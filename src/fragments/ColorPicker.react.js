@@ -17,8 +17,8 @@ const parseValue = value => {
   value = value || {};
 
   if (value.rgb) {
-    const rgba = Object.values(value.rgb);
-    return `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${rgba[3]})`;
+    const rgba = value.rgb;
+    return `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`;
   }
 
   if (value.hex)
@@ -29,6 +29,25 @@ const parseValue = value => {
   return DEFAULT_COLOR;
 };
 
+const componentToHex = c => {
+  var hex = c.toString(16);
+  return hex.length == 1 ? '0' + hex : hex;
+};
+
+// converts color from rgb to hexadecimal.
+const rgbToHex = ({ r, g, b, a }) => {
+  return (
+    '#' +
+    componentToHex(r) +
+    componentToHex(g) +
+    componentToHex(b) +
+    (Math.round(a * 255) + 0x10000)
+      .toString(16)
+      .substr(-2)
+      .toUpperCase()
+  );
+};
+
 /**
  * A color picker.
  */
@@ -36,10 +55,15 @@ class ColorPicker extends Component {
   constructor(props) {
     super(props);
 
+    let newValue = props.value;
+    if (props.value && !props.value.hex && props.value.rgb) {
+      const value = rgbToHex(props.value.rgb);
+      newValue = { hex: value, rgb: props.value.rgb };
+      if (this.props.setProps) this.props.setProps({ value: newValue });
+    }
     this.state = {
-      value: props.value
+      value: newValue
     };
-
     this.calcHandleGlow = this.calcHandleGlow.bind(this);
     this.setValue = this.setValue.bind(this);
   }
