@@ -1,7 +1,9 @@
-import dash
+from packaging.version import Version
 
+import dash
 print(f"Dash Version: {dash.__version__}")
-if dash.__version__ == "2.0.0":
+
+if Version(dash.__version__).major >= 2:
     from dash import html
     from dash import dcc
 else:
