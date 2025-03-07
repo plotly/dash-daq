@@ -34,8 +34,7 @@ from dash_daq import (
 
 app = dash.Dash("")
 
-app.css.append_css(
-    {"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
+# TODO: styles are required
 
 app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
