@@ -119,7 +119,6 @@ ls dist/dash_daq-X.X.X.tar.gz # this is your tarball
 - Dash Daq IV Tracer - [http://dash-gallery.plotly.host/dash-daq-iv-tracer](http://dash-gallery.plotly.host/dash-daq-iv-tracer)
 - Dash Daq Pressure Gauge KJL - [http://dash-gallery.plotly.host/dash-daq-pressure-gauge-kjl](http://dash-gallery.plotly.host/dash-daq-pressure-gauge-kjl)
 - Dash Daq Pressure Gauge Pfeiffer - [https://dash-gallery.plotly.host/dash-daq-pressure-gauge-pv](https://dash-gallery.plotly.host/dash-daq-pressure-gauge-pv)
-- Dash Daq Robotic Arm Edge - [http://dash-gallery.plotly.host/dash-daq-robotic-arm](http://dash-gallery.plotly.host/dash-daq-robotic-arm)
 - Dash Daq Sparki - [http://dash-gallery.plotly.host/dash-daq-sparki](http://dash-gallery.plotly.host/dash-daq-sparki)
 - Dash Daq Stepper Motor - [http://dash-gallery.plotly.host/dash-daq-stepper-motor](http://dash-gallery.plotly.host/dash-daq-stepper-motor)
 - Dash Tektronix 350 - [http://dash-gallery.plotly.host/dash-daq-tektronix350](http://dash-gallery.plotly.host/dash-daq-tektronix350)
