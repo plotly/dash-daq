@@ -1,7 +1,9 @@
-import dash
+from packaging.version import Version
 
+import dash
 print(f"Dash Version: {dash.__version__}")
-if dash.__version__ == "2.0.0":
+
+if Version(dash.__version__).major >= 2:
     from dash import html
     from dash import dcc
 else:
@@ -32,8 +34,7 @@ from dash_daq import (
 
 app = dash.Dash("")
 
-app.css.append_css(
-    {"external_url": "https://codepen.io/briandennis/pen/zRbYpB.css"})
+# TODO: styles are required
 
 app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = True
@@ -604,4 +605,4 @@ def dark_update_thermometer(on):
 
 ################ Run Server ################
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
