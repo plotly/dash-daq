@@ -1,6 +1,6 @@
 {
   "name": "dash-daq",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "engines": {
     "node": ">=8"
   },
@@ -15,7 +15,7 @@
   "homepage": "https://github.com/plotly/dash-daq",
   "main": "dash_daq/dash_daq.min.js",
   "author": "The Plotly Team <dashdaq@plotly.com>",
-  "maintainer": "Ryan Patrick Kyle <ryan@plotly.com>",
+  "maintainer": "The Plotly Team <dashdaq@plotly.com>",
   "license": "MIT",
   "scripts": {
     "copy-lib": "copyfiles -u 1 lib/* dash_daq",
